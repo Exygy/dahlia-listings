@@ -246,25 +246,26 @@ ListingDataService = (
     deferred.promise
 
   Service.getListingAMI = (listing) ->
-    angular.copy([], Service.AMICharts)
-    Service.loading.ami = true
-    Service.error.ami = false
-    # shouldn't happen, but safe to have a guard clause
-    return $q.when() unless listing.chartTypes
-    allChartTypes = _.sortBy(listing.chartTypes, 'percent')
-    data =
-      'year[]': _.map(allChartTypes, 'year')
-      'chartType[]': _.map(allChartTypes, 'chartType')
-      'percent[]': _.map(allChartTypes, 'percent')
-    $http.get('/api/v1/listings/ami.json', { params: data }).success((data, status, headers, config) ->
-      if data && data.ami
-        angular.copy(Service._consolidatedAMICharts(data.ami), Service.AMICharts)
-      Service.loading.ami = false
-    ).error( (data, status, headers, config) ->
-      Service.loading.ami = false
-      Service.error.ami = true
-      return
-    )
+    return
+    # angular.copy([], Service.AMICharts)
+    # Service.loading.ami = true
+    # Service.error.ami = false
+    # # shouldn't happen, but safe to have a guard clause
+    # return $q.when() unless listing.chartTypes
+    # allChartTypes = _.sortBy(listing.chartTypes, 'percent')
+    # data =
+    #   'year[]': _.map(allChartTypes, 'year')
+    #   'chartType[]': _.map(allChartTypes, 'chartType')
+    #   'percent[]': _.map(allChartTypes, 'percent')
+    # $http.get('/api/v1/listings/ami.json', { params: data }).success((data, status, headers, config) ->
+    #   if data && data.ami
+    #     angular.copy(Service._consolidatedAMICharts(data.ami), Service.AMICharts)
+    #   Service.loading.ami = false
+    # ).error( (data, status, headers, config) ->
+    #   Service.loading.ami = false
+    #   Service.error.ami = true
+    #   return
+    # )
 
   Service._consolidatedAMICharts = (amiData) ->
     charts = []

@@ -1,8 +1,8 @@
 {
-  "name":"sf-dahlia-web",
+  "name":"dahlia-listings",
   "description":"",
   "scripts":{
-    "postdeploy": "rake db:setup && rake db:migrate && rake listing_images:process_images"
+    "postdeploy": "rake db:schema:load && rake db:seed && rake listing_images:process_images"
   },
   "addons":[
     "newrelic",
@@ -44,43 +44,10 @@
     "HEROKU_PARENT_APP_NAME": {
       "required": true
     },
-    "SALESFORCE_USERNAME":{
-      "required":true
-    },
-    "SALESFORCE_PASSWORD":{
-      "required":true
-    },
-    "SALESFORCE_SECURITY_TOKEN":{
-      "required":true
-    },
-    "SALESFORCE_CLIENT_SECRET":{
-      "required":true
-    },
-    "SALESFORCE_CLIENT_ID":{
-      "required":true
-    },
-    "SALESFORCE_HOST":{
-      "required":true
-    },
-    "SALESFORCE_INSTANCE_URL":{
-      "required":true
-    },
-    "EASYPOST_API_KEY":{
-      "required":true
-    },
     "DISALLOW_ALL_WEB_CRAWLERS":{
       "required":true
     },
     "RESOURCE_URL":{
-      "required":true
-    },
-    "S3_BUCKET":{
-      "required":true
-    },
-    "S3_ACCESS_KEY":{
-      "required":true
-    },
-    "S3_ACCESS_KEY_ID":{
       "required":true
     },
     "SHOW_SALE_LISTINGS": {

@@ -9,18 +9,22 @@ ListingLotteryService = ($http, ListingIdentityService, ModalService) ->
   Service.loading = {}
   Service.error = {}
 
+  # TODO: Remove all lottery-related code because we are not doing lotteries
+  # in Phase 1.
+
   Service.getLotteryBuckets = (listing) ->
-    return unless listing
-    angular.copy({}, Service.lotteryBucketInfo)
-    Service.loading.lotteryResults = true
-    $http.get("/api/v1/listings/#{listing.Id}/lottery_buckets").success((data, status, headers, config) ->
-      Service.loading.lotteryResults = false
-      Service.lotteryBucketInfo[listing.Id] = {}
-      angular.copy(data, Service.lotteryBucketInfo[listing.Id])
-    ).error( (data, status, headers, config) ->
-      Service.loading.lotteryResults = false
-      return
-    )
+    return
+    # return unless listing
+    # angular.copy({}, Service.lotteryBucketInfo)
+    # Service.loading.lotteryResults = true
+    # $http.get("/api/v1/listings/#{listing.Id}/lottery_buckets").success((data, status, headers, config) ->
+    #   Service.loading.lotteryResults = false
+    #   Service.lotteryBucketInfo[listing.Id] = {}
+    #   angular.copy(data, Service.lotteryBucketInfo[listing.Id])
+    # ).error( (data, status, headers, config) ->
+    #   Service.loading.lotteryResults = false
+    #   return
+    # )
 
   Service.listingHasLotteryBuckets = (listing) ->
     return false unless listing
@@ -62,22 +66,23 @@ ListingLotteryService = ($http, ListingIdentityService, ModalService) ->
     lotteryNumber
 
   Service.getLotteryRanking = (lotteryNumber, listing) ->
-    return false unless lotteryNumber && listing
-    Service.lotteryRankingInfo[listing.Id] = {}
-    angular.copy({submitted: false}, Service.lotteryRankingInfo[listing.Id])
-    params =
-      params:
-        lottery_number: lotteryNumber
-    Service.loading.lotteryRank = true
-    Service.error.lotteryRank = false
-    $http.get("/api/v1/listings/#{listing.Id}/lottery_ranking", params).success((data, status, headers, config) ->
-      angular.copy(data, Service.lotteryRankingInfo[listing.Id])
-      Service.loading.lotteryRank = false
-      Service.lotteryRankingInfo[listing.Id].submitted = true
-    ).error( (data, status, headers, config) ->
-      Service.loading.lotteryRank = false
-      Service.error.lotteryRank = true
-    )
+    return
+    # return false unless lotteryNumber && listing
+    # Service.lotteryRankingInfo[listing.Id] = {}
+    # angular.copy({submitted: false}, Service.lotteryRankingInfo[listing.Id])
+    # params =
+    #   params:
+    #     lottery_number: lotteryNumber
+    # Service.loading.lotteryRank = true
+    # Service.error.lotteryRank = false
+    # $http.get("/api/v1/listings/#{listing.Id}/lottery_ranking", params).success((data, status, headers, config) ->
+    #   angular.copy(data, Service.lotteryRankingInfo[listing.Id])
+    #   Service.loading.lotteryRank = false
+    #   Service.lotteryRankingInfo[listing.Id].submitted = true
+    # ).error( (data, status, headers, config) ->
+    #   Service.loading.lotteryRank = false
+    #   Service.error.lotteryRank = true
+    # )
 
   Service.resetData = ->
     angular.copy({}, Service.lotteryBucketInfo)

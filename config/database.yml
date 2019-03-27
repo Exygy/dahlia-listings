@@ -6,8 +6,8 @@ default: &default
 
 development:
   <<: *default
-  database: sf_dahlia
+  database: dahlia_listings_dev
 
 test:
   <<: *default
-  database: sf_dahlia_test
+  database: dahlia_listings_test

@@ -3,14 +3,44 @@
 # RESTful JSON API to query for listings
 class Api::V1::ListingsController < ApiController
   def index
-    # params[:ids] could be nil which means get all open listings
-    # params[:ids] is a comma-separated list of ids
-    @listings = Force::ListingService.listings(listings_params)
+    # listings_params[:ids] could be nil which means get all open listings
+    # listings_params[:ids] is a comma-separated list of ids
+
+    # Here we use the USE_DB_FOR_LISTINGS env var to allow us to toggle
+    # back and forth between using the new approach of using a Postgres
+    # DB vs the old way of using Salesforce as the data source. This is
+    # useful while we're in the early stages of development to allow us
+    # to easily pull in data from Salesforce and check how it looks.
+    # TODO: Remove this check on the USE_DB_FOR_LISTINGS env var once
+    # development is far along enough that we don't need to be able to
+    # switch back to Salesforce to check data.
+    if ENV['USE_DB_FOR_LISTINGS'] == 'true'
+      if listings_params[:ids]
+        @listings = Listing.find(*listings_params[:ids])
+      else
+        @listings = Listing.all
+      end
+      @listings = @listings.map(&:to_salesforce_from_db)
+    else
+      @listings = Force::ListingService.listings(listings_params)
+    end
+    puts @listings
+
     render json: { listings: @listings }
   end
 
   def show
-    @listing = Force::ListingService.listing(params[:id], force: params[:force])
+    # See comment above about use of the USE_DB_FOR_LISTINGS env var.
+    # TODO: Remove this check on the USE_DB_FOR_LISTINGS env var once
+    # development is far along enough that we don't need to be able to
+    # switch back to Salesforce to check data.
+    if ENV['USE_DB_FOR_LISTINGS'] == 'true'
+      @listing = Listing.find(params[:id]).to_salesforce_from_db
+    else
+      @listing = Force::ListingService.listing(params[:id], force: params[:force])
+    end
+
+    puts @listing
     render json: { listing: @listing }
   end
 
