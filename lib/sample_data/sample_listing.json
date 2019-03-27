@@ -23,7 +23,7 @@
   "reservedDescriptor": null,
   "prioritiesDescriptor": null,
   "listingID": "a0W0P00000F8YG4UAN",
-  "doesMatch": null,
+  "doesMatch": false,
   "chartTypes": [
     {
       "year": 2016,
