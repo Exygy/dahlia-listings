@@ -87,7 +87,9 @@
   (options) ->
     deferred = $q.defer()
     # asset paths have unpredictable hash suffixes, which is why we need the custom loader
-    $http.get($window.STATIC_ASSET_PATHS["locale-#{options.key}.json"]).success((data) ->
+    organization = getCurrentOrganization()
+
+    $http.get($window.STATIC_ASSET_PATHS["locale-#{organization}-#{options.key}.json"]).success((data) ->
       deferred.resolve(data)
     ).error( ->
       deferred.reject({status: 503})
@@ -119,3 +121,6 @@ getAvailableStorageType = ->
   catch e
     # private window can use cookies, they will just be cleared when you close the window
     return 'cookies'
+
+getCurrentOrganization = ->
+  return document.body.dataset.organization

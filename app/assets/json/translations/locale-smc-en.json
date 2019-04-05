@@ -964,7 +964,7 @@
         "CONFIRM": "Confirm",
         "CONTINUE": "Continue",
         "CONTINUE_WITH_YOUR_APPLICATION": "Continue with your application?",
-        "DAHLIA_HOUSING_PORTAL": "DAHLIA San Francisco Housing Portal",
+        "DAHLIA_HOUSING_PORTAL": "DAHLIA San Mateo County Housing Portal",
         "DELETE": "Delete",
         "DELETE_APPLICATION": "Delete this application?",
         "EDIT": "Edit",
@@ -1006,6 +1006,6 @@
         "SEE_RENTAL_LISTINGS": "Rent",
         "SEE_SALE_LISTINGS": "Buy",
         "SIGN_UP_TODAY": "Sign Up today",
-        "TITLE": "Apply for affordable housing"
+        "TITLE": "Apply for SMC affordable housing"
     }
 }
