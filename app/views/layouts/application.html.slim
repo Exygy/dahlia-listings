@@ -67,7 +67,6 @@ html lang="en" ng-app="dahlia" ng-strict-di="" ng-controller="SharedController"
     .site-container ng-class="{'skiptranslate': doNotGoogleTranslate()}"
       / always skip translations for the header + navigation
       .skiptranslate
-        section(ui-view="translate")
         section(ui-view="version")
         section(ui-view="navigation")
       .loading-overlay(bs-loading-overlay)

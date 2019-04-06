@@ -964,7 +964,6 @@
         "CONFIRM": "Confirm",
         "CONTINUE": "Continue",
         "CONTINUE_WITH_YOUR_APPLICATION": "Continue with your application?",
-        "DAHLIA_HOUSING_PORTAL": "DAHLIA San Francisco Housing Portal",
         "DELETE": "Delete",
         "DELETE_APPLICATION": "Delete this application?",
         "EDIT": "Edit",
@@ -1005,7 +1004,6 @@
         "NEW_LISTING_EMAIL_ALERT": "Get emailed whenever a new listing is posted.",
         "SEE_RENTAL_LISTINGS": "Rent",
         "SEE_SALE_LISTINGS": "Buy",
-        "SIGN_UP_TODAY": "Sign Up today",
-        "TITLE": "Apply for affordable housing"
+        "SIGN_UP_TODAY": "Sign Up today"
     }
 }

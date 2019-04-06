@@ -77,8 +77,8 @@
 
 @dahlia.config ['$translateProvider', ($translateProvider) ->
   $translateProvider
-    .preferredLanguage('en')
-    .fallbackLanguage('en')
+    .preferredLanguage('ORG')
+    .fallbackLanguage('ORG')
     .useSanitizeValueStrategy('sceParameters')
     .useLoader('assetPathLoader') # custom loader, see below
 ]
@@ -87,9 +87,13 @@
   (options) ->
     deferred = $q.defer()
     # asset paths have unpredictable hash suffixes, which is why we need the custom loader
-    organization = getCurrentOrganization()
+    if options.key == 'ORG'
+      organization = getCurrentOrganization()
+      locale_path = "locale-#{organization}-en.json"
+    else
+      locale_path = "locale-#{options.key}.json"
 
-    $http.get($window.STATIC_ASSET_PATHS["locale-#{organization}-#{options.key}.json"]).success((data) ->
+    $http.get($window.STATIC_ASSET_PATHS[locale_path]).success((data) ->
       deferred.resolve(data)
     ).error( ->
       deferred.reject({status: 503})
