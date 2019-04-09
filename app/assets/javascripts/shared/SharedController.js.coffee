@@ -2,7 +2,7 @@
 ###################################### CONTROLLER ##########################################
 ############################################################################################
 
-SharedController = ($scope, $state, $stateParams, $window, SharedService, ExternalTranslateService) ->
+SharedController = ($scope, $state, $stateParams, $translate, $window, SharedService, ExternalTranslateService) ->
   $scope.assetPaths = SharedService.assetPaths
   $scope.housingCounselors = SharedService.housingCounselors
   $scope.alternateLanguageLinks = SharedService.alternateLanguageLinks
@@ -22,8 +22,8 @@ SharedController = ($scope, $state, $stateParams, $window, SharedService, Extern
   $scope.isEnglish = ->
     $state.params.lang == 'en'
 
-  $scope.feedbackUrl = 'https://docs.google.com/\
-    forms/d/e/1FAIpQLSfJQL6ewvzETV7ZkWot94CaVlI7XlGPbhny4w6mPmDqZS995Q/viewform?usp=sf_link'
+  $scope.feedbackUrl = () ->
+    $translate.instant('NAV.FEEDBACK_URL')
 
   $scope.listingEmailAlertUrl = "http://eepurl.com/dkBd2n"
 
@@ -54,7 +54,7 @@ SharedController = ($scope, $state, $stateParams, $window, SharedService, Extern
 ############################################################################################
 
 SharedController.$inject = [
-  '$scope', '$state', '$stateParams', '$window', 'SharedService', 'ExternalTranslateService'
+  '$scope', '$state', '$stateParams', '$translate', '$window', 'SharedService', 'ExternalTranslateService'
 ]
 
 angular

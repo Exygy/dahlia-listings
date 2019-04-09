@@ -1,8 +1,12 @@
 {
-    "T": {
-        "DAHLIA_HOUSING_PORTAL": "<strong>DAHLIA</strong><br/>San Mateo County"
+    "FOOTER": {
+      "COPYRIGHT": "San Mateo County"
     },
-    "WELCOME": {
-        "TITLE": "Apply for SMC affordable housing"
+    "NAV": {
+      "ASSISTANCE_URL": "https://housing.smcgov.org/find-rental-assistance",
+      "FEEDBACK_URL": "https://forms.gle/uFV7qgotgQbEg77u8"
+    },
+    "T": {
+      "DAHLIA_HOUSING_PORTAL": "<strong>DAHLIA</strong><br/>San Mateo County"
     }
 }

@@ -8,7 +8,7 @@ li ng-if-end="true"
   a ui-sref="dahlia.listings-for-sale"
     | {{ "NAV.BUY" | translate}}
 li
-  a ui-sref="dahlia.get-assistance"
+  a href="{{ 'NAV.ASSISTANCE_URL' | translate }}"
     | {{ "NAV.GET_ASSISTANCE" | translate}}
 li(has-dropdown ng-if="loggedIn()")
   a ui-sref="dahlia.my-account" dropdown-toggle="#my-account-dropdown"
