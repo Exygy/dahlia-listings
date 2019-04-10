@@ -30,19 +30,6 @@
       a.ui-link.t-micro.hide-for-print target="_blank" href="https://www.google.com/maps/place/{{$ctrl.parent.formattedBuildingAddress($ctrl.parent.listing)}}"
         | View on Map
 
-    .property-hero_favorite
-      button.button.round-icon.i-block data-event="gtm-favorite" title="Favorite" ng-click="$ctrl.parent.toggleFavoriteListing($ctrl.parent.listing.Id);"
-        span.ui-icon
-          svg
-            use xlink:href="#i-like" ng-show="!$ctrl.parent.isFavorited($ctrl.parent.listing.Id)"
-            use xlink:href="#i-like-fill" ng-show="$ctrl.parent.isFavorited($ctrl.parent.listing.Id)"
-        span.sr-only Favorite
-      a.button.round-icon.i-block data-event="gtm-share" title="Share" ui-sref="dahlia.share({id: $ctrl.parent.listing.Id})"
-        span.ui-icon
-          svg
-            use xlink:href="#i-forward"
-            use style="display:none" xlink:href="#i-forward-fill"
-        span.sr-only Share
 
   .property-hero_stats.show-for-small-only.margin-top ng-if="::$ctrl.parent.listingApplicationClosed($ctrl.parent.listing)"
     span.label.label--flag.alert-tint
