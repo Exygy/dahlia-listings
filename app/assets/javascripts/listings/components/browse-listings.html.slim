@@ -85,8 +85,7 @@ section.results-section#listing-results ng-if="!$ctrl.parent.openListings.length
       .large-12.columns
         property-card listing='listing' ng-repeat="listing in $ctrl.parent.openMatchListings"
 
-ng-include src="'listings/templates/_rental-callout.html'" ng-if="$ctrl.tenureType == 'rental' && (!$ctrl.parent.hasEligibilityFilters() || $ctrl.openMatchListings.length)"
-ng-include src="'listings/templates/_sale-callout.html'" ng-if="$ctrl.tenureType == 'sale' && (!$ctrl.parent.hasEligibilityFilters() || $ctrl.openMatchListings.length)"
+
 
 / Notification: Not Matched listings
 section.margin-top--2x.margin-bottom--2x ng-if="$ctrl.openMatchListings.length && $ctrl.parent.openNotMatchListings.length"
@@ -95,11 +94,3 @@ section.margin-top--2x.margin-bottom--2x ng-if="$ctrl.openMatchListings.length &
 / Listings: Not Matched
 listing-results-toggler listing-results="$ctrl.parent.openNotMatchListings" section-name="notMatched" icon="#i-building" ng-if="$ctrl.parent.hasEligibilityFilters() && $ctrl.parent.openNotMatchListings.length"
 
-/ Listings: Upcoming Lotteries (Closed Listings)
-listing-results-toggler listing-results="$ctrl.parent.closedListings" section-name="upcomingLotteries" icon="#i-clock"
-
-/ Listings: Lottery Results
-listing-results-toggler listing-results="$ctrl.parent.lotteryResultsListings" section-name="lotteryResults" icon="#i-result"
-
-/ email updates callout
-ng-include src="'pages/templates/_email-updates.html'"

@@ -463,6 +463,7 @@ DEPENDENCIES
   rspec-core
   rspec-rails
   rubocop (~> 0.52.0)
+  safe_yaml
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sentry-raven (~> 2.6.3)
