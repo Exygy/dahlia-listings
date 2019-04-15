@@ -1,6 +1,6 @@
 smc:
   name: San Mateo County
-  domain: housing.smcgov.org
+  domain: dahlia-listings-staging-pr-2.herokuapp.com
 #  domain: 192.168.0.101
 sj:
   name: San Jose
