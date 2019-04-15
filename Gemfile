@@ -92,6 +92,8 @@ gem 'fog-aws'
 # https://elements.heroku.com/addons/sentry
 gem 'sentry-raven', '~> 2.6.3'
 
+gem 'safe_yaml'
+
 group :test do
   gem 'codeclimate-test-reporter'
   gem 'webmock'
