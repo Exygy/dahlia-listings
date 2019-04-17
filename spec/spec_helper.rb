@@ -21,8 +21,11 @@
 require 'database_cleaner'
 DatabaseCleaner[:active_record].strategy = :truncation
 
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+# FIXME: the Ruby client for CodeClimate is depricated
+# and this no longer is working. -JW
+# See: https://github.com/codeclimate/ruby-test-reporter/blob/master/README.md
+#require 'codeclimate-test-reporter'
+#CodeClimate::TestReporter.start
 
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)

@@ -1,0 +1,6 @@
+smc:
+  name: San Mateo County
+  domain: test.host
+sj:
+  name: San Jose
+  domain: test-sj.host
