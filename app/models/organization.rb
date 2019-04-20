@@ -18,7 +18,15 @@ class Organization
   # rubocop:enable Style/RedundantSelf
 
   def self.load_domain_information
-    SafeYAML.load_file(File.join(Rails.application.root, 'config', 'organizations.yml'))
+    SafeYAML.load_file yaml_filepath
+  end
+
+  def self.yaml_filepath
+    if Rails.env.test?
+      File.join(Rails.application.root, 'spec', 'support', 'organizations.yml')
+    else
+      File.join(Rails.application.root, 'config', 'organizations.yml')
+    end
   end
 
   def self.find_information_for_domain(domain)

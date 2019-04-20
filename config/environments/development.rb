@@ -26,6 +26,9 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
+  # Suppress output of asset requests
+  config.assets.quiet = true
+
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
@@ -42,7 +45,9 @@ Rails.application.configure do
   # Turn caching on for development
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
-    config.static_cache_control = 'public, max-age=172800'
+    config.public_file_server.headers = {
+      'Cache-Control' => 'public, max-age=172800',
+    }
     config.cache_store = :dalli_store
   else
     config.action_controller.perform_caching = false

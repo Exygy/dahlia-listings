@@ -1,4 +1,4 @@
-class CreateListings < ActiveRecord::Migration
+class CreateListings < ActiveRecord::Migration[4.2]
   def change
     create_table :listings do |t|
       t.boolean :accepting_applications_at_leasing_agent, null: false, default: false

@@ -7,7 +7,7 @@
 # Represent a listing object. Provide mapping between Salesforce
 # object field names, Salesforce custom API field names, and
 # domain field names for listings.
-class Listing < ActiveRecord::Base
+class Listing < ApplicationRecord
   include ObjectBase
 
   # TODO: Once we add more models and more fields, consider moving the
