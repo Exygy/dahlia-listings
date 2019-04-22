@@ -29,21 +29,9 @@ describe Api::V1::ListingsController do
   end
 
   describe '#index' do
-    fit 'returns all 4 listings' do
+    it 'returns all 4 listings' do
       get :index
       expect(JSON.parse(response.body)['listings'].size).to eq(4)
-    end
-
-    it 'returns only rental listings' do
-      get :index, Tenure: 'rental'
-      resp = JSON.parse(response.body)['listings']
-      expect(resp.all? { |l| l['Tenure'].include? 'rental' }).to be_truthy
-    end
-
-    it 'returns only sale listings' do
-      get :index, Tenure: 'sale'
-      resp = JSON.parse(response.body)['listings']
-      expect(resp.all? { |l| l['Tenure'].include? 'sale' }).to be_truthy
     end
 
     context 'raises an error' do
