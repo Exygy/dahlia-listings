@@ -10,9 +10,6 @@ angular.module('dahlia.components')
     (ListingDataService, SharedService, $state) ->
       ctrl = @
 
-      @showSharing = ->
-        SharedService.showSharing()
-
       @isOpenListing = (listing) ->
         this.listingContainer.openListings.indexOf(listing) > -1
 

@@ -13,31 +13,25 @@ do ->
     $translate =
       instant: ->
     fakeWindow = {}
-    fakeWindow['env'] = {showSaleListings: 'true'}
     fakeSharedService = {}
     fakeAnalyticsService = {}
     fakeListings = getJSONFixture('listings-api-index.json').listings
     fakeListing = getJSONFixture('listings-api-show.json').listing
-    fakeListingFavorites = {}
     hasFilters = false
     fakeListingDataService =
       listings: fakeListings
       openListings: []
       closedListings: []
       listing: fakeListing
-      favorites: fakeListingFavorites
       AMICharts: []
       stubFeatures: () -> null
       listingIs: () -> null
       loading: {}
-      toggleFavoriteListing: jasmine.createSpy()
-      isFavorited: jasmine.createSpy()
       formattedAddress: jasmine.createSpy()
       getListingAMI: jasmine.createSpy()
       reservedLabel: jasmine.createSpy()
     fakeListingIdentityService =
       listingIs: jasmine.createSpy()
-      isSale: jasmine.createSpy()
       isOpen: jasmine.createSpy()
     fakeListingUnitService =
       getListingUnits: jasmine.createSpy()
@@ -71,71 +65,11 @@ do ->
         it 'populates ctrl with AMICharts', ->
           expect(ctrl.AMICharts).toBeDefined()
 
-        it 'populates ctrl with favorites', ->
-          expect(ctrl.favorites).toEqual fakeListingFavorites
-
         it 'populates ctrl with openListings', ->
           expect(ctrl.openListings).toBeDefined()
 
         it 'populates ctrl with closedListings', ->
           expect(ctrl.closedListings).toBeDefined()
-
-      describe '$ctrl.isSale', ->
-        it 'calls ListingIdentityService.isSale with the given listing', ->
-          ctrl.isSale(fakeListing)
-          expect(fakeListingIdentityService.isSale).toHaveBeenCalledWith(fakeListing)
-
-      describe '$ctrl.hasSaleAndRentalFavorited', ->
-        fakeSaleListing = angular.copy(fakeListing)
-        fakeSaleListing.Tenure = 'New sale'
-        fakeRentalListing = angular.copy(fakeListing)
-        fakeRentalListing.Tenure = 'New rental'
-
-        describe 'when rental and sale listings are favorited', ->
-          it 'returns true', ->
-            listings = [fakeRentalListing, fakeSaleListing]
-            ctrl.filterByFavorites = jasmine.createSpy().and.returnValue(listings)
-            ctrl.isSale = jasmine.createSpy().and.returnValues(false, true)
-            expect(ctrl.hasSaleAndRentalFavorited(listings)).toEqual true
-
-        describe 'when no listings are favorited', ->
-          it 'returns false', ->
-            listings = [fakeRentalListing, fakeSaleListing]
-            ctrl.filterByFavorites = jasmine.createSpy().and.returnValue([])
-            expect(ctrl.hasSaleAndRentalFavorited(listings)).toEqual false
-
-        describe 'when only rental listings are favorited', ->
-          it 'returns false', ->
-            listings = [fakeRentalListing]
-            ctrl.filterByFavorites = jasmine.createSpy().and.returnValue(listings)
-            ctrl.isSale = jasmine.createSpy().and.returnValue(false)
-            expect(ctrl.hasSaleAndRentalFavorited(listings)).toEqual false
-
-        describe 'when only sale listings are favorited', ->
-          it 'returns false', ->
-            listings = [fakeRentalListing]
-            ctrl.filterByFavorites = jasmine.createSpy().and.returnValue(listings)
-            ctrl.isSale = jasmine.createSpy().and.returnValue(true)
-            expect(ctrl.hasSaleAndRentalFavorited(listings)).toEqual false
-
-      describe '$ctrl.isFavorited', ->
-        it 'calls ListingService.isFavorited with the given listing ID', ->
-          fakeListingId = 'asdf1234'
-          ctrl.isFavorited(fakeListingId)
-          expect(fakeListingDataService.isFavorited).toHaveBeenCalledWith(fakeListingId)
-
-      describe '$ctrl.filterByFavorites', ->
-        it "calls ListingService.isFavorited with the given listing's ID", ->
-          fakeListingId = 'asdf1234'
-          listing = angular.copy(fakeListing)
-          listing.Id = fakeListingId
-          ctrl.filterByFavorites([listing])
-          expect(fakeListingDataService.isFavorited).toHaveBeenCalledWith(fakeListingId)
-
-        it 'filters out non-favorited listings', ->
-          ctrl.isFavorited = jasmine.createSpy().and.returnValues(false, true, false)
-          results = ctrl.filterByFavorites([fakeListing, fakeListing, fakeListing])
-          expect(results.length).toEqual(1)
 
       describe '$ctrl.reservedLabel', ->
         it 'calls ListingDataService.reservedLabel with the given arguments', ->
@@ -170,11 +104,6 @@ do ->
           ctrl.listingHasReservedUnits(fakeListing)
           expect(fakeListingUnitService.listingHasReservedUnits).toHaveBeenCalledWith(fakeListing)
 
-      describe '$ctrl.toggleFavoriteListing', ->
-        it 'expects ListingDataService.function to be called', ->
-          ctrl.toggleFavoriteListing 1
-          expect(fakeListingDataService.toggleFavoriteListing).toHaveBeenCalled()
-
       describe '$ctrl.listingApplicationClosed', ->
         it 'expects ListingIdentityService.isOpen to be called', ->
           ctrl.listingApplicationClosed(fakeListing)
@@ -207,14 +136,3 @@ do ->
         it 'returns defined object if agents info is available', ->
           fakeListing.Leasing_Agent_Street = '1 South Van Ness Ave San Francisco CA 94131'
           expect(ctrl.agentInfoAvailable(fakeListing)).toBeDefined()
-
-      describe '$ctrl.featuresCaption', ->
-        it 'calls ListingIdentityService.isSale', ->
-          ctrl.featuresCaption(fakeListing)
-          expect(fakeListingIdentityService.isSale).toHaveBeenCalledWith(fakeListing)
-        it 'returns "Amenities and unit details" for sale listing', ->
-          fakeListingIdentityService.isSale = jasmine.createSpy().and.returnValue(true)
-          expect(ctrl.featuresCaption(fakeListing)).toEqual("Amenities and unit details")
-        it 'returns "Amenities, unit details and additional fees" for rental listing', ->
-          fakeListingIdentityService.isSale = jasmine.createSpy().and.returnValue(false)
-          expect(ctrl.featuresCaption(fakeListing)).toEqual("Amenities, unit details and additional fees")

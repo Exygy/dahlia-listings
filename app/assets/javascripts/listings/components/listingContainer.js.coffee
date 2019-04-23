@@ -14,28 +14,12 @@ angular.module('dahlia.components')
     @error = ListingDataService.error
     @toggleStates = ListingDataService.toggleStates
     @AMICharts = ListingDataService.AMICharts
-    @favorites = ListingDataService.favorites
 
     @openListings = ListingDataService.openListings
     @closedListings = ListingDataService.closedListings
-    @showSaleListings = $window.env.showSaleListings == 'true'
 
     @isRental = (listing) ->
       ListingIdentityService.isRental(listing)
-
-    @isSale = (listing) ->
-      ListingIdentityService.isSale(listing)
-
-    @hasSaleAndRentalFavorited = (listings) ->
-      favoritedListings = @filterByFavorites listings
-      areSaleListings = (@isSale listing for listing in favoritedListings)
-      (_.some areSaleListings) && !(_.every areSaleListings)
-
-    @isFavorited = (listingId) ->
-      ListingDataService.isFavorited(listingId)
-
-    @filterByFavorites = (listings) ->
-      (listing for listing in listings when @isFavorited listing.Id)
 
     @reservedLabel = (listing, type, modifier) ->
       ListingDataService.reservedLabel(listing, type, modifier)
@@ -61,9 +45,6 @@ angular.module('dahlia.components')
     @formattedLeasingAgentAddress = (listing) ->
       ListingDataService.formattedAddress(listing, 'Leasing_Agent')
 
-    @toggleFavoriteListing = (listingId) ->
-      ListingDataService.toggleFavoriteListing(listingId)
-
     @getListingUnits = (listing) ->
       ListingUnitService.getListingUnits(listing)
 
@@ -72,12 +53,6 @@ angular.module('dahlia.components')
 
     @agentInfoAvailable = (listing) ->
       listing.Leasing_Agent_Phone || listing.Leasing_Agent_Email || listing.Leasing_Agent_Street
-
-    @featuresCaption = (listing) ->
-      if ListingIdentityService.isSale(listing)
-        "Amenities and unit details"
-      else
-        "Amenities, unit details and additional fees"
 
     return ctrl
   ]

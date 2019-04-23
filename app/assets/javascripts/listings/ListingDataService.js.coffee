@@ -18,34 +18,7 @@ ListingDataService = (
   Service.error = {}
   Service.toggleStates = {}
   Service.listingPaperAppURLs = []
-  $localStorage.favorites ?= []
-  Service.favorites = $localStorage.favorites
   Service.preferenceMap = ListingConstantsService.preferenceMap
-
-  Service.getFavoriteListings = () ->
-    Service.getListingsByIds(Service.favorites, true)
-
-  # Service.checkFavorites makes sure that Service.listings contains our favorited listings
-  # if not, it means the listing doesn't exist and we should remove it from favorites
-  Service.checkFavorites = () ->
-    listing_ids = []
-    Service.listings.forEach (listing) -> listing_ids.push(listing['Id'])
-    Service.favorites.forEach (favorite_id) ->
-      if listing_ids.indexOf(favorite_id) == -1
-        Service.toggleFavoriteListing(favorite_id)
-
-  Service.toggleFavoriteListing = (listing_id) ->
-    # toggle the value for listing_id
-    index = Service.favorites.indexOf(listing_id)
-    if index == -1
-      # add the favorite
-      Service.favorites.push(listing_id)
-    else
-      # remove the favorite
-      Service.favorites.splice(index, 1)
-
-  Service.isFavorited = (listing_id) ->
-    Service.favorites.indexOf(listing_id) > -1
 
   Service.sortByDate = (sessions) ->
     # used for sorting Open_Houses and Information_Sessions
@@ -137,13 +110,12 @@ ListingDataService = (
     angular.copy(openListings, Service.openListings)
     angular.copy(closedListings, Service.closedListings)
 
-  Service.getListingsByIds = (ids, checkFavorites = false) ->
+  Service.getListingsByIds = (ids) ->
     angular.copy([], Service.listings)
     params = {params: {ids: ids.join(',') }}
     $http.get("/api/v1/listings.json", params).success((data, status, headers, config) ->
       listings = if data and data.listings then data.listings else []
       angular.copy(listings, Service.listings)
-      Service.checkFavorites() if checkFavorites
     ).error( (data, status, headers, config) ->
       return
     )
@@ -286,10 +258,7 @@ ListingDataService = (
       "#{Street_Address}#{City} #{State}, #{Zip_Code}"
 
   Service.getListingPaperAppURLs = (listing) ->
-    if ListingIdentityService.isSale(listing)
-      urls = angular.copy(ListingConstantsService.salePaperAppURLs)
-    else
-      urls = angular.copy(ListingConstantsService.rentalPaperAppURLs)
+    urls = angular.copy(ListingConstantsService.rentalPaperAppURLs)
 
     english = _.find(urls, { language: 'English' })
     chinese = _.find(urls, { language: 'Traditional Chinese' })

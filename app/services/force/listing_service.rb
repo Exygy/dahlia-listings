@@ -30,8 +30,6 @@ module Force
     def self.listings(attrs = {})
       params = attrs[:ids].present? ? { ids: attrs[:ids] } : nil
       results = get_listings(params)
-      # TODO: Move filtering to saleforce request
-      results = filter_listings(results, attrs) if attrs.present?
       clean_listings_for_browse(results)
     end
 
@@ -113,30 +111,6 @@ module Force
           WHITELIST_BROWSE_FIELDS.include?(key.to_sym) || key.include?('Building')
         end
       end
-    end
-
-    private_class_method def self.filter_listings(results, filter)
-      results = results.collect(&:with_indifferent_access)
-      filter.except(:ids).each do |key, value|
-        results = case key.to_sym
-                  when :Tenure
-                    case value
-                    when 'rental'
-                      results.select do |listing|
-                        listing[key] == 'New rental' || listing[key] == 'Re-rental'
-                      end
-                    when 'sale'
-                      results.select do |listing|
-                        listing[key] == 'New sale' || listing[key] == 'Resale'
-                      end
-                    else
-                      results
-                    end
-                  else
-                    results
-                  end
-      end
-      results
     end
   end
 end

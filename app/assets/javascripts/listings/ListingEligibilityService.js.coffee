@@ -22,16 +22,8 @@ ListingEligibilityService = ($localStorage, ListingIdentityService, ListingUnitS
     min = occupancyMinMax[0]
     # We add '+ 2' for 2 children under 6 as part of householdsize but not occupancy. Unless it's max
     max = if _.isNumber(occupancyMinMax[1]) then occupancyMinMax[1] + 2 else Service.maxAmiNumHousehold(amiLevel)
-    # TO DO: Hardcoded Temp fix, take this and replace with long term solution
-    if (
-      ListingIdentityService.listingIs('Merry Go Round Shared Housing', listing) ||
-      ListingIdentityService.listingIs('1335 Folsom Street', listing)
-    )
-      max = 2
-    else if ListingUnitService.listingHasOnlySROUnits(listing)
-      max = 1
-    # if ListingIdentityService.isSale(listing)
-    #   max = _.max(_.map(amiLevel.values, (v) -> v.numOfHousehold))
+    max = 1 if ListingUnitService.listingHasOnlySROUnits(listing)
+
     _.filter amiLevel.values, (value) ->
       # where numOfHousehold >= min && <= max
       value.numOfHousehold >= min && value.numOfHousehold <= max

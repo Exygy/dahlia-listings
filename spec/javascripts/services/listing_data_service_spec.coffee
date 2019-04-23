@@ -19,22 +19,9 @@ do ->
           url: 'https://spanishrentalapp.com'
         }
       ]
-      salePaperAppURLs: [
-        {
-          language: 'English'
-          label: 'English'
-          url: 'https://englishsaleapp.com'
-        }
-        {
-          language: 'Spanish'
-          label: 'Español'
-          url: 'https://spanishsaleapp.com'
-        }
-      ]
     }
     fakeListingIdentityService =
       listingIs: ->
-      isSale: ->
       isOpen: ->
       resetData: jasmine.createSpy()
     fakeSharedService =
@@ -176,59 +163,6 @@ do ->
         spyOn(fakeListingIdentityService, 'isOpen').and.returnValue(true)
         expect(ListingDataService.isAcceptingOnlineApplications(listing)).toEqual true
 
-    describe 'Service.toggleFavoriteListing', ->
-      describe 'When a listing is favorited', ->
-        expectedResult = [1]
-        listingId = 1
-        beforeEach ->
-          ListingDataService.favorites = $localStorage.favorites = []
-          ListingDataService.toggleFavoriteListing listingId
-
-        it 'should store Service.favorites in localStorage', ->
-          expect($localStorage.favorites).toEqual expectedResult
-          expect($localStorage.favorites).toEqual ListingDataService.favorites
-        it 'should update Service.favorites', ->
-          expect(ListingDataService.favorites).toEqual expectedResult
-
-      describe 'When a favorited listing is unfavorited', ->
-        expectedResult = []
-        listingId = 1
-        beforeEach ->
-          ListingDataService.favorites = $localStorage.favorites = []
-          #favoriting listing
-          ListingDataService.toggleFavoriteListing listingId
-          #unfavoriting listing
-          ListingDataService.toggleFavoriteListing listingId
-
-        it 'should update Service.favorites in localStorage', ->
-          expect($localStorage.favorites).toEqual expectedResult
-          expect($localStorage.favorites).toEqual ListingDataService.favorites
-        it 'should updated Service.favorites', ->
-          expect(ListingDataService.favorites).toEqual expectedResult
-
-    describe 'Service.getFavorites', ->
-      describe 'When a listing has been favorited', ->
-        beforeEach ->
-          ListingDataService.favorites = $localStorage.favorites = []
-        it 'updates Service.favorites with appropriate data', ->
-          ListingDataService.toggleFavoriteListing 1
-          expect(ListingDataService.favorites).toEqual [1]
-      describe 'When a favorite is not found', ->
-        beforeEach ->
-          ListingDataService.favorites = $localStorage.favorites = []
-        afterEach ->
-          httpBackend.verifyNoOutstandingExpectation()
-          httpBackend.verifyNoOutstandingRequest()
-        it 'removes it from favorites', ->
-          # this listing does not exist
-          ListingDataService.toggleFavoriteListing '123xyz'
-          expect(ListingDataService.favorites).toEqual ['123xyz']
-          stubAngularAjaxRequest httpBackend, requestURL, fakeListings
-          # this should remove the non-existent favorite
-          ListingDataService.getFavoriteListings()
-          httpBackend.flush()
-          expect(ListingDataService.favorites).toEqual []
-
     describe 'Service.getListingsByIds', ->
       afterEach ->
         httpBackend.verifyNoOutstandingExpectation()
@@ -257,9 +191,6 @@ do ->
 
     describe 'Service.getListingPaperAppURLs', ->
       describe 'for a rental listing', ->
-        beforeEach ->
-          spyOn(fakeListingIdentityService, 'isSale').and.returnValue(false)
-
         describe 'with no custom download URLs', ->
           beforeEach ->
             listing = angular.copy(fakeListing.listing)
@@ -278,30 +209,5 @@ do ->
             listingEnglishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'English'})
             listingSpanishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'Spanish'})
             defaultSpanishURL = _.find(fakeListingConstantsService.rentalPaperAppURLs, { language: 'Spanish'})
-            expect(listingEnglishUrl.url).toEqual listing.Download_URL
-            expect(listingSpanishUrl.url).toEqual defaultSpanishURL.url
-
-      describe 'for a sale listing', ->
-        beforeEach ->
-          spyOn(fakeListingIdentityService, 'isSale').and.returnValue(true)
-
-        describe 'with no custom download URLs', ->
-          beforeEach ->
-            listing = angular.copy(fakeListing.listing)
-
-          it 'should set Service.listingPaperAppURLs to the default sale paper application download URLs', ->
-            ListingDataService.getListingPaperAppURLs(listing)
-            expect(ListingDataService.listingPaperAppURLs).toEqual fakeListingConstantsService.salePaperAppURLs
-
-        describe 'with custom download URLs', ->
-          beforeEach ->
-            listing = angular.copy(fakeListing.listing)
-            listing.Download_URL = 'https://englishcustomappurl.com'
-
-          it 'should set Service.listingPaperAppURLs to the default sale paper application download URLs merged with any available corresponding custom URLs', ->
-            ListingDataService.getListingPaperAppURLs(listing)
-            listingEnglishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'English'})
-            listingSpanishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'Spanish'})
-            defaultSpanishURL = _.find(fakeListingConstantsService.salePaperAppURLs, { language: 'Spanish'})
             expect(listingEnglishUrl.url).toEqual listing.Download_URL
             expect(listingSpanishUrl.url).toEqual defaultSpanishURL.url

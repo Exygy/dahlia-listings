@@ -15,9 +15,6 @@ SharedService = ($http, $state, $window, $document) ->
     '(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?'
   ].join(''))
 
-  Service.showSharing = () ->
-    $state.current.name == "dahlia.favorites"
-
   # method adapted from:
   # https://www.bignerdranch.com/blog/web-accessibility-skip-navigation-links
   Service.focusOn = (id) ->

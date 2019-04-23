@@ -49,9 +49,6 @@
     },
     "RESOURCE_URL":{
       "required":true
-    },
-    "SHOW_SALE_LISTINGS": {
-      "required":true
     }
   }
 }

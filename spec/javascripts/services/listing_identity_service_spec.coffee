@@ -46,36 +46,6 @@ do ->
           delete testListing.Tenure
           expect(ListingIdentityService.isRental(testListing)).toEqual false
 
-      describe 'when the listing has a sale tenure', ->
-        it 'returns false', ->
-          testListing.Tenure = 'New sale'
-          expect(ListingIdentityService.isRental(testListing)).toEqual false
-          testListing.Tenure = 'Resale'
-          expect(ListingIdentityService.isRental(testListing)).toEqual false
-
-    describe 'Service.isSale', ->
-      beforeEach ->
-        testListing = angular.copy(fakeListing)
-
-      describe 'when the listing has a rental tenure', ->
-        it 'returns false', ->
-          testListing.Tenure = 'New rental'
-          expect(ListingIdentityService.isSale(testListing)).toEqual false
-          testListing.Tenure = 'Re-rental'
-          expect(ListingIdentityService.isSale(testListing)).toEqual false
-
-      describe 'when the listing does not have a tenure defined', ->
-        it 'returns false', ->
-          delete testListing.Tenure
-          expect(ListingIdentityService.isSale(testListing)).toEqual false
-
-      describe 'when the listing has a sale tenure', ->
-        it 'returns true', ->
-          testListing.Tenure = 'New sale'
-          expect(ListingIdentityService.isSale(testListing)).toEqual true
-          testListing.Tenure = 'Resale'
-          expect(ListingIdentityService.isSale(testListing)).toEqual true
-
     describe 'Service.isOpen', ->
       beforeEach ->
         testListing = angular.copy(fakeListing)

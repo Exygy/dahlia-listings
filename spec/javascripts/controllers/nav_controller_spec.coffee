@@ -2,7 +2,6 @@ do ->
   'use strict'
   describe 'NavController', ->
     fakeWindow = {}
-    fakeWindow['env'] = {showSaleListings: 'true'}
     fakeDocument = {}
     scope = undefined
     state = undefined

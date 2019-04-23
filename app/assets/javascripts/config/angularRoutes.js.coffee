@@ -147,21 +147,6 @@
           $translate('PAGE_TITLE.PRIVACY')
         ]
     })
-    .state('dahlia.share', {
-      url: '/share/:id'
-      views:
-        'container@':
-          templateUrl: 'pages/templates/share.html'
-          controller: 'ShareController'
-      resolve:
-        $title: ['$title', '$translate', 'ListingDataService', ($title, $translate, ListingDataService) ->
-          if !_.isEmpty(ListingDataService.listing)
-            $translate('PAGE_TITLE.SHARE_LISTING', {listing: ListingDataService.listing.Name})
-          else
-            $translate('PAGE_TITLE.SHARE_LISTING', {listing: 'Listing'})
-        ]
-
-    })
     .state('dahlia.get-assistance',{
       url: '/get-assistance'
       views:

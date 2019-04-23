@@ -7,7 +7,6 @@ NavController = (
 ) ->
   $scope.loggedIn = () -> false
   $scope.showNavMobile = false
-  $scope.showSaleListings = $window.env.showSaleListings == 'true'
 
   $scope.closeNavMobile = ->
     $scope.showNavMobile = false

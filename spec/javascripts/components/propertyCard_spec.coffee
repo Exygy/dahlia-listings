@@ -9,9 +9,6 @@ do ->
       instant: ->
     fakeListings = getJSONFixture('listings-api-index.json').listings
     fakeListing = getJSONFixture('listings-api-show.json').listing
-    fakeSharedService = {
-      showSharing: jasmine.createSpy()
-    }
     fakeListing.reservedDescriptor = [{name: 'fake'}, {name: 'not'}]
     fakeListingContainer = {
       listing: fakeListing
@@ -29,7 +26,6 @@ do ->
       $componentController = _$componentController_
       locals = {
         ListingDataService: fakeListingDataService
-        SharedService: fakeSharedService
         $state: state
       }
     )
@@ -70,11 +66,6 @@ do ->
           it 'returns true',->
             fakeListingContainer.closedListings = [fakeListing]
             expect(ctrl.isClosedListing(fakeListing)).toEqual true
-
-      describe '$ctrl.showSharing', ->
-        it 'calls SharedService.showSharing', ->
-          ctrl.showSharing()
-          expect(fakeSharedService.showSharing).toHaveBeenCalled()
 
       describe '$ctrl.priorityTypes', ->
         it 'calls ListingDataService.priorityTypes', ->
