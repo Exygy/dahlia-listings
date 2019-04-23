@@ -74,5 +74,4 @@
           return $state.go('dahlia.listings-for-rent')
         else
           return $state.go('dahlia.welcome')
-
 ]

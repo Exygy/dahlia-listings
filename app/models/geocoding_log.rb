@@ -1,2 +1,0 @@
-class GeocodingLog < ApplicationRecord
-end
