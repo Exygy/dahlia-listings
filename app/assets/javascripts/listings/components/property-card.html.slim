@@ -5,16 +5,7 @@
     a.property-card_overlay ui-sref="dahlia.listing({id: $ctrl.listing.Id})" tabindex="-1"
       img.property-card_thumb alt="Listing Name:{{::$ctrl.listing.Name}}, Address:{{::$ctrl.listingContainer.formattedBuildingAddress($ctrl.listing)}}" ng-src="{{::$ctrl.listing.imageURL}}" role="link"
 
-      / Matched & Not Matched Labels
-      span.status-label.label.label--flag.success ng-if="$ctrl.showMatches() && $ctrl.listingContainer.isOpenMatchListing($ctrl.listing)"
-        span.ui-icon.ui-static.ui-medium.i-white
-          svg
-            use xlink:href="#i-check"
-        | Matched
-      span.status-label.label.label--flag ng-if="$ctrl.showMatches() && $ctrl.isOpenNotMatchListing($ctrl.listing)"
-        | Not a Match
-
-      / Application Deadline & Lottery Results Date Labels
+      / Application Deadline Labels
       span.application-label.label.label--flag.primary ng-if="::$ctrl.isOpenListing($ctrl.listing)"
         span.ui-icon.ui-static.ui-medium.i-white
           svg
@@ -23,10 +14,6 @@
           | Application Deadline: {{::$ctrl.listing.Application_Due_Date | dateSuffix}}
       span.application-label.label.label--flag.alert ng-if="::$ctrl.isClosedListing($ctrl.listing)"
         | Application Closed: {{::$ctrl.listing.Application_Due_Date | dateSuffix}}
-      span.status-label.label.label--flag ng-if="::$ctrl.isClosedListing($ctrl.listing) && $ctrl.listing.Lottery_Results_Date"
-        | Lottery Results Posted: {{::$ctrl.listing.Lottery_Results_Date | dateSuffix}}
-      span.application-label.label.label--flag ng-if="::$ctrl.isLotteryResultsListing($ctrl.listing) && $ctrl.listing.Lottery_Results_Date"
-        | Lottery Results Posted: {{::$ctrl.listing.Lottery_Results_Date | dateSuffix}}
 
     figcaption.property-card_info
       h1.property-card_title.show-for-medium-up

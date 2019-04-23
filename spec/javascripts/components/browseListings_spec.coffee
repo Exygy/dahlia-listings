@@ -14,7 +14,6 @@ do ->
     }
     fakeListingDataService =
       listings: fakeListings
-      openMatchListings: jasmine.createSpy()
     beforeEach module('dahlia.components')
     beforeEach inject((_$componentController_) ->
       $componentController = _$componentController_

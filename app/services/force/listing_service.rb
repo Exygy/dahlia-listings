@@ -10,9 +10,6 @@ module Force
       Name
       Application_Due_Date
       Accepting_Online_Applications
-      Lottery_Date
-      Lottery_Results
-      Lottery_Results_Date
       Reserved_community_type
       Reserved_community_minimum_age
       reservedDescriptor
@@ -20,7 +17,6 @@ module Force
       hasWaitlist
       Units_Available
       unitSummaries
-      Does_Match
       LastModifiedDate
       imageURL
       Realtor_Commission_Amount
@@ -76,28 +72,6 @@ module Force
 
     def self.ami_charts
       Request.new.get('/ami/charts')
-    end
-
-    # get Lottery Buckets with rankings
-    def self.lottery_buckets(listing_id, opts = {})
-      esc_listing_id = CGI.escape(listing_id)
-      force = opts[:force] || false
-      data = Request.new
-                    .cached_get("/Listing/LotteryResult/#{esc_listing_id}", nil, force)
-      # cut down the bucketResults so it's not a huge JSON
-      data['lotteryBuckets'] ||= []
-      data['lotteryBuckets'].each do |bucket|
-        bucket['preferenceResults'] = bucket['preferenceResults'].slice(0, 1)
-      end
-      data
-    end
-
-    # get Individual Lottery Result with rankings
-    def self.lottery_ranking(listing_id, lottery_number)
-      esc_listing_id = CGI.escape(listing_id)
-      esc_lottery_number = CGI.escape(lottery_number)
-      endpoint = "/Listing/LotteryResult/#{esc_listing_id}/#{esc_lottery_number}"
-      Request.new.get(endpoint)
     end
 
     def self.check_household_eligibility(listing_id, params)

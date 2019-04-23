@@ -23,8 +23,8 @@
                 # don't display alerts in E2E tests
                 return if window.protractor
 
-                # AMI, lottery_ranking, unit data, preferences and lottery_buckets have their own handler
-                return if error.config.url.match(RegExp('listings/ami|lottery_ranking|units|lottery_buckets'))
+                # AMI and unit data have their own handler
+                return if error.config.url.match(RegExp('listings/ami|units'))
 
                 if error.status == 504
                   # handle timeout errors

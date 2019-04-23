@@ -19,9 +19,6 @@ angular.module('dahlia.components')
       @isClosedListing = (listing) ->
         this.listingContainer.closedListings.indexOf(listing) > -1
 
-      @isLotteryResultsListing = (listing) ->
-        this.listingContainer.lotteryResultsListings.indexOf(listing) > -1
-
       @priorityTypes = (listing) ->
         ListingDataService.priorityTypes(listing)
 

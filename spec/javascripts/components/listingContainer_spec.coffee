@@ -23,15 +23,10 @@ do ->
     fakeListingDataService =
       listings: fakeListings
       openListings: []
-      openMatchListings: []
-      openNotMatchListings: []
       closedListings: []
-      lotteryResultsListings: []
       listing: fakeListing
       favorites: fakeListingFavorites
       AMICharts: []
-      lotteryPreferences: []
-      getLotteryRanking: () -> null
       stubFeatures: () -> null
       listingIs: () -> null
       loading: {}
@@ -44,10 +39,6 @@ do ->
       listingIs: jasmine.createSpy()
       isSale: jasmine.createSpy()
       isOpen: jasmine.createSpy()
-    fakeListingLotteryService =
-      getLotteryBuckets: ->
-      listingHasLotteryResults: ->
-      openLotteryResultsModal: jasmine.createSpy()
     fakeListingUnitService =
       getListingUnits: jasmine.createSpy()
       listingHasReservedUnits: jasmine.createSpy()
@@ -86,17 +77,8 @@ do ->
         it 'populates ctrl with openListings', ->
           expect(ctrl.openListings).toBeDefined()
 
-        it 'populates ctrl with openMatchListings', ->
-          expect(ctrl.openMatchListings).toBeDefined()
-
-        it 'populates ctrl with openNotMatchListings', ->
-          expect(ctrl.openNotMatchListings).toBeDefined()
-
         it 'populates ctrl with closedListings', ->
           expect(ctrl.closedListings).toBeDefined()
-
-        it 'populates ctrl with lotteryResultsListings', ->
-          expect(ctrl.lotteryResultsListings).toBeDefined()
 
       describe '$ctrl.isSale', ->
         it 'calls ListingIdentityService.isSale with the given listing', ->
@@ -155,16 +137,6 @@ do ->
           results = ctrl.filterByFavorites([fakeListing, fakeListing, fakeListing])
           expect(results.length).toEqual(1)
 
-      describe '$ctrl.isOpenMatchListing', ->
-        describe "when the given listing is in the controller's list of open match listings", ->
-          it 'returns true',->
-            ctrl.openMatchListings = [fakeListing]
-            expect(ctrl.isOpenMatchListing(fakeListing)).toEqual true
-        describe "when the given listing is not in the controller's list of open match listings", ->
-          it 'returns false',->
-            ctrl.openMatchListings = []
-            expect(ctrl.isOpenMatchListing(fakeListing)).toEqual false
-
       describe '$ctrl.reservedLabel', ->
         it 'calls ListingDataService.reservedLabel with the given arguments', ->
           type = 'foo'
@@ -207,32 +179,6 @@ do ->
         it 'expects ListingIdentityService.isOpen to be called', ->
           ctrl.listingApplicationClosed(fakeListing)
           expect(fakeListingIdentityService.isOpen).toHaveBeenCalled()
-
-      describe '$ctrl.lotteryDateVenueAvailable', ->
-        beforeEach ->
-          listing = fakeListing
-          listing.Lottery_Date = new Date()
-          listing.Lottery_Venue = "Exygy"
-          listing.Lottery_Street_Address = "123 Main St., San Francisco"
-
-        describe 'listing lottery date, venue and lottery address all have values', ->
-          it 'returns true', ->
-            expect(ctrl.lotteryDateVenueAvailable(listing)).toEqual true
-
-        describe 'listing lottery date missing', ->
-          it 'returns false', ->
-            listing.Lottery_Date = undefined
-            expect(ctrl.lotteryDateVenueAvailable(listing)).toEqual false
-
-        describe 'listing venue missing', ->
-          it 'returns false', ->
-            listing.Lottery_Venue = undefined
-            expect(ctrl.lotteryDateVenueAvailable(listing)).toEqual false
-
-        describe 'listing lottery address missing', ->
-          it 'returns false', ->
-            listing.Lottery_Street_Address = undefined
-            expect(ctrl.lotteryDateVenueAvailable(listing)).toEqual false
 
       describe '$ctrl.formattedBuildingAddress', ->
         it 'expects ListingDataService.formattedAddress to be called', ->

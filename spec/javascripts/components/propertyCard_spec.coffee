@@ -15,10 +15,8 @@ do ->
     fakeListing.reservedDescriptor = [{name: 'fake'}, {name: 'not'}]
     fakeListingContainer = {
       listing: fakeListing
-      openNotMatchListings: []
       openListings: []
       closedListings: []
-      lotteryResultsListings: []
       priorityTypeNames: jasmine.createSpy()
     }
     fakeListingDataService =
@@ -56,12 +54,6 @@ do ->
             state.current.name = 'dahlia.home'
             expect(ctrl.showMatches()).toEqual false
 
-      describe '$ctrl.isOpenNotMatchListing', ->
-        describe 'open not matched listing', ->
-          it 'returns true',->
-            fakeListingContainer.openNotMatchListings = [fakeListing]
-            expect(ctrl.isOpenNotMatchListing(fakeListing)).toEqual true
-
       describe '$ctrl.isOpenListing', ->
         describe 'open listing', ->
           it 'returns true',->
@@ -78,12 +70,6 @@ do ->
           it 'returns true',->
             fakeListingContainer.closedListings = [fakeListing]
             expect(ctrl.isClosedListing(fakeListing)).toEqual true
-
-      describe '$ctrl.isLotteryResultsListing', ->
-        describe 'lottery results listing', ->
-          it 'returns true',->
-            fakeListingContainer.lotteryResultsListings = [fakeListing]
-            expect(ctrl.isLotteryResultsListing(fakeListing)).toEqual true
 
       describe '$ctrl.showSharing', ->
         it 'calls SharedService.showSharing', ->

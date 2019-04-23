@@ -47,22 +47,6 @@ accordion-heading
   .show-for-medium-up
     panel-apply
 
-  .content-group
-    h4.h-caps-lined Public Lottery
-    ul ng-if="::$ctrl.parent.lotteryDateVenueAvailable($ctrl.parent.listing)"
-      li
-        p.content-group_date
-          span.content-group_day
-            | {{ ::$ctrl.parent.listing.Lottery_Date | date : 'longDate' }}
-          span.content-group_time
-            | {{ ::$ctrl.parent.listing.Lottery_Date | date : 'shortTime' | lowercase }}
-        p.content-group_address.no-margin
-          |  {{ ::$ctrl.parent.listing.Lottery_Venue }}
-        p.content-group_address.c-steel
-          | {{ ::$ctrl.parent.listing.Lottery_Street_Address }} {{ ::$ctrl.parent.listing.Lottery_City }}
-    p.t-small.c-steel ng-if="::!$ctrl.parent.lotteryDateVenueAvailable($ctrl.parent.listing)"
-      | Lottery date, time and venue to be scheduled.
-
   ng-include src="'listings/templates/listing/_additional_sidebar_info.html'"
 
   .content-group

@@ -43,7 +43,6 @@ class CacheService
     Force::ListingService.listing(id, force: true)
     Force::ListingService.units(id, force: true)
     Force::ListingService.preferences(id, force: true)
-    Force::ListingService.lottery_buckets(id, force: true) if listing_closed?(listing)
     # NOTE: there is no call to Force::ListingService.ami
     # because it is parameter-based and values will rarely change (1x/year?)
     image_processor = ListingImageService.new(listing).process_image
@@ -57,7 +56,7 @@ class CacheService
       due_date_passed = Date.parse(listing['Application_Due_Date']) < Date.today
     rescue ArgumentError => e
       raise e unless e.message == 'invalid date'
-      # if date is invalid, assume we do need to get lottery results
+      # if date is invalid, assume it has passed
       due_date_passed = true
     end
     due_date_passed

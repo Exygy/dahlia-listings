@@ -5,16 +5,13 @@
 ListingDataService = (
   $http, $localStorage, $q, $state, $translate, $timeout,
   ExternalTranslateService, ListingConstantsService, ListingIdentityService,
-  ListingLotteryService, ListingPreferenceService, ListingUnitService, SharedService) ->
+  ListingPreferenceService, ListingUnitService, SharedService) ->
   Service = {}
   MAINTENANCE_LISTINGS = [] unless MAINTENANCE_LISTINGS
   Service.listing = {}
   Service.listings = []
   Service.openListings = []
-  Service.openMatchListings = []
-  Service.openNotMatchListings = []
   Service.closedListings = []
-  Service.lotteryResultsListings = []
   # these get loaded after the listing is loaded
   Service.AMICharts = []
   Service.loading = {}
@@ -81,7 +78,6 @@ ListingDataService = (
     angular.copy({}, Service.listing)
     angular.copy([], Service.AMICharts)
     angular.copy([], Service.listingPaperAppURLs)
-    ListingLotteryService.resetData()
 
   Service.getListingResponse = (deferred, retranslate = false) ->
     (data, status, headers, config, itemCache) ->
@@ -144,42 +140,18 @@ ListingDataService = (
 
   Service.groupListings = (listings) ->
     openListings = []
-    openMatchListings = []
-    openNotMatchListings = []
     closedListings = []
-    lotteryResultsListings = []
 
-    listings.forEach (listing) ->
+    sortedListings = _.sortBy listings, (i) -> moment(i.Application_Due_Date)
+
+    sortedListings.forEach (listing) ->
       if ListingIdentityService.isOpen(listing)
-        # All Open Listings Array
         openListings.push(listing)
-        if listing.Does_Match
-          openMatchListings.push(listing)
-        else
-          openNotMatchListings.push(listing)
       else
-        if ListingLotteryService.lotteryIsUpcoming(listing)
-          closedListings.push(listing)
-        else
-          lotteryResultsListings.push(listing)
+        closedListings.push(listing)
 
-    angular.copy(Service.sortListings(openListings, 'openListings'), Service.openListings)
-    angular.copy(Service.sortListings(openMatchListings, 'openMatchListings'), Service.openMatchListings)
-    angular.copy(Service.sortListings(openNotMatchListings, 'openNotMatchListings'), Service.openNotMatchListings)
-    angular.copy(Service.sortListings(closedListings, 'closedListings'), Service.closedListings)
-    angular.copy(Service.sortListings(lotteryResultsListings, 'lotteryResultsListings'), Service.lotteryResultsListings)
-
-  Service.sortListings = (listings, type) ->
-    # openListing types
-    if ['openListings', 'openMatchListings', 'openNotMatchListings'].indexOf(type) > -1
-      _.sortBy listings, (i) -> moment(i.Application_Due_Date)
-    # closedListing types
-    else if ['closedListings', 'lotteryResultsListings'].indexOf(type) > -1
-      listings = _.sortBy listings, (i) ->
-        # fallback to Application_Due_Date, really only for the special case of First Come First Serve
-        moment(i.Lottery_Results_Date || i.Application_Due_Date)
-      # lotteryResults get reversed (latest lottery results date first)
-      if type == 'lotteryResultsListings' then _.reverse listings else listings
+    angular.copy(openListings, Service.openListings)
+    angular.copy(closedListings, Service.closedListings)
 
   Service.getListingsByIds = (ids, checkFavorites = false) ->
     angular.copy([], Service.listings)
@@ -194,7 +166,6 @@ ListingDataService = (
 
   Service.isAcceptingOnlineApplications = (listing) ->
     return false if _.isEmpty(listing)
-    return false if ListingLotteryService.lotteryComplete(listing)
     return false unless ListingIdentityService.isOpen(listing)
     return listing.Accepting_Online_Applications
 
@@ -366,7 +337,7 @@ ListingDataService = (
 ListingDataService.$inject = [
   '$http', '$localStorage', '$q', '$state', '$translate', '$timeout',
   'ExternalTranslateService', 'ListingConstantsService', 'ListingIdentityService',
-  'ListingLotteryService', 'ListingPreferenceService', 'ListingUnitService', 'SharedService'
+  'ListingPreferenceService', 'ListingUnitService', 'SharedService'
 ]
 
 angular

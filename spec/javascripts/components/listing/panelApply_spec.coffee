@@ -13,8 +13,6 @@ do ->
     }
     fakeListingDataService =
       listings: fakeListings
-    fakeListingLotteryService =
-      lotteryComplete: jasmine.createSpy()
     fakeAnalyticsService = {
       trackTimerEvent: jasmine.createSpy()
     }
@@ -23,7 +21,6 @@ do ->
       $componentController = _$componentController_
       locals = {
         ListingDataService: fakeListingDataService
-        ListingLotteryService: fakeListingLotteryService
         AnalyticsService: fakeAnalyticsService
       }
     )
@@ -42,8 +39,3 @@ do ->
         it 'calls AnalyticsService.trackTimerEvent', ->
           ctrl.trackApplyOnlineTimer()
           expect(fakeAnalyticsService.trackTimerEvent).toHaveBeenCalledWith('Application', 'Apply Online Click')
-
-      describe '$ctrl.lotteryComplete', ->
-        it 'calls ListingLotteryService.lotteryComplete', ->
-          ctrl.lotteryComplete(fakeListing)
-          expect(fakeListingLotteryService.lotteryComplete).toHaveBeenCalledWith(fakeListing)

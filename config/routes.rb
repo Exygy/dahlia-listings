@@ -8,8 +8,6 @@ Rails.application.routes.draw do
       resources :listings, only: %i[index show] do
         member do
           get 'units'
-          get 'lottery_buckets'
-          get 'lottery_ranking'
           get 'preferences'
         end
         collection do

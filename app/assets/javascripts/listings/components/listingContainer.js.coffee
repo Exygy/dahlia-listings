@@ -17,10 +17,7 @@ angular.module('dahlia.components')
     @favorites = ListingDataService.favorites
 
     @openListings = ListingDataService.openListings
-    @openMatchListings = ListingDataService.openMatchListings
-    @openNotMatchListings = ListingDataService.openNotMatchListings
     @closedListings = ListingDataService.closedListings
-    @lotteryResultsListings = ListingDataService.lotteryResultsListings
     @showSaleListings = $window.env.showSaleListings == 'true'
 
     @isRental = (listing) ->
@@ -33,9 +30,6 @@ angular.module('dahlia.components')
       favoritedListings = @filterByFavorites listings
       areSaleListings = (@isSale listing for listing in favoritedListings)
       (_.some areSaleListings) && !(_.every areSaleListings)
-
-    @isOpenMatchListing = (listing) ->
-      @openMatchListings.indexOf(listing) > -1
 
     @isFavorited = (listingId) ->
       ListingDataService.isFavorited(listingId)
@@ -75,10 +69,6 @@ angular.module('dahlia.components')
 
     @listingHasSROUnits = (listing) ->
       ListingUnitService.listingHasSROUnits(listing)
-
-    @lotteryDateVenueAvailable = (listing) ->
-      (listing.Lottery_Date != undefined &&
-        listing.Lottery_Venue != undefined && listing.Lottery_Street_Address != undefined)
 
     @agentInfoAvailable = (listing) ->
       listing.Leasing_Agent_Phone || listing.Leasing_Agent_Email || listing.Leasing_Agent_Street

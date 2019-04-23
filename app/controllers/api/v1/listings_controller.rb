@@ -21,19 +21,6 @@ class Api::V1::ListingsController < ApiController
     render json: { units: @units }
   end
 
-  def lottery_buckets
-    @lottery_buckets = Force::ListingService.lottery_buckets(params[:id])
-    render json: @lottery_buckets
-  end
-
-  def lottery_ranking
-    @lottery_ranking = Force::ListingService.lottery_ranking(
-      params[:id],
-      params[:lottery_number],
-    )
-    render json: @lottery_ranking
-  end
-
   def preferences
     @preferences = Force::ListingService.preferences(params[:id], force: params[:force])
     render json: { preferences: @preferences }

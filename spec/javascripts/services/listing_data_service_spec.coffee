@@ -36,12 +36,6 @@ do ->
       listingIs: ->
       isSale: ->
       isOpen: ->
-    fakeListingLotteryService =
-      lotteryBucketInfo: {}
-      lotteryRankingInfo: {}
-      listingHasLotteryBuckets: ->
-      lotteryIsUpcoming: ->
-      lotteryComplete: ->
       resetData: jasmine.createSpy()
     fakeSharedService =
       toQueryString: ->
@@ -60,7 +54,6 @@ do ->
       $provide.value '$translate', $translate
       $provide.value 'ListingConstantsService', fakeListingConstantsService
       $provide.value 'ListingIdentityService', fakeListingIdentityService
-      $provide.value 'ListingLotteryService', fakeListingLotteryService
       $provide.value 'SharedService', fakeSharedService
       return
     )
@@ -86,19 +79,18 @@ do ->
         ListingDataService.groupListings(fakeListings.listings)
         combinedLength =
           ListingDataService.openListings.length +
-          ListingDataService.closedListings.length +
-          ListingDataService.lotteryResultsListings.length
+          ListingDataService.closedListings.length
         expect(combinedLength).toEqual fakeListings.listings.length
 
-        openLength =
-          ListingDataService.openMatchListings.length +
-          ListingDataService.openNotMatchListings.length
-        expect(openLength).toEqual ListingDataService.openListings.length
-
-      it 'sorts groupedListings based on their dates', ->
+      it 'sorts open listings by application due date ascending', ->
         ListingDataService.groupListings(fakeListings.listings)
-        dates = _.compact(_.map(ListingDataService.lotteryResultsListings, 'Lottery_Results_Date'))
-        expect(dates[0] >= dates[1]).toEqual true
+        dates = _.compact(_.map(ListingDataService.openListings, 'Application_Due_Date'))
+        expect(dates[0] <= dates[1]).toEqual true
+
+      it 'sorts closed listings by application due date ascending', ->
+        ListingDataService.groupListings(fakeListings.listings)
+        dates = _.compact(_.map(ListingDataService.closedListings, 'Application_Due_Date'))
+        expect(dates[0] <= dates[1]).toEqual true
 
     describe 'Service.getListings', ->
       it 'passes params to http request', ->
@@ -152,10 +144,6 @@ do ->
         ListingDataService.resetListingData()
         expect(ListingDataService.listingPaperAppURLs).toEqual []
 
-      it 'calls ListingLotteryService.resetData', ->
-        ListingDataService.resetListingData()
-        expect(fakeListingLotteryService.resetData).toHaveBeenCalled()
-
     describe 'Service.getListingAMI', ->
       afterEach ->
         httpBackend.verifyNoOutstandingExpectation()
@@ -182,15 +170,9 @@ do ->
         spyOn(fakeListingIdentityService, 'isOpen').and.returnValue(false)
         expect(ListingDataService.isAcceptingOnlineApplications(listing)).toEqual false
 
-      it "returns false if the listing's lottery status is complete", ->
-        listing = fakeListing.listing
-        spyOn(fakeListingLotteryService, 'lotteryComplete').and.returnValue(true)
-        expect(ListingDataService.isAcceptingOnlineApplications(listing)).toEqual false
-
-      it 'returns true if listing is open, Accepting_Online_Applications, and lottery status is not complete', ->
+      it 'returns true if listing is open and Accepting_Online_Applications', ->
         listing = fakeListing.listing
         listing.Accepting_Online_Applications = true
-        spyOn(fakeListingLotteryService, 'lotteryComplete').and.returnValue(false)
         spyOn(fakeListingIdentityService, 'isOpen').and.returnValue(true)
         expect(ListingDataService.isAcceptingOnlineApplications(listing)).toEqual true
 

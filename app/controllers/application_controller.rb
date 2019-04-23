@@ -1,6 +1,11 @@
-include ApplicationHelper
+require 'application_responder'
+
 # Root controller from which all our controllers inherit.
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
+  self.responder = ApplicationResponder
+  respond_to :html
+
   include OrganizationSwitchable
   # not really used since we don't have any Rails-generated forms
   # but still added for security + codeclimate happiness

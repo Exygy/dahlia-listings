@@ -4,10 +4,6 @@
         property-hero
 
     accordion.page-accordion close-others="false"
-      / sidebar for closed listing
-      accordion-group.medium-right-column data-event="gtm-accordion-lottery" ng-if="::$ctrl.parent.listingApplicationClosed($ctrl.parent.listing)"
-        lottery-info-section
-
       accordion-group.bg-dust data-event="gtm-accordion-eligibility" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.Id].eligibility"
         header.listing-header.show-for-medium-up
           img.listing-header_icon ng-src="{{::$ctrl.parent.assetPaths['listing-eligibility.svg']}}" alt="eligibility-notebook"
