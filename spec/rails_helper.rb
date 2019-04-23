@@ -52,6 +52,4 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include FactoryBot::Syntax::Methods
-  config.include Devise::Test::ControllerHelpers, type: :controller
-  config.extend DeviseMacros
 end
