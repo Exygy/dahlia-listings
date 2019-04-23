@@ -12,35 +12,34 @@ Raven
   .addPlugin(Raven.Plugins.Angular)
   .install()
 
-
 @dahlia = angular.module 'dahlia', [
-  'dahlia.directives',
-  'dahlia.controllers',
-  'dahlia.services',
   'dahlia.components',
+  'dahlia.controllers',
+  'dahlia.directives',
+  'dahlia.services',
   # filters
   'customFilters',
   'ng-currency',
   # dependencies
-  'ui.router',
-  'ui.router.title',
-  'angular-clipboard',
-  'templates',
-  'mm.foundation',
-  'angular.filter',
   'angular-carousel',
-  'ngMessages',
-  'pascalprecht.translate',
-  'ui.mask',
-  'ngAria',
-  'duScroll',
-  'ngIdle',
-  'ui.validate',
-  'ng-token-auth',
+  'angular-clipboard',
   'angular-uuid',
-  'linkify',
+  'angular.filter',
   'bsLoadingOverlay',
+  'duScroll',
   'http-etag',
+  'linkify',
+  'mm.foundation',
+  'ng-token-auth',
+  'ngAria',
+  'ngIdle',
+  'ngMessages',
   'ngMeta',
-  'ngRaven'
+  'ngRaven',
+  'pascalprecht.translate',
+  'templates',
+  'ui.mask',
+  'ui.router.title',
+  'ui.router',
+  'ui.validate'
 ]

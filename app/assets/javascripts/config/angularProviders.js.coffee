@@ -10,14 +10,15 @@
     ($location, $rootScope, $injector, $q, $translate) ->
 
       return {
-        # This is set up to universally capture HTTP errors, particularly 503 or 504, when a bad request / timeout occurred.
-        # It will pop up an alert and stop the spinning loader and re-enable short form inputs so that the user can try again.
+        # This is set up to universally capture HTTP errors, particularly 503
+        # or 504, when a bad request / timeout occurred. It will pop up an alert
+        # and stop the spinning loader so that the user can try again.
         responseError: (error) ->
           if error.status >= 500
             $injector.invoke [
               '$http', 'bsLoadingOverlayService', 'ShortFormNavigationService', '$state',
               ($http, bsLoadingOverlayService, ShortFormNavigationService, $state) ->
-                # this will call bsLoadingOverlayService.stop(), even if not on short form
+                # this will call bsLoadingOverlayService.stop()
                 ShortFormNavigationService.isLoading(false)
                 # don't display alerts in E2E tests
                 return if window.protractor
@@ -34,12 +35,8 @@
                     return
                   else
                     alertMessage = $translate.instant('ERROR.ALERT.TIMEOUT_PLEASE_TRY_AGAIN')
-                else if error.data.message.indexOf('APEX_ERROR') >= 0
-                  # handle Salesforce errors that aren't timeouts
-                  salesforceError = error.data.message.split("Class")[0].split("APEX_ERROR: ")[1]
-                  alertMessage = "An error occurred: " + salesforceError
                 else
-                  # handle non-timeout, non-Salesforce errors
+                  # handle non-timeout errors
                   alertMessage = $translate.instant('ERROR.ALERT.BAD_REQUEST')
                 alert(alertMessage)
                 error
