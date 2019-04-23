@@ -8,7 +8,6 @@ ShortFormApplicationController = (
   $state,
   $translate,
   $window,
-  AccountService,
   AddressValidationService,
   AnalyticsService,
   Idle,
@@ -66,11 +65,10 @@ ShortFormApplicationController = (
   $scope.hideMessage = false
   $scope.addressError = ShortFormApplicationService.addressError
   # Account / Login
-  $scope.loggedInUser = AccountService.loggedInUser
-  $scope.userAuth = AccountService.userAuth
-  $scope.accountError = AccountService.accountError
-  $scope.accountSuccess = AccountService.accountSuccess
-  $scope.rememberedShortFormState = AccountService.rememberedShortFormState
+  $scope.loggedInUser = null
+  $scope.accountError = null
+  $scope.accountSuccess = null
+  $scope.rememberedShortFormState = null
   $scope.submitDisabled = false
 
   $scope.emailRegex = SharedService.emailRegex
@@ -699,7 +697,7 @@ ShortFormApplicationController = (
 
   $scope.chooseDraft = ->
     if ($scope.chosenApplicationToKeep == 'recent')
-      user = AccountService.loggedInUser
+      user = null
       if ShortFormApplicationService.hasDifferentInfo($scope.applicant, user)
         ShortFormNavigationService.goToApplicationPage('dahlia.short-form-application.choose-applicant-details')
       else
@@ -711,8 +709,6 @@ ShortFormApplicationController = (
 
   $scope.chooseApplicantDetails = ->
     if $scope.chosenAccountOption == 'createAccount'
-      AccountService.signOut({ preserveAppData: true })
-
       # Return applicant to name page to review new account info
       ShortFormApplicationService.storeLastPage('name')
       ShortFormApplicationService.cancelPreferencesForMember($scope.applicant.id)
@@ -720,7 +716,6 @@ ShortFormApplicationController = (
       ShortFormNavigationService.goToApplicationPage('dahlia.short-form-application.create-account')
 
     else if $scope.chosenAccountOption == 'continueAsGuest'
-      AccountService.signOut({ preserveAppData: true })
       # when continuing anonymously, jump ahead to contact page rather than going back to the
       # name page so you don't see the welcome back page a second time
       lastPage = switch $scope.application.lastPage
@@ -735,15 +730,15 @@ ShortFormApplicationController = (
       ShortFormApplicationService.resetCompletedSections()
       # Import account details into recent draft and overwrite account application to
       # prevent a duplicate
-      ShortFormApplicationService.keepCurrentDraftApplication(AccountService.loggedInUser).then ->
+      ShortFormApplicationService.keepCurrentDraftApplication(null).then ->
         ShortFormNavigationService.goToApplicationPage('dahlia.short-form-application.name')
 
 
   ## account service
   $scope.loggedIn = ->
-    AccountService.loggedIn()
+    false
 
-  $scope.accountExists = AccountService.shortFormAccountExists
+  $scope.accountExists = false
 
   ## translation helpers
   $scope.preferenceProofOptions = (pref_type) ->
@@ -785,7 +780,7 @@ ShortFormApplicationController = (
     # prevent normal short form page submit
     ev.preventDefault()
     ShortFormNavigationService.isLoading(true)
-    if AccountService.loggedIn()
+    if false
       ShortFormApplicationService.submitApplication().then((response) ->
         # ShortFormNavigationService.isLoading(false) will happen after My Apps are loaded
         # go to my applications without tracking Form Success
@@ -805,28 +800,15 @@ ShortFormApplicationController = (
     form.$submitted = true
     if form.$valid
       $scope.submitDisabled = true
-      # AccountService.userAuth will have been modified by form inputs
       ShortFormNavigationService.isLoading(true)
-      AccountService.signIn().then( (success) ->
-        $scope.submitDisabled = false
-        if success
-          form.$setUntouched()
-          form.$setPristine()
-          $scope.afterSignInWhileApplying()
-      ).catch( ->
-        $scope.handleErrorState()
-        $scope.submitDisabled = false
-      )
     else
       AnalyticsService.trackFormError('Application')
       $scope.handleErrorState()
 
   $scope.afterSignInWhileApplying = ->
     if (ShortFormApplicationService
-        .applicantDoesNotMeetSeniorRequirements(AccountService.loggedInUser)
+        .applicantDoesNotMeetSeniorRequirements(null)
     )
-      # log user out to either create account or continue anonymously
-      AccountService.signOut({ preserveAppData: true })
       ShortFormApplicationService.addSeniorEligibilityError()
       return $state.go('dahlia.short-form-application.choose-applicant-details')
 
@@ -863,7 +845,7 @@ ShortFormApplicationController = (
     # no previous draft, continue by saving application
     if $scope.appIsDraft($scope.application)
       # make sure short form data inherits logged in user data
-      changed = ShortFormApplicationService.importUserData(AccountService.loggedInUser)
+      changed = ShortFormApplicationService.importUserData(null)
     else
       changed = null
 
@@ -912,11 +894,6 @@ ShortFormApplicationController = (
         ShortFormNavigationService.goToApplicationPage('dahlia.short-form-application.contact')
       else
         ShortFormNavigationService.isLoading(true)
-        AccountService.checkForAccount($scope.applicant.email).then ->
-          if AccountService.accountExists
-            ShortFormNavigationService.goToApplicationPage('dahlia.short-form-application.welcome-back')
-          else
-            ShortFormNavigationService.goToApplicationPage('dahlia.short-form-application.contact')
 
   $scope.DOBValid = (field, value, model = 'applicant') ->
     values = $scope.DOBValues(model)
@@ -994,17 +971,13 @@ ShortFormApplicationController = (
     ShortFormApplicationService.formattedBuildingAddress(listing, display)
 
   $scope.isLocked = (field) ->
-    AccountService.lockedFields[field]
+    false
 
   $scope.today = ->
     moment().tz('America/Los_Angeles').format('YYYY-MM-DD')
 
   $scope.applicationCompletionPercentage = (application) ->
     ShortFormApplicationService.applicationCompletionPercentage(application)
-
-  $scope.$on 'auth:login-error', (ev, reason) ->
-    $scope.accountError.messages.user = $translate.instant('SIGN_IN.BAD_CREDENTIALS')
-    $scope.handleErrorState()
 
   $scope.$on '$stateChangeError', (e, toState, toParams, fromState, fromParams, error) ->
     # NOTE: not sure when this will ever really get hit any more
@@ -1038,7 +1011,6 @@ ShortFormApplicationController.$inject = [
   '$state',
   '$translate',
   '$window',
-  'AccountService',
   'AddressValidationService',
   'AnalyticsService',
   'Idle',

@@ -10,29 +10,3 @@ li ng-if-end="true"
 li
   a href="{{ 'NAV.ASSISTANCE_URL' | translate }}"
     | {{ "NAV.GET_ASSISTANCE" | translate}}
-li(has-dropdown ng-if="loggedIn()")
-  a ui-sref="dahlia.my-account" dropdown-toggle="#my-account-dropdown"
-    | {{ "NAV.MY_ACCOUNT" | translate}}
-  ul#my-account-dropdown.dropdown
-    li.dropdown-item.has-icon
-      a ui-sref="dahlia.my-account"
-        span.ui-icon.ui-static.ui-medium.i-color
-          svg
-            use xlink:href="#i-profile"
-        | {{ "NAV.MY_DASHBOARD" | translate}}
-    li.dropdown-item.has-icon
-      a ui-sref="dahlia.my-applications"
-        span.ui-icon.ui-static.ui-medium.i-color
-          svg
-            use xlink:href="#i-application"
-        | {{ "NAV.MY_APPLICATIONS" | translate}}
-    li.dropdown-item.has-icon
-      a ui-sref="dahlia.account-settings"
-        span.ui-icon.ui-static.ui-medium.i-color
-          svg
-            use xlink:href="#i-settings"
-        | {{ "NAV.ACCOUNT_SETTINGS" | translate}}
-    li.dropdown-item
-      / TODO: make into a button, properly styled
-      a ng-click="signOut()"
-        | {{ "NAV.SIGN_OUT" | translate}}

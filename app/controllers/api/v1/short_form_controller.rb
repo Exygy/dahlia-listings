@@ -125,7 +125,7 @@ class Api::V1::ShortFormController < ApiController
   end
 
   def delete_draft_application(listing_id)
-    applications = Force::ShortFormService.get_for_user(user_contact_id)
+    applications = []
 
     duplicate_draft_applications = applications.select do |app|
       app['listingID'] == listing_id && app['status'].casecmp('draft').zero?
@@ -207,7 +207,7 @@ class Api::V1::ShortFormController < ApiController
 
   def find_listing_application
     opts = {
-      contact_id: user_contact_id,
+      contact_id: nil,
       listing_id: params[:listing_id],
       autofill: params[:autofill],
     }
@@ -223,7 +223,7 @@ class Api::V1::ShortFormController < ApiController
 
   def user_can_access?(application)
     return false if application.empty?
-    Force::ShortFormService.user_owns_app?(user_contact_id, application)
+    Force::ShortFormService.user_owns_app?(nil, application)
   end
 
   def user_can_claim?(application)
@@ -250,33 +250,9 @@ class Api::V1::ShortFormController < ApiController
 
   def applicant_attrs
     {
-      contactId: user_contact_id,
-      webAppID: current_user_id,
+      contactId: nil,
+      webAppID: nil,
     }
-  end
-
-  def user_contact_id
-    if current_user
-      current_user.salesforce_contact_id
-    elsif unconfirmed_user_with_temp_session_id
-      @unconfirmed_user.salesforce_contact_id
-    end
-  end
-
-  def unconfirmed_user_with_temp_session_id
-    return false if params[:temp_session_id].blank?
-    @unconfirmed_user = User.find_by_temp_session_id(params[:temp_session_id])
-    return unless @unconfirmed_user
-    params.delete :temp_session_id
-    @unconfirmed_user.update(temp_session_id: nil)
-  end
-
-  def current_user_id
-    if current_user
-      current_user.id
-    elsif @unconfirmed_user
-      @unconfirmed_user.id
-    end
   end
 
   def destroy_files_for_listing_preference

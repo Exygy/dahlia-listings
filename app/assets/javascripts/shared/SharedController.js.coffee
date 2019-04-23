@@ -32,7 +32,6 @@ SharedController = ($scope, $state, $stateParams, $translate, $window, SharedSer
   $scope.hasCenterBody = () ->
     if $state.includes('dahlia.short-form-welcome') ||
       $state.includes('dahlia.short-form-application') ||
-      $state.includes('dahlia.my-account') ||
       $state.includes('dahlia.my-applications')
         return 'center-body'
 

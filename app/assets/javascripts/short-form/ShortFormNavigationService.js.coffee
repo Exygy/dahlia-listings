@@ -1,6 +1,6 @@
 ShortFormNavigationService = (
   $state,
-  AccountService, AnalyticsService, bsLoadingOverlayService,
+  AnalyticsService, bsLoadingOverlayService,
   ListingConstantsService, ListingIdentityService, ShortFormApplicationService
 ) ->
   Service = {}
@@ -524,7 +524,7 @@ ShortFormNavigationService = (
 
 ShortFormNavigationService.$inject = [
   '$state',
-  'AccountService', 'AnalyticsService', 'bsLoadingOverlayService',
+  'AnalyticsService', 'bsLoadingOverlayService',
   'ListingConstantsService', 'ListingIdentityService', 'ShortFormApplicationService'
 ]
 

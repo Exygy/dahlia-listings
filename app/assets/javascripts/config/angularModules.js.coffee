@@ -30,7 +30,6 @@ Raven
   'http-etag',
   'linkify',
   'mm.foundation',
-  'ng-token-auth',
   'ngAria',
   'ngIdle',
   'ngMessages',

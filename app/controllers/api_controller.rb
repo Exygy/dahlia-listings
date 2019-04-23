@@ -2,7 +2,6 @@ require 'faraday'
 # Root controller from which all our API controllers inherit.
 class ApiController < ActionController::API
   include OrganizationSwitchable
-  include DeviseTokenAuth::Concerns::SetUserByToken
   respond_to :json
 
   rescue_from StandardError do |e|

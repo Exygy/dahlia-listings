@@ -2,28 +2,11 @@
 ###################################### CONTROLLER ##########################################
 ############################################################################################
 
-NavController = ($document, $rootScope, $scope, $state, $timeout, $translate, AccountService, ModalService, ShortFormApplicationService,
+NavController = ($document, $rootScope, $scope, $state, $timeout, $translate, ModalService, ShortFormApplicationService,
 $window) ->
-  $scope.loggedIn = AccountService.loggedIn
+  $scope.loggedIn = () -> false
   $scope.showNavMobile = false
   $scope.showSaleListings = $window.env.showSaleListings == 'true'
-
-  $scope.signOut = ->
-    if ShortFormApplicationService.isShortFormPage($state.current)
-      content =
-        title: $translate.instant('T.LEAVE_YOUR_APPLICATION')
-        cancel: $translate.instant('T.STAY')
-        continue:  $translate.instant('T.LEAVE')
-        alert: true
-        message: $translate.instant('T.ARE_YOU_SURE_YOU_WANT_TO_LEAVE')
-      ModalService.alert(content,
-        onConfirm: ->
-          AccountService.signOut()
-          $state.go('dahlia.sign-in', { signedOut: true, skipConfirm: true })
-      )
-    else
-      AccountService.signOut()
-      $state.go('dahlia.sign-in', {signedOut: true})
 
   $scope.closeNavMobile = ->
     $scope.showNavMobile = false
@@ -65,7 +48,7 @@ $window) ->
 
 NavController.$inject = [
   '$document', '$rootScope', '$scope', '$state', '$timeout', '$translate',
-  'AccountService', 'ModalService', 'ShortFormApplicationService', '$window'
+  'ModalService', 'ShortFormApplicationService', '$window'
 ]
 
 angular

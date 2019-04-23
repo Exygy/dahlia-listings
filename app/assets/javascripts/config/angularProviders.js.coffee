@@ -6,8 +6,8 @@
   $httpProvider.defaults.headers.get = {}
 
   $httpProvider.interceptors.push [
-    '$location', '$rootScope', '$injector', '$q', '$translate',
-    ($location, $rootScope, $injector, $q, $translate) ->
+    '$location', '$rootScope', '$injector', '$q',
+    ($location, $rootScope, $injector, $q) ->
 
       return {
         # This is set up to universally capture HTTP errors, particularly 503
@@ -34,10 +34,14 @@
                     $state.go('dahlia.sign-in', {userTokenValidationTimeout: true})
                     return
                   else
-                    alertMessage = $translate.instant('ERROR.ALERT.TIMEOUT_PLEASE_TRY_AGAIN')
+                    # TODO: Resolve circular dependency that was caused by the previous version
+                    # of the below line: $translate.instant('ERROR.ALERT.TIMEOUT_PLEASE_TRY_AGAIN')
+                    alertMessage = "Timeout error. Please try again."
                 else
                   # handle non-timeout errors
-                  alertMessage = $translate.instant('ERROR.ALERT.BAD_REQUEST')
+                  # TODO: Resolve circular dependency that was caused by the previous version
+                  # of the below line: $translate.instant('ERROR.ALERT.BAD_REQUEST')
+                  alertMessage = "Bad request."
                 alert(alertMessage)
                 error
             ]
@@ -57,19 +61,6 @@
   TitleProvider.enabled(false)
   IdleProvider.idle(300)
   IdleProvider.timeout(60)
-]
-
-@dahlia.config [
-  '$authProvider', 'AccountConfirmationServiceProvider',
-  ($authProvider, AccountConfirmationServiceProvider) ->
-    # this creates a new AccountConfirmationService,
-    # which can tap into AccountService to provide the appropriate confirmationSuccessUrl
-    conf = AccountConfirmationServiceProvider.$get()
-    $authProvider.configure
-      apiUrl: '/api/v1'
-      storage: getAvailableStorageType()
-      confirmationSuccessUrl: conf.confirmationSuccessUrl
-      validateOnPageLoad: false
 ]
 
 @dahlia.config ['$translateProvider', ($translateProvider) ->

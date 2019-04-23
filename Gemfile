@@ -56,10 +56,6 @@ gem 'StreetAddress', github: 'Exygy/street-address', require: 'street_address'
 gem 'oj'
 gem 'oj_mimic_json'
 
-# user authentication
-gem 'devise', '~> 4.4.0'
-gem 'devise_token_auth', '~> 0.1.43'
-
 # postgresql database
 gem 'pg'
 
