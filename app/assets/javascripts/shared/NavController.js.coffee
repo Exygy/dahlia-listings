@@ -3,7 +3,7 @@
 ############################################################################################
 
 NavController = (
-  $document, $rootScope, $scope, $state, $timeout, $translate, ModalService, $window
+  $document, $rootScope, $scope, $state, $timeout, $translate, $window
 ) ->
   $scope.loggedIn = () -> false
   $scope.showNavMobile = false
@@ -48,8 +48,7 @@ NavController = (
 ############################################################################################
 
 NavController.$inject = [
-  '$document', '$rootScope', '$scope', '$state', '$timeout', '$translate',
-  'ModalService', '$window'
+  '$document', '$rootScope', '$scope', '$state', '$timeout', '$translate', '$window'
 ]
 
 angular

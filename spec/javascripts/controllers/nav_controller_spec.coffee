@@ -9,11 +9,8 @@ do ->
     fakeTimeout = {}
     fakeTranslate =
       instant: ->
-    fakeModalService =
-      alert: ->
 
     beforeEach module('dahlia.controllers', ($provide) ->
-      $provide.value 'ModalService', fakeModalService
       $provide.value '$window', fakeWindow
       return
     )
