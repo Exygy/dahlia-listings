@@ -36,12 +36,12 @@
                   else
                     # TODO: Resolve circular dependency that was caused by the previous version
                     # of the below line: $translate.instant('ERROR.ALERT.TIMEOUT_PLEASE_TRY_AGAIN')
-                    alertMessage = "Timeout error. Please try again."
+                    alertMessage = 'Oops! Looks like your request timed out. Please try again.'
                 else
                   # handle non-timeout errors
                   # TODO: Resolve circular dependency that was caused by the previous version
                   # of the below line: $translate.instant('ERROR.ALERT.BAD_REQUEST')
-                  alertMessage = "Bad request."
+                  alertMessage = 'Oops! Looks like something went wrong. Please try again.'
                 alert(alertMessage)
                 error
             ]

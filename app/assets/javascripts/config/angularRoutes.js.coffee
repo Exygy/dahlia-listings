@@ -17,8 +17,6 @@
         lang: { squash: true, value: 'en' }
         skipConfirm: { squash: true, value: false }
       views:
-        'translate@':
-          templateUrl: 'shared/templates/translate-bar.html'
         'version@':
           templateUrl: 'shared/templates/version.html'
         'navigation@':
@@ -128,45 +126,6 @@
       # https://github.com/vinaygopinath/ngMeta#using-custom-data-resolved-by-ui-router
       meta:
         disableUpdate: true
-    })
-    .state('dahlia.welcome-chinese', {
-      url: '/welcome-chinese'
-      views:
-        'container@':
-          templateUrl: 'pages/templates/welcome-chinese.html'
-      resolve:
-        $title: ['$translate', ($translate) ->
-          $translate('PAGE_TITLE.WELCOME_CHINESE')
-        ]
-        counselors: ['SharedService', (SharedService) ->
-          SharedService.getHousingCounselors()
-        ]
-    })
-    .state('dahlia.welcome-spanish', {
-      url: '/welcome-spanish'
-      views:
-        'container@':
-          templateUrl: 'pages/templates/welcome-spanish.html'
-      resolve:
-        $title: ['$translate', ($translate) ->
-          $translate('PAGE_TITLE.WELCOME_SPANISH')
-        ]
-        counselors: ['SharedService', (SharedService) ->
-          SharedService.getHousingCounselors()
-        ]
-    })
-    .state('dahlia.welcome-filipino', {
-      url: '/welcome-filipino'
-      views:
-        'container@':
-          templateUrl: 'pages/templates/welcome-filipino.html'
-      resolve:
-        $title: ['$translate', ($translate) ->
-          $translate('PAGE_TITLE.WELCOME_FILIPINO')
-        ]
-        counselors: ['SharedService', (SharedService) ->
-          SharedService.getHousingCounselors()
-        ]
     })
     .state('dahlia.disclaimer', {
       url: '/disclaimer'

@@ -1,5 +1,5 @@
 angular.module('dahlia.directives')
-.directive 'alertBox', ['$translate', '$state', ($translate, $state) ->
+.directive 'alertBox', ->
   restrict: 'E'
   scope:
     customMessage: '=?'
@@ -41,4 +41,3 @@ angular.module('dahlia.directives')
     scope.isIconInverted = ->
       if !scope.invert
         return 'i-oil'
-]

@@ -4,7 +4,7 @@
 
 ListingDataService = (
   $http, $localStorage, $q, $state, $translate, $timeout,
-  ExternalTranslateService, ListingConstantsService, ListingIdentityService,
+  ListingConstantsService, ListingIdentityService,
   ListingPreferenceService, ListingUnitService, SharedService) ->
   Service = {}
   MAINTENANCE_LISTINGS = [] unless MAINTENANCE_LISTINGS
@@ -91,14 +91,6 @@ ListingDataService = (
       # create a combined unitSummary
       unless Service.listing.unitSummary
         Service.listing.unitSummary = ListingUnitService.combineUnitSummaries(Service.listing)
-      # On listing and listings pages, we are experiencing an issue where
-      # where the Google translation will try to keep up with digest re-calcs
-      # happening during page load and will get tripped up and fail, leaving
-      # the page untranslated. This quick fix runs the Google Translation
-      # again to cover for a possible earlier failed translate.
-      # TODO: Remove this quick fix for translation issues on listing pages
-      # and replace with a real fix based on actual digest timing.
-      $timeout(ExternalTranslateService.translatePageContent, 0, false) if retranslate
       Service.toggleStates[Service.listing.Id] ?= {}
 
   Service.getListings = (opts = {}) ->
@@ -121,14 +113,6 @@ ListingDataService = (
       listings = if data and data.listings then data.listings else []
       listings = Service.cleanListings(listings)
       Service.groupListings(listings)
-      # On listing and listings pages, we are experiencing an issue where
-      # where the Google translation will try to keep up with digest re-calcs
-      # happening during page load and will get tripped up and fail, leaving
-      # the page untranslated. This quick fix runs the Google Translation
-      # again to cover for a possible earlier failed translate.
-      # TODO: Remove this quick fix for translation issues on listing pages
-      # and replace with a real fix based on actual digest timing.
-      $timeout(ExternalTranslateService.translatePageContent, 0, false) if retranslate
       deferred.resolve()
 
   Service.cleanListings = (listings) ->
@@ -319,15 +303,6 @@ ListingDataService = (
     tagalog.url = listing.Download_URL_Tagalog if listing.Download_URL_Tagalog
     angular.copy(urls, Service.listingPaperAppURLs)
 
-  Service.getProjectIdForBoundaryMatching = (listing) ->
-    return unless listing
-    if ListingPreferenceService.hasPreference('antiDisplacement', listing)
-      'ADHP'
-    else if ListingPreferenceService.hasPreference('neighborhoodResidence', listing)
-      listing.Project_ID
-    else
-      null
-
   return Service
 
 ############################################################################################
@@ -336,7 +311,7 @@ ListingDataService = (
 
 ListingDataService.$inject = [
   '$http', '$localStorage', '$q', '$state', '$translate', '$timeout',
-  'ExternalTranslateService', 'ListingConstantsService', 'ListingIdentityService',
+  'ListingConstantsService', 'ListingIdentityService',
   'ListingPreferenceService', 'ListingUnitService', 'SharedService'
 ]
 

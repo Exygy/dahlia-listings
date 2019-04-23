@@ -2,19 +2,12 @@
 ###################################### CONTROLLER ##########################################
 ############################################################################################
 
-SharedController = ($scope, $state, $stateParams, $translate, $window, SharedService, ExternalTranslateService) ->
+SharedController = ($scope, $state, $stateParams, $translate, $window, SharedService) ->
   $scope.assetPaths = SharedService.assetPaths
   $scope.housingCounselors = SharedService.housingCounselors
-  $scope.alternateLanguageLinks = SharedService.alternateLanguageLinks
 
   $scope.doNotGoogleTranslate = ->
-    $scope.isWelcomePage() || $scope.isEnglish()
-
-  $scope.showTranslationExpertMessage = ->
-    $scope.isWelcomePage()
-
-  $scope.isWelcomePage = ->
-    SharedService.isWelcomePage()
+    $scope.isEnglish()
 
   $scope.isEnglish = ->
     $state.params.lang == 'en'
@@ -32,22 +25,12 @@ SharedController = ($scope, $state, $stateParams, $translate, $window, SharedSer
   $scope.focusOnMainContent = ->
     SharedService.focusOn('main-content')
 
-  $scope.translateWelcomePath = ->
-    translateWelcomeMap =
-      'zh': 'welcome-chinese'
-      'es': 'welcome-spanish'
-      'en': 'welcome'
-      'tl': 'welcome-filipino'
-
-    stateName = translateWelcomeMap[$stateParams.lang]
-    return "dahlia.#{stateName}({'#': 'translation-disclaimer'})"
-
 ############################################################################################
 ######################################## CONFIG ############################################
 ############################################################################################
 
 SharedController.$inject = [
-  '$scope', '$state', '$stateParams', '$translate', '$window', 'SharedService', 'ExternalTranslateService'
+  '$scope', '$state', '$stateParams', '$translate', '$window', 'SharedService'
 ]
 
 angular
