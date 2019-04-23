@@ -44,19 +44,6 @@ module Force
       Request.new(parse_response: true).cached_get('/ListingDetails', nil, force)
     end
 
-    # get listings with eligibility matches applied
-    # filters:
-    #  householdsize: n
-    #  incomelevel: n
-    #  childrenUnder6: n
-    def self.eligible_listings(filters)
-      results = get_listings(filters)
-      results = filter_listings(results, Tenure: 'rental')
-      results = clean_listings_for_browse(results)
-      # sort the matched listings to the top of the list
-      results.partition { |i| i['Does_Match'] }.flatten
-    end
-
     # get one detailed listing result by id
     def self.listing(id, opts = {})
       endpoint = "/ListingDetails/#{CGI.escape(id)}"

@@ -47,7 +47,7 @@
           templateUrl: 'pages/templates/welcome.html'
       resolve:
         listing: ['$stateParams', 'ListingDataService', ($stateParams, ListingDataService) ->
-          ListingDataService.getListings({checkEligibility: false})
+          ListingDataService.getListings()
         ]
     })
     .state('dahlia.housing-counselors', {
@@ -70,7 +70,7 @@
           templateUrl: 'listings/templates/listings-for-rent.html'
       resolve:
         listings: ['$stateParams', 'ListingDataService', ($stateParams, ListingDataService) ->
-          ListingDataService.getListings({checkEligibility: false, retranslate: true, clearFilters: false, params: {Tenure: 'rental'}})
+          ListingDataService.getListings({retranslate: true, clearFilters: false, params: {Tenure: 'rental'}})
         ]
         $title: ['$translate', ($translate) ->
           # translate used without ".instant" so that it will async resolve

@@ -21,17 +21,6 @@ do ->
     fakeListings = getJSONFixture('listings-api-index.json').listings
     fakeListing = getJSONFixture('listings-api-show.json').listing
     fakeListingFavorites = {}
-    eligibilityFilterDefaults =
-      'household_size': ''
-      'income_timeframe': ''
-      'income_total': ''
-      'include_children_under_6': false
-      'children_under_6': ''
-    fakeListingEligibilityService = {
-      eligibility_filter_defaults: eligibilityFilterDefaults
-      eligibility_filters: eligibilityFilterDefaults
-      resetEligibilityFilters: jasmine.createSpy()
-    }
     hasFilters = false
     fakeListingDataService =
       listings: fakeListings
@@ -45,7 +34,6 @@ do ->
       AMICharts: []
       lotteryPreferences: []
       getLotteryRanking: () -> null
-      hasEligibilityFilters: () -> null
       stubFeatures: () -> null
       listingIs: () -> null
       loading: {}
@@ -74,7 +62,6 @@ do ->
         $translate: $translate
         $window: fakeWindow
         ListingDataService: fakeListingDataService
-        ListingEligibilityService: fakeListingEligibilityService
         ListingIdentityService: fakeListingIdentityService
         ListingUnitService: fakeListingUnitService
         SharedService: fakeSharedService
@@ -217,12 +204,6 @@ do ->
         it 'expects ListingDataService.function to be called', ->
           ctrl.toggleFavoriteListing 1
           expect(fakeListingDataService.toggleFavoriteListing).toHaveBeenCalled()
-
-      describe '$ctrl.hasEligibilityFilters', ->
-        it 'expects fakeListingEligibilityService.hasEligibilityFilters to be called', ->
-          fakeListingEligibilityService.hasEligibilityFilters = jasmine.createSpy()
-          ctrl.hasEligibilityFilters()
-          expect(fakeListingEligibilityService.hasEligibilityFilters).toHaveBeenCalled()
 
       describe '$ctrl.listingApplicationClosed', ->
         it 'expects ListingIdentityService.isOpen to be called', ->

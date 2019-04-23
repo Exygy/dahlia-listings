@@ -12,12 +12,6 @@ do ->
       general: [angular.copy(fakeListing.listing.unitSummaries.general[0])]
     fakeListingAllSRO.unitSummaries.general[0].unitType = 'SRO'
     fakeListingAllSRO.unitSummaries.general[0].maxOccupancy = 1
-    fakeEligibilityFilters =
-      household_size: 2
-      income_timeframe: 'per_month'
-      income_total: 3500
-      include_children_under_6: true
-      children_under_6: 1
     $localStorage = undefined
     incomeLevels = undefined
     minMax = undefined
@@ -30,26 +24,6 @@ do ->
       ListingEligibilityService = _ListingEligibilityService_
       return
     )
-
-    describe 'Service.setEligibilityFilters', ->
-      describe 'When filters have been set', ->
-        beforeEach ->
-          # reset eligibility filters
-          ListingEligibilityService.setEligibilityFilters angular.copy(ListingEligibilityService.eligibility_filter_defaults)
-        afterEach ->
-          # reset eligibility filters
-          ListingEligibilityService.setEligibilityFilters angular.copy(ListingEligibilityService.eligibility_filter_defaults)
-        it 'updates Service.eligibility_filters with appropriate data', ->
-          ListingEligibilityService.setEligibilityFilters(fakeEligibilityFilters)
-          expect(ListingEligibilityService.eligibility_filters.income_total).toEqual 3500
-          expect(ListingEligibilityService.eligibility_filters.household_size).toEqual 2
-        it 'checks if eligibility filters have been set', ->
-          expect(ListingEligibilityService.hasEligibilityFilters()).toEqual false
-          ListingEligibilityService.setEligibilityFilters(fakeEligibilityFilters)
-          expect(ListingEligibilityService.hasEligibilityFilters()).toEqual true
-        it 'returns yearly income', ->
-          ListingEligibilityService.setEligibilityFilters(fakeEligibilityFilters)
-          expect(ListingEligibilityService.eligibilityYearlyIncome()).toEqual 3500*12
 
     describe 'Service.incomeForHouseholdSize', ->
       it 'should get the income amount for the selected AMI Chart and householdIncomeLevel', ->

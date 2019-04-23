@@ -2,8 +2,8 @@ angular.module('dahlia.components')
 .component 'listingContainer',
   transclude: true
   templateUrl: 'listings/components/listing-container.html'
-  controller: ['$window', 'ListingDataService', 'ListingEligibilityService', 'ListingIdentityService', 'ListingUnitService', 'SharedService',
-  ($window, ListingDataService, ListingEligibilityService, ListingIdentityService, ListingUnitService, SharedService) ->
+  controller: ['$window', 'ListingDataService', 'ListingIdentityService', 'ListingUnitService', 'SharedService',
+  ($window, ListingDataService, ListingIdentityService, ListingUnitService, SharedService) ->
     ctrl = @
     # TODO: remove Shared Service once we create a Shared Container
     @listingEmailAlertUrl = "http://eepurl.com/dkBd2n"
@@ -75,9 +75,6 @@ angular.module('dahlia.components')
 
     @listingHasSROUnits = (listing) ->
       ListingUnitService.listingHasSROUnits(listing)
-
-    @hasEligibilityFilters = ->
-      ListingEligibilityService.hasEligibilityFilters()
 
     @lotteryDateVenueAvailable = (listing) ->
       (listing.Lottery_Date != undefined &&

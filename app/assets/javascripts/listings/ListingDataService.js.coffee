@@ -4,8 +4,8 @@
 
 ListingDataService = (
   $http, $localStorage, $q, $state, $translate, $timeout,
-  ExternalTranslateService, ListingConstantsService, ListingEligibilityService, ListingIdentityService,
-  ListingLotteryService, ListingPreferenceService, ListingUnitService, SharedService, IncomeCalculatorService) ->
+  ExternalTranslateService, ListingConstantsService, ListingIdentityService,
+  ListingLotteryService, ListingPreferenceService, ListingUnitService, SharedService) ->
   Service = {}
   MAINTENANCE_LISTINGS = [] unless MAINTENANCE_LISTINGS
   Service.listing = {}
@@ -106,12 +106,6 @@ ListingDataService = (
       Service.toggleStates[Service.listing.Id] ?= {}
 
   Service.getListings = (opts = {}) ->
-    # check for eligibility options being set in the session
-    if opts.clearFilters
-      ListingEligibilityService.resetEligibilityFilters()
-      IncomeCalculatorService.resetIncomeSources()
-    if opts.checkEligibility && ListingEligibilityService.hasEligibilityFilters()
-      return Service.getListingsWithEligibility()
     deferred = $q.defer()
     $http.get("/api/v1/listings.json", {
       etagCache: true,
@@ -139,32 +133,6 @@ ListingDataService = (
       # TODO: Remove this quick fix for translation issues on listing pages
       # and replace with a real fix based on actual digest timing.
       $timeout(ExternalTranslateService.translatePageContent, 0, false) if retranslate
-      deferred.resolve()
-
-  Service.getListingsWithEligibility = ->
-    params =
-      householdsize: ListingEligibilityService.eligibility_filters.household_size
-      incomelevel: ListingEligibilityService.eligibilityYearlyIncome()
-      includeChildrenUnder6: ListingEligibilityService.eligibility_filters.include_children_under_6
-      childrenUnder6: ListingEligibilityService.eligibility_filters.children_under_6
-    deferred = $q.defer()
-    $http.get("/api/v1/listings/eligibility.json?#{SharedService.toQueryString(params)}",
-      { etagCache: true }
-    ).success(
-      Service.getListingsWithEligibilityResponse(deferred)
-    ).cached(
-      Service.getListingsWithEligibilityResponse(deferred)
-    ).error( (data, status, headers, config) ->
-      deferred.reject(data)
-    )
-    return deferred.promise
-
-  Service.getListingsWithEligibilityResponse = (deferred) ->
-    (data, status, headers, config, itemCache) ->
-      itemCache.set(data) unless status == 'cached'
-      listings = (if data and data.listings then data.listings else [])
-      listings = Service.cleanListings(listings)
-      Service.groupListings(listings)
       deferred.resolve()
 
   Service.cleanListings = (listings) ->
@@ -408,8 +376,8 @@ ListingDataService = (
 
 ListingDataService.$inject = [
   '$http', '$localStorage', '$q', '$state', '$translate', '$timeout',
-  'ExternalTranslateService', 'ListingConstantsService', 'ListingEligibilityService', 'ListingIdentityService',
-  'ListingLotteryService', 'ListingPreferenceService', 'ListingUnitService', 'SharedService', 'IncomeCalculatorService'
+  'ExternalTranslateService', 'ListingConstantsService', 'ListingIdentityService',
+  'ListingLotteryService', 'ListingPreferenceService', 'ListingUnitService', 'SharedService'
 ]
 
 angular

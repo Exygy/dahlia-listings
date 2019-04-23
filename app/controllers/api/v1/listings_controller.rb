@@ -39,17 +39,6 @@ class Api::V1::ListingsController < ApiController
     render json: { preferences: @preferences }
   end
 
-  def eligibility
-    # have to massage params into number values
-    filters = {
-      householdsize: params[:householdsize].to_i,
-      incomelevel: params[:incomelevel].to_f,
-      childrenUnder6: params[:childrenUnder6].to_i,
-    }
-    @listings = Force::ListingService.eligible_listings(filters)
-    render json: { listings: @listings }
-  end
-
   def ami
     # loop through all the ami levels that you just sent me
     # call Force::ListingService.ami with each set of opts

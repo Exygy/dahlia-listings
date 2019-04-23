@@ -6,13 +6,6 @@ do ->
     fakeListings = getJSONFixture('listings-api-index.json')
     fakeListing = getJSONFixture('listings-api-show.json')
     fakeAMI = getJSONFixture('listings-api-ami.json')
-    fakeEligibilityListings = getJSONFixture('listings-api-eligibility-listings.json')
-    fakeEligibilityFilters =
-      household_size: 2
-      income_timeframe: 'per_month'
-      income_total: 3500
-      include_children_under_6: true
-      children_under_6: 1
     fakeListingConstantsService = {
       rentalPaperAppURLs: [
         {
@@ -38,16 +31,6 @@ do ->
           url: 'https://spanishsaleapp.com'
         }
       ]
-    }
-    fakeListingEligibilityService = {
-      eligibilityYearlyIncome: jasmine.createSpy()
-      eligibility_filters: fakeEligibilityFilters
-      setEligibilityFilters: jasmine.createSpy()
-      hasEligibilityFilters: ->
-      resetEligibilityFilters: jasmine.createSpy()
-    }
-    fakeIncomeCalculatorService = {
-      resetIncomeSources: jasmine.createSpy()
     }
     fakeListingIdentityService =
       listingIs: ->
@@ -76,11 +59,9 @@ do ->
     beforeEach module('dahlia.services', ($provide) ->
       $provide.value '$translate', $translate
       $provide.value 'ListingConstantsService', fakeListingConstantsService
-      $provide.value 'ListingEligibilityService', fakeListingEligibilityService
       $provide.value 'ListingIdentityService', fakeListingIdentityService
       $provide.value 'ListingLotteryService', fakeListingLotteryService
       $provide.value 'SharedService', fakeSharedService
-      $provide.value 'IncomeCalculatorService', fakeIncomeCalculatorService
       return
     )
 
@@ -120,27 +101,13 @@ do ->
         expect(dates[0] >= dates[1]).toEqual true
 
     describe 'Service.getListings', ->
-      it 'returns Service.getListingsWithEligibility if eligibility options are set', ->
-        ListingDataService.getListingsWithEligibility = jasmine.createSpy()
-        spyOn(fakeListingEligibilityService, 'hasEligibilityFilters').and.returnValue(true)
-        ListingDataService.getListings({checkEligibility: true})
-        expect(ListingDataService.getListingsWithEligibility).toHaveBeenCalled()
-      it 'calls ListingEligibilityService.eligibilityYearlyIncome', ->
-        spyOn(fakeListingEligibilityService, 'hasEligibilityFilters').and.returnValue(true)
-        ListingDataService.getListings({checkEligibility: true})
-        expect(fakeListingEligibilityService.eligibilityYearlyIncome).toHaveBeenCalled()
       it 'passes params to http request', ->
-        fakeParams = {checkEligibility: false, params: {Tenure: 'rental'}}
+        fakeParams = {params: {Tenure: 'rental'}}
         httpBackend.expect('GET', "/api/v1/listings.json?Tenure=rental").respond(fakeListings)
-        spyOn(fakeListingEligibilityService, 'hasEligibilityFilters').and.returnValue(false)
         ListingDataService.getListings(fakeParams)
         httpBackend.flush()
         httpBackend.verifyNoOutstandingExpectation()
         httpBackend.verifyNoOutstandingRequest()
-      it 'cleans filters', ->
-        ListingDataService.getListings({checkEligibility: false, clearFilters: true})
-        expect(fakeListingEligibilityService.resetEligibilityFilters).toHaveBeenCalled()
-        expect(fakeIncomeCalculatorService.resetIncomeSources).toHaveBeenCalled()
 
     describe 'Service.getListing', ->
       afterEach ->
@@ -293,27 +260,6 @@ do ->
         ListingDataService.getListingsByIds(listingIds)
         httpBackend.flush()
         expect(ListingDataService.listings).toEqual fakeListings.listings
-
-    describe 'Service.getListingsWithEligibility', ->
-      afterEach ->
-        httpBackend.verifyNoOutstandingExpectation()
-        httpBackend.verifyNoOutstandingRequest()
-
-      it 'calls groupListings and cleanListings functions with returned listings', ->
-        ListingDataService.cleanListings = jasmine.createSpy()
-        ListingDataService.groupListings = jasmine.createSpy()
-        stubAngularAjaxRequest httpBackend, requestURL, fakeEligibilityListings
-        ListingDataService.getListingsWithEligibility()
-        httpBackend.flush()
-        expect(ListingDataService.cleanListings).toHaveBeenCalled()
-        expect(ListingDataService.groupListings).toHaveBeenCalled()
-      it 'calls ListingEligibilityService.eligibilityYearlyIncome', ->
-        ListingDataService.cleanListings = jasmine.createSpy()
-        ListingDataService.groupListings = jasmine.createSpy()
-        stubAngularAjaxRequest httpBackend, requestURL, fakeEligibilityListings
-        ListingDataService.getListingsWithEligibility()
-        httpBackend.flush()
-        expect(fakeListingEligibilityService.eligibilityYearlyIncome).toHaveBeenCalled()
 
     describe 'Service.sortByDate', ->
       it 'returns sorted list of Open Houses', ->

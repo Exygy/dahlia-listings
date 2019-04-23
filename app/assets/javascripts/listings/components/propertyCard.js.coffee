@@ -13,12 +13,6 @@ angular.module('dahlia.components')
       @showSharing = ->
         SharedService.showSharing()
 
-      @showMatches = ->
-        $state.current.name == 'dahlia.listings-for-rent' && this.listingContainer.hasEligibilityFilters()
-
-      @isOpenNotMatchListing = (listing) ->
-        this.listingContainer.openNotMatchListings.indexOf(listing) > -1
-
       @isOpenListing = (listing) ->
         this.listingContainer.openListings.indexOf(listing) > -1
 
@@ -43,7 +37,6 @@ angular.module('dahlia.components')
             type = descriptor.name
             types.push(ListingDataService.reservedLabel(listing, type, 'reservedForWhoAre'))
         if types.length then types.join(' or ') else ''
-
 
       return ctrl
   ]
