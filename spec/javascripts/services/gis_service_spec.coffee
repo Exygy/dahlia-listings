@@ -5,8 +5,6 @@ do ->
     httpBackend = undefined
     $q = undefined
     $rootScope = undefined
-    fakeShortFormDataService =
-      formatUserDOB: ->
     fakeValidAddressMatchResult = getJSONFixture('gis-api-valid-address-boundary-match.json')
     fakeValidAddressNoMatchResult = getJSONFixture('gis-api-valid-address-no-boundary-match.json')
     fakeInvalidResult = getJSONFixture('gis-api-invalid-address.json')
@@ -39,7 +37,6 @@ do ->
 
     beforeEach module('ui.router')
     beforeEach module('dahlia.services', ($provide)->
-      $provide.value 'ShortFormDataService', fakeShortFormDataService
       return
     )
 

@@ -2,8 +2,9 @@
 ###################################### CONTROLLER ##########################################
 ############################################################################################
 
-NavController = ($document, $rootScope, $scope, $state, $timeout, $translate, ModalService, ShortFormApplicationService,
-$window) ->
+NavController = (
+  $document, $rootScope, $scope, $state, $timeout, $translate, ModalService, $window
+) ->
   $scope.loggedIn = () -> false
   $scope.showNavMobile = false
   $scope.showSaleListings = $window.env.showSaleListings == 'true'
@@ -48,7 +49,7 @@ $window) ->
 
 NavController.$inject = [
   '$document', '$rootScope', '$scope', '$state', '$timeout', '$translate',
-  'ModalService', 'ShortFormApplicationService', '$window'
+  'ModalService', '$window'
 ]
 
 angular

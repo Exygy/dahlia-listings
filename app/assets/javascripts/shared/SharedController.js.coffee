@@ -8,13 +8,10 @@ SharedController = ($scope, $state, $stateParams, $translate, $window, SharedSer
   $scope.alternateLanguageLinks = SharedService.alternateLanguageLinks
 
   $scope.doNotGoogleTranslate = ->
-    $scope.isShortFormPage() || $scope.isWelcomePage() || $scope.isEnglish()
+    $scope.isWelcomePage() || $scope.isEnglish()
 
   $scope.showTranslationExpertMessage = ->
-    $scope.isShortFormPage() || $scope.isWelcomePage()
-
-  $scope.isShortFormPage = ->
-    $state.includes('dahlia.short-form-welcome') || $state.includes('dahlia.short-form-application')
+    $scope.isWelcomePage()
 
   $scope.isWelcomePage = ->
     SharedService.isWelcomePage()
@@ -30,10 +27,7 @@ SharedController = ($scope, $state, $stateParams, $translate, $window, SharedSer
   $scope.alertMessage = if $window.ALERT_MESSAGE then $window.ALERT_MESSAGE else ''
 
   $scope.hasCenterBody = () ->
-    if $state.includes('dahlia.short-form-welcome') ||
-      $state.includes('dahlia.short-form-application') ||
-      $state.includes('dahlia.my-applications')
-        return 'center-body'
+    return false
 
   $scope.focusOnMainContent = ->
     SharedService.focusOn('main-content')

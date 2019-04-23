@@ -15,8 +15,6 @@ do ->
     fakeWindow = {}
     fakeWindow['env'] = {showSaleListings: 'true'}
     fakeSharedService = {}
-    fakeShortFormApplicationService =
-      getLanguageCode: jasmine.createSpy()
     fakeAnalyticsService = {}
     fakeListings = getJSONFixture('listings-api-index.json').listings
     fakeListing = getJSONFixture('listings-api-show.json').listing

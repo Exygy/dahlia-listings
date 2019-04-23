@@ -273,18 +273,6 @@ do ->
         sorted = ListingDataService.sortByDate(angular.copy(fakeOpenHouses))
         expect(sorted[0]).toEqual fakeOpenHouses[1]
 
-    describe 'Service.loadListing', ->
-      beforeEach ->
-        ListingDataService.loadListing(fakeListing.listing)
-
-      it 'should populate Service.listing', ->
-        expect(ListingDataService.listing.Id).toEqual fakeListing.listing.Id
-      it 'should populate Service.listing.preferences', ->
-        count = fakeListing.listing.Listing_Lottery_Preferences.length
-        expect(ListingDataService.listing.preferences.length).toEqual count
-        prefId = fakeListing.listing.Listing_Lottery_Preferences[0].Id
-        expect(ListingDataService.listing.preferences[0].listingPreferenceID).toEqual prefId
-
     describe 'Service.getListingPaperAppURLs', ->
       describe 'for a rental listing', ->
         beforeEach ->

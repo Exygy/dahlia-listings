@@ -1,14 +1,4 @@
-.content-column ng-if="::$ctrl.parent.submittedApplication()"
-  .content-group.has-divider
-    h2.h-caps-lined
-      | {{'LABEL.MY_APPLICATION' | translate}}
-    button.button.primary.expand type="button" title="{{'LABEL.VIEW_APPLICATION' | translate}}" ui-sref="dahlia.short-form-review({id: $ctrl.parent.application.id})"
-      | {{'LABEL.VIEW_APPLICATION' | translate}}
-    p.c-steel.t-small
-      ' {{'T.APPLICATION_SUBMITTED' | translate}}:
-      ' {{$ctrl.parent.application.applicationSubmittedDate | date : "MMM d, yyyy" }}
-
-.content-column ng-if="::!$ctrl.parent.submittedApplication()"
+.content-column
   / Section 1: Get a Paper Application
   .content-group.has-divider
     h2.h-caps-lined

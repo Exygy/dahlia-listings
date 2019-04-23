@@ -11,17 +11,10 @@ angular.module('dahlia.directives')
     invert: '=?'
     primary: '=?'
     info: '=?'
-    shortForm: '=?'
 
   templateUrl: 'directives/alert-box.html'
 
   link: (scope, elem, attrs) ->
-    if scope.shortForm
-      # shortForm "default settings"
-      scope.formObject ?= scope.$parent.form.applicationForm
-      scope.hideAlert ?= scope.$parent.hideAlert
-      scope.invert ?= true
-
     scope.showAlert = ->
       if scope.customMessage
         return scope.hideAlert == false
@@ -48,8 +41,6 @@ angular.module('dahlia.directives')
     scope.close = (e) ->
       e.preventDefault()
       scope.hideAlert = true
-      if scope.shortForm
-        scope.$parent.hideAlert = true
 
     scope.contactTypeData = (contactType) ->
       {contactType: contactType}

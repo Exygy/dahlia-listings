@@ -7,11 +7,9 @@ LotteryModalController = (
   $state,
   ListingDataService,
   ListingLotteryService,
-  AnalyticsService,
-  ShortFormApplicationService
+  AnalyticsService
 ) ->
   $scope.listing = ListingDataService.listing
-  $scope.application = ShortFormApplicationService.application
   $scope.lotteryBucketInfo = ListingLotteryService.lotteryBucketInfo
   $scope.lotteryRankingInfo = ListingLotteryService.lotteryRankingInfo
   $scope.favorites = ListingDataService.favorites
@@ -56,10 +54,6 @@ LotteryModalController = (
         AnalyticsService.trackInvalidLotteryNumber() if !$scope.lotteryNumberValid()
       )
 
-  # used within lottery modal to determine some template variations
-  $scope.viewingMyApplications = ->
-    $state.current.name == 'dahlia.my-applications'
-
 ############################################################################################
 ######################################## CONFIG ############################################
 ############################################################################################
@@ -69,8 +63,7 @@ LotteryModalController.$inject = [
   '$state',
   'ListingDataService',
   'ListingLotteryService',
-  'AnalyticsService',
-  'ShortFormApplicationService'
+  'AnalyticsService'
 ]
 
 angular

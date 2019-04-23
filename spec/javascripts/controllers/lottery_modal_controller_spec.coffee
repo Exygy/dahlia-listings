@@ -8,8 +8,6 @@ do ->
     fakeAnalyticsService = {
       trackInvalidLotteryNumber: jasmine.createSpy()
     }
-    fakeShortFormApplicationService =
-      application: {}
     fakeListingDataService =
       listing: fakeListing
       listings: fakeListings
@@ -18,7 +16,6 @@ do ->
       lotteryRankingInfo: {}
       formatLotteryNumber: ->
       getLotteryRanking: ->
-    fakeShortFormApplicationService = {}
 
     beforeEach module('dahlia.controllers', ($provide) ->
       return
@@ -36,7 +33,6 @@ do ->
         ListingDataService: fakeListingDataService
         ListingLotteryService: fakeListingLotteryService
         AnalyticsService: fakeAnalyticsService
-        ShortFormApplicationService: fakeShortFormApplicationService
       return
     )
 
@@ -83,14 +79,3 @@ do ->
         spyOn(fakeListingLotteryService, 'formatLotteryNumber').and.returnValue(scope.lotterySearchNumber)
         scope.showLotteryRanking()
         expect(fakeListingLotteryService.getLotteryRanking).toHaveBeenCalledWith(scope.lotterySearchNumber, scope.listing)
-
-    describe 'viewingMyApplications', ->
-      afterEach ->
-        state = {current: {name: undefined}}
-
-      it 'returns true if the current state name is "dahlia.my-applications"', ->
-        state.current.name = 'dahlia.my-applications'
-        expect(scope.viewingMyApplications()).toEqual(true)
-      it 'returns false if the current state name is not "dahlia.my-applications"', ->
-        state.current.name = 'dahlia.listing'
-        expect(scope.viewingMyApplications()).toEqual(false)

@@ -11,7 +11,7 @@
 
     .modal-inner.bg-dust
       / NOTE: using ng-if instead of ng-show here breaks the form submit action
-      .icon-input.row.collapse ng-show="!viewingMyApplications()"
+      .icon-input.row.collapse
         .large-12.columns
           form.row.collapse ng-submit="showLotteryRanking()"
             .small-10.columns
@@ -23,12 +23,6 @@
                 span.ui-icon.ui-static.ui-medium.i-white
                   svg
                     use xlink:href="#i-right"
-
-      .form-group.text-center.padding--half ng-show="viewingMyApplications()"
-        h3.form-label.caps
-          | {{'REVIEW_APPLICATION.YOUR_LOTTERY_NUMBER' | translate}}
-        p.beta.t-serif.no-margin
-          | &#35;{{ application.lotteryNumber }}
 
     div ng-if="!lotteryNumberFormatValid"
       .alert-box.alert.no-margin

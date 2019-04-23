@@ -16,10 +16,10 @@
         responseError: (error) ->
           if error.status >= 500
             $injector.invoke [
-              '$http', 'bsLoadingOverlayService', 'ShortFormNavigationService', '$state',
-              ($http, bsLoadingOverlayService, ShortFormNavigationService, $state) ->
-                # this will call bsLoadingOverlayService.stop()
-                ShortFormNavigationService.isLoading(false)
+              '$http', 'bsLoadingOverlayService', '$state',
+              ($http, bsLoadingOverlayService, $state) ->
+                bsLoadingOverlayService.stop()
+
                 # don't display alerts in E2E tests
                 return if window.protractor
 

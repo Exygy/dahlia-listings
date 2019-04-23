@@ -26,9 +26,6 @@ html lang="en" ng-app="dahlia" ng-strict-di="" ng-controller="SharedController"
     = render partial: '/layouts/favicons'
     = csrf_meta_tags
 
-    / multilingual alt links currently only relevant for short form pages
-    link ng-repeat="link in alternateLanguageLinks" rel="alternate" hreflang="{{link.lang}}" href="#{root_url}{{link.href}}" ng-if="isShortFormPage()"
-
     / prerender.io + metatags
     meta name="fragment" content="!"
     meta property="og:title" content="{{$title || 'DAHLIA San Francisco Housing Portal'}}"
