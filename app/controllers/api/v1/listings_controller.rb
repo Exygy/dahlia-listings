@@ -17,12 +17,18 @@ class Api::V1::ListingsController < ApiController
   end
 
   def units
-    @units = Force::ListingService.units(params[:id], force: params[:force])
+    # TODO: Replace the below Salesforce-based way of fetching units
+    # with the new way that will be coming in the dahlia_data_models gem.
+    # @units = Force::ListingService.units(params[:id], force: params[:force])
+    @units = []
     render json: { units: @units }
   end
 
   def preferences
-    @preferences = Force::ListingService.preferences(params[:id], force: params[:force])
+    # TODO: Replace the below Salesforce-based way of fetching preferences
+    # with the new way that will be coming in the dahlia_data_models gem.
+    # @preferences = Force::ListingService.preferences(params[:id], force: params[:force])
+    @preferences = []
     render json: { preferences: @preferences }
   end
 
@@ -30,17 +36,21 @@ class Api::V1::ListingsController < ApiController
     # loop through all the ami levels that you just sent me
     # call Force::ListingService.ami with each set of opts
     @ami_levels = []
-    params[:chartType].each_with_index do |chart_type, i|
-      data = {
-        chartType: chart_type,
-        percent: params[:percent][i],
-        year: params[:year][i],
-      }
-      @ami_levels << {
-        percent: data[:percent],
-        values: Force::ListingService.ami(data),
-      }
-    end
+
+    # TODO: Replace the below Salesforce-based way of fetching ami
+    # with the new way that will be coming in the dahlia_data_models gem.
+    # params[:chartType].each_with_index do |chart_type, i|
+    #   data = {
+    #     chartType: chart_type,
+    #     percent: params[:percent][i],
+    #     year: params[:year][i],
+    #   }
+    #   @ami_levels << {
+    #     percent: data[:percent],
+    #     values: Force::ListingService.ami(data),
+    #   }
+    # end
+
     render json: { ami: @ami_levels }
   end
 
