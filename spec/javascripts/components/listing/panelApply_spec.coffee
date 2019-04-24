@@ -34,8 +34,3 @@ do ->
           ctrl.showApplicationOptions = false
           ctrl.toggleApplicationOptions()
           expect(ctrl.showApplicationOptions).toEqual true
-
-      describe '$ctrl.trackApplyOnlineTimer', ->
-        it 'calls AnalyticsService.trackTimerEvent', ->
-          ctrl.trackApplyOnlineTimer()
-          expect(fakeAnalyticsService.trackTimerEvent).toHaveBeenCalledWith('Application', 'Apply Online Click')

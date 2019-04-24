@@ -17,9 +17,6 @@
     }
   ],
   "env":{
-    "DISABLE_DATABASE_ENVIRONMENT_CHECK":{
-      "required":true
-    },
     "DISALLOW_ALL_WEB_CRAWLERS":{
       "required":true
     },

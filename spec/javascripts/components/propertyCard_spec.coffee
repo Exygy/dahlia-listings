@@ -9,7 +9,6 @@ do ->
       instant: ->
     fakeListings = getJSONFixture('listings-api-index.json').listings
     fakeListing = getJSONFixture('listings-api-show.json').listing
-    fakeListing.reservedDescriptor = [{name: 'fake'}, {name: 'not'}]
     fakeListingContainer = {
       listing: fakeListing
       openListings: []
@@ -19,7 +18,7 @@ do ->
     fakeListingDataService =
       listings: fakeListings
       priorityTypes: ->
-      reservedLabel: ->
+      reservedLabel: -> 'fake'
       priorityLabel: ->
     beforeEach module('dahlia.components')
     beforeEach inject((_$componentController_) ->
@@ -33,22 +32,6 @@ do ->
     describe 'propertyCard', ->
       beforeEach ->
         ctrl = $componentController 'propertyCard', locals, {listingContainer: fakeListingContainer}
-
-      describe '$ctrl.showMatches', ->
-        describe 'dahlia.listings-for-rent state with filters available', ->
-          it 'returns true', ->
-            state.current.name = 'dahlia.listings-for-rent'
-            expect(ctrl.showMatches()).toEqual true
-
-        describe 'filters unavailable', ->
-          it 'returns false', ->
-            state.current.name = 'dahlia.listings-for-rent'
-            expect(ctrl.showMatches()).toEqual false
-
-        describe 'state is not dahlia.listings-for-rent', ->
-          it 'returns false', ->
-            state.current.name = 'dahlia.home'
-            expect(ctrl.showMatches()).toEqual false
 
       describe '$ctrl.isOpenListing', ->
         describe 'open listing', ->
@@ -91,14 +74,10 @@ do ->
           expect(fakeListingDataService.priorityTypes).toHaveBeenCalledWith(fakeListing)
 
       describe '$ctrl.reservedForLabels', ->
-        it 'calls ListingDataService.reservedLabel', ->
-          spyOn(fakeListingDataService, 'reservedLabel').and.returnValue('fake')
-          ctrl.reservedForLabels(fakeListing)
-          expect(fakeListingDataService.reservedLabel).toHaveBeenCalled()
         it 'returns values joined with or', ->
-          spyOn(fakeListingDataService, 'reservedLabel').and.returnValue('fake')
+          fakeListing.reservedDescriptor = [{name: 'fake'}, {name: 'not'}]
           expect(ctrl.reservedForLabels(fakeListing)).toEqual 'fake or fake'
+
         it 'returns empty string for empty reservedDescriptor', ->
           fakeListing.reservedDescriptor = null
-          spyOn(fakeListingDataService, 'reservedLabel').and.returnValue('fake')
           expect(ctrl.reservedForLabels(fakeListing)).toEqual ''

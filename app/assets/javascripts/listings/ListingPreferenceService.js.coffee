@@ -23,25 +23,24 @@ ListingPreferenceService = ($http, ListingConstantsService, ListingIdentityServi
     _.find(listing.preferences, { listingPreferenceID: listingPreferenceID })
 
   Service.getListingPreferences = (listing, forceRecache = false) ->
-    return
-    # Service.loading.preferences = true
-    # # Reset preferences that might already exist
-    # angular.copy([], listing.preferences)
-    # Service.error.preferences = false
+    Service.loading.preferences = true
+    # Reset preferences that might already exist
+    angular.copy([], listing.preferences)
+    Service.error.preferences = false
 
-    # httpConfig = { etagCache: true }
-    # httpConfig.params = { force: true } if forceRecache
-    # $http.get("/api/v1/listings/#{listing.Id}/preferences", httpConfig)
-    # .success((data, status, headers, config) ->
-    #   if data && data.preferences
-    #     listing.preferences = data.preferences
-    #     # TODO: -- REMOVE HARDCODED PREFERENCES --
-    #     Service._extractCustomPreferences(listing)
-    #     Service.loading.preferences = false
-    # ).error( (data, status, headers, config) ->
-    #   Service.loading.preferences = false
-    #   Service.error.preferences = true
-    # )
+    httpConfig = { etagCache: true }
+    httpConfig.params = { force: true } if forceRecache
+    $http.get("/api/v1/listings/#{listing.Id}/preferences", httpConfig)
+    .success((data, status, headers, config) ->
+      if data && data.preferences
+        listing.preferences = data.preferences
+        # TODO: -- REMOVE HARDCODED PREFERENCES --
+        Service._extractCustomPreferences(listing)
+        Service.loading.preferences = false
+    ).error( (data, status, headers, config) ->
+      Service.loading.preferences = false
+      Service.error.preferences = true
+    )
 
   # TODO: Replace with `requiresProof` listing preference setting (#154784101)
   Service.hardcodeCustomProofPrefs = []

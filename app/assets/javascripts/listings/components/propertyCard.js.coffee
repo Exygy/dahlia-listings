@@ -6,8 +6,8 @@ angular.module('dahlia.components')
   require:
     listingContainer: '^listingContainer'
   controller: [
-    'ListingDataService', 'SharedService', '$state',
-    (ListingDataService, SharedService, $state) ->
+    'ListingDataService', '$state',
+    (ListingDataService, $state) ->
       ctrl = @
 
       @isOpenListing = (listing) ->

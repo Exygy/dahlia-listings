@@ -74,27 +74,26 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     grouped
 
   Service.getListingUnits = (listing, forceRecache = false) ->
-    return
-    # Service.loading.units = true
-    # Service.error.units = false
-    # httpConfig = {}
-    # httpConfig.params = { force: true } if forceRecache
-    # $http.get("/api/v1/listings/#{listing.Id}/units", httpConfig)
-    # .success((data, status, headers, config) ->
-    #   Service.loading.units = false
-    #   Service.error.units = false
-    #   if data && data.units
-    #     units = data.units
-    #     listing.Units = units
-    #     listing.groupedUnits = Service.groupUnitDetails(units)
-    #     listing.unitTypes = Service.groupUnitTypes(units)
-    #     listing.priorityUnits = Service.groupSpecialUnits(listing.Units, 'Priority_Type')
-    #     listing.reservedUnits = Service.groupSpecialUnits(listing.Units, 'Reserved_Type')
-    # ).error( (data, status, headers, config) ->
-    #   Service.loading.units = false
-    #   Service.error.units = true
-    #   return
-    # )
+    Service.loading.units = true
+    Service.error.units = false
+    httpConfig = {}
+    httpConfig.params = { force: true } if forceRecache
+    $http.get("/api/v1/listings/#{listing.Id}/units", httpConfig)
+    .success((data, status, headers, config) ->
+      Service.loading.units = false
+      Service.error.units = false
+      if data && data.units
+        units = data.units
+        listing.Units = units
+        listing.groupedUnits = Service.groupUnitDetails(units)
+        listing.unitTypes = Service.groupUnitTypes(units)
+        listing.priorityUnits = Service.groupSpecialUnits(listing.Units, 'Priority_Type')
+        listing.reservedUnits = Service.groupSpecialUnits(listing.Units, 'Reserved_Type')
+    ).error( (data, status, headers, config) ->
+      Service.loading.units = false
+      Service.error.units = true
+      return
+    )
 
   Service.listingHasPriorityUnits = (listing) ->
     !_.isEmpty(listing.priorityUnits)

@@ -62,6 +62,15 @@ do ->
         expect(ListingDataService.openListings).toEqual []
 
     describe 'Service.groupListings', ->
+      beforeEach ->
+        # Give fakeListingIdentityService.isOpen an array of return values
+        # that makes half the listings appear open and half appear closed.
+        numListings = fakeListings.listings.length
+        numOpenListings = _.times(numListings / 2, _.constant(true))
+        numClosedListings = _.times(numListings / 2, _.constant(false))
+        isOpenReturnValues = _.concat(numOpenListings, numClosedListings)
+        spyOn(fakeListingIdentityService, 'isOpen').and.returnValues(isOpenReturnValues...)
+
       it 'assigns ListingDataService listing buckets with grouped arrays of listings', ->
         ListingDataService.groupListings(fakeListings.listings)
         combinedLength =

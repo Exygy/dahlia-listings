@@ -1,7 +1,7 @@
 remote = require('selenium-webdriver/remote')
 
 PageUtil = {
-  testListingId: 'a0W0P00000F8YG4UAN'
+  testListingId: '1'
   goTo: (url) ->
     browser.get(url)
   scrollToElement: (element) ->
