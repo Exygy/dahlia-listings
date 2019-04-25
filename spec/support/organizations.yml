@@ -4,3 +4,6 @@ smc:
 sj:
   name: San Jose
   domain: test-sj.host
+test:
+  name: Test
+  domain: example.com

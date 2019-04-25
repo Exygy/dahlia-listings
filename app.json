@@ -1,15 +1,9 @@
 {
   "name":"dahlia-listings",
   "description":"",
-  "scripts":{
-    "postdeploy": "rake db:schema:load && rake db:seed"
-  },
   "addons":[
-    "newrelic",
     "papertrail",
-    "memcachier",
-    "sendgrid",
-    "heroku-postgresql"
+    "memcachier"
   ],
   "buildpacks": [
     {
@@ -23,6 +17,15 @@
     }
   ],
   "env":{
+    "DISALLOW_ALL_WEB_CRAWLERS":{
+      "required":true
+    },
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "HEROKU_PARENT_APP_NAME": {
+      "required": true
+    },
     "LANG":{
       "required":true
     },
@@ -35,22 +38,10 @@
     "RAILS_SERVE_STATIC_FILES":{
       "required":true
     },
-    "SECRET_KEY_BASE":{
-      "required":true
-    },
-    "HEROKU_APP_NAME": {
-      "required": true
-    },
-    "HEROKU_PARENT_APP_NAME": {
-      "required": true
-    },
-    "DISALLOW_ALL_WEB_CRAWLERS":{
-      "required":true
-    },
     "RESOURCE_URL":{
       "required":true
     },
-    "SHOW_SALE_LISTINGS": {
+    "SECRET_KEY_BASE":{
       "required":true
     }
   }

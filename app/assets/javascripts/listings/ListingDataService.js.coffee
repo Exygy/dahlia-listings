@@ -4,51 +4,21 @@
 
 ListingDataService = (
   $http, $localStorage, $q, $state, $translate, $timeout,
-  ExternalTranslateService, ListingConstantsService, ListingEligibilityService, ListingIdentityService,
-  ListingLotteryService, ListingPreferenceService, ListingUnitService, SharedService, IncomeCalculatorService) ->
+  ListingConstantsService, ListingIdentityService,
+  ListingPreferenceService, ListingUnitService, SharedService) ->
   Service = {}
   MAINTENANCE_LISTINGS = [] unless MAINTENANCE_LISTINGS
   Service.listing = {}
   Service.listings = []
   Service.openListings = []
-  Service.openMatchListings = []
-  Service.openNotMatchListings = []
   Service.closedListings = []
-  Service.lotteryResultsListings = []
   # these get loaded after the listing is loaded
   Service.AMICharts = []
   Service.loading = {}
   Service.error = {}
   Service.toggleStates = {}
   Service.listingPaperAppURLs = []
-  $localStorage.favorites ?= []
-  Service.favorites = $localStorage.favorites
   Service.preferenceMap = ListingConstantsService.preferenceMap
-
-  Service.getFavoriteListings = () ->
-    Service.getListingsByIds(Service.favorites, true)
-
-  # Service.checkFavorites makes sure that Service.listings contains our favorited listings
-  # if not, it means the listing doesn't exist and we should remove it from favorites
-  Service.checkFavorites = () ->
-    listing_ids = []
-    Service.listings.forEach (listing) -> listing_ids.push(listing['Id'])
-    Service.favorites.forEach (favorite_id) ->
-      if listing_ids.indexOf(favorite_id) == -1
-        Service.toggleFavoriteListing(favorite_id)
-
-  Service.toggleFavoriteListing = (listing_id) ->
-    # toggle the value for listing_id
-    index = Service.favorites.indexOf(listing_id)
-    if index == -1
-      # add the favorite
-      Service.favorites.push(listing_id)
-    else
-      # remove the favorite
-      Service.favorites.splice(index, 1)
-
-  Service.isFavorited = (listing_id) ->
-    Service.favorites.indexOf(listing_id) > -1
 
   Service.sortByDate = (sessions) ->
     # used for sorting Open_Houses and Information_Sessions
@@ -81,7 +51,6 @@ ListingDataService = (
     angular.copy({}, Service.listing)
     angular.copy([], Service.AMICharts)
     angular.copy([], Service.listingPaperAppURLs)
-    ListingLotteryService.resetData()
 
   Service.getListingResponse = (deferred, retranslate = false) ->
     (data, status, headers, config, itemCache) ->
@@ -95,23 +64,9 @@ ListingDataService = (
       # create a combined unitSummary
       unless Service.listing.unitSummary
         Service.listing.unitSummary = ListingUnitService.combineUnitSummaries(Service.listing)
-      # On listing and listings pages, we are experiencing an issue where
-      # where the Google translation will try to keep up with digest re-calcs
-      # happening during page load and will get tripped up and fail, leaving
-      # the page untranslated. This quick fix runs the Google Translation
-      # again to cover for a possible earlier failed translate.
-      # TODO: Remove this quick fix for translation issues on listing pages
-      # and replace with a real fix based on actual digest timing.
-      $timeout(ExternalTranslateService.translatePageContent, 0, false) if retranslate
       Service.toggleStates[Service.listing.Id] ?= {}
 
   Service.getListings = (opts = {}) ->
-    # check for eligibility options being set in the session
-    if opts.clearFilters
-      ListingEligibilityService.resetEligibilityFilters()
-      IncomeCalculatorService.resetIncomeSources()
-    if opts.checkEligibility && ListingEligibilityService.hasEligibilityFilters()
-      return Service.getListingsWithEligibility()
     deferred = $q.defer()
     $http.get("/api/v1/listings.json", {
       etagCache: true,
@@ -131,40 +86,6 @@ ListingDataService = (
       listings = if data and data.listings then data.listings else []
       listings = Service.cleanListings(listings)
       Service.groupListings(listings)
-      # On listing and listings pages, we are experiencing an issue where
-      # where the Google translation will try to keep up with digest re-calcs
-      # happening during page load and will get tripped up and fail, leaving
-      # the page untranslated. This quick fix runs the Google Translation
-      # again to cover for a possible earlier failed translate.
-      # TODO: Remove this quick fix for translation issues on listing pages
-      # and replace with a real fix based on actual digest timing.
-      $timeout(ExternalTranslateService.translatePageContent, 0, false) if retranslate
-      deferred.resolve()
-
-  Service.getListingsWithEligibility = ->
-    params =
-      householdsize: ListingEligibilityService.eligibility_filters.household_size
-      incomelevel: ListingEligibilityService.eligibilityYearlyIncome()
-      includeChildrenUnder6: ListingEligibilityService.eligibility_filters.include_children_under_6
-      childrenUnder6: ListingEligibilityService.eligibility_filters.children_under_6
-    deferred = $q.defer()
-    $http.get("/api/v1/listings/eligibility.json?#{SharedService.toQueryString(params)}",
-      { etagCache: true }
-    ).success(
-      Service.getListingsWithEligibilityResponse(deferred)
-    ).cached(
-      Service.getListingsWithEligibilityResponse(deferred)
-    ).error( (data, status, headers, config) ->
-      deferred.reject(data)
-    )
-    return deferred.promise
-
-  Service.getListingsWithEligibilityResponse = (deferred) ->
-    (data, status, headers, config, itemCache) ->
-      itemCache.set(data) unless status == 'cached'
-      listings = (if data and data.listings then data.listings else [])
-      listings = Service.cleanListings(listings)
-      Service.groupListings(listings)
       deferred.resolve()
 
   Service.cleanListings = (listings) ->
@@ -176,57 +97,31 @@ ListingDataService = (
 
   Service.groupListings = (listings) ->
     openListings = []
-    openMatchListings = []
-    openNotMatchListings = []
     closedListings = []
-    lotteryResultsListings = []
 
-    listings.forEach (listing) ->
+    sortedListings = _.sortBy listings, (i) -> moment(i.Application_Due_Date)
+
+    sortedListings.forEach (listing) ->
       if ListingIdentityService.isOpen(listing)
-        # All Open Listings Array
         openListings.push(listing)
-        if listing.Does_Match
-          openMatchListings.push(listing)
-        else
-          openNotMatchListings.push(listing)
       else
-        if ListingLotteryService.lotteryIsUpcoming(listing)
-          closedListings.push(listing)
-        else
-          lotteryResultsListings.push(listing)
+        closedListings.push(listing)
 
-    angular.copy(Service.sortListings(openListings, 'openListings'), Service.openListings)
-    angular.copy(Service.sortListings(openMatchListings, 'openMatchListings'), Service.openMatchListings)
-    angular.copy(Service.sortListings(openNotMatchListings, 'openNotMatchListings'), Service.openNotMatchListings)
-    angular.copy(Service.sortListings(closedListings, 'closedListings'), Service.closedListings)
-    angular.copy(Service.sortListings(lotteryResultsListings, 'lotteryResultsListings'), Service.lotteryResultsListings)
+    angular.copy(openListings, Service.openListings)
+    angular.copy(closedListings, Service.closedListings)
 
-  Service.sortListings = (listings, type) ->
-    # openListing types
-    if ['openListings', 'openMatchListings', 'openNotMatchListings'].indexOf(type) > -1
-      _.sortBy listings, (i) -> moment(i.Application_Due_Date)
-    # closedListing types
-    else if ['closedListings', 'lotteryResultsListings'].indexOf(type) > -1
-      listings = _.sortBy listings, (i) ->
-        # fallback to Application_Due_Date, really only for the special case of First Come First Serve
-        moment(i.Lottery_Results_Date || i.Application_Due_Date)
-      # lotteryResults get reversed (latest lottery results date first)
-      if type == 'lotteryResultsListings' then _.reverse listings else listings
-
-  Service.getListingsByIds = (ids, checkFavorites = false) ->
+  Service.getListingsByIds = (ids) ->
     angular.copy([], Service.listings)
     params = {params: {ids: ids.join(',') }}
     $http.get("/api/v1/listings.json", params).success((data, status, headers, config) ->
       listings = if data and data.listings then data.listings else []
       angular.copy(listings, Service.listings)
-      Service.checkFavorites() if checkFavorites
     ).error( (data, status, headers, config) ->
       return
     )
 
   Service.isAcceptingOnlineApplications = (listing) ->
     return false if _.isEmpty(listing)
-    return false if ListingLotteryService.lotteryComplete(listing)
     return false unless ListingIdentityService.isOpen(listing)
     return listing.Accepting_Online_Applications
 
@@ -246,26 +141,25 @@ ListingDataService = (
     deferred.promise
 
   Service.getListingAMI = (listing) ->
-    return
-    # angular.copy([], Service.AMICharts)
-    # Service.loading.ami = true
-    # Service.error.ami = false
-    # # shouldn't happen, but safe to have a guard clause
-    # return $q.when() unless listing.chartTypes
-    # allChartTypes = _.sortBy(listing.chartTypes, 'percent')
-    # data =
-    #   'year[]': _.map(allChartTypes, 'year')
-    #   'chartType[]': _.map(allChartTypes, 'chartType')
-    #   'percent[]': _.map(allChartTypes, 'percent')
-    # $http.get('/api/v1/listings/ami.json', { params: data }).success((data, status, headers, config) ->
-    #   if data && data.ami
-    #     angular.copy(Service._consolidatedAMICharts(data.ami), Service.AMICharts)
-    #   Service.loading.ami = false
-    # ).error( (data, status, headers, config) ->
-    #   Service.loading.ami = false
-    #   Service.error.ami = true
-    #   return
-    # )
+    angular.copy([], Service.AMICharts)
+    Service.loading.ami = true
+    Service.error.ami = false
+    # shouldn't happen, but safe to have a guard clause
+    return $q.when() unless listing.chartTypes
+    allChartTypes = _.sortBy(listing.chartTypes, 'percent')
+    data =
+      'year[]': _.map(allChartTypes, 'year')
+      'chartType[]': _.map(allChartTypes, 'chartType')
+      'percent[]': _.map(allChartTypes, 'percent')
+    $http.get('/api/v1/listings/ami.json', { params: data }).success((data, status, headers, config) ->
+      if data && data.ami
+        angular.copy(Service._consolidatedAMICharts(data.ami), Service.AMICharts)
+      Service.loading.ami = false
+    ).error( (data, status, headers, config) ->
+      Service.loading.ami = false
+      Service.error.ami = true
+      return
+    )
 
   Service._consolidatedAMICharts = (amiData) ->
     charts = []
@@ -325,17 +219,6 @@ ListingDataService = (
     else
       ''
 
-  # used by My Applications -- when you load an application we also parse the attached listing data
-  Service.loadListing = (listing) ->
-    return if Service.listing && Service.listing.Id == listing.Id && listing.preferences
-    # TODO: won't be needed if we ever consolidate Listing_Lottery_Preferences and /preferences API
-    listing.preferences = _.map listing.Listing_Lottery_Preferences, (lotteryPref) ->
-      {
-        listingPreferenceID: lotteryPref.Id
-        preferenceName: lotteryPref.Lottery_Preference.Name
-      }
-    angular.copy(listing, Service.listing)
-
   Service.formattedAddress = (listing, type='Building', display='full') ->
     street = "#{type}_Street_Address"
     zip = "#{type}_Postal_Code"
@@ -374,10 +257,7 @@ ListingDataService = (
       "#{Street_Address}#{City} #{State}, #{Zip_Code}"
 
   Service.getListingPaperAppURLs = (listing) ->
-    if ListingIdentityService.isSale(listing)
-      urls = angular.copy(ListingConstantsService.salePaperAppURLs)
-    else
-      urls = angular.copy(ListingConstantsService.rentalPaperAppURLs)
+    urls = angular.copy(ListingConstantsService.rentalPaperAppURLs)
 
     english = _.find(urls, { language: 'English' })
     chinese = _.find(urls, { language: 'Traditional Chinese' })
@@ -391,15 +271,6 @@ ListingDataService = (
     tagalog.url = listing.Download_URL_Tagalog if listing.Download_URL_Tagalog
     angular.copy(urls, Service.listingPaperAppURLs)
 
-  Service.getProjectIdForBoundaryMatching = (listing) ->
-    return unless listing
-    if ListingPreferenceService.hasPreference('antiDisplacement', listing)
-      'ADHP'
-    else if ListingPreferenceService.hasPreference('neighborhoodResidence', listing)
-      listing.Project_ID
-    else
-      null
-
   return Service
 
 ############################################################################################
@@ -408,8 +279,8 @@ ListingDataService = (
 
 ListingDataService.$inject = [
   '$http', '$localStorage', '$q', '$state', '$translate', '$timeout',
-  'ExternalTranslateService', 'ListingConstantsService', 'ListingEligibilityService', 'ListingIdentityService',
-  'ListingLotteryService', 'ListingPreferenceService', 'ListingUnitService', 'SharedService', 'IncomeCalculatorService'
+  'ListingConstantsService', 'ListingIdentityService',
+  'ListingPreferenceService', 'ListingUnitService', 'SharedService'
 ]
 
 angular

@@ -10,10 +10,6 @@ ListingConstantsService = () ->
     Service._mohcdPaperAppURLBase +
     'BMR%20Rental%20Paper%20Applications/' +
     '{lang}%20BMR%20Rent%20Short%20Form%20Paper%20App.pdf'
-  Service._mohcdSalePaperAppTemplate =
-    Service._mohcdPaperAppURLBase +
-    'BMR%20Ownership%20Paper%20Applications/' +
-    '{lang}%20BMR%20Own%20Short%20Form%20Paper%20App.pdf'
 
   Service.paperAppLanguages = [
     { language: 'English', label: 'English' }
@@ -25,11 +21,6 @@ ListingConstantsService = () ->
     language: l.language
     label: l.label
     url: Service._mohcdRentalPaperAppURLTemplate.replace('{lang}', l.slug || l.language)
-  })
-  Service.salePaperAppURLs = Service.paperAppLanguages.map((l) -> {
-    language: l.language
-    label: l.label
-    url: Service._mohcdSalePaperAppTemplate.replace('{lang}', l.slug || l.language)
   })
 
   Service.fieldsForUnitGrouping = [

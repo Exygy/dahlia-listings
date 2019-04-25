@@ -67,14 +67,7 @@
         ' {{percent}}% AMI
         ng-pluralize count="unitGroups.length" when="{'1': ' Unit', 'other': ' Units'}"
 
-        / TODO: will fully implement this More Info popup link in a later story
-        / a.property-hero_stat-info href="#"
-        /   span.ui-icon.ui-static.ui-medium.i-primary
-        /     svg
-        /       use xlink:href="#i-info"
-        /   |  More Info
-      rental-unit-stats unit-groups="::unitGroups" ng-if="::$ctrl.parent.isRental($ctrl.parent.listing)"
-      sale-unit-stats unit-groups="::unitGroups" ng-if="::$ctrl.parent.isSale($ctrl.parent.listing)"
+      rental-unit-stats unit-groups="::unitGroups"
 
 
   / TODO: remove case for hardcoded listings

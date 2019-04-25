@@ -11,12 +11,6 @@ Feature: Listings
       And I click the Download Application button
       Then I should see at least one paper application download link
 
-    Scenario: Going to the Ownership listings page from the welcome page
-      Given I go to the welcome page
-      Then I should see the Buy link
-      And I click the Buy link
-      Then I should be on the Ownership listings page
-
     Scenario: Going to the Rental listings page from the welcome page
       Given I go to the welcome page
       Then I should see the Rent link

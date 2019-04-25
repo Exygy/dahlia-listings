@@ -81,8 +81,6 @@ Rails.application.configure do
   host ||= ENV['MAILER_DOMAIN']
   host ||= ENV['HEROKU_APP_NAME'] ? "#{ENV['HEROKU_APP_NAME']}.herokuapp.com" : nil
   host ||= 'housing.sfgov.org'
-  # required for devise
-  config.action_mailer.default_url_options = { host: host }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

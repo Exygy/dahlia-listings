@@ -6,24 +6,25 @@
   $httpProvider.defaults.headers.get = {}
 
   $httpProvider.interceptors.push [
-    '$location', '$rootScope', '$injector', '$q', '$translate',
-    ($location, $rootScope, $injector, $q, $translate) ->
+    '$location', '$rootScope', '$injector', '$q',
+    ($location, $rootScope, $injector, $q) ->
 
       return {
-        # This is set up to universally capture HTTP errors, particularly 503 or 504, when a bad request / timeout occurred.
-        # It will pop up an alert and stop the spinning loader and re-enable short form inputs so that the user can try again.
+        # This is set up to universally capture HTTP errors, particularly 503
+        # or 504, when a bad request / timeout occurred. It will pop up an alert
+        # and stop the spinning loader so that the user can try again.
         responseError: (error) ->
           if error.status >= 500
             $injector.invoke [
-              '$http', 'bsLoadingOverlayService', 'ShortFormNavigationService', '$state',
-              ($http, bsLoadingOverlayService, ShortFormNavigationService, $state) ->
-                # this will call bsLoadingOverlayService.stop(), even if not on short form
-                ShortFormNavigationService.isLoading(false)
+              '$http', 'bsLoadingOverlayService', '$state',
+              ($http, bsLoadingOverlayService, $state) ->
+                bsLoadingOverlayService.stop()
+
                 # don't display alerts in E2E tests
                 return if window.protractor
 
-                # AMI, lottery_ranking, unit data, preferences and lottery_buckets have their own handler
-                return if error.config.url.match(RegExp('listings/ami|lottery_ranking|units|lottery_buckets'))
+                # AMI and unit data have their own handler
+                return if error.config.url.match(RegExp('listings/ami|units'))
 
                 if error.status == 504
                   # handle timeout errors
@@ -33,14 +34,14 @@
                     $state.go('dahlia.sign-in', {userTokenValidationTimeout: true})
                     return
                   else
-                    alertMessage = $translate.instant('ERROR.ALERT.TIMEOUT_PLEASE_TRY_AGAIN')
-                else if error.data.message.indexOf('APEX_ERROR') >= 0
-                  # handle Salesforce errors that aren't timeouts
-                  salesforceError = error.data.message.split("Class")[0].split("APEX_ERROR: ")[1]
-                  alertMessage = "An error occurred: " + salesforceError
+                    # TODO: Resolve circular dependency that was caused by the previous version
+                    # of the below line: $translate.instant('ERROR.ALERT.TIMEOUT_PLEASE_TRY_AGAIN')
+                    alertMessage = 'Oops! Looks like your request timed out. Please try again.'
                 else
-                  # handle non-timeout, non-Salesforce errors
-                  alertMessage = $translate.instant('ERROR.ALERT.BAD_REQUEST')
+                  # handle non-timeout errors
+                  # TODO: Resolve circular dependency that was caused by the previous version
+                  # of the below line: $translate.instant('ERROR.ALERT.BAD_REQUEST')
+                  alertMessage = 'Oops! Looks like something went wrong. Please try again.'
                 alert(alertMessage)
                 error
             ]
@@ -52,27 +53,6 @@
 @dahlia.config ['uiMask.ConfigProvider', (uiMaskConfigProvider) ->
   uiMaskConfigProvider.clearOnBlur(false)
   uiMaskConfigProvider.clearOnBlurPlaceholder(true)
-]
-
-# ng-idle configuration
-@dahlia.config ['IdleProvider', 'TitleProvider', (IdleProvider, TitleProvider) ->
-  # don't override the title with timeout countdowns/warnings
-  TitleProvider.enabled(false)
-  IdleProvider.idle(300)
-  IdleProvider.timeout(60)
-]
-
-@dahlia.config [
-  '$authProvider', 'AccountConfirmationServiceProvider',
-  ($authProvider, AccountConfirmationServiceProvider) ->
-    # this creates a new AccountConfirmationService,
-    # which can tap into AccountService to provide the appropriate confirmationSuccessUrl
-    conf = AccountConfirmationServiceProvider.$get()
-    $authProvider.configure
-      apiUrl: '/api/v1'
-      storage: getAvailableStorageType()
-      confirmationSuccessUrl: conf.confirmationSuccessUrl
-      validateOnPageLoad: false
 ]
 
 @dahlia.config ['$translateProvider', ($translateProvider) ->

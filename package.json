@@ -31,7 +31,7 @@
         "postinstall": "bower install",
         "webdriver-start": "./node_modules/protractor/bin/webdriver-manager start",
         "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update",
-        "protractor": "./node_modules/protractor/bin/protractor spec/e2e/conf.js",
+        "protractor": "./node_modules/protractor/bin/protractor spec/e2e/conf.js --specs './spec/e2e/features/listings/*.feature'",
         "saucelabs": "./node_modules/protractor/bin/protractor spec/e2e/conf-saucelabs.js"
     },
     "cacheDirectories": [

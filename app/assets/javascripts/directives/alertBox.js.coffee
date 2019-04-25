@@ -1,61 +1,32 @@
 angular.module('dahlia.directives')
-.directive 'alertBox', ['$translate', '$state', ($translate, $state) ->
+.directive 'alertBox', ->
   restrict: 'E'
   scope:
-    formObject: '=?'
-    addressError: '=?'
-    hideAlert: '=?'
-    preferenceWarning: '=?'
     customMessage: '=?'
     customSubMessage: '=?'
+    hideAlert: '=?'
+    info: '=?'
     invert: '=?'
     primary: '=?'
-    info: '=?'
-    shortForm: '=?'
-    eligibilityErrors: '=?'
-    # shortEligibilityError is used by choose-applicant-details page
-    shortEligibilityError: '=?'
 
   templateUrl: 'directives/alert-box.html'
 
   link: (scope, elem, attrs) ->
-    if scope.shortForm
-      # shortForm "default settings"
-      scope.formObject ?= scope.$parent.form.applicationForm
-      scope.hideAlert ?= scope.$parent.hideAlert
-      scope.invert ?= true
-
     scope.showAlert = ->
       if scope.customMessage
         return scope.hideAlert == false
-      if scope.addressError
-        return true
       else
-        form = scope.formObject
-        return false unless form
-        return false if form.$submitted && form.$valid
-        # show alert if we've submitted an invalid form, and we haven't manually hidden it
-        form.$submitted && form.$invalid && scope.hideAlert == false
+        return true
 
     scope.alertText = ->
       if scope.customMessage
         return scope.customMessage
-      else if scope.preferenceWarning
-        if scope.preferenceWarning == 'preferenceNotSelected'
-          $translate.instant('ERROR.PLEASE_SELECT_PREFERENCE_OPTION')
-        else
-          $translate.instant('ERROR.PLEASE_COMPLETE_PREFERENCE')
       else
-        $translate.instant('ERROR.FORM_SUBMISSION')
+        return "This alert does not have a message."
 
     scope.close = (e) ->
       e.preventDefault()
       scope.hideAlert = true
-      if scope.shortForm
-        scope.$parent.hideAlert = true
-
-    scope.contactTypeData = (contactType) ->
-      {contactType: contactType}
 
     scope.getStyles = ->
       styles = ''
@@ -70,5 +41,3 @@ angular.module('dahlia.directives')
     scope.isIconInverted = ->
       if !scope.invert
         return 'i-oil'
-
-]

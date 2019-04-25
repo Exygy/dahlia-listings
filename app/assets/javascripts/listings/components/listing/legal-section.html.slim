@@ -17,7 +17,6 @@ accordion-heading
       h4.content-card_title.t-serif
         | {{'LISTINGS.REQUIRED_DOCUMENTS' | translate}}
       p ng-text-truncate="::$ctrl.parent.listing.Required_Documents | stripMostTags | nl2br" ng-tt-words-threshold="60"
-      p translate="LISTINGS.REQUIRED_DOCUMENTS_AFTER_APPLYING" translate-value-url="https://sfmohcd.org/after-homebuyer-lottery" ng-if="::$ctrl.parent.isSale($ctrl.parent.listing)"
     .content-card.bg-dust
       h4.content-card_title.t-serif
         | {{'LISTINGS.IMPORTANT_PROGRAM_RULES' | translate}}
@@ -29,19 +28,6 @@ accordion-heading
         | {{'LISTINGS.CC&R_DESCRIPTION' | translate}}
       a.button.secondary target="_blank" href="{{ ::$ctrl.parent.listing.CC_and_R_URL }}"
         | {{'LISTINGS.DOWNLOAD_PDF' | translate}}
-    .content-card.bg-dust ng-if="::$ctrl.parent.isSale($ctrl.parent.listing)"
-      h4.content-card_title.t-serif
-        | {{'LISTINGS.REALTOR_COMMISSION' | translate}}
-      p.margin-bottom ng-if="!$ctrl.parent.listing.Allows_Realtor_Commission"
-        | {{'LISTINGS.REALTOR_COMMISSION_NOT_ELIGIBILE' | translate}}
-      div ng-if="$ctrl.parent.listing.Allows_Realtor_Commission"
-        p
-          strong translate="LISTINGS.REALTOR_COMMISSION_HEADER"
-          span
-            | {{$ctrl.realtorCommissionMessage($ctrl.parent.listing)}}
-        p
-          strong translate="LISTINGS.REALTOR_COMMISSION_HOW_TO"
-          |  {{$ctrl.parent.listing.Realtor_Commission_Info}}
     .content-card.bg-dust ng-if="::$ctrl.parent.listing.Repricing_Mechanism"
       h4.content-card_title.t-serif
         | {{'LISTINGS.RE_PRICING' | translate}}

@@ -6,27 +6,15 @@ angular.module('dahlia.components')
   require:
     listingContainer: '^listingContainer'
   controller: [
-    'ListingDataService', 'SharedService', '$state',
-    (ListingDataService, SharedService, $state) ->
+    'ListingDataService', '$state',
+    (ListingDataService, $state) ->
       ctrl = @
-
-      @showSharing = ->
-        SharedService.showSharing()
-
-      @showMatches = ->
-        $state.current.name == 'dahlia.listings-for-rent' && this.listingContainer.hasEligibilityFilters()
-
-      @isOpenNotMatchListing = (listing) ->
-        this.listingContainer.openNotMatchListings.indexOf(listing) > -1
 
       @isOpenListing = (listing) ->
         this.listingContainer.openListings.indexOf(listing) > -1
 
       @isClosedListing = (listing) ->
         this.listingContainer.closedListings.indexOf(listing) > -1
-
-      @isLotteryResultsListing = (listing) ->
-        this.listingContainer.lotteryResultsListings.indexOf(listing) > -1
 
       @priorityTypes = (listing) ->
         ListingDataService.priorityTypes(listing)
@@ -43,7 +31,6 @@ angular.module('dahlia.components')
             type = descriptor.name
             types.push(ListingDataService.reservedLabel(listing, type, 'reservedForWhoAre'))
         if types.length then types.join(' or ') else ''
-
 
       return ctrl
   ]

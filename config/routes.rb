@@ -1,19 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index', constraints: ->(req) { req.format == :html || req.format == '*/*' }
 
-  mount_devise_token_auth_for(
-    'User',
-    at: 'api/v1/auth',
-    skip: %i[omniauth_callbacks],
-    controllers: {
-      registrations: 'overrides/registrations',
-      sessions: 'overrides/sessions',
-      token_validations: 'overrides/token_validations',
-      confirmations: 'overrides/confirmations',
-      passwords: 'overrides/passwords',
-    },
-  )
-
   ## --- API namespacing
   namespace :api do
     namespace :v1 do
@@ -21,8 +8,6 @@ Rails.application.routes.draw do
       resources :listings, only: %i[index show] do
         member do
           get 'units'
-          get 'lottery_buckets'
-          get 'lottery_ranking'
           get 'preferences'
         end
         collection do
@@ -47,12 +32,6 @@ Rails.application.routes.draw do
         post 'validate' => 'address_validation#validate'
         # address geocoding
         post 'gis-data' => 'gis#gis_data'
-      end
-      scope '/account' do
-        get 'my-applications' => 'account#my_applications'
-        put 'update' => 'account#update'
-        get 'confirm' => 'account#confirm'
-        get 'check-account' => 'account#check_account'
       end
     end
   end

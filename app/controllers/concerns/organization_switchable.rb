@@ -1,3 +1,4 @@
+# Allow setting of organization
 module OrganizationSwitchable
   extend ActiveSupport::Concern
 
@@ -7,7 +8,7 @@ module OrganizationSwitchable
 
   def set_current_organization
     domain = params[:switch_domain] || request.host
-#    session[:org] = org # not sure if we need this… -JW
+    # session[:org] = org # not sure if we need this -JW
     @organization = Organization.find_information_for_domain(domain)
     Organization.lookup_initials = @organization['initials']
   end

@@ -6,13 +6,6 @@ do ->
     fakeListings = getJSONFixture('listings-api-index.json')
     fakeListing = getJSONFixture('listings-api-show.json')
     fakeAMI = getJSONFixture('listings-api-ami.json')
-    fakeEligibilityListings = getJSONFixture('listings-api-eligibility-listings.json')
-    fakeEligibilityFilters =
-      household_size: 2
-      income_timeframe: 'per_month'
-      income_total: 3500
-      include_children_under_6: true
-      children_under_6: 1
     fakeListingConstantsService = {
       rentalPaperAppURLs: [
         {
@@ -26,39 +19,10 @@ do ->
           url: 'https://spanishrentalapp.com'
         }
       ]
-      salePaperAppURLs: [
-        {
-          language: 'English'
-          label: 'English'
-          url: 'https://englishsaleapp.com'
-        }
-        {
-          language: 'Spanish'
-          label: 'Español'
-          url: 'https://spanishsaleapp.com'
-        }
-      ]
-    }
-    fakeListingEligibilityService = {
-      eligibilityYearlyIncome: jasmine.createSpy()
-      eligibility_filters: fakeEligibilityFilters
-      setEligibilityFilters: jasmine.createSpy()
-      hasEligibilityFilters: ->
-      resetEligibilityFilters: jasmine.createSpy()
-    }
-    fakeIncomeCalculatorService = {
-      resetIncomeSources: jasmine.createSpy()
     }
     fakeListingIdentityService =
       listingIs: ->
-      isSale: ->
       isOpen: ->
-    fakeListingLotteryService =
-      lotteryBucketInfo: {}
-      lotteryRankingInfo: {}
-      listingHasLotteryBuckets: ->
-      lotteryIsUpcoming: ->
-      lotteryComplete: ->
       resetData: jasmine.createSpy()
     fakeSharedService =
       toQueryString: ->
@@ -76,11 +40,8 @@ do ->
     beforeEach module('dahlia.services', ($provide) ->
       $provide.value '$translate', $translate
       $provide.value 'ListingConstantsService', fakeListingConstantsService
-      $provide.value 'ListingEligibilityService', fakeListingEligibilityService
       $provide.value 'ListingIdentityService', fakeListingIdentityService
-      $provide.value 'ListingLotteryService', fakeListingLotteryService
       $provide.value 'SharedService', fakeSharedService
-      $provide.value 'IncomeCalculatorService', fakeIncomeCalculatorService
       return
     )
 
@@ -101,46 +62,40 @@ do ->
         expect(ListingDataService.openListings).toEqual []
 
     describe 'Service.groupListings', ->
+      beforeEach ->
+        # Give fakeListingIdentityService.isOpen an array of return values
+        # that makes half the listings appear open and half appear closed.
+        numListings = fakeListings.listings.length
+        numOpenListings = _.times(numListings / 2, _.constant(true))
+        numClosedListings = _.times(numListings / 2, _.constant(false))
+        isOpenReturnValues = _.concat(numOpenListings, numClosedListings)
+        spyOn(fakeListingIdentityService, 'isOpen').and.returnValues(isOpenReturnValues...)
+
       it 'assigns ListingDataService listing buckets with grouped arrays of listings', ->
         ListingDataService.groupListings(fakeListings.listings)
         combinedLength =
           ListingDataService.openListings.length +
-          ListingDataService.closedListings.length +
-          ListingDataService.lotteryResultsListings.length
+          ListingDataService.closedListings.length
         expect(combinedLength).toEqual fakeListings.listings.length
 
-        openLength =
-          ListingDataService.openMatchListings.length +
-          ListingDataService.openNotMatchListings.length
-        expect(openLength).toEqual ListingDataService.openListings.length
-
-      it 'sorts groupedListings based on their dates', ->
+      it 'sorts open listings by application due date ascending', ->
         ListingDataService.groupListings(fakeListings.listings)
-        dates = _.compact(_.map(ListingDataService.lotteryResultsListings, 'Lottery_Results_Date'))
-        expect(dates[0] >= dates[1]).toEqual true
+        dates = _.compact(_.map(ListingDataService.openListings, 'Application_Due_Date'))
+        expect(dates[0] <= dates[1]).toEqual true
+
+      it 'sorts closed listings by application due date ascending', ->
+        ListingDataService.groupListings(fakeListings.listings)
+        dates = _.compact(_.map(ListingDataService.closedListings, 'Application_Due_Date'))
+        expect(dates[0] <= dates[1]).toEqual true
 
     describe 'Service.getListings', ->
-      it 'returns Service.getListingsWithEligibility if eligibility options are set', ->
-        ListingDataService.getListingsWithEligibility = jasmine.createSpy()
-        spyOn(fakeListingEligibilityService, 'hasEligibilityFilters').and.returnValue(true)
-        ListingDataService.getListings({checkEligibility: true})
-        expect(ListingDataService.getListingsWithEligibility).toHaveBeenCalled()
-      it 'calls ListingEligibilityService.eligibilityYearlyIncome', ->
-        spyOn(fakeListingEligibilityService, 'hasEligibilityFilters').and.returnValue(true)
-        ListingDataService.getListings({checkEligibility: true})
-        expect(fakeListingEligibilityService.eligibilityYearlyIncome).toHaveBeenCalled()
       it 'passes params to http request', ->
-        fakeParams = {checkEligibility: false, params: {Tenure: 'rental'}}
+        fakeParams = {params: {Tenure: 'rental'}}
         httpBackend.expect('GET', "/api/v1/listings.json?Tenure=rental").respond(fakeListings)
-        spyOn(fakeListingEligibilityService, 'hasEligibilityFilters').and.returnValue(false)
         ListingDataService.getListings(fakeParams)
         httpBackend.flush()
         httpBackend.verifyNoOutstandingExpectation()
         httpBackend.verifyNoOutstandingRequest()
-      it 'cleans filters', ->
-        ListingDataService.getListings({checkEligibility: false, clearFilters: true})
-        expect(fakeListingEligibilityService.resetEligibilityFilters).toHaveBeenCalled()
-        expect(fakeIncomeCalculatorService.resetIncomeSources).toHaveBeenCalled()
 
     describe 'Service.getListing', ->
       afterEach ->
@@ -185,10 +140,6 @@ do ->
         ListingDataService.resetListingData()
         expect(ListingDataService.listingPaperAppURLs).toEqual []
 
-      it 'calls ListingLotteryService.resetData', ->
-        ListingDataService.resetListingData()
-        expect(fakeListingLotteryService.resetData).toHaveBeenCalled()
-
     describe 'Service.getListingAMI', ->
       afterEach ->
         httpBackend.verifyNoOutstandingExpectation()
@@ -215,70 +166,11 @@ do ->
         spyOn(fakeListingIdentityService, 'isOpen').and.returnValue(false)
         expect(ListingDataService.isAcceptingOnlineApplications(listing)).toEqual false
 
-      it "returns false if the listing's lottery status is complete", ->
-        listing = fakeListing.listing
-        spyOn(fakeListingLotteryService, 'lotteryComplete').and.returnValue(true)
-        expect(ListingDataService.isAcceptingOnlineApplications(listing)).toEqual false
-
-      it 'returns true if listing is open, Accepting_Online_Applications, and lottery status is not complete', ->
+      it 'returns true if listing is open and Accepting_Online_Applications', ->
         listing = fakeListing.listing
         listing.Accepting_Online_Applications = true
-        spyOn(fakeListingLotteryService, 'lotteryComplete').and.returnValue(false)
         spyOn(fakeListingIdentityService, 'isOpen').and.returnValue(true)
         expect(ListingDataService.isAcceptingOnlineApplications(listing)).toEqual true
-
-    describe 'Service.toggleFavoriteListing', ->
-      describe 'When a listing is favorited', ->
-        expectedResult = [1]
-        listingId = 1
-        beforeEach ->
-          ListingDataService.favorites = $localStorage.favorites = []
-          ListingDataService.toggleFavoriteListing listingId
-
-        it 'should store Service.favorites in localStorage', ->
-          expect($localStorage.favorites).toEqual expectedResult
-          expect($localStorage.favorites).toEqual ListingDataService.favorites
-        it 'should update Service.favorites', ->
-          expect(ListingDataService.favorites).toEqual expectedResult
-
-      describe 'When a favorited listing is unfavorited', ->
-        expectedResult = []
-        listingId = 1
-        beforeEach ->
-          ListingDataService.favorites = $localStorage.favorites = []
-          #favoriting listing
-          ListingDataService.toggleFavoriteListing listingId
-          #unfavoriting listing
-          ListingDataService.toggleFavoriteListing listingId
-
-        it 'should update Service.favorites in localStorage', ->
-          expect($localStorage.favorites).toEqual expectedResult
-          expect($localStorage.favorites).toEqual ListingDataService.favorites
-        it 'should updated Service.favorites', ->
-          expect(ListingDataService.favorites).toEqual expectedResult
-
-    describe 'Service.getFavorites', ->
-      describe 'When a listing has been favorited', ->
-        beforeEach ->
-          ListingDataService.favorites = $localStorage.favorites = []
-        it 'updates Service.favorites with appropriate data', ->
-          ListingDataService.toggleFavoriteListing 1
-          expect(ListingDataService.favorites).toEqual [1]
-      describe 'When a favorite is not found', ->
-        beforeEach ->
-          ListingDataService.favorites = $localStorage.favorites = []
-        afterEach ->
-          httpBackend.verifyNoOutstandingExpectation()
-          httpBackend.verifyNoOutstandingRequest()
-        it 'removes it from favorites', ->
-          # this listing does not exist
-          ListingDataService.toggleFavoriteListing '123xyz'
-          expect(ListingDataService.favorites).toEqual ['123xyz']
-          stubAngularAjaxRequest httpBackend, requestURL, fakeListings
-          # this should remove the non-existent favorite
-          ListingDataService.getFavoriteListings()
-          httpBackend.flush()
-          expect(ListingDataService.favorites).toEqual []
 
     describe 'Service.getListingsByIds', ->
       afterEach ->
@@ -294,27 +186,6 @@ do ->
         httpBackend.flush()
         expect(ListingDataService.listings).toEqual fakeListings.listings
 
-    describe 'Service.getListingsWithEligibility', ->
-      afterEach ->
-        httpBackend.verifyNoOutstandingExpectation()
-        httpBackend.verifyNoOutstandingRequest()
-
-      it 'calls groupListings and cleanListings functions with returned listings', ->
-        ListingDataService.cleanListings = jasmine.createSpy()
-        ListingDataService.groupListings = jasmine.createSpy()
-        stubAngularAjaxRequest httpBackend, requestURL, fakeEligibilityListings
-        ListingDataService.getListingsWithEligibility()
-        httpBackend.flush()
-        expect(ListingDataService.cleanListings).toHaveBeenCalled()
-        expect(ListingDataService.groupListings).toHaveBeenCalled()
-      it 'calls ListingEligibilityService.eligibilityYearlyIncome', ->
-        ListingDataService.cleanListings = jasmine.createSpy()
-        ListingDataService.groupListings = jasmine.createSpy()
-        stubAngularAjaxRequest httpBackend, requestURL, fakeEligibilityListings
-        ListingDataService.getListingsWithEligibility()
-        httpBackend.flush()
-        expect(fakeListingEligibilityService.eligibilityYearlyIncome).toHaveBeenCalled()
-
     describe 'Service.sortByDate', ->
       it 'returns sorted list of Open Houses', ->
         listing = fakeListing.listing
@@ -327,23 +198,8 @@ do ->
         sorted = ListingDataService.sortByDate(angular.copy(fakeOpenHouses))
         expect(sorted[0]).toEqual fakeOpenHouses[1]
 
-    describe 'Service.loadListing', ->
-      beforeEach ->
-        ListingDataService.loadListing(fakeListing.listing)
-
-      it 'should populate Service.listing', ->
-        expect(ListingDataService.listing.Id).toEqual fakeListing.listing.Id
-      it 'should populate Service.listing.preferences', ->
-        count = fakeListing.listing.Listing_Lottery_Preferences.length
-        expect(ListingDataService.listing.preferences.length).toEqual count
-        prefId = fakeListing.listing.Listing_Lottery_Preferences[0].Id
-        expect(ListingDataService.listing.preferences[0].listingPreferenceID).toEqual prefId
-
     describe 'Service.getListingPaperAppURLs', ->
       describe 'for a rental listing', ->
-        beforeEach ->
-          spyOn(fakeListingIdentityService, 'isSale').and.returnValue(false)
-
         describe 'with no custom download URLs', ->
           beforeEach ->
             listing = angular.copy(fakeListing.listing)
@@ -362,30 +218,5 @@ do ->
             listingEnglishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'English'})
             listingSpanishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'Spanish'})
             defaultSpanishURL = _.find(fakeListingConstantsService.rentalPaperAppURLs, { language: 'Spanish'})
-            expect(listingEnglishUrl.url).toEqual listing.Download_URL
-            expect(listingSpanishUrl.url).toEqual defaultSpanishURL.url
-
-      describe 'for a sale listing', ->
-        beforeEach ->
-          spyOn(fakeListingIdentityService, 'isSale').and.returnValue(true)
-
-        describe 'with no custom download URLs', ->
-          beforeEach ->
-            listing = angular.copy(fakeListing.listing)
-
-          it 'should set Service.listingPaperAppURLs to the default sale paper application download URLs', ->
-            ListingDataService.getListingPaperAppURLs(listing)
-            expect(ListingDataService.listingPaperAppURLs).toEqual fakeListingConstantsService.salePaperAppURLs
-
-        describe 'with custom download URLs', ->
-          beforeEach ->
-            listing = angular.copy(fakeListing.listing)
-            listing.Download_URL = 'https://englishcustomappurl.com'
-
-          it 'should set Service.listingPaperAppURLs to the default sale paper application download URLs merged with any available corresponding custom URLs', ->
-            ListingDataService.getListingPaperAppURLs(listing)
-            listingEnglishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'English'})
-            listingSpanishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'Spanish'})
-            defaultSpanishURL = _.find(fakeListingConstantsService.salePaperAppURLs, { language: 'Spanish'})
             expect(listingEnglishUrl.url).toEqual listing.Download_URL
             expect(listingSpanishUrl.url).toEqual defaultSpanishURL.url

@@ -29,7 +29,6 @@ do ->
       beforeEach ->
         ctrl = $componentController 'neighborhoodSection', locals, {parent: fakeParent}
 
-      describe 'listingHasLotteryResults', ->
-        it 'calls $sce.trustAsResourceUrl', ->
-          ctrl.googleMapSrc()
-          expect($sce.trustAsResourceUrl).toHaveBeenCalled()
+      describe 'blank test', ->
+        it 'does nothing. add some tests!', ->
+          return false

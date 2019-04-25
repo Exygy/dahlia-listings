@@ -10,6 +10,8 @@ end
 gem 'rails', '~> 5.2.3'
 gem "bootsnap", require: false
 
+gem 'responders'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Slim templates generator for Rails 3 and 4
@@ -55,10 +57,6 @@ gem 'StreetAddress', github: 'Exygy/street-address', require: 'street_address'
 # JSON optimization
 gem 'oj'
 gem 'oj_mimic_json'
-
-# user authentication
-gem 'devise', '~> 4.4.0'
-gem 'devise_token_auth', '~> 0.1.43'
 
 # postgresql database
 gem 'pg'

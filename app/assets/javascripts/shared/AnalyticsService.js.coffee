@@ -57,14 +57,6 @@ AnalyticsService = ($state) ->
   Service.trackFormAbandon = (category) ->
     Service.trackEvent('Form Message', { category: category, action: 'Form Abandon' })
 
-  Service.trackInvalidLotteryNumber = ->
-    label = Service._currentHref()
-    Service.trackEvent('Form Message', {
-      category: 'Application',
-      action: 'Invalid Lottery Number',
-      label: label
-    })
-
   Service.trackTimeout = (category) ->
     Service.trackEvent('Form Message', { category: category, action: 'Timeout' })
 

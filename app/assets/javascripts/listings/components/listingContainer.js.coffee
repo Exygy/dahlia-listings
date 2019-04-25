@@ -2,8 +2,8 @@ angular.module('dahlia.components')
 .component 'listingContainer',
   transclude: true
   templateUrl: 'listings/components/listing-container.html'
-  controller: ['$window', 'ListingDataService', 'ListingEligibilityService', 'ListingIdentityService', 'ListingUnitService', 'SharedService',
-  ($window, ListingDataService, ListingEligibilityService, ListingIdentityService, ListingUnitService, SharedService) ->
+  controller: ['$window', 'ListingDataService', 'ListingIdentityService', 'ListingUnitService', 'SharedService',
+  ($window, ListingDataService, ListingIdentityService, ListingUnitService, SharedService) ->
     ctrl = @
     # TODO: remove Shared Service once we create a Shared Container
     @listingEmailAlertUrl = "http://eepurl.com/dkBd2n"
@@ -14,34 +14,12 @@ angular.module('dahlia.components')
     @error = ListingDataService.error
     @toggleStates = ListingDataService.toggleStates
     @AMICharts = ListingDataService.AMICharts
-    @favorites = ListingDataService.favorites
 
     @openListings = ListingDataService.openListings
-    @openMatchListings = ListingDataService.openMatchListings
-    @openNotMatchListings = ListingDataService.openNotMatchListings
     @closedListings = ListingDataService.closedListings
-    @lotteryResultsListings = ListingDataService.lotteryResultsListings
-    @showSaleListings = $window.env.showSaleListings == 'true'
 
     @isRental = (listing) ->
       ListingIdentityService.isRental(listing)
-
-    @isSale = (listing) ->
-      ListingIdentityService.isSale(listing)
-
-    @hasSaleAndRentalFavorited = (listings) ->
-      favoritedListings = @filterByFavorites listings
-      areSaleListings = (@isSale listing for listing in favoritedListings)
-      (_.some areSaleListings) && !(_.every areSaleListings)
-
-    @isOpenMatchListing = (listing) ->
-      @openMatchListings.indexOf(listing) > -1
-
-    @isFavorited = (listingId) ->
-      ListingDataService.isFavorited(listingId)
-
-    @filterByFavorites = (listings) ->
-      (listing for listing in listings when @isFavorited listing.Id)
 
     @reservedLabel = (listing, type, modifier) ->
       ListingDataService.reservedLabel(listing, type, modifier)
@@ -67,30 +45,14 @@ angular.module('dahlia.components')
     @formattedLeasingAgentAddress = (listing) ->
       ListingDataService.formattedAddress(listing, 'Leasing_Agent')
 
-    @toggleFavoriteListing = (listingId) ->
-      ListingDataService.toggleFavoriteListing(listingId)
-
     @getListingUnits = (listing) ->
       ListingUnitService.getListingUnits(listing)
 
     @listingHasSROUnits = (listing) ->
       ListingUnitService.listingHasSROUnits(listing)
 
-    @hasEligibilityFilters = ->
-      ListingEligibilityService.hasEligibilityFilters()
-
-    @lotteryDateVenueAvailable = (listing) ->
-      (listing.Lottery_Date != undefined &&
-        listing.Lottery_Venue != undefined && listing.Lottery_Street_Address != undefined)
-
     @agentInfoAvailable = (listing) ->
       listing.Leasing_Agent_Phone || listing.Leasing_Agent_Email || listing.Leasing_Agent_Street
-
-    @featuresCaption = (listing) ->
-      if ListingIdentityService.isSale(listing)
-        "Amenities and unit details"
-      else
-        "Amenities, unit details and additional fees"
 
     return ctrl
   ]

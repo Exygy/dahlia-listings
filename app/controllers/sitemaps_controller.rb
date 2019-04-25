@@ -16,16 +16,10 @@ class SitemapsController < ApplicationController
     listings = Force::ListingService.listings
     @sitemap = SitemapGenerator::Builder::SitemapFile.new(host: 'https://' + host_name)
     @sitemap.add '/', changefreq: 'weekly', priority: 1.0
-    @sitemap.add '/welcome-chinese', changefreq: 'weekly'
-    @sitemap.add '/welcome-spanish', changefreq: 'weekly'
-    @sitemap.add '/welcome-filipino', changefreq: 'weekly'
     @sitemap.add '/listings', changefreq: 'daily', priority: 0.75
-    @sitemap.add '/eligibility-estimator', changefreq: 'monthly'
     @sitemap.add '/get-assistance', changefreq: 'monthly'
     @sitemap.add '/housing-counselors', changefreq: 'monthly'
     @sitemap.add '/additional-resources', changefreq: 'monthly'
-    @sitemap.add '/create-account', changefreq: 'monthly'
-    @sitemap.add '/sign-in', changefreq: 'monthly'
     @sitemap.add '/disclaimer', changefreq: 'monthly'
     @sitemap.add '/privacy', changefreq: 'monthly'
     listings.each do |listing|
