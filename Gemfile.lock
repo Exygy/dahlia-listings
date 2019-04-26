@@ -28,6 +28,11 @@ GIT
       rack (>= 1.2.1)
       rake
 
+PATH
+  remote: /Users/jwhite/RailsApps/dahlia_data_models
+  specs:
+    dahlia_data_models (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -417,6 +422,7 @@ DEPENDENCIES
   bower-rails
   codeclimate-test-reporter
   coffee-rails
+  dahlia_data_models!
   dalli
   database_cleaner
   dotenv-rails

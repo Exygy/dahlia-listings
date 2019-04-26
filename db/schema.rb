@@ -10,33 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_12_004258) do
+ActiveRecord::Schema.define(version: 2019_04_26_230445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "geocoding_logs", id: :serial, force: :cascade do |t|
-    t.string "address"
-    t.string "city"
-    t.string "zip"
-    t.string "listing_id"
-    t.jsonb "member"
-    t.jsonb "applicant"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "listing_name"
-    t.string "state"
-  end
-
-  create_table "listing_images", id: :serial, force: :cascade do |t|
-    t.string "salesforce_listing_id"
+  create_table "listing_images", force: :cascade do |t|
+    t.bigint "listing_id"
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["salesforce_listing_id"], name: "index_listing_images_on_salesforce_listing_id"
+    t.index ["listing_id"], name: "index_listing_imagess_on_listing_id"
   end
 
-  create_table "listings", id: :serial, force: :cascade do |t|
+  create_table "listings", force: :cascade do |t|
     t.boolean "accepting_applications_at_leasing_agent", default: false, null: false
     t.boolean "accepting_applications_by_po_box", default: false, null: false
     t.boolean "accepting_online_applications", default: false, null: false
