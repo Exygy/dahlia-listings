@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_230445) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["listing_id"], name: "index_listing_imagess_on_listing_id"
+    t.index ["listing_id"], name: "index_listing_images_on_listing_id"
   end
 
   create_table "listings", force: :cascade do |t|
