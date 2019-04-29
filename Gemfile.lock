@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/Exygy/dahlia_data_models.git
+  revision: 4a041078fc0d6bb621ea7a47f1cbd8804f73bfc7
+  specs:
+    dahlia_data_models (0.1.0)
+
+GIT
   remote: https://github.com/Exygy/heroku-deflater.git
   revision: ea986e017a56b882d32e8989f4959e5f1af5d50c
   specs:
@@ -417,6 +423,7 @@ DEPENDENCIES
   bower-rails
   codeclimate-test-reporter
   coffee-rails
+  dahlia_data_models!
   dalli
   database_cleaner
   dotenv-rails

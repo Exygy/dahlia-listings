@@ -1,4 +1,4 @@
-class CreateListings < ActiveRecord::Migration[4.2]
+class CreateDahliaDataModels < ActiveRecord::Migration[5.2]
   def change
     create_table :listings do |t|
       t.boolean :accepting_applications_at_leasing_agent, null: false, default: false
@@ -62,6 +62,13 @@ class CreateListings < ActiveRecord::Migration[4.2]
       t.integer :total_waitlist_openings
       t.integer :units_available
       t.integer :year_built
+
+      t.timestamps null: false
+    end
+
+    create_table :listing_images do |t|
+      t.belongs_to :listing, index: true
+      t.string :image_url
 
       t.timestamps null: false
     end
