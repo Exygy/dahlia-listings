@@ -68,8 +68,8 @@
     deferred = $q.defer()
     # asset paths have unpredictable hash suffixes, which is why we need the custom loader
     if options.key == 'ORG'
-      organization = getCurrentOrganization()
-      locale_path = "locale-#{organization}-en.json"
+      group = getCurrentGroup()
+      locale_path = "locale-#{group}-en.json"
     else
       locale_path = "locale-#{options.key}.json"
 
@@ -106,5 +106,5 @@ getAvailableStorageType = ->
     # private window can use cookies, they will just be cleared when you close the window
     return 'cookies'
 
-getCurrentOrganization = ->
-  return document.body.dataset.organization
+getCurrentGroup = ->
+  return document.body.dataset.group

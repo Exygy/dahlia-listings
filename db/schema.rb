@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_205550) do
+ActiveRecord::Schema.define(version: 2019_05_02_195758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "domain"
+    t.integer "group_type"
+    t.integer "parent_id"
+    t.integer "lft", null: false
+    t.integer "rgt", null: false
+    t.integer "depth", default: 0, null: false
+    t.integer "children_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lft"], name: "index_groups_on_lft"
+    t.index ["parent_id"], name: "index_groups_on_parent_id"
+    t.index ["rgt"], name: "index_groups_on_rgt"
+  end
 
   create_table "listing_images", force: :cascade do |t|
     t.bigint "listing_id"
@@ -87,6 +104,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_205550) do
     t.integer "year_built"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "group_id"
   end
 
 
