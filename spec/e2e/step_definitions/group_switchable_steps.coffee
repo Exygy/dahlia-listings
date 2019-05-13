@@ -9,7 +9,7 @@ Given 'I try to view the group homepage', ->
   Utils.Page.goTo(url)
 
 Then 'I should see the correct group site title', ->
-  topTitle = element(By.cssContainingText('.name-logo .group', 'San Mateo County'))
+  topTitle = element(By.cssContainingText('.name-logo .header-logo-group', 'San Mateo County'))
   @expect(topTitle.isPresent()).to.eventually.equal(true)
 
 When 'I view a different group homepage', ->
@@ -17,7 +17,7 @@ When 'I view a different group homepage', ->
   Utils.Page.goTo(url)
 
 Then 'I should see the correct second group site title', ->
-  topTitle = element(By.cssContainingText('.name-logo .group', 'San Jose'))
+  topTitle = element(By.cssContainingText('.name-logo .header-logo-group', 'San Jose'))
   @expect(topTitle.isPresent()).to.eventually.equal(true)
 
 Then 'I should see a common headline', ->
