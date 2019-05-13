@@ -1,8 +1,11 @@
 GIT
   remote: https://github.com/Exygy/dahlia_data_models.git
-  revision: 4a041078fc0d6bb621ea7a47f1cbd8804f73bfc7
+  revision: 1d62106c1b19149f7aa03fad828569e313a49434
+  ref: 1d62106c1b19149f7aa03fad828569e313a49434
   specs:
     dahlia_data_models (0.1.0)
+      awesome_nested_set (~> 3.1)
+      rails (~> 5.1)
 
 GIT
   remote: https://github.com/Exygy/heroku-deflater.git
@@ -91,6 +94,8 @@ GEM
       tilt
     arel (9.0.0)
     ast (2.4.0)
+    awesome_nested_set (3.1.4)
+      activerecord (>= 4.0.0, < 5.3)
     awesome_print (1.8.0)
     better_errors (2.5.1)
       coderay (>= 1.0.0)
@@ -222,11 +227,11 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (6.2.0.354)
     nio4r (2.3.1)
-    nokogiri (1.10.2)
+    nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
     oj (3.7.12)
     oj_mimic_json (1.0.1)
-    overcommit (0.47.0)
+    overcommit (0.48.0)
       childprocess (~> 0.6, >= 0.6.3)
       iniparse (~> 1.4)
     parallel (1.17.0)

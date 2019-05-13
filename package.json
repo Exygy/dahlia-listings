@@ -30,10 +30,11 @@
     },
     "scripts": {
         "postinstall": "bower install",
+        "protractor": "./node_modules/protractor/bin/protractor spec/e2e/conf.js --specs './spec/e2e/features/listings/*.feature'",
+        "rails-server-test": "RAILS_ENV=test bundle exec rails db:reset; RAILS_ENV=test PORT=3001 bundle exec rails s -p 3001 --pid tmp/pids/server_test.pid &",
+        "saucelabs": "./node_modules/protractor/bin/protractor spec/e2e/conf-saucelabs.js",
         "webdriver-start": "./node_modules/protractor/bin/webdriver-manager start",
-        "webdriver-update": "./node_modules/webdriver-manager/bin/webdriver-manager update",
-        "protractor": "./node_modules/protractor/bin/protractor spec/e2e/conf.js --specs './spec/e2e/features/'",
-        "saucelabs": "./node_modules/protractor/bin/protractor spec/e2e/conf-saucelabs.js"
+        "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update"
     },
     "cacheDirectories": [
         "node_modules",
