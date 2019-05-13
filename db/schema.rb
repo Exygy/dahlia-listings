@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_065815) do
+ActiveRecord::Schema.define(version: 2019_05_13_174040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,8 +105,36 @@ ActiveRecord::Schema.define(version: 2019_05_13_065815) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "group_id"
+    t.boolean "show_unit_features"
+    t.text "unit_amenities"
     t.index ["group_id"], name: "index_listings_on_group_id"
   end
 
+  create_table "units", force: :cascade do |t|
+    t.decimal "ami_percentage", precision: 5, scale: 2
+    t.integer "ami_chart_type"
+    t.integer "ami_chart_year"
+    t.decimal "bmr_annual_income_min", precision: 8, scale: 2
+    t.decimal "bmr_monthly_income_min", precision: 8, scale: 2
+    t.decimal "max_household_income", precision: 8, scale: 2
+    t.integer "max_occupancy"
+    t.integer "min_occupancy"
+    t.decimal "monthly_rent", precision: 8, scale: 2
+    t.integer "num_bathrooms"
+    t.integer "num_bedrooms"
+    t.integer "priority_type"
+    t.integer "reserved_type"
+    t.integer "status"
+    t.integer "floor"
+    t.string "number"
+    t.integer "sq_ft"
+    t.integer "unit_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "listing_id"
+    t.index ["listing_id"], name: "index_units_on_listing_id"
+  end
+
   add_foreign_key "listings", "groups"
+  add_foreign_key "units", "listings"
 end
