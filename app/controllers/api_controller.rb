@@ -1,7 +1,7 @@
 require 'faraday'
 # Root controller from which all our API controllers inherit.
 class ApiController < ActionController::API
-  include OrganizationSwitchable
+  include GroupSwitchable
   respond_to :json
 
   rescue_from StandardError do |e|

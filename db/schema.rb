@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_205550) do
+ActiveRecord::Schema.define(version: 2019_05_13_065815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "domain"
+    t.integer "group_type"
+    t.integer "parent_id"
+    t.integer "lft", null: false
+    t.integer "rgt", null: false
+    t.integer "depth", default: 0, null: false
+    t.integer "children_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lft"], name: "index_groups_on_lft"
+    t.index ["parent_id"], name: "index_groups_on_parent_id"
+    t.index ["rgt"], name: "index_groups_on_rgt"
+  end
 
   create_table "listing_images", force: :cascade do |t|
     t.bigint "listing_id"
@@ -87,35 +104,9 @@ ActiveRecord::Schema.define(version: 2019_04_26_205550) do
     t.integer "year_built"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_listings_on_group_id"
   end
 
-
-  create_table "users", id: :serial, force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "provider", default: "email", null: false
-    t.string "uid", default: "", null: false
-    t.json "tokens"
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.string "salesforce_contact_id"
-    t.string "temp_session_id"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["temp_session_id"], name: "index_users_on_temp_session_id"
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
-  end
+  add_foreign_key "listings", "groups"
 end

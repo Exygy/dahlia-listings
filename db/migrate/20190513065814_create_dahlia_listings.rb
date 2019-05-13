@@ -1,4 +1,4 @@
-class CreateDahliaDataModels < ActiveRecord::Migration[5.2]
+class CreateDahliaListings < ActiveRecord::Migration[5.2]
   def change
     create_table :listings do |t|
       t.boolean :accepting_applications_at_leasing_agent, null: false, default: false
