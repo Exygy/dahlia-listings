@@ -42,9 +42,11 @@ PreCommit:
     description: 'Checking Rails best practices'
     # TODO: Re-enable Rubocop's RailsBestPractices check on the listings
     # controller once we have removed anything unneeded brought over from
-    # the original DAHLIA.
+    # the original DAHLIA. Also find out if we can exclude the static_asset_paths
+    # method in ApplicationHelper from being flagged as an unused method.
     exclude:
       - 'app/controllers/api/v1/listings_controller.rb'
+      - 'app/helpers/application_helper.rb'
 
   CoffeeLint:
     enabled: true
