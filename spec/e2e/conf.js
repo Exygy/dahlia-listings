@@ -1,6 +1,6 @@
 var config = require('./conf-shared')
 
-config.baseUrl = 'http://localhost:3000/'
+config.baseUrl = 'http://localhost:3001/'
 config.capabilities = {
   browserName: 'chrome',
   chromeOptions: {
