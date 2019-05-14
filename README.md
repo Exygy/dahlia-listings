@@ -1,8 +1,8 @@
 # Dahlia
 
-[![Code Climate](https://codeclimate.com/github/Exygy/sf-dahlia-web/badges/gpa.svg)](https://codeclimate.com/github/Exygy/sf-dahlia-web)
-[![Test Coverage](https://codeclimate.com/github/Exygy/sf-dahlia-web/badges/coverage.svg)](https://codeclimate.com/github/Exygy/sf-dahlia-web/coverage)
-[![Build Status](https://semaphoreci.com/api/v1/exygy/sf-dahlia-web-full/branches/master/badge.svg)](https://semaphoreci.com/exygy/sf-dahlia-web-full)
+[![Code Climate](https://codeclimate.com/github/Exygy/dahlia-listings/badges/gpa.svg)](https://codeclimate.com/github/Exygy/dahlia-listings)
+[![Test Coverage](https://codeclimate.com/github/Exygy/dahlia-listings/badges/coverage.svg)](https://codeclimate.com/github/Exygy/dahlia-listings/coverage)
+[![Build Status](https://semaphoreci.com/api/v1/exygy/dahlia-listings-full/branches/master/badge.svg)](https://semaphoreci.com/exygy/dahlia-listings)
 
 
 Cross-browser testing done with <a href="https://www.browserstack.com/"><img src="./Browserstack-logo@2x.png?raw=true" height="30" ></a>
@@ -33,30 +33,30 @@ Before you install DAHLIA, your system should have the following:
 
 1. Make sure your PostgreSQL server is running (e.g. using [Postgres.app](https://postgresapp.com/) listed above)
 1. Open a terminal window
-1. `git clone https://github.com/Exygy/sf-dahlia-web.git` to create the project directory
-1. `cd sf-dahlia-web` to open the directory
+1. `git clone https://github.com/Exygy/dahlia-listings.git` to create the project directory
+1. `cd dahlia-listings` to open the directory
 1. `bundle install` to download all necessary gems
     - see [here](https://stackoverflow.com/a/19850273/260495) if you have issues installing `pg` gem with Postgres.app, you may need to use: `gem install pg -v 0.18.4 -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
 `
 1. `yarn install` to install bower, grunt and other dependencies (which will also automatically `bower install` to load front-end JS libraries)
 1. `overcommit --install` to install git hooks into the repo
-1. `rake db:create && rake db:migrate` to create the dev database and migrate the DB tables
-1. copy `.env.sample` into a file called `.env`, and copy correct Salesforce environment credentials (not shared publicly in this repo)
+1. `rails g dahlia_data_models:install` to generate migrations from the dahlia_data_models gem
+1. `rails db:create && rails db:migrate` to create the dev and test databases and run migrations
 1. `rails s` to start the server, which will now be running at http://localhost:3000 by default
 
 ## Running Tests
 
-To run ruby tests:
+To run Ruby tests:
 - `rake spec`
 
-To run javascript unit tests:
+To run Javascript unit tests:
 - `rake jasmine:ci` to run in terminal
 - `rake jasmine` to then run tests interactively at http://localhost:8888/
 
 To run E2E tests:
 - Installation (needs to be run once): `./node_modules/protractor/bin/webdriver-manager update` to get the selenium webdriver installed
 - On one tab have your Rails server running: `rails s`
-- On another tab, run `yarn run protractor` to run the selenium webdriver and protractor tests. A Chrome browser will pop up and you will see it step through each of the tests.
+- On another tab, run `yarn protractor` to run the selenium webdriver and protractor tests. A Chrome browser will pop up and you will see it step through each of the tests.
 
 Note: These tests will run on Semaphore (our CI) as well for every review app and QA deploy.
 
@@ -68,7 +68,7 @@ To update this app with the latest PL styles:
 
 1. [Clone the PL repository in the same parent directory as this one.](https://github.com/Exygy/sf-dahlia-pattern-library)
 2. Optional: switch to the PL branch you want to import styles from.
-3. `cd` to your `sf-dahlia-web` folder
+3. `cd` to your `dahlia-listings` folder
 4. Run `grunt`
 
 We use `grunt-clean` and `grunt-copy` to transfer the CSS, and `grunt-replace` to replace relative background image paths with Rails asset URLs.
