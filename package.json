@@ -30,7 +30,7 @@
     },
     "scripts": {
         "postinstall": "bower install",
-        "protractor": "./node_modules/protractor/bin/protractor spec/e2e/conf.js --specs './spec/e2e/features/listings/*.feature'",
+        "protractor": "./node_modules/protractor/bin/protractor spec/e2e/conf.js",
         "rails-create-migrations": "bundle exec rails g dahlia_data_models:install",
         "rails-delete-migrations": "rm ./db/migrate/* ./db/schema.rb",
         "rails-recreate-test-db": "RAILS_ENV=test bundle exec rails db:drop; RAILS_ENV=test bundle exec rails db:create; RAILS_ENV=test bundle exec rails db:migrate; RAILS_ENV=test bundle exec rails db:seed;",

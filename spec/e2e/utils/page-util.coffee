@@ -3,7 +3,7 @@ remote = require('selenium-webdriver/remote')
 PageUtil = {
   testListingId: '1'
   smcDomain: 'herokuapp.com'
-  sjDomain: 'localhost'
+  testDomain: 'localhost'
   goTo: (url) ->
     browser.get(url)
   scrollToElement: (element) ->

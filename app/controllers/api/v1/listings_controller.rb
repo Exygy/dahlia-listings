@@ -2,17 +2,23 @@
 
 # RESTful JSON API to query for listings
 class Api::V1::ListingsController < ApiController
+  before_action :set_listings_scope
+
   def index
     # listings_params[:ids] could be nil which means get all open listings
     # listings_params[:ids] is a comma-separated list of ids
-    @listings = listings_params[:ids] ? Listing.find(*listings_params[:ids]) : Listing.all
+    if listings_params[:ids]
+      @listings = @listings_scope.find(*listings_params[:ids])
+    else
+      @listings = @listings_scope
+    end
     @listings = @listings.map(&:to_salesforce_from_db)
 
     render json: { listings: @listings }
   end
 
   def show
-    @listing = Listing.find(params[:id]).to_salesforce_from_db
+    @listing = @listings_scope.find(params[:id]).to_salesforce_from_db
     render json: { listing: @listing }
   end
 
@@ -55,6 +61,10 @@ class Api::V1::ListingsController < ApiController
   end
 
   private
+
+  def set_listings_scope
+    @listings_scope = @group.listings_for_self_and_descendants
+  end
 
   def listings_params
     params.permit(:ids, :Tenure)
