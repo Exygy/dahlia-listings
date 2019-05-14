@@ -30,6 +30,9 @@ en:
   sj:
     test: "I am San Jose, %{yes}"
     logo_url: 'bar.jpg'
+  test:
+    test: "I am Test Group, %{yes}"
+    logo_url: 'baz.jpg'
 
   emailer:
     submission_confirmation:

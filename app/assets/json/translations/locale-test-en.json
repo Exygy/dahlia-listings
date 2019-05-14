@@ -1,0 +1,12 @@
+{
+    "FOOTER": {
+      "COPYRIGHT": "Test Group"
+    },
+    "NAV": {
+      "ASSISTANCE_URL": "http://www.testgroup.org/assistance",
+      "FEEDBACK_URL": "http://www.testgroup.org/feedback"
+    },
+    "T": {
+      "DAHLIA_HOUSING_PORTAL": "<strong>DAHLIA</strong><br/><span class=\"header-logo-group\">Test Group</span>"
+    }
+}
