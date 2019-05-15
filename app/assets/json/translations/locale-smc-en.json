@@ -1,6 +1,9 @@
 {
     "FOOTER": {
-      "COPYRIGHT": "San Mateo County"
+      "COPYRIGHT": "San Mateo County",
+      "CONTACT_EMAIL": "info@smcgov.org",
+      "DISCLAIMER_URL": "https://www.smcgov.org/endorsement-disclaimers",
+      "PRIVACY_POLICY_URL": "https://www.smcgov.org/privacy-policy"
     },
     "NAV": {
       "ASSISTANCE_URL": "https://housing.smcgov.org/find-rental-assistance",

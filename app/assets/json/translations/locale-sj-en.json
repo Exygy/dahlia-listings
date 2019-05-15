@@ -1,6 +1,9 @@
 {
     "FOOTER": {
-      "COPYRIGHT": "San Jose"
+      "COPYRIGHT": "San Jose",
+      "CONTACT_EMAIL": "customerservice@sanjoseca.gov",
+      "DISCLAIMER_URL": "https://www.sanjoseca.gov/index.aspx?NID=2533",
+      "PRIVACY_POLICY_URL": "https://www.sanjoseca.gov/index.aspx?NID=5728"
     },
     "NAV": {
       "ASSISTANCE_URL": "http://www.sanjoseca.gov/index.aspx?NID=4678",
