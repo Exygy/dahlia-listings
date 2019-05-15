@@ -13,7 +13,7 @@ class SitemapsController < ApplicationController
   end
 
   def sitemap_xml
-    listings = Force::ListingService.listings
+    listings = Listing.all
     @sitemap = SitemapGenerator::Builder::SitemapFile.new(host: 'https://' + host_name)
     @sitemap.add '/', changefreq: 'weekly', priority: 1.0
     @sitemap.add '/listings', changefreq: 'daily', priority: 0.75
@@ -23,7 +23,7 @@ class SitemapsController < ApplicationController
     @sitemap.add '/disclaimer', changefreq: 'monthly'
     @sitemap.add '/privacy', changefreq: 'monthly'
     listings.each do |listing|
-      path = "/listings/#{listing['listingID']}"
+      path = "/listings/#{listing.id}"
       @sitemap.add path, changefreq: 'daily', priority: 0.75
     end
     @sitemap.to_xml
