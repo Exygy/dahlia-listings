@@ -18,15 +18,24 @@ class Api::V1::ListingsController < ApiController
   end
 
   def show
-    @listing = @listings_scope.find(params[:id]).to_salesforce_from_db
-    render json: { listing: @listing }
+    @listing = @listings_scope.find(params[:id])
+    response = { listing: @listing.to_salesforce_from_db }
+    unit_summaries = ListingService.create_unit_summaries(@listing)
+    response[:listing][:unitSummaries] = unit_summaries
+    render json: response
   end
 
   def units
-    # TODO: Replace the below Salesforce-based way of fetching units
-    # with the new way that will be coming in the dahlia_data_models gem.
-    # @units = Force::ListingService.units(params[:id], force: params[:force])
+    @listing = @listings_scope.find(params[:id])
     @units = []
+    if @listing&.units
+      @units = @listing.units.map(&:to_salesforce_from_db)
+      # TODO: Replace the below title casing of unit type by creating a
+      # separate mapping of units' unit type enum values to labels and add
+      # logic in a service to convert from enum type to label for unit type
+      # when returning units to frontend.
+      @units.each { |u| u['Unit_Type'] = u['Unit_Type'].titleize }
+    end
     render json: { units: @units }
   end
 
