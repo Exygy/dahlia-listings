@@ -14,13 +14,13 @@ footer.bg-tuatara.padding-top--2x
             a.a-aluminum href="{{feedbackUrl()}}" target="_blank"
               | {{ "FOOTER.GIVE_FEEDBACK" | translate }}
           li
-            a.a-aluminum href="mailto:sfhousinginfo@sfgov.org"
+            a.a-aluminum href="mailto:{{ 'FOOTER.CONTACT_EMAIL' | translate }}"
               | {{ "FOOTER.CONTACT" | translate }}
           li
-            a.a-aluminum ui-sref="dahlia.disclaimer"
+            a.a-aluminum href="{{ 'FOOTER.DISCLAIMER_URL' | translate }}" target="_blank"
               | {{ "FOOTER.DISCLAIMER" | translate }}
           li
-            a.a-aluminum ui-sref="dahlia.privacy"
+            a.a-aluminum href="{{ 'FOOTER.PRIVACY_POLICY_URL' | translate }}" target="_blank"
               | {{ "FOOTER.PRIVACY_POLICY" | translate }}
           li
             a href="https://heapanalytics.com/?utm_source=badge" target="_blank" rel="nofollow"
