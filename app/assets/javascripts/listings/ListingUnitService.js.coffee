@@ -71,6 +71,7 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
   Service.groupSpecialUnits = (units, type) ->
     grouped = _.groupBy units, type
     delete grouped['undefined']
+    delete grouped[null]
     grouped
 
   Service.getListingUnits = (listing, forceRecache = false) ->

@@ -91,7 +91,7 @@ gem 'sentry-raven', '~> 2.6.3'
 gem 'safe_yaml'
 
 # Added at 2019-04-26 10:55:00 -0700 by jwhite:
-gem "dahlia_data_models", git: 'https://github.com/Exygy/dahlia_data_models.git', ref: '1d62106c1b19149f7aa03fad828569e313a49434'
+gem "dahlia_data_models", git: 'https://github.com/Exygy/dahlia_data_models.git', ref: 'e71247e708bc863a02e8dfe0b0c4972c6b3272e0'
 
 group :test do
   gem 'codeclimate-test-reporter'

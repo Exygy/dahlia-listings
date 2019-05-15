@@ -35,6 +35,11 @@ do ->
         # fakeUnits just has one AMI level
         expect(_.keys(grouped).length).toEqual 1
 
+    describe 'Service.groupSpecialUnits', ->
+      it "doesn't return any units that don't have a value for the given type", ->
+        grouped = ListingUnitService.groupSpecialUnits(fakeUnits.units, 'foo')
+        expect(_.keys(grouped).length).toEqual 0
+
     describe 'Service.getListingUnits', ->
       beforeEach ->
         requestURL = "/api/v1/listings/#{fakeListing.Id}/units"
