@@ -11,6 +11,14 @@ class ApplicationController < ActionController::Base
   # but still added for security + codeclimate happiness
   protect_from_forgery with: :exception
 
+  if Rails.env.production? &&
+     ENV['HTTP_BASIC_AUTH_USERNAME'] && ENV['HTTP_BASIC_AUTH_PASSWORD']
+    http_basic_authenticate_with(
+      name: ENV['HTTP_BASIC_AUTH_USERNAME'],
+      password: ENV['HTTP_BASIC_AUTH_PASSWORD'],
+    )
+  end
+
   # Used for redirecting outdated asset urls
   # e.g. "/translations/locale-en.json" --> "/assets/locale-en-[hash].json"
   def asset_redirect
