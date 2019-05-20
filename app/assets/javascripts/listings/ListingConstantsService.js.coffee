@@ -24,16 +24,16 @@ ListingConstantsService = () ->
   })
 
   Service.fieldsForUnitGrouping = [
-    'Unit_Type',
-    'Reserved_Type',
-    'BMR_Rent_Monthly',
-    'BMR_Rental_Minimum_Monthly_Income_Needed',
+    'unit_type',
+    'reserved_type',
+    'monthly_rent',
+    'bmr_monthly_income_min',
     'Rent_percent_of_income',
     'Price_Without_Parking',
     'Price_With_Parking',
     'HOA_Dues_Without_Parking',
     'HOA_Dues_With_Parking',
-    'Status',
+    'status',
   ]
 
   Service.priorityLabelMap =

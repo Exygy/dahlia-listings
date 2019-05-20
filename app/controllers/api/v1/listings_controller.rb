@@ -12,14 +12,13 @@ class Api::V1::ListingsController < ApiController
     else
       @listings = @listings_scope
     end
-    @listings = @listings.map(&:to_salesforce_from_db)
 
     render json: { listings: @listings }
   end
 
   def show
     @listing = @listings_scope.find(params[:id])
-    response = { listing: @listing.to_salesforce_from_db }
+    response = { listing: @listing.as_json }
     unit_summaries = ListingService.create_unit_summaries(@listing)
     response[:listing][:unitSummaries] = unit_summaries
     render json: response
@@ -29,12 +28,12 @@ class Api::V1::ListingsController < ApiController
     @listing = @listings_scope.find(params[:id])
     @units = []
     if @listing&.units
-      @units = @listing.units.map(&:to_salesforce_from_db)
+      @units = @listing.units.as_json
       # TODO: Replace the below title casing of unit type by creating a
       # separate mapping of units' unit type enum values to labels and add
       # logic in a service to convert from enum type to label for unit type
       # when returning units to frontend.
-      @units.each { |u| u['Unit_Type'] = u['Unit_Type'].titleize }
+      @units.each { |u| u['unit_type'] = u['unit_type'].titleize }
     end
     render json: { units: @units }
   end

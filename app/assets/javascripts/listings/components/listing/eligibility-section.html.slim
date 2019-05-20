@@ -51,7 +51,7 @@ accordion-heading.lead
               ng-include src="'listings/templates/listing/_income-table-multiple.html'"
 
           / don't show toggler e.g. if the listing is SRO only which will only have 1 row
-          show-more-toggler inline="true" toggle-state="$ctrl.parent.toggleStates[$ctrl.parent.listing.Id].amiChartExpanded" verb="show" ng-show="$ctrl.showAMItoggler()"
+          show-more-toggler inline="true" toggle-state="$ctrl.parent.toggleStates[$ctrl.parent.listing.id].amiChartExpanded" verb="show" ng-show="$ctrl.showAMItoggler()"
 
     li.custom-counter_item
       .content-tile
@@ -79,15 +79,15 @@ accordion-heading.lead
             tbody
               tr ng-repeat="unit_summary in ::$ctrl.parent.listing.unitSummary"
                 td scope="row"
-                  | {{unit_summary.Unit_Type}}
-                td ng-if="::unit_summary.Unit_Type == 'Flex'"
+                  | {{unit_summary.unit_type}}
+                td ng-if="::unit_summary.unit_type == 'Flex'"
                   | Flex people
-                td ng-if="::unit_summary.Unit_Type != 'Flex'"
+                td ng-if="::unit_summary.unit_type != 'Flex'"
                   small
                     | {{ $ctrl.occupancy(unit_summary) }}
                     '
                   small
-                    | {{$ctrl.occupancyLabel(unit_summary.maxOccupancy || unit_summary.minOccupancy)}}
+                    | {{$ctrl.occupancyLabel(unit_summary.max_occupancy || unit_summary.min_occupancy)}}
 
     li.custom-counter_item
       .content-tile
@@ -157,15 +157,15 @@ accordion-heading.lead
             | Section 8 housing vouchers and other valid rental assistance programs can be used for this property.
           p.custom-counter_text In the case of a valid rental subsidy, the required minimum income will be based on the portion of the rent that the tenant pays after use of the subsidy.
 
-    li.custom-counter_item ng-if="::$ctrl.parent.listing.Credit_Rating || $ctrl.parent.listing.Eviction_History || $ctrl.parent.listing.Criminal_History"
+    li.custom-counter_item ng-if="::$ctrl.parent.listing.credit_rating || $ctrl.parent.listing.Eviction_History || $ctrl.parent.listing.Criminal_History"
       .content-tile
         header.custom-counter_header
           h4.custom-counter_title Additional Eligibility Rules
           p.custom-counter_text Applicants must also qualify under the rules of the building.
 
-        .content-card ng-if="::$ctrl.parent.listing.Credit_Rating"
+        .content-card ng-if="::$ctrl.parent.listing.credit_rating"
           h4.content-card_title Credit History
-          p.c-steel(ng-text-truncate="::$ctrl.parent.listing.Credit_Rating | nl2br" ng-tt-words-threshold="60")
+          p.c-steel(ng-text-truncate="::$ctrl.parent.listing.credit_rating | nl2br" ng-tt-words-threshold="60")
 
         .content-card ng-if="::$ctrl.parent.listing.Eviction_History"
           h4.content-card_title Rental History
@@ -178,6 +178,6 @@ accordion-heading.lead
               housing in compliance with <a target="_blank" href="http://sfgov.org/olse/sites/default/files/FileCenter/Documents/12136-FCO%20FAQs%20Final.pdf">Article 49</a> of the San Francisco Police Code: <a href="http://sfgov.org/olse/fair-chance-ordinance-fco" target="_blank">Fair Chance Ordinance</a>.
           p.c-steel(ng-text-truncate="::$ctrl.parent.listing.Criminal_History | nl2br" ng-tt-words-threshold="20")
 
-        p ng-if="::$ctrl.parent.listing.Building_Selection_Criteria"
-          a target="_blank" href="{{$ctrl.parent.listing.Building_Selection_Criteria}}"
+        p ng-if="::$ctrl.parent.listing.building_selection_criteria"
+          a target="_blank" href="{{$ctrl.parent.listing.building_selection_criteria}}"
             | Find out more about Building Selection Criteria

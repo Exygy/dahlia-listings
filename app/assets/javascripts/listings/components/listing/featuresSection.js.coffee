@@ -7,7 +7,7 @@ angular.module('dahlia.components')
     ctrl = @
 
     @toggleTable = (table) ->
-      ListingDataService.toggleStates[this.parent.listing.Id][table] = !ListingDataService.toggleStates[this.parent.listing.Id][table]
+      ListingDataService.toggleStates[this.parent.listing.id][table] = !ListingDataService.toggleStates[this.parent.listing.id][table]
 
     @formatBaths = (numberOfBathrooms) ->
       return 'Shared' if numberOfBathrooms == 0
@@ -22,7 +22,7 @@ angular.module('dahlia.components')
         numberOfBathrooms
 
     @listingIsBMR = ->
-      ['IH-RENTAL', 'IH-OWN'].indexOf(this.parent.listing.Program_Type) >= 0
+      ['IH-RENTAL', 'IH-OWN'].indexOf(this.parent.listing.program_type) >= 0
 
     return ctrl
   ]

@@ -30,7 +30,7 @@ ListingPreferenceService = ($http, ListingConstantsService, ListingIdentityServi
 
     httpConfig = { etagCache: true }
     httpConfig.params = { force: true } if forceRecache
-    $http.get("/api/v1/listings/#{listing.Id}/preferences", httpConfig)
+    $http.get("/api/v1/listings/#{listing.id}/preferences", httpConfig)
     .success((data, status, headers, config) ->
       if data && data.preferences
         listing.preferences = data.preferences

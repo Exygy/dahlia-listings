@@ -5,7 +5,7 @@ do ->
     fakeListing = getJSONFixture('listings-api-show.json').listing
     fakeListingConstantsService =
       LISTING_MAP: {}
-    fakeListingConstantsService.LISTING_MAP[fakeListing.Id] = fakeListing.Name
+    fakeListingConstantsService.LISTING_MAP[fakeListing.Id] = fakeListing.name
     tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1)
     lastWeek = new Date()
@@ -24,7 +24,7 @@ do ->
 
     describe 'Service.listingIs', ->
       it 'returns true if the given listing has the given name', ->
-        expect(ListingIdentityService.listingIs(fakeListing.Name, fakeListing)).toEqual true
+        expect(ListingIdentityService.listingIs(fakeListing.name, fakeListing)).toEqual true
       it 'returns false if a name is not given', ->
         expect(ListingIdentityService.listingIs(null, fakeListing)).toEqual false
       it 'returns false if a listing is not given', ->
@@ -51,9 +51,9 @@ do ->
         testListing = angular.copy(fakeListing)
 
       it 'returns true if listing application due date has not passed', ->
-        testListing.Application_Due_Date = tomorrow.toString()
+        testListing.application_due_date = tomorrow.toString()
         expect(ListingIdentityService.isOpen(testListing)).toEqual true
       it 'returns false if listing application due date has passed', ->
-        testListing.Application_Due_Date = lastWeek.toString()
+        testListing.application_due_date = lastWeek.toString()
         expect(ListingIdentityService.isOpen(testListing)).toEqual false
 

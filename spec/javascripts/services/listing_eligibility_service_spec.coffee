@@ -11,7 +11,7 @@ do ->
       reserved: null
       general: [angular.copy(fakeListing.listing.unitSummaries.general[0])]
     fakeListingAllSRO.unitSummaries.general[0].unitType = 'SRO'
-    fakeListingAllSRO.unitSummaries.general[0].maxOccupancy = 1
+    fakeListingAllSRO.unitSummaries.general[0].max_occupancy = 1
     $localStorage = undefined
     incomeLevels = undefined
     minMax = undefined

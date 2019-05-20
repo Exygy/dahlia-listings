@@ -23,7 +23,7 @@ describe 'Listings API' do
   #   expect(response).to be_success
 
   #   # check to make sure the right Id is present
-  #   expect(json['listing']['Id']).to eq(listing_id)
+  #   expect(json['listing']['id']).to eq(listing_id)
   # end
 
   # it 'gets AMI results' do

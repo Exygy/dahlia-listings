@@ -4,7 +4,7 @@
         property-hero
 
     accordion.page-accordion close-others="false"
-      accordion-group.bg-dust data-event="gtm-accordion-eligibility" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.Id].eligibility"
+      accordion-group.bg-dust data-event="gtm-accordion-eligibility" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.id].eligibility"
         header.listing-header.show-for-medium-up
           img.listing-header_icon ng-src="{{::$ctrl.parent.assetPaths['listing-eligibility.svg']}}" alt="eligibility-notebook"
           hgroup.listing-header_group
@@ -15,10 +15,10 @@
         eligibility-section
 
       / sidebar for open listing (larger browser sizes)
-      accordion-group.medium-right-column data-event="gtm-accordion-process" ng-if="::!$ctrl.parent.listingApplicationClosed($ctrl.parent.listing)" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.Id].process"
+      accordion-group.medium-right-column data-event="gtm-accordion-process" ng-if="::!$ctrl.parent.listingApplicationClosed($ctrl.parent.listing)" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.id].process"
         process-section
 
-      accordion-group.bg-white data-event="gtm-accordion-features" ng-if="$ctrl.parent.listing.showUnitFeatures" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.Id].features"
+      accordion-group.bg-white data-event="gtm-accordion-features" ng-if="$ctrl.parent.listing.show_unit_features" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.id].features"
         header.listing-header.show-for-medium-up
           img.listing-header_icon ng-src="{{::$ctrl.parent.assetPaths['listing-features.svg']}}" alt="features-options"
           hgroup.listing-header_group
@@ -28,7 +28,7 @@
               | Amenities, unit details and additional fees
         features-section
 
-      accordion-group.bg-dust data-event="gtm-accordion-neighborhood" ng-if="::$ctrl.parent.formattedBuildingAddress($ctrl.parent.listing)" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.Id].neighborhood"
+      accordion-group.bg-dust data-event="gtm-accordion-neighborhood" ng-if="::$ctrl.parent.formattedBuildingAddress($ctrl.parent.listing)" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.id].neighborhood"
         header.listing-header.show-for-medium-up
           img.listing-header_icon ng-src="{{::$ctrl.parent.assetPaths['listing-neighborhood.svg']}}" alt="neighborhood-building"
           hgroup.listing-header_group
@@ -38,7 +38,7 @@
               | Location and transportation
         neighborhood-section
 
-      accordion-group.bg-white data-event="gtm-accordion-information" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.Id].additionalInfo"
+      accordion-group.bg-white data-event="gtm-accordion-information" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.id].additionalInfo"
         header.listing-header.show-for-medium-up
           img.listing-header_icon ng-src="{{::$ctrl.parent.assetPaths['listing-legal.svg']}}" alt="legal-documents"
           hgroup.listing-header_group

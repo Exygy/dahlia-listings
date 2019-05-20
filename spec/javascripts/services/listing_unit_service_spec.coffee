@@ -11,7 +11,7 @@ do ->
       reserved: null
       general: [angular.copy(fakeListing.unitSummaries.general[0])]
     fakeListingAllSRO.unitSummaries.general[0].unitType = 'SRO'
-    fakeListingAllSRO.unitSummaries.general[0].maxOccupancy = 1
+    fakeListingAllSRO.unitSummaries.general[0].max_occupancy = 1
 
     beforeEach module('dahlia.services', ($provide) ->
       return
@@ -42,7 +42,7 @@ do ->
 
     describe 'Service.getListingUnits', ->
       beforeEach ->
-        requestURL = "/api/v1/listings/#{fakeListing.Id}/units"
+        requestURL = "/api/v1/listings/#{fakeListing.id}/units"
         stubAngularAjaxRequest httpBackend, requestURL, fakeUnits
         ListingUnitService.getListingUnits(fakeListing)
         httpBackend.flush()
@@ -57,7 +57,7 @@ do ->
 
     describe 'Service.listingHasOnlySROUnits', ->
       it 'returns false if not all units are SROs', ->
-        fakeListing.unitSummaries.general[0].Unit_Type = 'Studio'
+        fakeListing.unitSummaries.general[0].unit_type = 'Studio'
         expect(ListingUnitService.listingHasOnlySROUnits(fakeListing)).toEqual(false)
       it 'returns true if all units are SROs', ->
         expect(ListingUnitService.listingHasOnlySROUnits(fakeListingAllSRO)).toEqual(true)

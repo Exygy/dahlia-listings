@@ -36,8 +36,8 @@ do ->
         ctrl = $componentController 'propertyHero', locals, {parent: fakeParent}
 
       describe 'listingImages', ->
-        it 'returns listing.imageURL wrapped in an array', ->
-          expect(ctrl.listingImages(fakeListing)).toEqual([fakeListing.imageURL])
+        it 'returns listing.image_url wrapped in an array', ->
+          expect(ctrl.listingImages(fakeListing)).toEqual([fakeListing.image_url])
 
       describe 'hasMultipleAMIUnits', ->
         it 'returns true for more than 1 groupedUnits', ->
@@ -49,6 +49,6 @@ do ->
 
       describe 'reservedDescriptorIcon', ->
         it 'calls $sce with right param', ->
-          fakeListing.reservedDescriptor = [{name: 'fake'}, {name: 'true'}]
+          fakeListing.reserved_descriptor = [{name: 'fake'}, {name: 'true'}]
           ctrl.reservedDescriptorIcon(fakeListing, 'true')
           expect($sce.trustAsResourceUrl).toHaveBeenCalledWith('#i-cross')

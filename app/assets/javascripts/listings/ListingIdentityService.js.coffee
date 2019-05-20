@@ -13,7 +13,7 @@ ListingIdentityService = (ListingConstantsService) ->
 
   Service.listingIs = (name, listing) ->
     return false unless listing && name
-    ListingConstantsService.LISTING_MAP[listing.Id] == name
+    ListingConstantsService.LISTING_MAP[listing.id] == name
 
   Service.isRental = (listing) ->
     return false unless listing
@@ -27,9 +27,9 @@ ListingIdentityService = (ListingConstantsService) ->
   # Business logic for determining if a listing is open
   # `due date` should be a datetime, to include precise hour of deadline
   Service.isOpen = (listing) ->
-    return false unless listing && listing.Application_Due_Date
+    return false unless listing && listing.application_due_date
     now = moment()
-    deadline = moment(listing.Application_Due_Date).tz('America/Los_Angeles')
+    deadline = moment(listing.application_due_date).tz('America/Los_Angeles')
     # listing is open if deadline is in the future
     return deadline > now
 

@@ -31,13 +31,13 @@ angular.module('dahlia.components')
       @listingImages = (listing) ->
         # TODO: update when we are getting multiple images from Salesforce
         # right now it's just an array of one
-        [listing.imageURL]
+        [listing.image_url]
 
       @hasMultipleAMIUnits = ->
         _.keys(this.parent.listing.groupedUnits).length > 1
 
       @reservedDescriptorIcon = (listing, descriptor) ->
-        index = _.findIndex(listing.reservedDescriptor, ['name', descriptor])
+        index = _.findIndex(listing.reserved_descriptor, ['name', descriptor])
         @reservedUnitIcons[index]
 
       return ctrl
