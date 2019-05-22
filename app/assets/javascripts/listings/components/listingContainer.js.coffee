@@ -15,10 +15,7 @@ angular.module('dahlia.components')
     @toggleStates = ListingDataService.toggleStates
     @AMICharts = ListingDataService.AMICharts
 
-    console.log('LOADING stuff')
-
     @openListings = ListingDataService.openListings
-    console.log('open listings!', @openListings)
     @closedListings = ListingDataService.closedListings
 
     @isRental = (listing) ->
