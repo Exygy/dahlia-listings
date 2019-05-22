@@ -34,6 +34,18 @@ en:
     test: "I am Test Group, %{yes}"
     logo_url: 'baz.jpg'
 
+  unit_types:
+    studio: "Studio"
+    sro: "SRO"
+    room: "Room"
+    large_studio: "Large Studio"
+    junior_one_bdrm: "Junior 1 BR"
+    one_bdrm: "1 BR"
+    two_bdrm: "2 BR"
+    three_bdrm: "3 BR"
+    four_bdrm: "4 BR"
+    five_bdrm: "5 BR"
+
   emailer:
     submission_confirmation:
       thanks_for_applying_to_listing: "Thanks for applying. We have received your application for %{link}."

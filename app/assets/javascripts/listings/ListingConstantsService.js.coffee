@@ -25,6 +25,7 @@ ListingConstantsService = () ->
 
   Service.fieldsForUnitGrouping = [
     'unit_type',
+    'unit_type_label',
     'reserved_type',
     'monthly_rent',
     'bmr_monthly_income_min',

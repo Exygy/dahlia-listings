@@ -13,6 +13,10 @@ class Api::V1::ListingsController < ApiController
       @listings = @listings_scope
     end
 
+    @listings = @listings.as_json(include: :units).each do |listing|
+      listing['units'].each { |u| add_labels_to_unit(u) }
+    end
+
     render json: { listings: @listings }
   end
 
@@ -29,11 +33,7 @@ class Api::V1::ListingsController < ApiController
     @units = []
     if @listing&.units
       @units = @listing.units.as_json
-      # TODO: Replace the below title casing of unit type by creating a
-      # separate mapping of units' unit type enum values to labels and add
-      # logic in a service to convert from enum type to label for unit type
-      # when returning units to frontend.
-      @units.each { |u| u['unit_type'] = u['unit_type'].titleize }
+      @units.each { |u| add_labels_to_unit(u) }
     end
     render json: { units: @units }
   end
@@ -76,5 +76,9 @@ class Api::V1::ListingsController < ApiController
 
   def listings_params
     params.permit(:ids, :Tenure)
+  end
+
+  def add_labels_to_unit(unit)
+    unit['unit_type_label'] = I18n.t("unit_types.#{unit['unit_type']}")
   end
 end
