@@ -1,8 +1,8 @@
 remote = require('selenium-webdriver/remote')
 
 PageUtil = {
-  testListingId: '1'
-  smcDomain: 'herokuapp.com'
+  testListingId: '3'
+  smcDomain: 'smc.housingbayarea.org'
   testDomain: 'localhost'
   goTo: (url) ->
     browser.get(url)
