@@ -62,7 +62,7 @@
         ]
     })
     .state('dahlia.listings-for-rent', {
-      url: '/listings/for-rent'
+      url: '/listings'
       views:
         'container@':
           templateUrl: 'listings/templates/listings-for-rent.html'
