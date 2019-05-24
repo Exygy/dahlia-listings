@@ -30,9 +30,6 @@ angular.module('dahlia.components')
     @listingIsReservedCommunity = (listing) ->
       !! listing.Reserved_community_type
 
-    @listingIs = (name, listing) ->
-      ListingIdentityService.listingIs(name, listing)
-
     @listingHasReservedUnits = (listing) ->
       ListingUnitService.listingHasReservedUnits(listing)
 

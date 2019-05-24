@@ -23,8 +23,7 @@ do ->
         antiDisplacement: "Anti-Displacement Housing Preference (ADHP)"
         aliceGriffith: "Alice Griffith Housing Development Resident"
     loading = {}
-    fakeListingIdentityService =
-      listingIs: ->
+    fakeListingIdentityService = {}
 
     beforeEach module('ui.router')
     beforeEach module('http-etag')

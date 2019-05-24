@@ -3,9 +3,6 @@ do ->
   describe 'ListingIdentityService', ->
     ListingIdentityService = undefined
     fakeListing = getJSONFixture('listings-api-show.json').listing
-    fakeListingConstantsService =
-      LISTING_MAP: {}
-    fakeListingConstantsService.LISTING_MAP[fakeListing.Id] = fakeListing.name
     tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1)
     lastWeek = new Date()
@@ -13,7 +10,6 @@ do ->
     testListing = null
 
     beforeEach module('dahlia.services', ($provide) ->
-      $provide.value 'ListingConstantsService', fakeListingConstantsService
       return
     )
 
@@ -21,14 +17,6 @@ do ->
       ListingIdentityService = _ListingIdentityService_
       return
     )
-
-    describe 'Service.listingIs', ->
-      it 'returns true if the given listing has the given name', ->
-        expect(ListingIdentityService.listingIs(fakeListing.name, fakeListing)).toEqual true
-      it 'returns false if a name is not given', ->
-        expect(ListingIdentityService.listingIs(null, fakeListing)).toEqual false
-      it 'returns false if a listing is not given', ->
-        expect(ListingIdentityService.listingIs('Fake Listing', null)).toEqual false
 
     describe 'Service.isRental', ->
       beforeEach ->

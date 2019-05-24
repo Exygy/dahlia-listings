@@ -25,13 +25,11 @@ do ->
       listing: fakeListing
       AMICharts: []
       stubFeatures: () -> null
-      listingIs: () -> null
       loading: {}
       formattedAddress: jasmine.createSpy()
       getListingAMI: jasmine.createSpy()
       reservedLabel: jasmine.createSpy()
     fakeListingIdentityService =
-      listingIs: jasmine.createSpy()
       isOpen: jasmine.createSpy()
     fakeListingUnitService =
       getListingUnits: jasmine.createSpy()
@@ -92,12 +90,6 @@ do ->
           listing = fakeListing
           listing.Reserved_community_type = null
           expect(ctrl.listingIsReservedCommunity(listing)).toEqual false
-
-      describe '$ctrl.listingIs', ->
-        it 'calls ListingIdentityService.listingIs with the given name and listing', ->
-          name = 'fake'
-          ctrl.listingIs(name, fakeListing)
-          expect(fakeListingIdentityService.listingIs).toHaveBeenCalledWith(name, fakeListing)
 
       describe '$ctrl.listingHasReservedUnits', ->
         it "calls ListingUnitService.listingHasReservedUnits with the given listing", ->

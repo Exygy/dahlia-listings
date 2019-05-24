@@ -8,21 +8,12 @@
 # TODO: It's not fully clear that this service needs to be a separate service.
 # Look further into where/how the functions in this service are used to see if
 # there is a reasonable alternative way to manage these functions.
-ListingIdentityService = (ListingConstantsService) ->
+ListingIdentityService = ->
   Service = {}
-
-  Service.listingIs = (name, listing) ->
-    return false unless listing && name
-    ListingConstantsService.LISTING_MAP[listing.id] == name
 
   Service.isRental = (listing) ->
     return false unless listing
     listing.Tenure == 'New rental' || listing.Tenure == 'Re-rental'
-
-  Service.isFirstComeFirstServe = (listing) ->
-    return false unless listing
-    # hardcoded, currently just this one listing
-    Service.listingIs('168 Hyde Relisting', listing)
 
   # Business logic for determining if a listing is open
   # `due date` should be a datetime, to include precise hour of deadline
@@ -38,8 +29,6 @@ ListingIdentityService = (ListingConstantsService) ->
 ############################################################################################
 ######################################## CONFIG ############################################
 ############################################################################################
-
-ListingIdentityService.$inject = ['ListingConstantsService']
 
 angular
   .module('dahlia.services')
