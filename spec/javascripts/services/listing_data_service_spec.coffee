@@ -21,7 +21,6 @@ do ->
       ]
     }
     fakeListingIdentityService =
-      listingIs: ->
       isOpen: ->
       resetData: jasmine.createSpy()
     fakeSharedService =

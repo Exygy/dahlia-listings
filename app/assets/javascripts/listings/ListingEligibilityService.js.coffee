@@ -35,14 +35,8 @@ ListingEligibilityService = ($localStorage, ListingIdentityService, ListingUnitS
     incomeLevel.amount
 
   Service.householdAMIChartCutoff = (listing) ->
-    # TODO: Hardcoded Temp fix, take this and replace with long term solution
-    if (
-      ListingIdentityService.listingIs('Merry Go Round Shared Housing', listing) ||
-      ListingIdentityService.listingIs('1335 Folsom Street', listing)
-    )
-      return 2
-    else if ListingUnitService.listingHasOnlySROUnits(listing)
-      return 1
+    return 1 if ListingUnitService.listingHasOnlySROUnits(listing)
+
     occupancyMinMax = Service.occupancyMinMax(listing)
     max = if _.isNumber(occupancyMinMax[1]) then occupancyMinMax[1] else 2
     # cutoff at 2x the num of bedrooms

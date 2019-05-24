@@ -72,12 +72,6 @@ ListingConstantsService = () ->
     SENIOR: 'Senior'
   }
 
-  # TODO: -- REMOVE HARDCODED FEATURES --
-  Service.LISTING_MAP = {
-    'a0W0P00000F7t4uUAB': 'Merry Go Round Shared Housing'
-    'a0W0P00000FIuv3UAD': '1335 Folsom Street'
-  }
-
   return Service
 
 
