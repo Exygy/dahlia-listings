@@ -119,9 +119,9 @@
           listing.Name
         ]
         data: ['ngMeta', 'listing', (ngMeta, listing) ->
-          desc = "Apply for affordable housing at #{listing.Name} on the DAHLIA Housing Portal."
+          desc = "Apply for affordable housing at #{listing.name} on the DAHLIA Housing Portal."
           ngMeta.setTag('description', desc)
-          ngMeta.setTag('og:image', listing.imageURL)
+          ngMeta.setTag('og:image', listing.image_url)
         ]
       # https://github.com/vinaygopinath/ngMeta#using-custom-data-resolved-by-ui-router
       meta:

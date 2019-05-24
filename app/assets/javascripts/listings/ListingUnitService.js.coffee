@@ -10,20 +10,20 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
   Service._sortGroupedUnits = (units) ->
     # little hack to re-sort Studio to the top
     _.map units, (u) ->
-      u.Unit_Type = '000Studio' if u.Unit_Type == 'Studio'
-      u.Unit_Type = '000SRO' if u.Unit_Type == 'SRO'
+      u.unit_type = '000Studio' if u.unit_type == 'Studio'
+      u.unit_type = '000SRO' if u.unit_type == 'SRO'
       return u
     # sort everything based on the order presented in pickList
     units = _.sortBy units, ListingConstantsService.fieldsForUnitGrouping
     # put "Studio" back to normal
     _.map units, (u) ->
-      u.Unit_Type = 'Studio' if u.Unit_Type == '000Studio'
-      u.Unit_Type = 'SRO' if u.Unit_Type == '000SRO'
+      u.unit_type = 'Studio' if u.unit_type == '000Studio'
+      u.unit_type = 'SRO' if u.unit_type == '000SRO'
       return u
 
   Service.unitAreaRange = (units) ->
-    min = (_.minBy(units, 'Unit_Square_Footage') || {})['Unit_Square_Footage']
-    max = (_.maxBy(units, 'Unit_Square_Footage') || {})['Unit_Square_Footage']
+    min = (_.minBy(units, 'sq_ft') || {})['sq_ft']
+    max = (_.maxBy(units, 'sq_ft') || {})['sq_ft']
     if min != max
       "#{min} - #{max}"
     else
@@ -35,11 +35,11 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     combined = _.concat(listing.unitSummaries.reserved, listing.unitSummaries.general)
     combined = _.omitBy(_.uniqBy(combined, 'unitType'), _.isNil)
     # rename the unitType field to match how individual units are labeled
-    _.map(combined, (u) -> u.Unit_Type = u.unitType)
+    _.map(combined, (u) -> u.unit_type = u.unitType)
     Service._sortGroupedUnits(combined)
 
   Service.groupUnitDetails = (units) ->
-    grouped = _.groupBy units, 'of_AMI_for_Pricing_Unit'
+    grouped = _.groupBy units, 'ami_percentage'
     flattened = {}
     _.forEach grouped, (amiUnits, percent) ->
       flattened[percent] = []
@@ -58,7 +58,7 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
 
   Service.groupUnitTypes = (units) ->
     # get a grouping of unit types across both "general" and "reserved"
-    grouped = _.groupBy units, 'Unit_Type'
+    grouped = _.groupBy units, 'unit_type'
     unitTypes = []
     _.forEach grouped, (groupedUnits, type) ->
       group = {}
@@ -79,7 +79,7 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     Service.error.units = false
     httpConfig = {}
     httpConfig.params = { force: true } if forceRecache
-    $http.get("/api/v1/listings/#{listing.Id}/units", httpConfig)
+    $http.get("/api/v1/listings/#{listing.id}/units", httpConfig)
     .success((data, status, headers, config) ->
       Service.loading.units = false
       Service.error.units = false
@@ -88,8 +88,8 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
         listing.Units = units
         listing.groupedUnits = Service.groupUnitDetails(units)
         listing.unitTypes = Service.groupUnitTypes(units)
-        listing.priorityUnits = Service.groupSpecialUnits(listing.Units, 'Priority_Type')
-        listing.reservedUnits = Service.groupSpecialUnits(listing.Units, 'Reserved_Type')
+        listing.priorityUnits = Service.groupSpecialUnits(listing.Units, 'priority_type')
+        listing.reservedUnits = Service.groupSpecialUnits(listing.Units, 'reserved_type')
     ).error( (data, status, headers, config) ->
       Service.loading.units = false
       Service.error.units = true
@@ -105,16 +105,16 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
   # `type` should match what we get from Salesforce e.g. "Veteran"
   Service.listingHasReservedUnitType = (listing, type) ->
     return false unless Service.listingHasReservedUnits(listing)
-    types = _.map listing.reservedDescriptor, (descriptor) -> descriptor.name
+    types = _.map listing.reserved_descriptor, (descriptor) -> descriptor.name
     _.includes(types, type)
 
   Service.listingHasSROUnits = (listing) ->
     combined = Service.combineUnitSummaries(listing)
-    _.some(combined, { Unit_Type: 'SRO' })
+    _.some(combined, { unit_type: 'SRO' })
 
   Service.listingHasOnlySROUnits = (listing) ->
     combined = Service.combineUnitSummaries(listing)
-    _.every(combined, { Unit_Type: 'SRO' })
+    _.every(combined, { unit_type: 'SRO' })
 
   return Service
 

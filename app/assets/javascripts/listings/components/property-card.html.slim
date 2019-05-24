@@ -1,9 +1,9 @@
 .property-card ng-class="{last: $last, first: $first}"
   h1.property-card_title.text-center.margin-bottom.hide-for-medium-up
-    a ui-sref="dahlia.listing({id: $ctrl.listing.Id})" {{::$ctrl.listing.Name}}
+    a ui-sref="dahlia.listing({id: $ctrl.listing.id})" {{::$ctrl.listing.name}}
   figure.property-card_figure
-    a.property-card_overlay ui-sref="dahlia.listing({id: $ctrl.listing.Id})" tabindex="-1"
-      img.property-card_thumb alt="Listing Name:{{::$ctrl.listing.Name}}, Address:{{::$ctrl.listingContainer.formattedBuildingAddress($ctrl.listing)}}" ng-src="{{::$ctrl.listing.imageURL}}" role="link"
+    a.property-card_overlay ui-sref="dahlia.listing({id: $ctrl.listing.id})" tabindex="-1"
+      img.property-card_thumb alt="Listing Name:{{::$ctrl.listing.name}}, Address:{{::$ctrl.listingContainer.formattedBuildingAddress($ctrl.listing)}}" ng-src="{{::$ctrl.listing.image_url}}" role="link"
 
       / Application Deadline Labels
       span.application-label.label.label--flag.primary ng-if="::$ctrl.isOpenListing($ctrl.listing)"
@@ -11,13 +11,13 @@
           svg
             use xlink:href="#i-clock"
         span
-          | Application Deadline: {{::$ctrl.listing.Application_Due_Date | dateSuffix}}
+          | Application Deadline: {{::$ctrl.listing.application_due_date | dateSuffix}}
       span.application-label.label.label--flag.alert ng-if="::$ctrl.isClosedListing($ctrl.listing)"
-        | Application Closed: {{::$ctrl.listing.Application_Due_Date | dateSuffix}}
+        | Application Closed: {{::$ctrl.listing.application_due_date | dateSuffix}}
 
     figcaption.property-card_info
       h1.property-card_title.show-for-medium-up
-        a ui-sref="dahlia.listing({id: $ctrl.listing.Id})" {{::$ctrl.listing.Name}}
+        a ui-sref="dahlia.listing({id: $ctrl.listing.id})" {{::$ctrl.listing.name}}
       p.property-card_address
         | {{::$ctrl.listingContainer.formattedBuildingAddress($ctrl.listing, 'street')}}
         br.show-for-small-only
@@ -27,9 +27,9 @@
   .property-card_content
     .property-card_stats
       h2.property-card_label
-        span translate="LISTINGS.AVAILABLE_UNITS" ng-if="::!$ctrl.listing.hasWaitlist"
-        span translate="LISTINGS.OPEN_WAITLIST" ng-if="::$ctrl.listing.hasWaitlist && $ctrl.listing.Units_Available == 0"
-        span translate="LISTINGS.AVAILABLE_AND_WAITLIST" ng-if="::$ctrl.listing.hasWaitlist && $ctrl.listing.Units_Available > 0"
+        span translate="LISTINGS.AVAILABLE_UNITS" ng-if="::!$ctrl.listing.has_waitlist"
+        span translate="LISTINGS.OPEN_WAITLIST" ng-if="::$ctrl.listing.has_waitlist && $ctrl.listing.units_available == 0"
+        span translate="LISTINGS.AVAILABLE_AND_WAITLIST" ng-if="::$ctrl.listing.has_waitlist && $ctrl.listing.units_available > 0"
       p.property-card_subheader translate="LISTINGS.INCLUDES_PRIORITY_UNITS" translate-value-priorities="{{::$ctrl.priorityTypeNames($ctrl.listing)}}" ng-if="::$ctrl.priorityTypes($ctrl.listing).length"
 
       // -- Unit Summary Table(s)
@@ -37,4 +37,4 @@
       .scrollable-table-container
         rental-stats listing="::$ctrl.listing" ng-if="::$ctrl.listingContainer.isRental($ctrl.listing)"
 
-        a.button.ghost-white.expand-small.no-margin ui-sref="dahlia.listing({id: $ctrl.listing.Id})" See Details
+        a.button.ghost-white.expand-small.no-margin ui-sref="dahlia.listing({id: $ctrl.listing.id})" See Details

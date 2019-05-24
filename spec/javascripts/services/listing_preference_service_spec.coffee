@@ -23,8 +23,7 @@ do ->
         antiDisplacement: "Anti-Displacement Housing Preference (ADHP)"
         aliceGriffith: "Alice Griffith Housing Development Resident"
     loading = {}
-    fakeListingIdentityService =
-      listingIs: ->
+    fakeListingIdentityService = {}
 
     beforeEach module('ui.router')
     beforeEach module('http-etag')
@@ -44,11 +43,11 @@ do ->
     #   beforeEach ->
     #     # have to populate listing first
     #     listing = angular.copy(fakeListing)
-    #     listing.Id = 'fakeId-123'
+    #     listing.id = 'fakeId-123'
     #     # just to divert from our hardcoding
     #     preferences = angular.copy(fakePreferences)
     #     preferences.preferences = preferences.preferences.concat fakeCustomPrefs
-    #     stubAngularAjaxRequest httpBackend, "/api/v1/listings/#{listing.Id}/preferences", preferences
+    #     stubAngularAjaxRequest httpBackend, "/api/v1/listings/#{listing.id}/preferences", preferences
     #     ListingPreferenceService.getListingPreferences(listing)
 
     #   afterEach ->

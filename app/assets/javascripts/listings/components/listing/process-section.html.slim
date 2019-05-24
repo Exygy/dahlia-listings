@@ -14,7 +14,7 @@ accordion-heading
         svg
           use xlink:href="#i-clock"
       span
-        | Application Deadline {{::$ctrl.parent.listing.Application_Due_Date | date : "MMM d, yyyy 'at' h:mm a"}}
+        | Application Deadline {{::$ctrl.parent.listing.application_due_date | date : "MMM d, yyyy 'at' h:mm a"}}
 
   .content-group ng-if="::$ctrl.parent.listing.Information_Sessions"
     h4.content-group_title
@@ -51,6 +51,6 @@ accordion-heading
 
   .content-group
     p.t-small ng-class="{'margin-bottom--half': $ctrl.parent.listing.Multiple_Listing_Service_URL}"
-      | Listing Updated: {{::$ctrl.parent.listing.LastModifiedDate | date : 'MMMM d, yyyy'}}
+      | Listing Updated: {{::$ctrl.parent.listing.last_modified_date | date : 'MMMM d, yyyy'}}
     p.t-small ng-if="$ctrl.parent.listing.Multiple_Listing_Service_URL"
       a target="_blank" ng-href="{{$ctrl.parent.listing.Multiple_Listing_Service_URL}}" See this unit on MLS

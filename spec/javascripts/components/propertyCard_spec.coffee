@@ -75,9 +75,9 @@ do ->
 
       describe '$ctrl.reservedForLabels', ->
         it 'returns values joined with or', ->
-          fakeListing.reservedDescriptor = [{name: 'fake'}, {name: 'not'}]
+          fakeListing.reserved_descriptor = [{name: 'fake'}, {name: 'not'}]
           expect(ctrl.reservedForLabels(fakeListing)).toEqual 'fake or fake'
 
-        it 'returns empty string for empty reservedDescriptor', ->
-          fakeListing.reservedDescriptor = null
+        it 'returns empty string for empty reserved_descriptor', ->
+          fakeListing.reserved_descriptor = null
           expect(ctrl.reservedForLabels(fakeListing)).toEqual ''

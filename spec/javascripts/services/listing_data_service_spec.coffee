@@ -21,7 +21,6 @@ do ->
       ]
     }
     fakeListingIdentityService =
-      listingIs: ->
       isOpen: ->
       resetData: jasmine.createSpy()
     fakeSharedService =
@@ -80,12 +79,12 @@ do ->
 
       it 'sorts open listings by application due date ascending', ->
         ListingDataService.groupListings(fakeListings.listings)
-        dates = _.compact(_.map(ListingDataService.openListings, 'Application_Due_Date'))
+        dates = _.compact(_.map(ListingDataService.openListings, 'application_due_date'))
         expect(dates[0] <= dates[1]).toEqual true
 
       it 'sorts closed listings by application due date ascending', ->
         ListingDataService.groupListings(fakeListings.listings)
-        dates = _.compact(_.map(ListingDataService.closedListings, 'Application_Due_Date'))
+        dates = _.compact(_.map(ListingDataService.closedListings, 'application_due_date'))
         expect(dates[0] <= dates[1]).toEqual true
 
     describe 'Service.getListings', ->
@@ -114,11 +113,11 @@ do ->
 
         # request the same listing
         resetListingData = spyOn(ListingDataService, 'resetListingData')
-        ListingDataService.getListing ListingDataService.listing.listingID
+        ListingDataService.getListing ListingDataService.listing.listing_id
         expect(resetListingData).not.toHaveBeenCalled()
 
       it 'assigns Service.listing with an individual listing', ->
-        fakeListing.listing.Units_Available = 0
+        fakeListing.listing.units_available = 0
         stubAngularAjaxRequest httpBackend, requestURL, fakeListing
         ListingDataService.getListing 'abc123'
         httpBackend.flush()
@@ -166,9 +165,9 @@ do ->
         spyOn(fakeListingIdentityService, 'isOpen').and.returnValue(false)
         expect(ListingDataService.isAcceptingOnlineApplications(listing)).toEqual false
 
-      it 'returns true if listing is open and Accepting_Online_Applications', ->
+      it 'returns true if listing is open and accepting_online_applications', ->
         listing = fakeListing.listing
-        listing.Accepting_Online_Applications = true
+        listing.accepting_online_applications = true
         spyOn(fakeListingIdentityService, 'isOpen').and.returnValue(true)
         expect(ListingDataService.isAcceptingOnlineApplications(listing)).toEqual true
 

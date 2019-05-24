@@ -26,7 +26,7 @@ angular.module('dahlia.components')
 
       @reservedForLabels = (listing) ->
         types = []
-        _.each listing.reservedDescriptor, (descriptor) ->
+        _.each listing.reserved_descriptor, (descriptor) ->
           if descriptor.name
             type = descriptor.name
             types.push(ListingDataService.reservedLabel(listing, type, 'reservedForWhoAre'))

@@ -28,7 +28,7 @@ ListingDataService = (
   ###################################### Salesforce API Calls ###################################
 
   Service.getListing = (_id, forceRecache = false, retranslate = false) ->
-    if Service.listing && Service.listing.Id == _id
+    if Service.listing && Service.listing.id == _id
       # return a resolved promise if we already have the listing
       return $q.when(Service.listing)
     Service.resetListingData()
@@ -60,11 +60,11 @@ ListingDataService = (
         return
       angular.copy(data.listing, Service.listing)
       # fallback for fixing the layout when a listing is missing an image
-      Service.listing.imageURL ?= 'https://unsplash.it/g/780/438'
+      Service.listing.image_url ?= 'https://unsplash.it/g/780/438'
       # create a combined unitSummary
       unless Service.listing.unitSummary
         Service.listing.unitSummary = ListingUnitService.combineUnitSummaries(Service.listing)
-      Service.toggleStates[Service.listing.Id] ?= {}
+      Service.toggleStates[Service.listing.id] ?= {}
 
   Service.getListings = (opts = {}) ->
     deferred = $q.defer()
@@ -91,15 +91,15 @@ ListingDataService = (
   Service.cleanListings = (listings) ->
     _.map listings, (listing) ->
       # fallback for fixing the layout when a listing is missing an image
-      listing.imageURL ?= 'https://unsplash.it/g/780/438'
+      listing.image_url ?= 'https://unsplash.it/g/780/438'
     _.filter listings, (listing) ->
-      !_.includes(MAINTENANCE_LISTINGS, listing.Id)
+      !_.includes(MAINTENANCE_LISTINGS, listing.id)
 
   Service.groupListings = (listings) ->
     openListings = []
     closedListings = []
 
-    sortedListings = _.sortBy listings, (i) -> moment(i.Application_Due_Date)
+    sortedListings = _.sortBy listings, (i) -> moment(i.application_due_date)
 
     sortedListings.forEach (listing) ->
       if ListingIdentityService.isOpen(listing)
@@ -123,7 +123,7 @@ ListingDataService = (
   Service.isAcceptingOnlineApplications = (listing) ->
     return false if _.isEmpty(listing)
     return false unless ListingIdentityService.isOpen(listing)
-    return listing.Accepting_Online_Applications
+    return listing.accepting_online_applications
 
   Service.getListingAndCheckIfOpen = (id) ->
     deferred = $q.defer()
@@ -179,7 +179,7 @@ ListingDataService = (
     charts
 
   Service.priorityTypes = (listing) ->
-    Service.collectTypes(listing, 'prioritiesDescriptor')
+    Service.collectTypes(listing, 'priorities_descriptor')
 
   Service.collectTypes = (listing, specialType) ->
     _.map listing[specialType], (descriptor) ->
@@ -214,8 +214,8 @@ ListingDataService = (
     return labelMap[type][modifier]
 
   Service.formatSeniorMinimumAge = (listing) ->
-    if listing.Reserved_community_minimum_age
-      "#{listing.Reserved_community_minimum_age}+"
+    if listing.reserved_community_minimum_age
+      "#{listing.reserved_community_minimum_age}+"
     else
       ''
 

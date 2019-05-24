@@ -97,9 +97,9 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '[{"attributes":{"type":"Unit__c","url":"/services/data/v35.0/sobjects/Unit__c/a0b0P00001Fb3yNQAR"},"Unit_Type__c":"1
-        BR","BMR_Rent_Monthly__c":2102.00,"BMR_Rental_Minimum_Monthly_Income_Needed__c":5255.00,"Unit_Number__c":"311","Unit_Floor__c":"3","Number_of_Bathrooms__c":1.00,"Status__c":"Available","isReservedCommunity__c":false,"AMI_chart_type__c":"HUD
-        Unadjusted","AMI_chart_year__c":2016,"of_AMI_for_Pricing_Unit__c":100,"Id":"a0b0P00001Fb3yNQAR"}]'
+      string: '[{"attributes":{"type":"Unit__c","url":"/services/data/v35.0/sobjects/Unit__c/a0b0P00001Fb3yNQAR"},"unit_type__c":"1
+        BR","monthly_rent__c":2102.00,"bmr_monthly_income_min__c":5255.00,"number__c":"311","floor__c":"3","num_bathrooms__c":1.00,"status__c":"Available","isReservedCommunity__c":false,"ami_chart_type__c":"HUD
+        Unadjusted","ami_chart_year__c":2016,"ami_percentage__c":100,"Id":"a0b0P00001Fb3yNQAR"}]'
     http_version: 
   recorded_at: Thu, 27 Dec 2018 03:16:48 GMT
 recorded_with: VCR 3.0.3

@@ -46,26 +46,26 @@ do ->
         ctrl = $componentController 'eligibilitySection', locals, {parent: fakeParent}
 
       describe 'occupancy', ->
-        describe 'maxOccupancy is 1', ->
-          it 'returns minOccupancy value', ->
-            unitSummary = { minOccupancy: 1 , maxOccupancy: 1 }
+        describe 'max_occupancy is 1', ->
+          it 'returns min_occupancy value', ->
+            unitSummary = { min_occupancy: 1 , max_occupancy: 1 }
             expect(ctrl.occupancy(unitSummary)).toEqual('1')
-        describe 'maxOccupancy is null', ->
-          it 'returns minOccupancy value', ->
-            unitSummary = { minOccupancy: 3 , maxOccupancy: null }
+        describe 'max_occupancy is null', ->
+          it 'returns min_occupancy value', ->
+            unitSummary = { min_occupancy: 3 , max_occupancy: null }
             expect(ctrl.occupancy(unitSummary)).toEqual('at least 3')
         describe 'all other unit types', ->
           it 'returns a range for all other unit types', ->
-            unitSummary = { minOccupancy: 2 , maxOccupancy: 3 }
+            unitSummary = { min_occupancy: 2 , max_occupancy: 3 }
             expect(ctrl.occupancy(unitSummary)).toEqual('2-3')
 
       describe 'occupancyLabel', ->
-        describe 'when maxOccupancy == 1', ->
+        describe 'when max_occupancy == 1', ->
           it 'calls $translate.instant with "LISTINGS.PERSON"', ->
             spyOn($translate, 'instant')
             ctrl.occupancyLabel(1)
             expect($translate.instant).toHaveBeenCalledWith('LISTINGS.PERSON')
-        describe 'when maxOccupancy != 1', ->
+        describe 'when max_occupancy != 1', ->
           it 'calls $translate.instant with "LISTINGS.PEOPLE"', ->
             spyOn($translate, 'instant')
             ctrl.occupancyLabel(2)
