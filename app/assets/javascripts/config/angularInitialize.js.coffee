@@ -48,7 +48,7 @@
 
         # redirect when there's an error
         if toState.name == 'dahlia.listing' && error.status == 404
-          return $state.go('dahlia.listings-for-rent')
+          return $state.go('dahlia.listings')
         else
           return $state.go('dahlia.welcome')
 ]

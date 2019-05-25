@@ -61,14 +61,14 @@
           SharedService.getHousingCounselors()
         ]
     })
-    .state('dahlia.listings-for-rent', {
+    .state('dahlia.listings', {
       url: '/listings'
       views:
         'container@':
-          templateUrl: 'listings/templates/listings-for-rent.html'
+          templateUrl: 'listings/templates/listings.html'
       resolve:
         listings: ['$stateParams', 'ListingDataService', ($stateParams, ListingDataService) ->
-          ListingDataService.getListings({retranslate: true, clearFilters: false, params: {Tenure: 'rental'}})
+          ListingDataService.getListings({retranslate: true, clearFilters: false})
         ]
         $title: ['$translate', ($translate) ->
           # translate used without ".instant" so that it will async resolve

@@ -89,10 +89,10 @@ do ->
 
     describe 'Service.getListings', ->
       it 'passes params to http request', ->
-        fakeParams = {params: {Tenure: 'rental'}}
-        httpBackend.expect('GET', "/api/v1/listings.json?Tenure=rental").respond(fakeListings)
+        fakeParams = {params: {foo: 'bar'}}
+        httpBackend.expect('GET', "/api/v1/listings.json?foo=bar").respond(fakeListings)
         ListingDataService.getListings(fakeParams)
-        httpBackend.flush()
+        expect(httpBackend.flush).not.toThrow()
         httpBackend.verifyNoOutstandingExpectation()
         httpBackend.verifyNoOutstandingRequest()
 
@@ -198,24 +198,23 @@ do ->
         expect(sorted[0]).toEqual fakeOpenHouses[1]
 
     describe 'Service.getListingPaperAppURLs', ->
-      describe 'for a rental listing', ->
-        describe 'with no custom download URLs', ->
-          beforeEach ->
-            listing = angular.copy(fakeListing.listing)
+      describe 'for a listing with no custom download URLs', ->
+        beforeEach ->
+          listing = angular.copy(fakeListing.listing)
 
-          it 'should set Service.listingPaperAppURLs to the default rental paper application download URLs', ->
-            ListingDataService.getListingPaperAppURLs(listing)
-            expect(ListingDataService.listingPaperAppURLs).toEqual fakeListingConstantsService.rentalPaperAppURLs
+        it 'should set Service.listingPaperAppURLs to the default rental paper application download URLs', ->
+          ListingDataService.getListingPaperAppURLs(listing)
+          expect(ListingDataService.listingPaperAppURLs).toEqual fakeListingConstantsService.rentalPaperAppURLs
 
-        describe 'with custom download URLs', ->
-          beforeEach ->
-            listing = angular.copy(fakeListing.listing)
-            listing.Download_URL = 'https://englishcustomappurl.com'
+      describe 'for a listing with custom download URLs', ->
+        beforeEach ->
+          listing = angular.copy(fakeListing.listing)
+          listing.Download_URL = 'https://englishcustomappurl.com'
 
-          it 'should set Service.listingPaperAppURLs to the default rental paper application download URLs merged with any available corresponding custom URLs', ->
-            ListingDataService.getListingPaperAppURLs(listing)
-            listingEnglishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'English'})
-            listingSpanishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'Spanish'})
-            defaultSpanishURL = _.find(fakeListingConstantsService.rentalPaperAppURLs, { language: 'Spanish'})
-            expect(listingEnglishUrl.url).toEqual listing.Download_URL
-            expect(listingSpanishUrl.url).toEqual defaultSpanishURL.url
+        it 'should set Service.listingPaperAppURLs to the default rental paper application download URLs merged with any available corresponding custom URLs', ->
+          ListingDataService.getListingPaperAppURLs(listing)
+          listingEnglishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'English'})
+          listingSpanishUrl = _.find(ListingDataService.listingPaperAppURLs, { language: 'Spanish'})
+          defaultSpanishURL = _.find(fakeListingConstantsService.rentalPaperAppURLs, { language: 'Spanish'})
+          expect(listingEnglishUrl.url).toEqual listing.Download_URL
+          expect(listingSpanishUrl.url).toEqual defaultSpanishURL.url

@@ -46,5 +46,5 @@ Then 'I should see the Rent link', ->
   rentLink = element(By.cssContainingText('.button', 'Rent'))
   @expect(rentLink.isPresent()).to.eventually.equal(true)
 
-Then 'I should be on the Rental listings page', ->
+Then 'I should be on the listings page', ->
   @expect(browser.getCurrentUrl()).to.eventually.contain('/listings')
