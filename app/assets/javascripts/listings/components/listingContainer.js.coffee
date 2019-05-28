@@ -18,9 +18,6 @@ angular.module('dahlia.components')
     @openListings = ListingDataService.openListings
     @closedListings = ListingDataService.closedListings
 
-    @isRental = (listing) ->
-      ListingIdentityService.isRental(listing)
-
     @reservedLabel = (listing, type, modifier) ->
       ListingDataService.reservedLabel(listing, type, modifier)
 

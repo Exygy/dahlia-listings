@@ -11,10 +11,6 @@
 ListingIdentityService = ->
   Service = {}
 
-  Service.isRental = (listing) ->
-    return false unless listing
-    listing.Tenure == 'New rental' || listing.Tenure == 'Re-rental'
-
   # Business logic for determining if a listing is open
   # `due date` should be a datetime, to include precise hour of deadline
   Service.isOpen = (listing) ->

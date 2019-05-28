@@ -19,6 +19,9 @@ When 'I click the Download Application button', ->
     elem.isDisplayed()
   ).first().click()
 
+Given 'I go to the listings page', ->
+  Utils.Page.goTo('/listings')
+
 Given 'I go to the welcome page', ->
   Utils.Page.goTo('/')
 
@@ -46,5 +49,5 @@ Then 'I should see the Rent link', ->
   rentLink = element(By.cssContainingText('.button', 'Rent'))
   @expect(rentLink.isPresent()).to.eventually.equal(true)
 
-Then 'I should be on the Rental listings page', ->
-  @expect(browser.getCurrentUrl()).to.eventually.contain('/listings/for-rent')
+Then 'I should be on the listings page', ->
+  @expect(browser.getCurrentUrl()).to.eventually.contain('/listings')

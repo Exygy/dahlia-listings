@@ -75,7 +75,7 @@ class Api::V1::ListingsController < ApiController
   end
 
   def listings_params
-    params.permit(:ids, :Tenure)
+    params.permit(:ids)
   end
 
   def add_labels_to_unit(unit)

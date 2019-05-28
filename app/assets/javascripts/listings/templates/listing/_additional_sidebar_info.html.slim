@@ -9,10 +9,3 @@
 
 .content-group ng-if="::$ctrl.parent.agentInfoAvailable($ctrl.parent.listing)"
   ng-include src="'listings/templates/listing/_contact_leasing_agent.html'"
-
-.content-group ng-if="::$ctrl.parent.isSale($ctrl.parent.listing)"
-  h4.h-caps-lined
-    | Housing Program
-  p
-    a href="https://sfmohcd.org/for-buyers"
-      | Below Market Rate

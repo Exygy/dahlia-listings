@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'home#index', constraints: ->(req) { req.format == :html || req.format == '*/*' }
+  root to: 'home#index'
 
   ## --- API namespacing
   namespace :api do
@@ -12,41 +12,16 @@ Rails.application.routes.draw do
         end
         collection do
           get 'ami' => 'listings#ami'
-          get 'eligibility' => 'listings#eligibility'
         end
-      end
-      scope '/short-form' do
-        post 'validate-household' => 'short_form#validate_household'
-        get 'listing-application/:listing_id' => 'short_form#show_listing_application_for_user'
-        get 'application/:id' => 'short_form#show_application'
-        post 'application' => 'short_form#submit_application'
-        put 'application/:id' => 'short_form#update_application'
-        put 'claim-application/:id' => 'short_form#claim_submitted_application'
-        delete 'application/:id' => 'short_form#delete_application'
-        post 'proof' => 'short_form#upload_proof'
-        delete 'proof' => 'short_form#delete_proof'
-        get 'lending_institutions' => 'short_form#lending_institutions'
-      end
-      scope '/addresses' do
-        # address validation
-        post 'validate' => 'address_validation#validate'
-        # address geocoding
-        post 'gis-data' => 'gis#gis_data'
       end
     end
   end
-
-  # non-dahlia page
-  get '/mohcd-plus-housing' => 'home#plus_housing'
 
   # sitemap generator
   get 'sitemap.xml' => 'sitemaps#generate'
 
   # robots.txt
   get 'robots.txt' => 'robots_txts#show', format: 'text'
-
-  # catch all mailer preview paths
-  get '/rails/mailers/*path' => 'rails/mailers#preview'
 
   # Redirect translations file requests to new location
   get '/translations/:locale.json', to: 'application#asset_redirect'
