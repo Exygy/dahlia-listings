@@ -20,12 +20,12 @@ table.pricing-table.table-flex.no-margin
     td data-th="Rent"
       span ng-if="::group.monthly_rent"
         | {{::group.monthly_rent | currency:"$":0}}<small>/month</small>
-      span ng-if="::!group.monthly_rent && group.Rent_percent_of_income"
-        | {{::group.Rent_percent_of_income}}%<small> income</small>
+      span ng-if="::!group.monthly_rent && group.monthly_rent_as_percent_of_income"
+        | {{::group.monthly_rent_as_percent_of_income}}%<small> income</small>
     td data-th="Availability"
-      em ng-if="::group.status == 'Occupied'"
+      em ng-if="::group.status == 'occupied'"
         | Waitlist
-      span ng-if="::group.status != 'Occupied'"
+      span ng-if="::group.status != 'occupied'"
         | {{::group.total}}
         small
           ng-pluralize count="::group.total" when="{'0': ' units', '1': ' unit', 'other': ' units'}"
