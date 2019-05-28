@@ -8,7 +8,7 @@
 # TODO: It's not fully clear that this service needs to be a separate service.
 # Look further into where/how the functions in this service are used to see if
 # there is a reasonable alternative way to manage these functions.
-ListingIdentityService = (ListingConstantsService) ->
+ListingIdentityService = ->
   Service = {}
 
   # Business logic for determining if a listing is open
@@ -25,8 +25,6 @@ ListingIdentityService = (ListingConstantsService) ->
 ############################################################################################
 ######################################## CONFIG ############################################
 ############################################################################################
-
-ListingIdentityService.$inject = ['ListingConstantsService']
 
 angular
   .module('dahlia.services')

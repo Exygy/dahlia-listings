@@ -8,7 +8,7 @@ table.pricing-table.table-flex.no-margin
   tr ng-repeat="group in ::$ctrl.unitGroups" ng-class="::{'tr-reserved': group.reserved_type || $ctrl.parent.listingIsReservedCommunity($ctrl.parent.listing)}"
     td.tr data-th="Unit Type"
       span.h-small
-        ' {{::group.unit_type}}
+        ' {{::group.unit_type_label}}
         span.ui-icon.ui-static.ui-medium.i-splash.message-icon ng-if="::group.reserved_type"
           svg
             use xlink:href="{{::$ctrl.reservedDescriptorIcon($ctrl.parent.listing, group.reserved_type)}}"

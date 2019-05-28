@@ -35,6 +35,6 @@
       // -- Unit Summary Table(s)
       / General
       .scrollable-table-container
-        rental-stats listing="::$ctrl.listing"
+        rental-stats listing="::$ctrl.listing" ng-if="::$ctrl.listing.units_available > 0"
 
         a.button.ghost-white.expand-small.no-margin ui-sref="dahlia.listing({id: $ctrl.listing.id})" See Details
