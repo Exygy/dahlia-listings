@@ -1,7 +1,5 @@
 {
   "ami_percentage": 60,
-  "ami_chart_type": "alpha",
-  "ami_chart_year": 2018,
   "bmr_monthly_income_min": 2380,
   "floor": "5",
   "monthly_rent": 1190,
