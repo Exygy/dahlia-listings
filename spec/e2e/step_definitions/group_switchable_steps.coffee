@@ -4,7 +4,7 @@ Utils = require('../utils')
 
 setWorldConstructor(World)
 
-Given 'I try to view the SMC group homepage', ->
+Given 'I go to the SMC group homepage', ->
   url = "/?switch_domain=#{Utils.Page.smcDomain}"
   Utils.Page.goTo(url)
 

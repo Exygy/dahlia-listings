@@ -19,6 +19,9 @@ When 'I click the Download Application button', ->
     elem.isDisplayed()
   ).first().click()
 
+Given 'I go to the listings page', ->
+  Utils.Page.goTo('/listings')
+
 Given 'I go to the welcome page', ->
   Utils.Page.goTo('/')
 
