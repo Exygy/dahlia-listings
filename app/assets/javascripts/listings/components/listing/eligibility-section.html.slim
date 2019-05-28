@@ -86,7 +86,7 @@ accordion-heading.lead
                   small
                     | {{$ctrl.occupancyLabel(unit_summary.max_occupancy || unit_summary.min_occupancy)}}
 
-    li.custom-counter_item
+    li.custom-counter_item ng-if="$ctrl.listingHasPreferences()"
       .content-tile
         header.custom-counter_header
           h4.custom-counter_title

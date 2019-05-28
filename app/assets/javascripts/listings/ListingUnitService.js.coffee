@@ -42,6 +42,7 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     grouped = _.groupBy units, 'ami_percentage'
     flattened = {}
     _.forEach grouped, (amiUnits, percent) ->
+      percent = parseInt(percent)
       flattened[percent] = []
       grouped[percent] = _.groupBy amiUnits, (unit) ->
         # create an identity function to group by all unit features in the pickList
