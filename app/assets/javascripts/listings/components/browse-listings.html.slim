@@ -1,4 +1,8 @@
-ng-include src="'listings/templates/_rental-header.html'" ng-if="$ctrl.tenureType == 'rental'"
+header.directory-header#listings_header
+  .row
+    .columns
+      .directory-header_title
+        h1 translate="PAGE_TITLE.RENT"
 
 / Notification: No listings with Open Applications
 section.results-section#listing-results ng-if="!$ctrl.parent.openListings.length"
