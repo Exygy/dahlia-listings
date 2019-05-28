@@ -22,7 +22,7 @@ angular.module('dahlia.components')
         numberOfBathrooms
 
     @listingIsBMR = ->
-      ['IH-RENTAL', 'IH-OWN'].indexOf(this.parent.listing.program_type) >= 0
+      this.parent.listing.program_type == 'IH-RENTAL'
 
     return ctrl
   ]

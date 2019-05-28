@@ -18,22 +18,6 @@ do ->
       return
     )
 
-    describe 'Service.isRental', ->
-      beforeEach ->
-        testListing = angular.copy(fakeListing)
-
-      describe 'when the listing has a rental tenure', ->
-        it 'returns true', ->
-          testListing.Tenure = 'New rental'
-          expect(ListingIdentityService.isRental(testListing)).toEqual true
-          testListing.Tenure = 'Re-rental'
-          expect(ListingIdentityService.isRental(testListing)).toEqual true
-
-      describe 'when the listing does not have a tenure defined', ->
-        it 'returns false', ->
-          delete testListing.Tenure
-          expect(ListingIdentityService.isRental(testListing)).toEqual false
-
     describe 'Service.isOpen', ->
       beforeEach ->
         testListing = angular.copy(fakeListing)
