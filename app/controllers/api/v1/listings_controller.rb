@@ -23,7 +23,9 @@ class Api::V1::ListingsController < ApiController
   def show
     @listing = @listings_scope.find(params[:id])
     response = { listing: @listing.as_json }
+    chart_types = ListingService.create_chart_types(@listing)
     unit_summaries = ListingService.create_unit_summaries(@listing)
+    response[:listing][:chartTypes] = chart_types
     response[:listing][:unitSummaries] = unit_summaries
     render json: response
   end
@@ -48,22 +50,20 @@ class Api::V1::ListingsController < ApiController
 
   def ami
     # loop through all the ami levels that you just sent me
-    # call Force::ListingService.ami with each set of opts
+    # call ListingService.ami with each set of opts
     @ami_levels = []
-
-    # TODO: Replace the below Salesforce-based way of fetching ami
-    # with the new way that will be coming in the dahlia_data_models gem.
-    # params[:chartType].each_with_index do |chart_type, i|
-    #   data = {
-    #     chartType: chart_type,
-    #     percent: params[:percent][i],
-    #     year: params[:year][i],
-    #   }
-    #   @ami_levels << {
-    #     percent: data[:percent],
-    #     values: Force::ListingService.ami(data),
-    #   }
-    # end
+    params[:chartType].each_with_index do |chart_type, i|
+      data = {
+        chartId: params[:chartId][i],
+        chartType: chart_type,
+        percent: params[:percent][i],
+        year: params[:year][i],
+      }
+      @ami_levels << {
+        percent: data[:percent].to_i,
+        values: ListingService.ami(data),
+      }
+    end
 
     render json: { ami: @ami_levels }
   end

@@ -1,0 +1,11 @@
+{
+  "ami_percentage": 60,
+  "bmr_monthly_income_min": 2380,
+  "floor": "5",
+  "monthly_rent": 1190,
+  "num_bathrooms": 1,
+  "number": "503",
+  "status": "available",
+  "sq_ft": 247,
+  "unit_type": "studio"
+}
