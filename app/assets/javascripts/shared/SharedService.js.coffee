@@ -5,6 +5,7 @@
 SharedService = ($http, $state, $window, $document) ->
   Service = {}
   Service.assetPaths = $window.STATIC_ASSET_PATHS || {}
+  Service.currentGroup = document.body.dataset.group
   Service.housingCounselors =
     all: []
   # email regex source: https://web.archive.org/web/20080927221709/http://www.regular-expressions.info/email.html
