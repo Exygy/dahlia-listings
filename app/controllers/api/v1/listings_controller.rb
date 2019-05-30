@@ -23,21 +23,21 @@ class Api::V1::ListingsController < ApiController
   def show
     @listing = @listings_scope.find(params[:id])
     response = { listing: @listing.as_json }
-    chart_types = ListingService.create_chart_types(@listing)
+    ami_chart_summaries = ListingService.create_ami_chart_summaries(@listing)
     unit_summaries = ListingService.create_unit_summaries(@listing)
-    response[:listing][:chartTypes] = chart_types
+    response[:listing][:amiChartSummaries] = ami_chart_summaries
     response[:listing][:unitSummaries] = unit_summaries
     render json: response
   end
 
   def units
-    @listing = @listings_scope.find(params[:id])
-    @units = []
-    if @listing&.units
-      @units = @listing.units.as_json
-      @units.each { |u| add_labels_to_unit(u) }
+    listing = @listings_scope.find(params[:id])
+    units = []
+    if listing&.units
+      units = listing.units.as_json
+      units.each { |u| add_labels_to_unit(u) }
     end
-    render json: { units: @units }
+    render json: { units: units }
   end
 
   def preferences
@@ -49,23 +49,17 @@ class Api::V1::ListingsController < ApiController
   end
 
   def ami
-    # loop through all the ami levels that you just sent me
-    # call ListingService.ami with each set of opts
-    @ami_levels = []
-    params[:chartType].each_with_index do |chart_type, i|
-      data = {
-        chartId: params[:chartId][i],
-        chartType: chart_type,
-        percent: params[:percent][i],
-        year: params[:year][i],
-      }
-      @ami_levels << {
-        percent: data[:percent].to_i,
-        values: ListingService.ami(data),
+    ami_levels = params[:chart_ids].map.with_index do |id, i|
+      percent = params[:percents][i].to_i
+      {
+        percent: percent,
+        # FIXME: get_ami_chart_values_for_percent should be a method called on
+        # the AMI chart object
+        values: ListingService.get_ami_chart_values_for_percent(id, percent),
       }
     end
 
-    render json: { ami: @ami_levels }
+    render json: { ami: ami_levels }
   end
 
   private

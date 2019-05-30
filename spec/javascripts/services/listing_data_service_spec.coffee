@@ -146,10 +146,9 @@ do ->
       it 'assigns Service.AMI with the consolidated AMI results', ->
         stubAngularAjaxRequest httpBackend, requestURL, fakeAMI
         listing = angular.copy(fakeListing)
-        listing.chartTypes = [{
-          year: 2016
+        listing.amiChartSummaries = [{
+          chart_id: 1
           percent: 50
-          chartType: "Non-HERA"
         }]
         ListingDataService.getListingAMI(listing)
         httpBackend.flush()

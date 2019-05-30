@@ -25,7 +25,7 @@
         "priorities_descriptor": null,
         "listing_id": "a0W0P00000F8YG4UAN",
         "does_match": null,
-        "chartTypes": [
+        "amiChartSummaries": [
             {
                 "year": 2016,
                 "percent": 100,

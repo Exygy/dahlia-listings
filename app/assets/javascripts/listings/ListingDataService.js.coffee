@@ -144,14 +144,14 @@ ListingDataService = (
     angular.copy([], Service.AMICharts)
     Service.loading.ami = true
     Service.error.ami = false
-    # shouldn't happen, but safe to have a guard clause
-    return $q.when() unless listing.chartTypes
-    allChartTypes = _.sortBy(listing.chartTypes, 'percent')
+
+    return $q.when() unless listing.amiChartSummaries
+
+    sortedAmiChartSummaries = _.sortBy(listing.amiChartSummaries, 'percent')
     data =
-      'year[]': _.map(allChartTypes, 'year')
-      'chartId[]': _.map(allChartTypes, 'chartId')
-      'chartType[]': _.map(allChartTypes, 'chartType')
-      'percent[]': _.map(allChartTypes, 'percent')
+      'chart_ids[]': _.map(sortedAmiChartSummaries, 'chart_id')
+      'percents[]': _.map(sortedAmiChartSummaries, 'percent')
+
     $http.get('/api/v1/listings/ami.json', { params: data }).success((data, status, headers, config) ->
       if data && data.ami
         angular.copy(Service._consolidatedAMICharts(data.ami), Service.AMICharts)
