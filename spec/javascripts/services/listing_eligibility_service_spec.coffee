@@ -7,11 +7,11 @@ do ->
     fakeAMI = getJSONFixture('listings-api-ami.json')
     # fakeListingAllSRO has only one unit summary, in general, for SRO
     fakeListingAllSRO = angular.copy(fakeListing.listing)
-    fakeListingAllSRO.unitSummaries =
+    fakeListingAllSRO.unit_summaries =
       reserved: null
-      general: [angular.copy(fakeListing.listing.unitSummaries.general[0])]
-    fakeListingAllSRO.unitSummaries.general[0].unitType = 'SRO'
-    fakeListingAllSRO.unitSummaries.general[0].max_occupancy = 1
+      general: [angular.copy(fakeListing.listing.unit_summaries.general[0])]
+    fakeListingAllSRO.unit_summaries.general[0].unit_type = 'SRO'
+    fakeListingAllSRO.unit_summaries.general[0].occupancy_range.max = 1
     $localStorage = undefined
     incomeLevels = undefined
     minMax = undefined
@@ -34,12 +34,16 @@ do ->
 
     describe 'Service.occupancyIncomeLevels', ->
       beforeEach ->
+        minMax = [1, 2]
+        ListingEligibilityService.occupancyMinMax = jasmine.createSpy().and.returnValue(minMax)
         incomeLevels = ListingEligibilityService.occupancyIncomeLevels(fakeListing.listing, fakeAMI.ami[0])
-        minMax = ListingEligibilityService.occupancyMinMax(fakeListing.listing)
+
       it 'should filter the incomeLevels to start from min household', ->
         expect(incomeLevels[0].numOfHousehold).toEqual minMax[0]
+
       it 'should filter the incomeLevels to end at max household + 2', ->
         expect(incomeLevels.slice(-1)[0].numOfHousehold).toEqual minMax[1] + 2
+
       it 'should filter the incomeLevels to only show 1 person if all SROs', ->
         incomeLevels = ListingEligibilityService.occupancyIncomeLevels(fakeListingAllSRO, fakeAMI.ami[0])
         minMax = ListingEligibilityService.occupancyMinMax(fakeListingAllSRO)

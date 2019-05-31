@@ -11,13 +11,13 @@ angular.module('dahlia.components')
       @loading = ListingPreferenceService.loading
       @error = ListingPreferenceService.error
 
-      @occupancy = (unitSummary) ->
-        if unitSummary.max_occupancy == 1
-          "1"
-        else if unitSummary.max_occupancy == null
-          "at least #{unitSummary.min_occupancy}"
+      @formatUnitSummaryOccupancy = (unitSummary) ->
+        if unitSummary.occupancy_range.max == 1
+          '1'
+        else if unitSummary.occupancy_range.max == null
+          "at least #{unitSummary.occupancy_range.min}"
         else
-          "#{unitSummary.min_occupancy}-#{unitSummary.max_occupancy}"
+          "#{unitSummary.occupancy_range.min}-#{unitSummary.occupancy_range.max}"
 
       @occupancyLabel = (numberOfPeople) ->
         return $translate.instant('LISTINGS.PERSON') if numberOfPeople == 1

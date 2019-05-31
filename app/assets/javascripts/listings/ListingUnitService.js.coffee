@@ -33,9 +33,9 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     # combined unit_summaries is useful e.g. for overall occupancy levels across the whole listing
     listing.unit_summaries ?= {}
     combined = _.concat(listing.unit_summaries.reserved, listing.unit_summaries.general)
-    combined = _.omitBy(_.uniqBy(combined, 'unitType'), _.isNil)
-    # rename the unitType field to match how individual units are labeled
-    _.map(combined, (u) -> u.unit_type = u.unitType)
+    combined = _.omitBy(_.uniqBy(combined, 'unit_type'), _.isNil)
+    # rename the unit_type field to match how individual units are labeled
+    _.map(combined, (u) -> u.unit_type = u.unit_type)
     Service._sortGroupedUnits(combined)
 
   Service.groupUnitDetails = (units) ->

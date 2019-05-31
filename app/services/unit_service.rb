@@ -5,14 +5,14 @@ class UnitService
   class << self
     def unit_type_group_summary(unit_type, units)
       {
-        minIncomeRange: min_max_range(units, :bmr_monthly_income_min),
-        occupancyRange: occupancy_range(units),
-        rentAsPercentIncomeRange: min_max_range(
+        min_income_range: min_max_range(units, :bmr_monthly_income_min),
+        occupancy_range: occupancy_range(units),
+        rent_as_percent_income_range: min_max_range(
           units,
           :monthly_rent_as_percent_of_income,
         ),
-        rentRange: min_max_range(units, :monthly_rent),
-        unitType: I18n.t("unit_types.#{unit_type}"),
+        rent_range: min_max_range(units, :monthly_rent),
+        unit_type: I18n.t("unit_types.#{unit_type}"),
       }
     end
 

@@ -4,11 +4,11 @@
             "reserved": null,
             "general": [
                 {
-                    "minIncomeRange": { "min": 5255, "max": 5255 },
-                    "occupancyRange": { "min": 1, "max": 3 },
-                    "rentAsPercentIncomeRange": { "min": null, "max": null },
-                    "rentRange": { "min": 2102, "max": 2102 },
-                    "unitType": "1 BR"
+                    "min_income_range": { "min": 5255, "max": 5255 },
+                    "occupancy_range": { "min": 1, "max": 2 },
+                    "rent_as_percent_income_range": { "min": null, "max": null },
+                    "rent_range": { "min": 2102, "max": 2102 },
+                    "unit_type": "1 BR"
                 }
             ]
         },

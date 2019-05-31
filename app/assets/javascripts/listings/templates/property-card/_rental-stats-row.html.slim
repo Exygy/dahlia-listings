@@ -1,38 +1,38 @@
-tr ng-repeat-start="summary in ::unitSummaries" ng-if="::summary.minIncomeRange.min"
+tr ng-repeat-start="summary in ::unitSummaries" ng-if="::summary.min_income_range.min"
   / Dollar based rent
   td scope="row"
-    | {{::summary.unitType}}
+    | {{::summary.unit_type}}
   td
     span
-      span ng-show="::summary.minIncomeRange.min"
-        | {{::summary.minIncomeRange.min | currency:"$":0}}
-      span ng-show="::summary.minIncomeRange.min && (summary.minIncomeRange.min < summary.minIncomeRange.max)"
-        | -{{::summary.minIncomeRange.max | currency:"$":0}}
+      span ng-show="::summary.min_income_range.min"
+        | {{::summary.min_income_range.min | currency:"$":0}}
+      span ng-show="::summary.min_income_range.min && (summary.min_income_range.min < summary.min_income_range.max)"
+        | -{{::summary.min_income_range.max | currency:"$":0}}
       span.value-label
         | /month
   td.text-right
     span
-      | {{::summary.rentRange.min | currency:"$":0}}
-      span ng-show="::summary.rentRange.min < summary.rentRange.max"
-        | -{{::summary.rentRange.max | currency:"$":0}}
+      | {{::summary.rent_range.min | currency:"$":0}}
+      span ng-show="::summary.rent_range.min < summary.rent_range.max"
+        | -{{::summary.rent_range.max | currency:"$":0}}
       span.value-label
         | /month
 
-tr ng-repeat-end="" ng-if="::summary.rentAsPercentIncomeRange.min"
+tr ng-repeat-end="" ng-if="::summary.rent_as_percent_income_range.min"
   / Percent-based rent
   td scope="row"
-    | {{::summary.unitType}}
+    | {{::summary.unit_type}}
   td
-    span ng-show="::!summary.minIncomeRange.min"
+    span ng-show="::!summary.min_income_range.min"
       em translate="T.NONE"
-    span ng-show="::summary.minIncomeRange.min"
-      | {{::summary.minIncomeRange.min | currency:"$":0}}
+    span ng-show="::summary.min_income_range.min"
+      | {{::summary.min_income_range.min | currency:"$":0}}
       span.value-label
         | /month
   td.text-right
     span
-      | {{::summary.rentAsPercentIncomeRange.min}}
-      span ng-show="::summary.rentAsPercentIncomeRange.min < summary.rentAsPercentIncomeRange.max"
-        | -{{::summary.rentAsPercentIncomeRange.max}}
+      | {{::summary.rent_as_percent_income_range.min}}
+      span ng-show="::summary.rent_as_percent_income_range.min < summary.rent_as_percent_income_range.max"
+        | -{{::summary.rent_as_percent_income_range.max}}
       span.value-label
         | % income

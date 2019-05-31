@@ -7,11 +7,11 @@ do ->
     fakeUnits = getJSONFixture('listings-api-units.json')
     # fakeListingAllSRO has only one unit summary, in general, for SRO
     fakeListingAllSRO = angular.copy(fakeListing)
-    fakeListingAllSRO.unitSummaries =
+    fakeListingAllSRO.unit_summaries =
       reserved: null
-      general: [angular.copy(fakeListing.unitSummaries.general[0])]
-    fakeListingAllSRO.unitSummaries.general[0].unitType = 'SRO'
-    fakeListingAllSRO.unitSummaries.general[0].max_occupancy = 1
+      general: [angular.copy(fakeListing.unit_summaries.general[0])]
+    fakeListingAllSRO.unit_summaries.general[0].unit_type = 'SRO'
+    fakeListingAllSRO.unit_summaries.general[0].occupancy_range.max = 1
 
     beforeEach module('dahlia.services', ($provide) ->
       return
@@ -57,7 +57,7 @@ do ->
 
     describe 'Service.listingHasOnlySROUnits', ->
       it 'returns false if not all units are SROs', ->
-        fakeListing.unitSummaries.general[0].unit_type = 'Studio'
+        fakeListing.unit_summaries.general[0].unit_type = 'Studio'
         expect(ListingUnitService.listingHasOnlySROUnits(fakeListing)).toEqual(false)
       it 'returns true if all units are SROs', ->
         expect(ListingUnitService.listingHasOnlySROUnits(fakeListingAllSRO)).toEqual(true)
