@@ -61,9 +61,9 @@ ListingDataService = (
       angular.copy(data.listing, Service.listing)
       # fallback for fixing the layout when a listing is missing an image
       Service.listing.image_url ?= 'https://unsplash.it/g/780/438'
-      # create a combined unitSummary
-      unless Service.listing.unitSummary
-        Service.listing.unitSummary = ListingUnitService.combineUnitSummaries(Service.listing)
+      # create a combined unit_summaries
+      unless Service.listing.unit_summaries
+        Service.listing.unit_summaries = ListingUnitService.combineUnitSummaries(Service.listing)
       Service.toggleStates[Service.listing.id] ?= {}
 
   Service.getListings = (opts = {}) ->

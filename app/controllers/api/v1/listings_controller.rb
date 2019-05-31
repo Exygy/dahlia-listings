@@ -5,19 +5,22 @@ class Api::V1::ListingsController < ApiController
   before_action :set_listings_scope
 
   def index
-    # listings_params[:ids] could be nil which means get all open listings
-    # listings_params[:ids] is a comma-separated list of ids
     if listings_params[:ids]
-      @listings = @listings_scope.find(*listings_params[:ids])
+      listings = @listings_scope.find(*listings_params[:ids])
     else
-      @listings = @listings_scope
+      listings = @listings_scope
     end
 
-    @listings = @listings.as_json(include: :units).each do |listing|
-      listing['units'].each { |u| add_labels_to_unit(u) }
+    json_listings = []
+
+    listings.each do |listing|
+      unit_summaries = ListingService.create_unit_summaries(listing)
+      json_listing = listing.as_json
+      json_listing[:unit_summaries] = unit_summaries
+      json_listings << json_listing
     end
 
-    render json: { listings: @listings }
+    render json: { listings: json_listings }
   end
 
   def show
@@ -26,7 +29,7 @@ class Api::V1::ListingsController < ApiController
     ami_chart_summaries = ListingService.create_ami_chart_summaries(@listing)
     unit_summaries = ListingService.create_unit_summaries(@listing)
     response[:listing][:amiChartSummaries] = ami_chart_summaries
-    response[:listing][:unitSummaries] = unit_summaries
+    response[:listing][:unit_summaries] = unit_summaries
     render json: response
   end
 

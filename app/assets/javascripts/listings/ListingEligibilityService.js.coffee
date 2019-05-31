@@ -7,7 +7,7 @@ ListingEligibilityService = ($localStorage, ListingIdentityService, ListingUnitS
 
   Service.occupancyMinMax = (listing) ->
     minMax = [1, 1]
-    if listing.unitSummary
+    if listing.unit_summaries
       min = _.min(_.map(listing.unitSummary, 'min_occupancy')) || 1
       max = _.max(_.map(listing.unitSummary, 'max_occupancy')) || null
       minMax = [min, max]

@@ -74,7 +74,7 @@ accordion-heading.lead
                 th scope="col"
                   | {{'T.OCCUPANCY' | translate}}
             tbody
-              tr ng-repeat="unit_summary in ::$ctrl.parent.listing.unitSummary"
+              tr ng-repeat="summary in ::$ctrl.parent.listing.unit_summaries"
                 td scope="row"
                   | {{unit_summary.unit_type}}
                 td ng-if="::unit_summary.unit_type == 'Flex'"

@@ -30,9 +30,9 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
       min
 
   Service.combineUnitSummaries = (listing) ->
-    # combined unitSummary is useful e.g. for overall occupancy levels across the whole listing
-    listing.unitSummaries ?= {}
-    combined = _.concat(listing.unitSummaries.reserved, listing.unitSummaries.general)
+    # combined unit_summaries is useful e.g. for overall occupancy levels across the whole listing
+    listing.unit_summaries ?= {}
+    combined = _.concat(listing.unit_summaries.reserved, listing.unit_summaries.general)
     combined = _.omitBy(_.uniqBy(combined, 'unitType'), _.isNil)
     # rename the unitType field to match how individual units are labeled
     _.map(combined, (u) -> u.unit_type = u.unitType)
@@ -101,7 +101,7 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     !_.isEmpty(listing.priorityUnits)
 
   Service.listingHasReservedUnits = (listing) ->
-    !_.isEmpty(listing.unitSummaries.reserved)
+    !_.isEmpty(listing.unit_summaries.reserved)
 
   # `type` should match what we get from Salesforce e.g. "Veteran"
   Service.listingHasReservedUnitType = (listing, type) ->
