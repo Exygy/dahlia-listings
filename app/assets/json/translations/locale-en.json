@@ -732,11 +732,10 @@
         "UNITS_ARE_FOR": "These units are for {{type}}.",
         "UNITS_HAVE_ACCESSIBILITY_FEATURES_FOR": "These units have accessibility features for people with {{type}}.",
         "UPCOMING_LOTTERIES": {
-            "HIDE": "Hide Upcoming Lotteries",
+            "HIDE": "Hide Closed Listings",
             "NO_RESULTS": "There are no closed listings with upcoming lotteries at this time.",
-            "SHOW": "Show Upcoming Lotteries",
-            "SUBTITLE": "The application deadline has passed on the following listings, and you can still get information on the lottery date and time.",
-            "TITLE": "Upcoming Lotteries"
+            "SHOW": "Show Closed Listings",
+            "TITLE": "Closed Listings"
         },
         "VIEW_LOTTERY_RESULTS": "View Lottery Results",
         "WAITLIST_IS_OPEN": "Waitlist is open",
