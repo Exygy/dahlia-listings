@@ -1,7 +1,7 @@
 section.results-section.border-top
   article.row
     .large-12.columns
-      header.status-header.status--closed ng-class="{'has-button': $ctrl.hasListings}" aria-describedby="{{$ctrl.togglerId}}" ng-click="$ctrl.toggleListings($event)"
+      header.status-header.status--closed ng-class="{'has-button': $ctrl.hasListings}" aria-describedby="{{$ctrl.togglerId}}"
         .status-header_content
           .status-header_icon
             span.ui-icon.ui-xlarge
@@ -15,7 +15,7 @@ section.results-section.border-top
             p.no-margin ng-if="!$ctrl.hasListings"
               | {{$ctrl.text.noResults}}
         .status-header_action ng-if="$ctrl.hasListings"
-          button.button.ghost-white.expand-small.right.toggler id="{{$ctrl.togglerId}}"
+          button.button.ghost-white.expand-small.right.toggler id="{{$ctrl.togglerId}}" ng-click="$ctrl.toggleListings($event)"
             span ng-show="!$ctrl.displayToggledSection"
               ' {{$ctrl.text.showResults}}
               ' ({{$ctrl.listingResults.length}})
