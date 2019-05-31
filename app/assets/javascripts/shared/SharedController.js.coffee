@@ -4,6 +4,7 @@
 
 SharedController = ($scope, $state, $stateParams, $translate, $window, SharedService) ->
   $scope.assetPaths = SharedService.assetPaths
+  $scope.currentGroup = SharedService.currentGroup
   $scope.housingCounselors = SharedService.housingCounselors
 
   $scope.doNotGoogleTranslate = ->

@@ -22,3 +22,15 @@
   font-size: inherit;
   line-height: inherit;
 }
+
+body[data-group=smc] {
+  .splash-header.bg-image {
+    background-image: image-url('smc-banner.jpg');
+  }
+}
+
+body[data-group=sj] {
+  .splash-header.bg-image {
+    background-image: image-url('sj-banner.jpg');
+  }
+}
