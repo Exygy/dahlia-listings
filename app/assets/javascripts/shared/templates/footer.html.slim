@@ -1,10 +1,13 @@
 footer.bg-tuatara.padding-top--3x
   .row.text-center.padding-bottom--2x
-    .medium-12.columns
+    .medium-12.columns.margin-bottom
       img.city-logo.margin-bottom--2x alt="{{ 'FOOTER.COPYRIGHT' | translate }}" ng-src="{{::assetPaths['logo-' + currentGroup + '.png']}}"
-      div.margin-bottom--2x translate="FOOTER.DAHLIA_DESCRIPTION"
-    .medium-8.medium-centered.columns.skiptranslate
+      div translate="FOOTER.DAHLIA_DESCRIPTION"
+    .clear
+    .medium-8.medium-centered.columns.margin-bottom--2x.skiptranslate
       div translate="FOOTER.LISTING_QUESTIONS"
+    .medium-8.medium-centered.columns
+      div translate="FOOTER.ADDITIONAL_OPPORTUNITIES"
   section.footer-sock.bg-ebony.padding-top--2x.padding-bottom.skiptranslate
     .row
       .medium-3.large-4.columns.small-only-text-center
