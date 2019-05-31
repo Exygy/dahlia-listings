@@ -10,8 +10,6 @@ section.results-section.border-top
           hgroup.status-header_group
             h2.status-header_title.gamma
               | {{$ctrl.text.title}}
-            p.no-margin ng-if="$ctrl.hasListings"
-              | {{$ctrl.text.subtitle}}
             p.no-margin ng-if="!$ctrl.hasListings"
               | {{$ctrl.text.noResults}}
         .status-header_action ng-if="$ctrl.hasListings"
