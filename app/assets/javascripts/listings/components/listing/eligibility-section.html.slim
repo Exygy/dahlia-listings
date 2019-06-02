@@ -86,14 +86,12 @@ accordion-heading.lead
                   small
                     | {{$ctrl.occupancyLabel(summary.occupancy_range.max || summary.occupancy_range.min)}}
 
-    li.custom-counter_item ng-if="$ctrl.listingHasPreferences()"
+    li.custom-counter_item ng-if="::$ctrl.listingHasPreferences()"
       .content-tile
         header.custom-counter_header
           h4.custom-counter_title
-            | Lottery Preferences
-          p.custom-counter_text ng-if="::!$ctrl.listingHasPreferences()"
-            | Preference holders will be given highest ranking in the lottery process.
-          p.custom-counter_text ng-if="::$ctrl.listingHasPreferences()"
+            | Housing Preferences
+          p.custom-counter_text
             | Anyone may enter the housing lottery for this listing. If your household has one of the following preferences, you will be considered in the order shown here. Each preference holder will be reviewed in lottery rank order.
 
 

@@ -13,7 +13,6 @@ angular.module('dahlia.components')
     @togglerId = "#{@sectionName}-toggler"
     @text = {
       title: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.TITLE')
-      subtitle: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.SUBTITLE')
       showResults: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.SHOW')
       hideResults: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.HIDE')
       noResults: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.NO_RESULTS')

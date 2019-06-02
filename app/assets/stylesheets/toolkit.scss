@@ -4849,6 +4849,7 @@ th.hide-for-touch {
     width: 42.625rem; } }
 
 .main-content {
+  padding-bottom: 1rem;
   max-width: 100vw; }
 
 .a-top-right {
@@ -9957,6 +9958,7 @@ table {
     background: url(asset-path('logo-portal.png')) no-repeat;
     overflow: hidden;
     text-indent: -9999px;
+    font-weight: bold;
     background-position: center left;
     background-size: auto 100%;
     padding-bottom: 0 !important;
@@ -12271,22 +12273,12 @@ body.body-block {
       width: 30%; } }
 
 .splash-header {
-  position: relative; }
-  .splash-header.bg-image {
-    background: #205493 url(asset-path('bg@400.jpg')) center;
-    background-size: cover; }
-    @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-resolution: 144dpi) {
-      .splash-header.bg-image {
-        background-image: url(asset-path('bg@800.jpg')); } }
-    @media screen and (min-width: 37.5em) {
-      .splash-header.bg-image {
-        background-image: url(asset-path('bg@600.jpg')); } }
-    @media screen and (min-width: 37.5em) and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-width: 37.5em) and (min-resolution: 144dpi), screen and (min-width: 62.5em) {
-      .splash-header.bg-image {
-        background-image: url(asset-path('bg@1200.jpg')); } }
-    @media screen and (min-width: 62.5em) and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-width: 62.5em) and (min-resolution: 144dpi) {
-      .splash-header.bg-image {
-        background-image: url(asset-path('bg@2400.jpg')); } }
+  position: relative;
+  &.bg-image {
+    background: #205493 url(asset-path('bg@800.jpg')) center;
+    background-size: cover;
+  }
+}
 
 .hero-header {
   padding: 2rem 1rem;
