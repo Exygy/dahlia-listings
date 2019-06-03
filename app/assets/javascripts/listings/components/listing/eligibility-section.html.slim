@@ -74,17 +74,17 @@ accordion-heading.lead
                 th scope="col"
                   | {{'T.OCCUPANCY' | translate}}
             tbody
-              tr ng-repeat="unit_summary in ::$ctrl.parent.listing.unitSummary"
+              tr ng-repeat="summary in ::$ctrl.parent.listing.unit_summaries"
                 td scope="row"
-                  | {{unit_summary.unit_type}}
-                td ng-if="::unit_summary.unit_type == 'Flex'"
+                  | {{summary.unit_type}}
+                td ng-if="::summary.unit_type == 'Flex'"
                   | Flex people
-                td ng-if="::unit_summary.unit_type != 'Flex'"
+                td ng-if="::summary.unit_type != 'Flex'"
                   small
-                    | {{ $ctrl.occupancy(unit_summary) }}
+                    | {{ $ctrl.formatUnitSummaryOccupancy(summary) }}
                     '
                   small
-                    | {{$ctrl.occupancyLabel(unit_summary.max_occupancy || unit_summary.min_occupancy)}}
+                    | {{$ctrl.occupancyLabel(summary.occupancy_range.max || summary.occupancy_range.min)}}
 
     li.custom-counter_item ng-if="::$ctrl.listingHasPreferences()"
       .content-tile

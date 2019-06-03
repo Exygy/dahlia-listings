@@ -45,19 +45,21 @@ do ->
       beforeEach ->
         ctrl = $componentController 'eligibilitySection', locals, {parent: fakeParent}
 
-      describe 'occupancy', ->
-        describe 'max_occupancy is 1', ->
-          it 'returns min_occupancy value', ->
-            unitSummary = { min_occupancy: 1 , max_occupancy: 1 }
-            expect(ctrl.occupancy(unitSummary)).toEqual('1')
-        describe 'max_occupancy is null', ->
-          it 'returns min_occupancy value', ->
-            unitSummary = { min_occupancy: 3 , max_occupancy: null }
-            expect(ctrl.occupancy(unitSummary)).toEqual('at least 3')
-        describe 'all other unit types', ->
-          it 'returns a range for all other unit types', ->
-            unitSummary = { min_occupancy: 2 , max_occupancy: 3 }
-            expect(ctrl.occupancy(unitSummary)).toEqual('2-3')
+      describe 'formatUnitSummaryOccupancy', ->
+        describe 'when the max occupancy of the summary is 1', ->
+          it 'returns "1"', ->
+            unitSummary = { occupancy_range: { min: 0, max: 1 } }
+            expect(ctrl.formatUnitSummaryOccupancy(unitSummary)).toEqual('1')
+
+        describe 'when the max occupancy of the summary is null', ->
+          it 'returns a string saying "at least [the min occupancy value]"', ->
+            unitSummary = { occupancy_range: { min: 3, max: null } }
+            expect(ctrl.formatUnitSummaryOccupancy(unitSummary)).toEqual('at least 3')
+
+        describe 'when the max occupancy of the summary is greater than 1', ->
+          it 'returns the min-max occupancy range as a string', ->
+            unitSummary = { occupancy_range: { min: 2, max: 3 } }
+            expect(ctrl.formatUnitSummaryOccupancy(unitSummary)).toEqual('2-3')
 
       describe 'occupancyLabel', ->
         describe 'when max_occupancy == 1', ->
@@ -65,6 +67,7 @@ do ->
             spyOn($translate, 'instant')
             ctrl.occupancyLabel(1)
             expect($translate.instant).toHaveBeenCalledWith('LISTINGS.PERSON')
+
         describe 'when max_occupancy != 1', ->
           it 'calls $translate.instant with "LISTINGS.PEOPLE"', ->
             spyOn($translate, 'instant')

@@ -1,23 +1,14 @@
 {
     "listing": {
-        "unitSummaries": {
+        "unit_summaries": {
             "reserved": null,
             "general": [
                 {
-                    "unitType": "1 BR",
-                    "totalUnits": 1,
-                    "priorities": null,
-                    "minSquareFt": null,
-                    "minRentalMinIncome": 5255,
-                    "minPercentIncome": null,
-                    "min_occupancy": 1,
-                    "minMonthlyRent": 2102,
-                    "maxSquareFt": null,
-                    "maxRentalMinIncome": 5255,
-                    "maxPercentIncome": null,
-                    "max_occupancy": 3,
-                    "maxMonthlyRent": 2102,
-                    "listing_id": "a0W0P00000F8YG4UAN"
+                    "min_income_range": { "min": 5255, "max": 5255 },
+                    "occupancy_range": { "min": 1, "max": 2 },
+                    "rent_as_percent_income_range": { "min": null, "max": null },
+                    "rent_range": { "min": 2102, "max": 2102 },
+                    "unit_type": "1 BR"
                 }
             ]
         },
@@ -25,7 +16,7 @@
         "priorities_descriptor": null,
         "listing_id": "a0W0P00000F8YG4UAN",
         "does_match": null,
-        "chartTypes": [
+        "amiChartSummaries": [
             {
                 "year": 2016,
                 "percent": 100,

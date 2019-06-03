@@ -1,15 +1,38 @@
-tr ng-repeat="unit in ::units" ng-if="::unit.bmr_monthly_income_min"
-  / Dollar based rent and min income
+tr ng-repeat-start="summary in ::unitSummaries" ng-if="::summary.min_income_range.min"
+  / Dollar based rent
   td scope="row"
-    | {{::unit.unit_type_label }}
+    | {{::summary.unit_type}}
   td
     span
-      span ng-show="::unit.bmr_monthly_income_min"
-        | {{::unit.bmr_monthly_income_min | currency:"$":0}}
+      span ng-show="::summary.min_income_range.min"
+        | {{::summary.min_income_range.min | currency:"$":0}}
+      span ng-show="::summary.min_income_range.min && (summary.min_income_range.min < summary.min_income_range.max)"
+        | -{{::summary.min_income_range.max | currency:"$":0}}
       span.value-label
         | /month
   td.text-right
     span
-      | {{::unit.monthly_rent | currency:"$":0}}
-    span.value-label
-      | /month
+      | {{::summary.rent_range.min | currency:"$":0}}
+      span ng-show="::summary.rent_range.min < summary.rent_range.max"
+        | -{{::summary.rent_range.max | currency:"$":0}}
+      span.value-label
+        | /month
+
+tr ng-repeat-end="" ng-if="::summary.rent_as_percent_income_range.min"
+  / Percent-based rent
+  td scope="row"
+    | {{::summary.unit_type}}
+  td
+    span ng-show="::!summary.min_income_range.min"
+      em translate="T.NONE"
+    span ng-show="::summary.min_income_range.min"
+      | {{::summary.min_income_range.min | currency:"$":0}}
+      span.value-label
+        | /month
+  td.text-right
+    span
+      | {{::summary.rent_as_percent_income_range.min}}
+      span ng-show="::summary.rent_as_percent_income_range.min < summary.rent_as_percent_income_range.max"
+        | -{{::summary.rent_as_percent_income_range.max}}
+      span.value-label
+        | % income

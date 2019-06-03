@@ -30,18 +30,19 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
       min
 
   Service.combineUnitSummaries = (listing) ->
-    # combined unitSummary is useful e.g. for overall occupancy levels across the whole listing
-    listing.unitSummaries ?= {}
-    combined = _.concat(listing.unitSummaries.reserved, listing.unitSummaries.general)
-    combined = _.omitBy(_.uniqBy(combined, 'unitType'), _.isNil)
-    # rename the unitType field to match how individual units are labeled
-    _.map(combined, (u) -> u.unit_type = u.unitType)
+    # combined unit_summaries is useful e.g. for overall occupancy levels across the whole listing
+    listing.unit_summaries ?= {}
+    combined = _.concat(listing.unit_summaries.reserved, listing.unit_summaries.general)
+    combined = _.omitBy(_.uniqBy(combined, 'unit_type'), _.isNil)
+    # rename the unit_type field to match how individual units are labeled
+    _.map(combined, (u) -> u.unit_type = u.unit_type)
     Service._sortGroupedUnits(combined)
 
   Service.groupUnitDetails = (units) ->
     grouped = _.groupBy units, 'ami_percentage'
     flattened = {}
     _.forEach grouped, (amiUnits, percent) ->
+      percent = parseInt(percent)
       flattened[percent] = []
       grouped[percent] = _.groupBy amiUnits, (unit) ->
         # create an identity function to group by all unit features in the pickList
@@ -100,7 +101,7 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     !_.isEmpty(listing.priorityUnits)
 
   Service.listingHasReservedUnits = (listing) ->
-    !_.isEmpty(listing.unitSummaries.reserved)
+    !_.isEmpty(listing.unit_summaries.reserved)
 
   # `type` should match what we get from Salesforce e.g. "Veteran"
   Service.listingHasReservedUnitType = (listing, type) ->

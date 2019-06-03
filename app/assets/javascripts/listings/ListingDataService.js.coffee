@@ -61,9 +61,9 @@ ListingDataService = (
       angular.copy(data.listing, Service.listing)
       # fallback for fixing the layout when a listing is missing an image
       Service.listing.image_url ?= 'https://unsplash.it/g/780/438'
-      # create a combined unitSummary
-      unless Service.listing.unitSummary
-        Service.listing.unitSummary = ListingUnitService.combineUnitSummaries(Service.listing)
+      # create a combined unit_summaries
+      unless Service.listing.unit_summaries
+        Service.listing.unit_summaries = ListingUnitService.combineUnitSummaries(Service.listing)
       Service.toggleStates[Service.listing.id] ?= {}
 
   Service.getListings = (opts = {}) ->
@@ -144,13 +144,14 @@ ListingDataService = (
     angular.copy([], Service.AMICharts)
     Service.loading.ami = true
     Service.error.ami = false
-    # shouldn't happen, but safe to have a guard clause
-    return $q.when() unless listing.chartTypes
-    allChartTypes = _.sortBy(listing.chartTypes, 'percent')
+
+    return $q.when() unless listing.amiChartSummaries
+
+    sortedAmiChartSummaries = _.sortBy(listing.amiChartSummaries, 'percent')
     data =
-      'year[]': _.map(allChartTypes, 'year')
-      'chartType[]': _.map(allChartTypes, 'chartType')
-      'percent[]': _.map(allChartTypes, 'percent')
+      'chart_ids[]': _.map(sortedAmiChartSummaries, 'chart_id')
+      'percents[]': _.map(sortedAmiChartSummaries, 'percent')
+
     $http.get('/api/v1/listings/ami.json', { params: data }).success((data, status, headers, config) ->
       if data && data.ami
         angular.copy(Service._consolidatedAMICharts(data.ami), Service.AMICharts)
