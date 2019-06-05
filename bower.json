@@ -26,18 +26,6 @@
     "angular-uuids": "0.0.3",
     "angular-messages": "1.5.11",
     "angular-http-etag": "2.0.17",
-    "js-yaml": "3.6.1",
-    "lifely-angular-carousel": "1.1.0",
-    "lodash": "4.17.11",
-    "moment": "2.12.0",
-    "moment-timezone": "0.5.6",
-    "ng-currency": "0.9.6",
-    "ng-file-upload": "12.2.13",
-    "ng-idle": "1.2.2",
-    "ng-text-truncate": "Exygy/ng-text-truncate",
-    "ng-token-auth": "0.0.29",
-    "ngstorage": "0.3.11",
-    "ngMeta": "1.0.0",
-    "raven-js": "3.19.1"
+    "lifely-angular-carousel": "1.1.0"
   }
 }
