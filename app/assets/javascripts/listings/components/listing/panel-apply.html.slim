@@ -20,12 +20,10 @@
 
   / Section 2: Submit a Paper Application
   .content-group.bg-snow
-    .t-delta.t-serif ng-class="{'margin-bottom': $ctrl.parent.listing.sase_required_for_lottery_ticket}"
+    .t-delta.t-serif
       span.c-primary
         ' 2
       | {{'LISTINGS.APPLY.SUBMIT_A_PAPER_APPLICATION' | translate}}
-    p.c-charcoal.t-small ng-if="::$ctrl.parent.listing.sase_required_for_lottery_ticket"
-      | {{'LISTINGS.APPLY.INCLUDE_AN_ENVELOPE' | translate}}
 
   / Section 2a: Send by Mail
   .content-group.bg-snow ng-if="::$ctrl.parent.listing.accepting_applications_by_po_box" ng-class="{'has-divider': $ctrl.parent.listing.accepting_applications_at_leasing_agent}"

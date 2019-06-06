@@ -1,6 +1,6 @@
 do ->
   'use strict'
-  describe 'Lottery Preference Component', ->
+  describe 'Preference Component', ->
     $componentController = undefined
     ctrl = undefined
     locals = undefined

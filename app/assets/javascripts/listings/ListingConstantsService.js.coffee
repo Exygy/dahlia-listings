@@ -24,7 +24,7 @@ ListingConstantsService = () ->
   })
 
   Service.fieldsForUnitGrouping = [
-    'bmr_monthly_income_min',
+    'monthly_income_min',
     'monthly_rent_as_percent_of_income',
     'monthly_rent',
     'reserved_type',

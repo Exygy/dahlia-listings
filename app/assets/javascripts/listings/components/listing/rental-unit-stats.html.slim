@@ -13,9 +13,9 @@ table.pricing-table.table-flex.no-margin
           svg
             use xlink:href="{{::$ctrl.reservedDescriptorIcon($ctrl.parent.listing, group.reserved_type)}}"
     td data-th="Min. Income"
-      span ng-if="::group.bmr_monthly_income_min"
-        | {{::group.bmr_monthly_income_min | currency:"$":0}}<small>/month</small>
-      em ng-if="::!group.bmr_monthly_income_min"
+      span ng-if="::group.monthly_income_min"
+        | {{::group.monthly_income_min | currency:"$":0}}<small>/month</small>
+      em ng-if="::!group.monthly_income_min"
         | None
     td data-th="Rent"
       span ng-if="::group.monthly_rent"

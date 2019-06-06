@@ -1,5 +1,14 @@
 {
     "listing": {
+        "amiChartSummaries": [
+            {
+                "year": 2016,
+                "percent": 100,
+                "numOfHousehold": null,
+                "chartType": "HUD Unadjusted",
+                "amount": null
+            }
+        ],
         "unit_summaries": {
             "reserved": null,
             "general": [
@@ -12,232 +21,61 @@
                 }
             ]
         },
-        "reserved_descriptor": null,
-        "priorities_descriptor": null,
-        "listing_id": "a0W0P00000F8YG4UAN",
-        "does_match": null,
-        "amiChartSummaries": [
-            {
-                "year": 2016,
-                "percent": 100,
-                "numOfHousehold": null,
-                "chartType": "HUD Unadjusted",
-                "amount": null
-            }
-        ],
-        "attributes": {
-            "type": "Listing",
-            "url": "/services/data/v35.0/sobjects/Listing/a0W0P00000F8YG4UAN"
-        },
-        "name": "Automated Test Listing (please do not modify)",
-        "first_come_first_served": false,
-        "Building": {
-            "attributes": {
-                "type": "Building",
-                "url": "/services/data/v35.0/sobjects/Building/a0a0P00000GbJmbQAF"
-            },
-            "Id": "a0a0P00000GbJmbQAF"
-        },
-        "in_lottery": 1181,
-        "program_type": "IH-RENTAL",
-        "units_available": 1,
-        "sase_required_for_lottery_ticket": true,
-        "general_application_total": 724,
-        "lottery_status": "Not Yet Run",
-        "building_name": "Automated Test Building",
-        "project_id": "2012-021",
-        "building_city": "San Francisco",
-        "building_state": "CA",
-        "developer": "TEST Property Manager",
-        "neighborhood": "Hayes Valley",
-        "year_built": 0,
-        "last_modified_date": "2018-11-27T21:59:57.000+0000",
-        "marketing_url": "Automated-Test--Feb18",
-        "application_due_date": "2021-01-01T01:00:00.000+0000",
-        "building_url": "https://s-media-cache-ak0.pinimg.com/736x/a4/b7/e1/a4b7e1cb9732fb672483fcd61c7f70b9.jpg",
-        "legal_disclaimers": "<span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\">All BMR renters must review and acknowledge the </span></span><a href=\"http://sf-moh.org/index.aspx?page=295\" target=\"_blank\"><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"><span style=\"color: rgb(0, 0, 255);\">Inclusionary Affordable Housing Program Monitoring and Procedures Manual 2013</span></span></span></a><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"> that governs this property upon the signing of a lease for a BMR unit. </span></span><br> <br><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\">Applicants should be informed that BMR rental units in some buildings may convert to ownership units in the future.  In the case of conversion, BMR renters will be afforded certain rights as explained in the </span></span><a href=\"http://sf-moh.org/index.aspx?page=295\" target=\"_blank\"><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"><span style=\"color: rgb(0, 0, 255);\">Inclusionary Affordable Housing Program Monitoring and Procedures Manual 2013</span></span></span></a><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\">. Applicants should inquire with the building contact person listed above to determine if the building has a minimum number of years that it must remain a rental building.  (Some buildings may have such restrictions based on government sources of financing for their building.) Most buildings may have no restrictions on conversion at all. </span></span><br> <br><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\">It is also important to note that units governed by the Inclusionary Housing Program are NOT governed by the San Francisco Rent Ordinance (also known as “rent control”). Among other rules, rents may increase beyond increases allowed under “rent control.”  Please see the </span></span><span style=\"font-size: 12pt;\"><span style=\"font-family: times new roman,serif;\"><a href=\"http://sf-moh.org/index.aspx?page=295\" target=\"_blank\"><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"><span style=\"color: rgb(0, 0, 255);\">Inclusionary Affordable Housing Program Monitoring and Procedures Manual 2013</span></span></span></a></span></span><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"> for more information. </span></span>",
-        "application_organization": "280 Fell-BMR",
-        "application_street_address": "P.O. Box 420847",
-        "application_city": "San Francisco",
-        "application_state": "CA",
-        "application_postal_code": "94142",
-        "application_phone": "(415) 227-2256",
-        "lottery_results_Date": "2017-03-23",
-        "lottery_venue": "MOHCD",
-        "lottery_street_address": "1 S. Van Ness Avenue 5th FL",
-        "lottery_city": "San Francisco",
-        "lottery_date": "2017-03-22T18:00:00.000+0000",
-        "lottery_results": false,
-        "lottery_results_url": "http://sfmohcd.org/sites/default/files/Documents/MOH/Lottery%20Results/280%20Fell%20Street%20Ranked%20List-%203-22-2017.pdf",
-        "accepting_online_applications": true,
-        "lottery_winners": 0,
-        "credit_rating": "Provide a credit report with score from Equifax, Experian, or TransUnion dated within thirty (30) days of the application. \r\n\r\nAccounts that are not current or that are derogatory will negatively affect the overall scoring, which could result in the denial of the application or an additional deposit may be required. \r\n\r\nCollection accounts exceeding a combined amount of $1,000.00 (excluding student loans and medical debt) will negatively affect the overall scoring, which could result in the denial of the application or an additional deposit may be required. \r\n\r\nBankruptcy if not cleared will be an automatic denial of the rental application. \r\n\r\nNo Guarantors permitted.\r\n\r\nMitigating circumstances may be considered.",
-        "Eviction_History": "Provide minimum of 4 years rental history with at least two prior rentals in which you were responsible for paying the rent.  Applicants without rental history will still be considered. No Guarantors permitted. \r\n\r\nPrevious rental history will be reviewed and must exhibit no derogatory references. \r\n\r\nLandlord references will only check for evictions, payment history, and documented lease violations. No-fault evictions (Ellis Act, Owner Move-in evictions) will not be held against a household. \r\n\r\nAll debt owed to an apartment community must be satisfied. \r\n\r\nMitigating circumstances may be considered.",
         "accepting_applications_at_leasing_agent": false,
         "accepting_applications_by_po_box": true,
-        "blank_paper_application_can_be_picked_up": false,
-        "deposit_min": 2102,
-        "deposit_max": 2355,
-        "costs_not_included": "Tenants pay for gas, electricity.\r\n\r\nFor pet fees:  Cat is allowed with a $500 refundable deposit, $250 non-refundable cleaning fee and a pet addendum.  \r\n\r\nDogs are not allowed in the building.  \r\n\r\nOne parking space per unit available for $175 a month.",
-        "amenities": "Laundry room, underground parking, courtyard, bike room",
+        "accepting_online_applications": true,
         "accessibility": "Elevator to all floors",
+        "amenities": "Laundry room, underground parking, courtyard, bike room",
+        "application_city": "San Francisco",
+        "application_due_date": "2021-01-01T01:00:00.000+0000",
+        "application_fee": 35.00,
+        "application_organization": "280 Fell-BMR",
+        "application_phone": "(415) 227-2256",
+        "application_postal_code": "94142",
+        "application_state": "CA",
+        "application_street_address": "P.O. Box 420847",
+        "blank_paper_application_can_be_picked_up": false,
+        "building_city": "San Francisco",
+        "building_name": "Automated Test Building",
         "building_selection_criteria": "https://us.awp.autotask.net/1/filelink/113bd-37ed41a1-53a7f01459-2",
-        "required_documents": "Lottery winners will be required to fill out a building application and provide a copy of your current credit report, 3 most recent paystubs, current tax returns and W-2, and 3 most recent bank statements.",
-        "smoking_policy": "Non-smoking building",
+        "building_state": "CA",
+        "costs_not_included": "Tenants pay for gas, electricity.\r\n\r\nFor pet fees:  Cat is allowed with a $500 refundable deposit, $250 non-refundable cleaning fee and a pet addendum.  \r\n\r\nDogs are not allowed in the building.  \r\n\r\nOne parking space per unit available for $175 a month.",
+        "credit_history": "Provide a credit report with score from Equifax, Experian, or TransUnion dated within thirty (30) days of the application. \r\n\r\nAccounts that are not current or that are derogatory will negatively affect the overall scoring, which could result in the denial of the application or an additional deposit may be required. \r\n\r\nCollection accounts exceeding a combined amount of $1,000.00 (excluding student loans and medical debt) will negatively affect the overall scoring, which could result in the denial of the application or an additional deposit may be required. \r\n\r\nBankruptcy if not cleared will be an automatic denial of the rental application. \r\n\r\nNo Guarantors permitted.\r\n\r\nMitigating circumstances may be considered.",
+        "criminal_history": "Qualified applicants will be considered.",
+        "deposit_max": 2355,
+        "deposit_min": 2102,
+        "developer": "TEST Property Manager",
+        "external_id": null,
+        "rental_history": "Provide minimum of 4 years rental history with at least two prior rentals in which you were responsible for paying the rent.  Applicants without rental history will still be considered. No Guarantors permitted. \r\n\r\nPrevious rental history will be reviewed and must exhibit no derogatory references. \r\n\r\nLandlord references will only check for evictions, payment history, and documented lease violations. No-fault evictions (Ellis Act, Owner Move-in evictions) will not be held against a household. \r\n\r\nAll debt owed to an apartment community must be satisfied. \r\n\r\nMitigating circumstances may be considered.",
+        "id": 1,
+        "image_url": "https://s-media-cache-ak0.pinimg.com/736x/a4/b7/e1/a4b7e1cb9732fb672483fcd61c7f70b9.jpg",
+        "listing_id": "a0W0P00000F8YG4UAN",
+        "name": "Automated Test Listing (please do not modify)",
+        "neighborhood": "Hayes Valley",
         "pet_policy": "Dogs are not allowed in the building.",
+        "priorities_descriptor": null,
+        "program_rules": "<span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\">All BMR renters must review and acknowledge the </span></span><a href=\"http://sf-moh.org/index.aspx?page=295\" target=\"_blank\"><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"><span style=\"color: rgb(0, 0, 255);\">Inclusionary Affordable Housing Program Monitoring and Procedures Manual 2013</span></span></span></a><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"> that governs this property upon the signing of a lease for a BMR unit. </span></span><br> <br><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\">Applicants should be informed that BMR rental units in some buildings may convert to ownership units in the future.  In the case of conversion, BMR renters will be afforded certain rights as explained in the </span></span><a href=\"http://sf-moh.org/index.aspx?page=295\" target=\"_blank\"><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"><span style=\"color: rgb(0, 0, 255);\">Inclusionary Affordable Housing Program Monitoring and Procedures Manual 2013</span></span></span></a><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\">. Applicants should inquire with the building contact person listed above to determine if the building has a minimum number of years that it must remain a rental building.  (Some buildings may have such restrictions based on government sources of financing for their building.) Most buildings may have no restrictions on conversion at all. </span></span><br> <br><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\">It is also important to note that units governed by the Inclusionary Housing Program are NOT governed by the San Francisco Rent Ordinance (also known as “rent control”). Among other rules, rents may increase beyond increases allowed under “rent control.”  Please see the </span></span><span style=\"font-size: 12pt;\"><span style=\"font-family: times new roman,serif;\"><a href=\"http://sf-moh.org/index.aspx?page=295\" target=\"_blank\"><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"><span style=\"color: rgb(0, 0, 255);\">Inclusionary Affordable Housing Program Monitoring and Procedures Manual 2013</span></span></span></a></span></span><span style=\"font-size: 10pt;\"><span style=\"font-family: arial,sans-serif;\"> for more information. </span></span>",
+        "required_documents": "Lottery winners will be required to fill out a building application and provide a copy of your current credit report, 3 most recent paystubs, current tax returns and W-2, and 3 most recent bank statements.",
         "reserved_community_maximum_age": 0,
         "reserved_community_minimum_age": 0,
-        "has_waitlist": true,
-        "number_of_people_currently_on_waitlist": 10,
-        "maximum_waitlist_size": 888,
-        "total_waitlist_openings": 878,
-        "Total_number_of_building_units": 0,
-        "id": "a0W0P00000F8YG4UAN",
-        "Listing_Lottery_Preferences": [
-            {
-                "attributes": {
-                    "type": "Listing_Lottery_Preference",
-                    "url": "/services/data/v35.0/sobjects/Listing_Lottery_Preference/a0l0P00001Lx8XKQAZ"
-                },
-                "Listing": "a0W0P00000F8YG4UAN",
-                "Id": "a0l0P00001Lx8XKQAZ",
-                "Total_Submitted_Apps": 171,
-                "Order": 1,
-                "Available_Units": 1,
-                "Lottery_Preference": {
-                    "attributes": {
-                        "type": "Lottery_Preference",
-                        "url": "/services/data/v35.0/sobjects/Lottery_Preference/a0m0P00000wwi3IQAQ"
-                    },
-                    "Id": "a0m0P00000wwi3IQAQ",
-                    "Name": "Certificate of Preference (COP)"
-                }
-            },
-            {
-                "attributes": {
-                    "type": "Listing_Lottery_Preference",
-                    "url": "/services/data/v35.0/sobjects/Listing_Lottery_Preference/a0l0P00001Lx8XPQAZ"
-                },
-                "Listing": "a0W0P00000F8YG4UAN",
-                "Id": "a0l0P00001Lx8XPQAZ",
-                "Total_Submitted_Apps": 164,
-                "Order": 3,
-                "Available_Units": 3,
-                "Lottery_Preference": {
-                    "attributes": {
-                        "type": "Lottery_Preference",
-                        "url": "/services/data/v35.0/sobjects/Lottery_Preference/a0m0P00000www1mQAA"
-                    },
-                    "Id": "a0m0P00000www1mQAA",
-                    "Name": "Displaced Tenant Housing Preference (DTHP)"
-                }
-            },
-            {
-                "attributes": {
-                    "type": "Listing_Lottery_Preference",
-                    "url": "/services/data/v35.0/sobjects/Listing_Lottery_Preference/a0l0P00001Lx8XUQAZ"
-                },
-                "Listing": "a0W0P00000F8YG4UAN",
-                "Id": "a0l0P00001Lx8XUQAZ",
-                "Total_Submitted_Apps": 169,
-                "Order": 4,
-                "Available_Units": 4,
-                "Lottery_Preference": {
-                    "attributes": {
-                        "type": "Lottery_Preference",
-                        "url": "/services/data/v35.0/sobjects/Lottery_Preference/a0m0P00000www1rQAA"
-                    },
-                    "Id": "a0m0P00000www1rQAA",
-                    "Name": "neighborhood Resident Housing Preference (NRHP)"
-                }
-            },
-            {
-                "attributes": {
-                    "type": "Listing_Lottery_Preference",
-                    "url": "/services/data/v35.0/sobjects/Listing_Lottery_Preference/a0l0P00001Lx8XZQAZ"
-                },
-                "Listing": "a0W0P00000F8YG4UAN",
-                "Id": "a0l0P00001Lx8XZQAZ",
-                "Total_Submitted_Apps": 443,
-                "Order": 2,
-                "Available_Units": 2,
-                "Lottery_Preference": {
-                    "attributes": {
-                        "type": "Lottery_Preference",
-                        "url": "/services/data/v35.0/sobjects/Lottery_Preference/a0m0P00000xTqDtQAK"
-                    },
-                    "Id": "a0m0P00000xTqDtQAK",
-                    "Name": "Rent Burdened / Assisted Housing Preference"
-                }
-            },
-            {
-                "attributes": {
-                    "type": "Listing_Lottery_Preference",
-                    "url": "/services/data/v35.0/sobjects/Listing_Lottery_Preference/a0l0P00001Lx8XeQAJ"
-                },
-                "Listing": "a0W0P00000F8YG4UAN",
-                "Id": "a0l0P00001Lx8XeQAJ",
-                "Total_Submitted_Apps": 173,
-                "Order": 5,
-                "Available_Units": 5,
-                "Lottery_Preference": {
-                    "attributes": {
-                        "type": "Lottery_Preference",
-                        "url": "/services/data/v35.0/sobjects/Lottery_Preference/a0m0P00000wwi3NQAQ"
-                    },
-                    "Id": "a0m0P00000wwi3NQAQ",
-                    "Name": "Live or Work in San Francisco Preference"
-                }
-            },
-            {
-                "attributes": {
-                    "type": "Listing_Lottery_Preference",
-                    "url": "/services/data/v35.0/sobjects/Listing_Lottery_Preference/a0l0U000003lWZqQAM"
-                },
-                "Listing": "a0W0P00000F8YG4UAN",
-                "Id": "a0l0U000003lWZqQAM",
-                "Total_Submitted_Apps": 147,
-                "Lottery_Preference": {
-                    "attributes": {
-                        "type": "Lottery_Preference",
-                        "url": "/services/data/v35.0/sobjects/Lottery_Preference/a0m0P00000yuzO0QAI"
-                    },
-                    "Id": "a0m0P00000yuzO0QAI",
-                    "Name": "Alice Griffith Housing Development Resident"
-                }
-            }
-        ],
-        "Open_Houses": [
-            {
-                "attributes": {
-                    "type": "Open_Houses",
-                    "url": "/services/data/v35.0/sobjects/Open_Houses/a0Y0P00000EyLvJUAV"
-                },
-                "Listing": "a0W0P00000F8YG4UAN",
-                "Id": "a0Y0P00000EyLvJUAV",
-                "Date": "2018-02-23",
-                "Start_Time": "9:00AM",
-                "End_Time": "12:00PM"
-            }
-        ],
+        "reserved_descriptor": null,
+        "smoking_policy": "Non-smoking building",
+        "updated_at": "2018-11-27T21:59:57.000+0000",
+        "waitlist_current_size": 10,
+        "waitlist_max_size": 888,
+        "year_built": 2005,
         "units": [
             {
-                "attributes": {
-                    "type": "Unit",
-                    "url": "/services/data/v35.0/sobjects/Unit/a0b0P00001Fb3yNQAR"
-                },
-                "Listing": "a0W0P00000F8YG4UAN",
-                "Id": "a0b0P00001Fb3yNQAR",
+                "id": 1,
                 "unit_type": "1 BR",
                 "monthly_rent": 2102,
-                "bmr_monthly_income_min": 5255,
+                "monthly_income_min": 5255,
                 "status": "Available",
                 "isReservedCommunity": false,
                 "ami_chart_type": "HUD Unadjusted",
                 "ami_chart_year": 2016,
                 "ami_percentage": 100
             }
-        ],
-        "image_url": "https://s-media-cache-ak0.pinimg.com/736x/a4/b7/e1/a4b7e1cb9732fb672483fcd61c7f70b9.jpg"
+        ]
     }
 }
