@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@types/angular-ui-router@^1.1.34":
+  version "1.1.40"
+  resolved "https://registry.yarnpkg.com/@types/angular-ui-router/-/angular-ui-router-1.1.40.tgz#d8a10fe4af86a069f8c3302946363f1149e5a6b3"
+  integrity sha512-4xMwNeSNrRHj2uaLAbeACVjgTCLCDHqwMQOKE0lq6MIXngVuvc0zucGKg2WYd4i+goxl9R3agH3w4qnEseIbxw==
+  dependencies:
+    "@types/angular" "*"
+
+"@types/angular@*", "@types/angular@^1.5.17":
+  version "1.6.54"
+  resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.6.54.tgz#f9d5a03e4da7b021a6dabe5d63e899ed4567a5bd"
+  integrity sha512-xA1FuozWXeRQ7FClUbvk8ePL+dydBeDoCWRPFTHU5+8uvVtIIfLGiHA8CMkwsbddFCYnTDVbLxG85a/HBx7LtA==
+
 "@types/q@^0.0.32":
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-0.0.32.tgz#bd284e57c84f1325da702babfc82a5328190c0c5"
@@ -11,6 +23,11 @@
   version "3.0.14"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-3.0.14.tgz#0b20a2370e6b1b8322c9c3dfcaa409e6c7c0c0a9"
   integrity sha512-4GbNCDs98uHCT/OMv40qQC/OpoPbYn9XdXeTiFwHBBFO6eJhYEPUu2zDKirXSbHlvDV8oZ9l8EQ+HrEx/YS9DQ==
+
+"@uirouter/core@5.0.23":
+  version "5.0.23"
+  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.23.tgz#363b4bea635a1b48900dc7e65793a65a3b58a79e"
+  integrity sha512-rwFOH++z/KY8y+h0IOpQ5uC8Nim6E0EBCQrIjhVCr+XKYXgpK+VdtuOLFdogvbJ3AAi5Z7ei00qdEr7Did5CAg==
 
 abbrev@1:
   version "1.1.1"
@@ -56,7 +73,133 @@ ajv@6.8.1, ajv@^4.7.0, ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-angular@^1.2.0, angular@^1.2.x:
+angular-aria@^1.7.8:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.7.8.tgz#3954250ef516b57cdd3cdf41ff4ee6fcfdc84ceb"
+  integrity sha512-facq/111sZKL2wUUqRA1GnGt+lZ8KAcX9Aw04cNA+OyEkoaoRC77NY4VSOTQxghlSd0OPAdLeFnmETnuiWrpLg==
+
+angular-carousel@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/angular-carousel/-/angular-carousel-1.1.0.tgz#3e6940e68bd18a8f392fc431d97192ac348831d1"
+  integrity sha512-UiLMgT7Ueqk4xpliF1gWt4dYKXezdJA1jyZPNsUWkOGO/dwLuKi284h3BgWl4CnaH7kEBw8L2gsBOyqbYaumNQ==
+
+angular-clipboard@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/angular-clipboard/-/angular-clipboard-1.7.0.tgz#9621a6ce66eab1ea9549aa8bfb3b71352307554f"
+  integrity sha512-4/eg3zZw1MJpIsMc+mWzeVNyWBu8YWpXPTdmbgyPRp/6f0xB6I3XR2iC6Mb4mg/5E9q6exCd0sX2yiIsw+ZLJw==
+
+angular-cookie@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/angular-cookie/-/angular-cookie-4.1.0.tgz#6dfc5e1873837e249596e5c04d5a1abd85b0a6a5"
+  integrity sha1-bfxeGHODfiSVluXATVoavYWwpqU=
+
+angular-filter@^0.5.17:
+  version "0.5.17"
+  resolved "https://registry.yarnpkg.com/angular-filter/-/angular-filter-0.5.17.tgz#60c0c7380fd45872cb8f10801cfe07e154062935"
+  integrity sha1-YMDHOA/UWHLLjxCAHP4H4VQGKTU=
+  dependencies:
+    angular "*"
+
+"angular-foundation@github:Exygy/angular-foundation-bower#1f2df77d7c4336ec33b90e4c036962b28becd725":
+  version "0.8.0"
+  resolved "https://codeload.github.com/Exygy/angular-foundation-bower/tar.gz/1f2df77d7c4336ec33b90e4c036962b28becd725"
+  dependencies:
+    angular ">=1.3.0"
+
+angular-http-etag@^2.0.18:
+  version "2.0.18"
+  resolved "https://registry.yarnpkg.com/angular-http-etag/-/angular-http-etag-2.0.18.tgz#e41011be2d0b03d200f9bf74297a9b3bfa1531a2"
+  integrity sha512-hJtnAaX874Cusf8Y+F7vx39PlQ9IFuBW6c4HB+gu2e36nb9rsbVotnDaQEP8C+q4dwAz/XgSSeND1i3WAHxzTg==
+  dependencies:
+    array-map "^0.0.0"
+    deepcopy "^1.0.0"
+    object-keys "^1.0.12"
+
+angular-linkify@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/angular-linkify/-/angular-linkify-2.0.0.tgz#5c156667216110df6d19a9a7ced973445712dd22"
+  integrity sha1-XBVmZyFhEN9tGamnztlzRFcS3SI=
+
+angular-loading-overlay@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/angular-loading-overlay/-/angular-loading-overlay-1.1.1.tgz#94f1356b327c2ec79c1b39eaa473b01ec808cea6"
+  integrity sha1-lPE1azJ8LsecGznqpHOwHsgIzqY=
+
+angular-messages@^1.7.8:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.7.8.tgz#746da9c955f855ef6ceac34b2a5eb8b1b12e6a78"
+  integrity sha512-e7Oq4ugdTcAp4kLP9TNOh6mfSsYO2Uwf7NavLuNWqahDGRHYXilo2gcI/vxmFjPBOwAmreXrhYlpGLlJdzxfQg==
+
+angular-mocks@^1.7.8:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.7.8.tgz#95e7887ca91d1a3e176cc22f2d1941d284ce9767"
+  integrity sha512-LB13ESBT0eJrhQhfPXyLR9qm4LI9g44hyBFwUqZKEHEA4DpfxVTu0ONipiNoN0zWtmEAezA8u2gjcoaO2TStig==
+
+angular-pageslide-directive@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/angular-pageslide-directive/-/angular-pageslide-directive-2.2.0.tgz#e78a46240d41e2227a6e196ccd9ff29fb45b677e"
+  integrity sha512-/DnqC3lgc1aCtGSNfu+fK5qQ40eVN+dsq+9TmKQffS7ZISe0LEq6Vj/DhnE1kOzR3pXhWjXKEyJOS1gGZpG+1g==
+
+angular-sanitize@1.7.8:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.7.8.tgz#87d59f754bb18d286dfd9d6ce867299c094c6719"
+  integrity sha512-sVq51is1cVNiPytH4JIEd7iRW0OBIRQGNETWkz1c/jnLv2sBf9oDxEd8enwDz/W2ULBIpqJPK/3AsIxmZyh9pA==
+
+angular-scroll@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/angular-scroll/-/angular-scroll-1.0.2.tgz#2768ff35dbe1ce40e0c3fbedd4534888299c3e2d"
+  integrity sha1-J2j/NdvhzkDgw/vt1FNIiCmcPi0=
+
+angular-touch@^1.7.8:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/angular-touch/-/angular-touch-1.7.8.tgz#f779331c2248232510214471c7fb4c7679312ce6"
+  integrity sha512-YCpirIDueMIRJfSZg0glzqTfr3HyGx0/DeZorN3TkFelYj0YwxvwldQm2NcqpQR3SNfEj7ZbkcrXl1ekTILQOw==
+
+angular-translate-loader-static-files@^2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.18.1.tgz#ad0c3c883b18b089bdb8db02bbd366d903f857cc"
+  integrity sha512-5MuyzAROfc493kjLjKlLGLBzXiRmZIFbcWZGutDRxW5SRXSpwrH0u0hh0ENNnUyUQbe2vUspHNPIuZqlq8qIhw==
+  dependencies:
+    angular-translate "~2.18.1"
+
+angular-translate@2.18.1, angular-translate@~2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/angular-translate/-/angular-translate-2.18.1.tgz#b29ed0d2f9bac44075e7aad3284166c59e150791"
+  integrity sha512-Mw0kFBqsv5j8ItL9IhRZunIlVmIRW6iFsiTmRs9wGr2QTt8z4rehYlWyHos8qnXc/kyOYJiW50iH50CSNHGB9A==
+  dependencies:
+    angular ">=1.2.26 <=1.7"
+
+angular-ui-mask@^1.8.7:
+  version "1.8.7"
+  resolved "https://registry.yarnpkg.com/angular-ui-mask/-/angular-ui-mask-1.8.7.tgz#2935ae82345aded60e7b8c997f3902dfb8ed465b"
+  integrity sha1-KTWugjRa3tYOe4yZfzkC37jtRls=
+
+angular-ui-router-title@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/angular-ui-router-title/-/angular-ui-router-title-0.1.1.tgz#9a9fed4e6b9b85794e839a300d1088f7c438caeb"
+  integrity sha1-mp/tTmubhXlOg5owDRCI98Q4yus=
+  dependencies:
+    "@types/angular" "^1.5.17"
+    "@types/angular-ui-router" "^1.1.34"
+
+angular-ui-router@^1.0.22:
+  version "1.0.22"
+  resolved "https://registry.yarnpkg.com/angular-ui-router/-/angular-ui-router-1.0.22.tgz#54a88a06baba576e186fa1b4d5aac913eb4ccb08"
+  integrity sha512-cuq0+Di6spKEIQ1aZCGORPU9uZzJRFzuiMQDB2vLUDlo1DS8tR8/KxlThqmz6iw+8KtmUArI+5IMINSp/jwUKg==
+  dependencies:
+    "@uirouter/core" "5.0.23"
+
+angular-ui-validate@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/angular-ui-validate/-/angular-ui-validate-1.2.3.tgz#beb141f64409bfddba65c12f7581b893ddf59321"
+  integrity sha1-vrFB9kQJv926ZcEvdYG4k931kyE=
+
+angular-uuid@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/angular-uuid/-/angular-uuid-0.0.4.tgz#87a860ca1d36ae389f7ec60fd04366edc0e3584d"
+  integrity sha1-h6hgyh02rjiffsYP0ENm7cDjWE0=
+
+angular@*, angular@1.7.8, "angular@>=1.2.26 <=1.7", angular@>=1.3.0, angular@^1.2.0, angular@^1.2.x:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.8.tgz#b77ede272ce1b261e3be30c1451a0b346905a3c9"
   integrity sha512-wtef/y4COxM7ZVhddd7JtAAhyYObq9YXKar9tsW7558BImeVYteJiTxCKeJOL45lJ/+7B4wrAC49j8gTFYEthg==
@@ -94,6 +237,11 @@ array-find-index@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/array-find-index/-/array-find-index-1.0.2.tgz#df010aa1287e164bbda6f9723b0a96a1ec4187a1"
   integrity sha1-3wEKoSh+Fku9pvlyOwqWoexBh6E=
+
+array-map@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/array-map/-/array-map-0.0.0.tgz#88a2bab73d1cf7bcd5c1b118a003f66f665fa662"
+  integrity sha1-iKK6tz0c97zVwbEYoAP2b2ZfpmI=
 
 array-union@^1.0.1:
   version "1.0.2"
@@ -235,11 +383,6 @@ boom@0.4.x:
   integrity sha1-emNune1O/O+xnO9JR6PGffrukRs=
   dependencies:
     hoek "0.9.x"
-
-bower@1.8.8:
-  version "1.8.8"
-  resolved "https://registry.yarnpkg.com/bower/-/bower-1.8.8.tgz#82544be34a33aeae7efb8bdf9905247b2cffa985"
-  integrity sha512-1SrJnXnkP9soITHptSO+ahx3QKp3cVzn8poI6ujqc5SeOkg5iqM1pK9H+DSc2OQ8SnO0jC/NG4Ur/UIwy7574A==
 
 brace-expansion@^1.1.7:
   version "1.1.8"
@@ -666,6 +809,13 @@ deep-is@~0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
+
+deepcopy@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/deepcopy/-/deepcopy-1.0.1.tgz#9148580b99d82a91471892c8db25a47fe7e36d19"
+  integrity sha512-DxVCnJIn2gLS6Yw1zbKp8uHpc36caAQhLk7TjgI9rdpqcXDIsOiNfcHDpVQZdn2GCpAZRjwkOMMRWvJ69u1o7g==
+  dependencies:
+    type-detect "^4.0.8"
 
 del@^2.0.2, del@^2.2.0:
   version "2.2.2"
@@ -1275,6 +1425,11 @@ gulp-rename@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.4.0.tgz#de1c718e7c4095ae861f7296ef4f3248648240bd"
   integrity sha512-swzbIGb/arEoFK89tPY58vg3Ok1bw+d35PfUNwWqdo7KM4jkmuGA78JiDNqR+JeZFaeeHnRg9N7aihX3YPmsyg==
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
 
 har-schema@^2.0.0:
   version "2.0.0"
@@ -1910,6 +2065,11 @@ object-assign@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
+
+object-keys@^1.0.12:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
+  integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
 once@^1.3.0:
   version "1.4.0"
@@ -2665,7 +2825,7 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-type-detect@4.0.3, type-detect@^3.0.0, type-detect@^4.0.0:
+type-detect@4.0.3, type-detect@^3.0.0, type-detect@^4.0.0, type-detect@^4.0.8:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.3.tgz#0e3f2670b44099b0b46c284d136a7ef49c74c2ea"
   integrity sha1-Dj8mcLRAmbC0bChNE2p+9Jx0wuo=

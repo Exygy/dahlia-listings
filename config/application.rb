@@ -16,7 +16,6 @@ module SfDahliaWeb
     # Use the responders controller from the responders gem
     config.app_generators.scaffold_controller :responders_controller
 
-    config.assets.paths << Rails.root.join('lib', 'assets', 'bower_components')
     config.assets.paths << Rails.root.join('app', 'assets', 'json', 'translations')
 
     # http://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails
