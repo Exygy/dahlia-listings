@@ -75,9 +75,9 @@
 
     localePath = "locale-#{langKey}.json"
 
-    $http.get($window.STATIC_ASSET_PATHS[localePath]).success((data) ->
-      deferred.resolve(data)
-    ).error( ->
+    $http.get($window.STATIC_ASSET_PATHS[localePath]).then((response) ->
+      deferred.resolve(response.data)
+    ).catch(() ->
       deferred.reject({status: 503})
     )
     return deferred.promise
