@@ -713,7 +713,7 @@
         "PERSON": "person",
         "PRIORITY_UNITS": "Priority Units",
         "PRIORITY_UNITS_DESCRIPTION": "This building has units set aside if any of the following apply to you or someone in your household:",
-        "REMAINING_UNITS_AFTER_PREFERENCE_CONSIDERATION": "After all preference holders have been considered, any remaining units will be available to qualified applicants in lottery order.",
+        "REMAINING_UNITS_AFTER_PREFERENCE_CONSIDERATION": "After all preference holders have been considered, any remaining units will be available to qualified applicants.",
         "REQUIRED_DOCUMENTS": "Required Documents",
         "REQUIRED_DOCUMENTS_AFTER_APPLYING": "Should your application be chosen from the lottery, be prepared to fill out a more detailed application and provide <a href='{{url}}' target='_blank'>required supporting documents</a> within 5 business days of being contacted.",
         "RESERVED_COMMUNITY_BUILDING": "{{type}} Building",

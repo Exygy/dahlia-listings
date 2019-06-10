@@ -4,8 +4,7 @@
 
 ListingDataService = (
   $http, $localStorage, $q, $state, $translate, $timeout,
-  ListingConstantsService, ListingIdentityService,
-  ListingPreferenceService, ListingUnitService, SharedService) ->
+  ListingConstantsService, ListingIdentityService, ListingUnitService) ->
   Service = {}
   MAINTENANCE_LISTINGS = [] unless MAINTENANCE_LISTINGS
   Service.listing = {}
@@ -18,7 +17,6 @@ ListingDataService = (
   Service.error = {}
   Service.toggleStates = {}
   Service.listingPaperAppURLs = []
-  Service.preferenceMap = ListingConstantsService.preferenceMap
 
   Service.sortByDate = (sessions) ->
     # used for sorting Open_Houses and Information_Sessions
@@ -62,8 +60,8 @@ ListingDataService = (
       # fallback for fixing the layout when a listing is missing an image
       Service.listing.image_url ?= 'https://unsplash.it/g/780/438'
       # create a combined unit_summaries
-      unless Service.listing.unit_summaries
-        Service.listing.unit_summaries = ListingUnitService.combineUnitSummaries(Service.listing)
+      unless Service.listing.unitSummary
+        Service.listing.unitSummary = ListingUnitService.combineUnitSummaries(Service.listing)
       Service.toggleStates[Service.listing.id] ?= {}
 
   Service.getListings = (opts = {}) ->
@@ -221,41 +219,37 @@ ListingDataService = (
       ''
 
   Service.formattedAddress = (listing, type='Building', display='full') ->
-    street = "#{type}_Street_Address"
-    zip = "#{type}_Postal_Code"
-    if type == 'Leasing_Agent'
-      street = "#{type}_Street"
-      zip = "#{type}_Zip"
+    if type == 'leasing_agent'
+      streetFieldName = "#{type}_street"
+      cityFieldName = "#{type}_city"
+      stateFieldName = "#{type}_state"
+      zipFieldName = "#{type}_zip"
     else if type == 'Building'
-      zip = "#{type}_Zip_Code"
+      streetFieldName = "#{type}_Street_Address"
+      cityFieldName = "#{type}_City"
+      stateFieldName = "#{type}_State"
+      zipFieldName = "#{type}_Zip_Code"
 
     # If Street address is undefined, then return false for display and google map lookup
-    if listing[street] == undefined
-      return
-    # If other fields are undefined, proceed, with special string formatting
-    if listing[street] != undefined
-      Street_Address = listing[street] + ', '
-    else
-      Street_Address = ''
-    if listing["#{type}_City"] != undefined
-      City = listing["#{type}_City"]
-    else
-      City = ''
-    if listing["#{type}_State"] != undefined
-      State = listing["#{type}_State"]
-    else
-      State = ''
-    if listing[zip] != undefined
-      Zip_Code = listing[zip]
-    else
-      Zip_Code = ''
+    return if listing[streetFieldName] == undefined
 
-    if display == 'street'
-      return "#{Street_Address}"
-    else if display == 'city-state-zip'
-      return "#{City} #{State}, #{Zip_Code}"
+    street = ''
+    city = ''
+    state = ''
+    zip = ''
+
+    # If other fields are undefined, proceed, with special string formatting
+    street = listing[streetFieldName] + ', ' if listing[streetFieldName]
+    return street if display == 'street'
+
+    city = listing[cityFieldName] if listing[cityFieldName]
+    state = listing[stateFieldName] if listing[stateFieldName]
+    zip = listing[zipFieldName] if listing[zipFieldName]
+
+    if display == 'city-state-zip'
+      return "#{city} #{state}, #{zip}"
     else
-      "#{Street_Address}#{City} #{State}, #{Zip_Code}"
+      "#{street}#{city} #{state}, #{zip}"
 
   Service.getListingPaperAppURLs = (listing) ->
     urls = angular.copy(ListingConstantsService.rentalPaperAppURLs)
@@ -280,8 +274,7 @@ ListingDataService = (
 
 ListingDataService.$inject = [
   '$http', '$localStorage', '$q', '$state', '$translate', '$timeout',
-  'ListingConstantsService', 'ListingIdentityService',
-  'ListingPreferenceService', 'ListingUnitService', 'SharedService'
+  'ListingConstantsService', 'ListingIdentityService', 'ListingUnitService'
 ]
 
 angular

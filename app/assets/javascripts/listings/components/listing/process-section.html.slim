@@ -45,12 +45,15 @@ accordion-heading
               | &mdash;{{::session.End_Time}}
 
   .show-for-medium-up
+    ng-include src="'listings/templates/listing/_waitlist-info.html'"
+
+  .show-for-medium-up
     panel-apply
 
   ng-include src="'listings/templates/listing/_additional_sidebar_info.html'"
 
   .content-group
     p.t-small ng-class="{'margin-bottom--half': $ctrl.parent.listing.Multiple_Listing_Service_URL}"
-      | Listing Updated: {{::$ctrl.parent.listing.last_modified_date | date : 'MMMM d, yyyy'}}
+      | Listing Updated: {{::$ctrl.parent.listing.updated_at | date : 'MMMM d, yyyy'}}
     p.t-small ng-if="$ctrl.parent.listing.Multiple_Listing_Service_URL"
       a target="_blank" ng-href="{{$ctrl.parent.listing.Multiple_Listing_Service_URL}}" See this unit on MLS

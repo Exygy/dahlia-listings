@@ -24,7 +24,7 @@ ListingConstantsService = () ->
   })
 
   Service.fieldsForUnitGrouping = [
-    'bmr_monthly_income_min',
+    'monthly_income_min',
     'monthly_rent_as_percent_of_income',
     'monthly_rent',
     'reserved_type',
@@ -49,18 +49,6 @@ ListingConstantsService = () ->
     'Mobility impairments':
       name: 'Mobility Impairments'
       description: 'impaired mobility'
-
-  Service.preferenceMap =
-    certOfPreference: "Certificate of Preference (COP)"
-    displaced: "Displaced Tenant Housing Preference (DTHP)"
-    liveWorkInSf: "Live or Work in San Francisco Preference"
-    liveInSf: "Live or Work in San Francisco Preference"
-    workInSf: "Live or Work in San Francisco Preference"
-    neighborhoodResidence: "Neighborhood Resident Housing Preference (NRHP)"
-    assistedHousing: "Rent Burdened / Assisted Housing Preference"
-    rentBurden: "Rent Burdened / Assisted Housing Preference"
-    antiDisplacement: "Anti-Displacement Housing Preference (ADHP)"
-    aliceGriffith: "Alice Griffith Housing Development Resident"
 
   # Create a mapping to Salesforce naming conventions
   Service.RESERVED_TYPES = {

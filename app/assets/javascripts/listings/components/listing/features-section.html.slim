@@ -17,7 +17,7 @@ accordion-heading
     feature-row title="Smoking Policy" description="{{::$ctrl.parent.listing.smoking_policy}}"
     feature-row title="Pets Policy" description="{{::$ctrl.parent.listing.pet_policy}}"
     feature-row title="Property Amenities" description="{{::$ctrl.parent.listing.amenities}}"
-    feature-row title="accessibility" description="{{::$ctrl.parent.listing.accessibility}}"
+    feature-row title="Accessibility" description="{{::$ctrl.parent.listing.accessibility}}"
 
   .content-tile.feature-tile
     h4.feature-title.margin-bottom Unit Features
@@ -76,7 +76,7 @@ accordion-heading
         .small-6.columns.padding-right.padding-bottom
           span.t-small Application Fee
           p.t-delta.no-margin.t-bold
-            | {{::$ctrl.parent.listing.Fee | currency:"$":2}}
+            | {{::$ctrl.parent.listing.application_fee | currency:"$":2}}
           span.content-label.t-small
             | per applicant age 18 and over
           span.t-tiny.d-block

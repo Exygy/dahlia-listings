@@ -17,6 +17,7 @@ class Api::V1::ListingsController < ApiController
       unit_summaries = ListingService.create_unit_summaries(listing)
       json_listing = listing.as_json
       json_listing[:unit_summaries] = unit_summaries
+      json_listing[:units_available] = listing.units.available.count
       json_listings << json_listing
     end
 
@@ -24,12 +25,14 @@ class Api::V1::ListingsController < ApiController
   end
 
   def show
-    @listing = @listings_scope.find(params[:id])
-    response = { listing: @listing.as_json }
-    ami_chart_summaries = ListingService.create_ami_chart_summaries(@listing)
-    unit_summaries = ListingService.create_unit_summaries(@listing)
+    listing = @listings_scope.find(params[:id])
+    response = { listing: listing.as_json }
+    ami_chart_summaries = ListingService.create_ami_chart_summaries(listing)
+    unit_summaries = ListingService.create_unit_summaries(listing)
     response[:listing][:amiChartSummaries] = ami_chart_summaries
     response[:listing][:unit_summaries] = unit_summaries
+    response[:listing][:total_units] = listing.units.count
+    response[:listing][:units_available] = listing.units.available.count
     render json: response
   end
 
@@ -44,11 +47,9 @@ class Api::V1::ListingsController < ApiController
   end
 
   def preferences
-    # TODO: Replace the below Salesforce-based way of fetching preferences
-    # with the new way that will be coming in the dahlia_data_models gem.
-    # @preferences = Force::ListingService.preferences(params[:id], force: params[:force])
-    @preferences = []
-    render json: { preferences: @preferences }
+    listing = @listings_scope.find(params[:id])
+    preferences = listing ? listing.preferences : []
+    render json: { preferences: preferences }
   end
 
   def ami

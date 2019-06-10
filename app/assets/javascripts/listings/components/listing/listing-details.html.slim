@@ -18,7 +18,7 @@
       accordion-group.medium-right-column data-event="gtm-accordion-process" ng-if="::!$ctrl.parent.listingApplicationClosed($ctrl.parent.listing)" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.id].process"
         process-section
 
-      accordion-group.bg-white data-event="gtm-accordion-features" ng-if="$ctrl.parent.listing.show_unit_features" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.id].features"
+      accordion-group.bg-white data-event="gtm-accordion-features" ng-if="::!$ctrl.parent.listing.hide_unit_features" is-open="$ctrl.parent.toggleStates[$ctrl.parent.listing.id].features"
         header.listing-header.show-for-medium-up
           img.listing-header_icon ng-src="{{::$ctrl.parent.assetPaths['listing-features.svg']}}" alt="features-options"
           hgroup.listing-header_group

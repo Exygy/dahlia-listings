@@ -13,18 +13,14 @@ accordion-heading
       h4.content-card_title.t-serif
         | Unit Amenities
       p ng-text-truncate="::$ctrl.parent.listing.unit_amenities | stripMostTags | nl2br" ng-tt-words-threshold="60"
-    .content-card.bg-dust ng-if="::$ctrl.parent.listing.Listing_Other_Notes"
-      h4.content-card_title.t-serif
-        | {{'LISTINGS.SPECIAL_NOTES' | translate}}
-      p ng-text-truncate="::$ctrl.parent.listing.Listing_Other_Notes | stripMostTags | nl2br" ng-tt-words-threshold="60"
-    .content-card.bg-dust
+    .content-card.bg-dust ng-if="::$ctrl.parent.listing.required_documents"
       h4.content-card_title.t-serif
         | {{'LISTINGS.REQUIRED_DOCUMENTS' | translate}}
       p ng-text-truncate="::$ctrl.parent.listing.required_documents | stripMostTags | nl2br" ng-tt-words-threshold="60"
-    .content-card.bg-dust
+    .content-card.bg-dust ng-if="::$ctrl.parent.listing.program_rules"
       h4.content-card_title.t-serif
         | {{'LISTINGS.IMPORTANT_PROGRAM_RULES' | translate}}
-      p ng-text-truncate="::$ctrl.parent.listing.legal_disclaimers | stripMostTags | nl2br" ng-tt-words-threshold="60"
+      p ng-text-truncate="::$ctrl.parent.listing.program_rules | stripMostTags | nl2br" ng-tt-words-threshold="60"
     .content-card.bg-dust ng-if="::$ctrl.parent.listing.CC_and_R_URL"
       h4.content-card_title.t-serif
         | {{'LISTINGS.CC&R' | translate}}

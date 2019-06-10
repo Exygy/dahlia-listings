@@ -1,28 +1,28 @@
 h4.h-caps-lined translate="{{ 'LEASING_AGENT.CONTACT' }}"
 h3.t-delta.t-sans.no-margin
-  | {{ ::$ctrl.parent.listing.Leasing_Agent_Name }}
+  | {{ ::$ctrl.parent.listing.leasing_agent_name }}
 p.c-steel
-  | {{ ::$ctrl.parent.listing.Leasing_Agent_Title }}
-a.has-icon.margin-bottom--half title="Call {{ ::$ctrl.parent.listing.Leasing_Agent_Phone }}" ng-href="tel:{{::$ctrl.parent.listing.Leasing_Agent_Phone | htmlTel}}" ng-if="::$ctrl.parent.listing.Leasing_Agent_Phone"
+  | {{ ::$ctrl.parent.listing.leasing_agent_title }}
+a.has-icon.margin-bottom--half title="Call {{ ::$ctrl.parent.listing.leasing_agent_phone }}" ng-href="tel:{{::$ctrl.parent.listing.leasing_agent_phone | htmlTel}}" ng-if="::$ctrl.parent.listing.leasing_agent_phone"
   span.ui-icon.ui-static.ui-medium.i-primary
     svg
       use xlink:href="#i-phone"
-  | Call {{ ::$ctrl.parent.listing.Leasing_Agent_Phone }}
-p.t-small.c-steel translate="LEASING_AGENT.DUE_TO_HIGH_CALL_VOLUME" ng-if="::$ctrl.parent.listing.Leasing_Agent_Phone"
-a.has-icon.d-block.margin-bottom title="Email {{::$ctrl.parent.listing.Leasing_Agent_Email}}" ng-href="mailto:{{::$ctrl.parent.listing.Leasing_Agent_Email}}" ng-if="::$ctrl.parent.listing.Leasing_Agent_Email"
+  | Call {{ ::$ctrl.parent.listing.leasing_agent_phone }}
+p.t-small.c-steel translate="LEASING_AGENT.DUE_TO_HIGH_CALL_VOLUME" ng-if="::$ctrl.parent.listing.leasing_agent_phone"
+a.has-icon.d-block.margin-bottom title="Email {{::$ctrl.parent.listing.leasing_agent_email}}" ng-href="mailto:{{::$ctrl.parent.listing.leasing_agent_email}}" ng-if="::$ctrl.parent.listing.leasing_agent_email"
   span.ui-icon.ui-static.ui-medium.i-primary
     svg
       use xlink:href="#i-mail"
   | {{ 'LABEL.EMAIL_ADDRESS' | translate }}
-p.c-steel ng-if="::$ctrl.parent.listing.Leasing_Agent_Street"
-  | {{ ::$ctrl.parent.listing.Leasing_Agent_Street }}
+p.c-steel ng-if="::$ctrl.parent.listing.leasing_agent_street"
+  | {{ ::$ctrl.parent.listing.leasing_agent_street }}
   br
-  | {{ ::$ctrl.parent.listing.Leasing_Agent_City }} {{ ::$ctrl.parent.listing.Leasing_Agent_State }} {{ ::$ctrl.parent.listing.Leasing_Agent_Zip }}
-a.has-icon.d-block.margin-bottom.hide-for-print target="_blank" title="View Map: {{$ctrl.parent.formattedLeasingAgentAddress($ctrl.parent.listing)}}" href="https://www.google.com/maps/place/{{$ctrl.parent.formattedLeasingAgentAddress($ctrl.parent.listing)}}" ng-if="::$ctrl.parent.listing.Leasing_Agent_Street"
+  | {{ ::$ctrl.parent.listing.leasing_agent_city }} {{ ::$ctrl.parent.listing.leasing_agent_state }} {{ ::$ctrl.parent.listing.leasing_agent_zip }}
+a.has-icon.d-block.margin-bottom.hide-for-print target="_blank" title="View Map: {{$ctrl.parent.formattedLeasingAgentAddress($ctrl.parent.listing)}}" href="https://www.google.com/maps/place/{{$ctrl.parent.formattedLeasingAgentAddress($ctrl.parent.listing)}}" ng-if="::$ctrl.parent.listing.leasing_agent_street"
   span.ui-icon.ui-static.ui-medium.i-primary
     svg
       use xlink:href="#i-map"
   | {{ 'LABEL.GET_DIRECTIONS' | translate }}
-.content-group_hours ng-if="::$ctrl.parent.listing.Office_Hours"
+.content-group_hours ng-if="::$ctrl.parent.listing.leasing_agent_office_hours"
   h3.content-group_title translate="LEASING_AGENT.OFFICE_HOURS"
-  .content-group_days.inline ng-bind-html="::$ctrl.parent.listing.Office_Hours"
+  .content-group_days.inline ng-bind-html="::$ctrl.parent.listing.leasing_agent_office_hours"

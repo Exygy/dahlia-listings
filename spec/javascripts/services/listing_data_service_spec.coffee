@@ -23,8 +23,6 @@ do ->
     fakeListingIdentityService =
       isOpen: ->
       resetData: jasmine.createSpy()
-    fakeSharedService =
-      toQueryString: ->
     $localStorage = undefined
     $state = undefined
     $translate = {}
@@ -40,7 +38,6 @@ do ->
       $provide.value '$translate', $translate
       $provide.value 'ListingConstantsService', fakeListingConstantsService
       $provide.value 'ListingIdentityService', fakeListingIdentityService
-      $provide.value 'SharedService', fakeSharedService
       return
     )
 
@@ -97,24 +94,26 @@ do ->
         httpBackend.verifyNoOutstandingRequest()
 
     describe 'Service.getListing', ->
+      beforeEach ->
+        ListingDataService.resetListingData = jasmine.createSpy()
+
       afterEach ->
         httpBackend.verifyNoOutstandingExpectation()
         httpBackend.verifyNoOutstandingRequest()
+
       it 'resets the listing data before getting a new listing', ->
-        resetListingData = spyOn(ListingDataService, 'resetListingData')
         stubAngularAjaxRequest httpBackend, requestURL, fakeListing
         ListingDataService.getListing 'abc123'
         httpBackend.flush()
-        expect(resetListingData).toHaveBeenCalled()
+        expect(ListingDataService.resetListingData).toHaveBeenCalled()
 
       it 'does not reset listing data before getting the same listing', ->
         # setup the initial listing
         ListingDataService.listing = angular.copy(fakeListing.listing)
 
         # request the same listing
-        resetListingData = spyOn(ListingDataService, 'resetListingData')
-        ListingDataService.getListing ListingDataService.listing.listing_id
-        expect(resetListingData).not.toHaveBeenCalled()
+        ListingDataService.getListing(ListingDataService.listing.id)
+        expect(ListingDataService.resetListingData).not.toHaveBeenCalled()
 
       it 'assigns Service.listing with an individual listing', ->
         fakeListing.listing.units_available = 0

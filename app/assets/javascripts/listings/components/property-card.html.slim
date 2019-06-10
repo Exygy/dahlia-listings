@@ -27,9 +27,9 @@
   .property-card_content
     .property-card_stats
       h2.property-card_label
-        span translate="LISTINGS.AVAILABLE_UNITS" ng-if="::!$ctrl.listing.has_waitlist"
-        span translate="LISTINGS.OPEN_WAITLIST" ng-if="::$ctrl.listing.has_waitlist && $ctrl.listing.units_available == 0"
-        span translate="LISTINGS.AVAILABLE_AND_WAITLIST" ng-if="::$ctrl.listing.has_waitlist && $ctrl.listing.units_available > 0"
+        span translate="LISTINGS.AVAILABLE_UNITS" ng-if="::!$ctrl.listing.waitlist_max_size"
+        span translate="LISTINGS.OPEN_WAITLIST" ng-if="::$ctrl.listing.waitlist_max_size && $ctrl.listing.units_available == 0"
+        span translate="LISTINGS.AVAILABLE_AND_WAITLIST" ng-if="::$ctrl.listing.waitlist_max_size && $ctrl.listing.units_available > 0"
       p.property-card_subheader translate="LISTINGS.INCLUDES_PRIORITY_UNITS" translate-value-priorities="{{::$ctrl.priorityTypeNames($ctrl.listing)}}" ng-if="::$ctrl.priorityTypes($ctrl.listing).length"
 
       // -- Unit Summary Table(s)

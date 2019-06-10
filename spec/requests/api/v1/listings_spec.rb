@@ -61,7 +61,7 @@ describe 'Listings API' do
   #   expect(json['units'].length).to eq(1)
   # end
 
-  # it 'gets lottery preferences for a Listing' do
+  # it 'gets preferences for a Listing' do
   #   VCR.use_cassette('listings/preferences') do
   #     get "/api/v1/listings/#{listing_id}/preferences.json"
   #   end
