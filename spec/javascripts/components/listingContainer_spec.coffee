@@ -115,7 +115,7 @@ do ->
       describe '$ctrl.formattedLeasingAgentAddress', ->
         it 'calls ListingDataService.formattedAddress', ->
           ctrl.formattedLeasingAgentAddress(fakeListing)
-          expect(fakeListingDataService.formattedAddress).toHaveBeenCalledWith(fakeListing, 'Leasing_Agent')
+          expect(fakeListingDataService.formattedAddress).toHaveBeenCalledWith(fakeListing, 'leasing_agent')
 
       describe '$ctrl.listingHasSROUnits', ->
         it 'calls ListingUnitService.listingHasSROUnits with the given listing', ->
@@ -124,9 +124,9 @@ do ->
 
       describe '$ctrl.agentInfoAvailable', ->
         it 'returns undefined if agents info is not available', ->
-          fakeListing.Leasing_Agent_Street = undefined
+          fakeListing.leasing_agent_street = undefined
           expect(ctrl.agentInfoAvailable(fakeListing)).not.toBeDefined()
 
         it 'returns defined object if agents info is available', ->
-          fakeListing.Leasing_Agent_Street = '1 South Van Ness Ave San Francisco CA 94131'
+          fakeListing.leasing_agent_street = '1 South Van Ness Ave San Francisco CA 94131'
           expect(ctrl.agentInfoAvailable(fakeListing)).toBeDefined()

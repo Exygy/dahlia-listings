@@ -50,18 +50,6 @@ ListingConstantsService = () ->
       name: 'Mobility Impairments'
       description: 'impaired mobility'
 
-  Service.preferenceMap =
-    certOfPreference: "Certificate of Preference (COP)"
-    displaced: "Displaced Tenant Housing Preference (DTHP)"
-    liveWorkInSf: "Live or Work in San Francisco Preference"
-    liveInSf: "Live or Work in San Francisco Preference"
-    workInSf: "Live or Work in San Francisco Preference"
-    neighborhoodResidence: "Neighborhood Resident Housing Preference (NRHP)"
-    assistedHousing: "Rent Burdened / Assisted Housing Preference"
-    rentBurden: "Rent Burdened / Assisted Housing Preference"
-    antiDisplacement: "Anti-Displacement Housing Preference (ADHP)"
-    aliceGriffith: "Alice Griffith Housing Development Resident"
-
   # Create a mapping to Salesforce naming conventions
   Service.RESERVED_TYPES = {
     VETERAN: 'Veteran'

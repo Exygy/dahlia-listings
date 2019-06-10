@@ -37,7 +37,7 @@ angular.module('dahlia.components')
       ListingDataService.formattedAddress(listing, 'Building', display)
 
     @formattedLeasingAgentAddress = (listing) ->
-      ListingDataService.formattedAddress(listing, 'Leasing_Agent')
+      ListingDataService.formattedAddress(listing, 'leasing_agent')
 
     @getListingUnits = (listing) ->
       ListingUnitService.getListingUnits(listing)
@@ -46,7 +46,7 @@ angular.module('dahlia.components')
       ListingUnitService.listingHasSROUnits(listing)
 
     @agentInfoAvailable = (listing) ->
-      listing.Leasing_Agent_Phone || listing.Leasing_Agent_Email || listing.Leasing_Agent_Street
+      listing.leasing_agent_phone || listing.leasing_agent_email || listing.leasing_agent_street
 
     return ctrl
   ]

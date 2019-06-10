@@ -7,10 +7,6 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-
 # Ignore all node modules
 node_modules/
 npm-debug.log
@@ -41,3 +37,7 @@ TAGS
 
 # Byebug command history
 .byebug_history
+
+# Ignore the db folder because we are doing DB management in the admin
+# site: https://github.com/Exygy/dahlia-admin
+db/*

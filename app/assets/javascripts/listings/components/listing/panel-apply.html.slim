@@ -51,13 +51,3 @@
     ng-include src="'listings/templates/listing/_panel-apply-leasing-agent.html'"
     p.c-charcoal.t-small ng-if="::!$ctrl.parent.listing.accepting_applications_by_po_box"
       | {{'LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_DEADLINE' | translate}}
-
-  / Section 3: Find a Housing Counselor
-  .content-group
-    h4.h-caps-lined
-      | {{'LISTINGS.APPLY.NEED_HELP' | translate}}
-    div
-      p.c-charcoal.t-small.margin-bottom
-        | {{'LISTINGS.APPLY.VISIT_A_HOUSING_COUNSELOR' | translate}}
-      a.button.secondary.expand.no-margin ui-sref="dahlia.housing-counselors"
-        | {{'LISTINGS.APPLY.FIND_A_HOUSING_COUNSELOR' | translate}}
