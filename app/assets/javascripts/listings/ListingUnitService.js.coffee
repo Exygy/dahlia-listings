@@ -64,6 +64,7 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     _.forEach grouped, (groupedUnits, type) ->
       group = {}
       group.unitType = type
+      group.unitTypeLabel = groupedUnits[0].unit_type_label
       group.units = groupedUnits
       group.unitAreaRange = Service.unitAreaRange(groupedUnits)
       unitTypes.push(group)

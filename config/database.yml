@@ -6,7 +6,7 @@ default: &default
 
 development:
   <<: *default
-  database: dahlia_listings_dev
+  database: dahlia_dev
 
 test:
   <<: *default
