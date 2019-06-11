@@ -26,7 +26,6 @@ do ->
     fakeListingIdentityService = {}
 
     beforeEach module('ui.router')
-    beforeEach module('http-etag')
     beforeEach module('dahlia.services', ($provide) ->
       $provide.value 'ListingConstantsService', fakeListingConstantsService
       $provide.value 'ListingIdentityService', fakeListingIdentityService

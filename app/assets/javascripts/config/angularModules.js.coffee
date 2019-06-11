@@ -33,7 +33,6 @@ moment.tz.add(pacificTimezone)
   'angular.filter',
   'bsLoadingOverlay',
   'duScroll',
-  'http-etag',
   'linkify',
   'mm.foundation',
   'ngAria',
