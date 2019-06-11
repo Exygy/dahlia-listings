@@ -90,11 +90,6 @@
   ]
 ]
 
-@dahlia.config ['httpEtagProvider', (httpEtagProvider) ->
-  httpEtagProvider.defineCache 'persistentCache',
-    cacheService: 'localStorage'
-]
-
 getAvailableStorageType = ->
   # When Safari (OS X or iOS) is in private browsing mode, it appears as though localStorage and sessionStorage
   # is available, but trying to call .setItem throws an exception below:
