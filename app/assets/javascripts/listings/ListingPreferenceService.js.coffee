@@ -13,7 +13,7 @@ ListingPreferenceService = ($http) ->
     angular.copy([], listing.preferences)
     Service.error.preferences = false
 
-    httpConfig = { etagCache: true }
+    httpConfig = { }
     httpConfig.params = { force: true } if forceRecache
     $http.get("/api/v1/listings/#{listing.id}/preferences", httpConfig)
     .then((response) ->

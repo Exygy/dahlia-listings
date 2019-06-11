@@ -32,12 +32,10 @@ ListingDataService = (
     Service.resetListingData()
 
     deferred = $q.defer()
-    httpConfig = { etagCache: true }
+    httpConfig = { }
     httpConfig.params = { force: true } if forceRecache
     $http.get("/api/v1/listings/#{_id}.json", httpConfig)
     .then(
-      Service.getListingResponse(deferred, retranslate)
-    ).ifCached(
       Service.getListingResponse(deferred, retranslate)
     ).catch((response) ->
       deferred.reject(response)
@@ -51,10 +49,9 @@ ListingDataService = (
     angular.copy([], Service.listingPaperAppURLs)
 
   Service.getListingResponse = (deferred, retranslate = false) ->
-    (response, itemCache) ->
+    (response) ->
       data = response.data
       status = response.status
-      itemCache.set(data) unless status == 'cached'
       deferred.resolve()
       if !data || !data.listing
         return
@@ -69,22 +66,18 @@ ListingDataService = (
   Service.getListings = (opts = {}) ->
     deferred = $q.defer()
     $http.get("/api/v1/listings.json", {
-      etagCache: true,
       params: opts.params
     }).then(
       Service.getListingsResponse(deferred, opts.retranslate)
-    ).ifCached(
-      Service.getListingResponse(deferred, opts.retranslate)
     ).catch((response) ->
       deferred.reject(response)
     )
     return deferred.promise
 
   Service.getListingsResponse = (deferred, retranslate = false) ->
-    (response, itemCache) ->
+    (response) ->
       data = response.data
       status = response.status
-      itemCache.set(data) unless status == 'cached'
       listings = if data and data.listings then data.listings else []
       listings = Service.cleanListings(listings)
       Service.groupListings(listings)

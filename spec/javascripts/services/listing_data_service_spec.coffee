@@ -32,8 +32,6 @@ do ->
     listing = undefined
 
     beforeEach module('ui.router')
-    # have to include http-etag to allow `$http.get(...).success(...).cached(...)` to work in the tests
-    beforeEach module('http-etag')
     beforeEach module('dahlia.services', ($provide) ->
       $provide.value '$translate', $translate
       $provide.value 'ListingConstantsService', fakeListingConstantsService
@@ -47,7 +45,7 @@ do ->
       $state = _$state_
       $state.go = jasmine.createSpy()
       ListingDataService = _ListingDataService_
-      requestURL = ListingDataService.requestURL
+      requestURL = ListingDataService.requestURL || ""
       return
     )
 

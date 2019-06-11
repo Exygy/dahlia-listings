@@ -9,7 +9,6 @@ do ->
     loading = {}
 
     beforeEach module('ui.router')
-    beforeEach module('http-etag')
     beforeEach module('dahlia.services', ->
       return
     )
