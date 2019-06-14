@@ -6,8 +6,8 @@
   $httpProvider.defaults.headers.get = {}
 
   $httpProvider.interceptors.push [
-    '$location', '$rootScope', '$injector', '$q',
-    ($location, $rootScope, $injector, $q) ->
+    '$rootScope', '$injector', '$q',
+    ($rootScope, $injector, $q) ->
 
       return {
         # This is set up to universally capture HTTP errors, particularly 503

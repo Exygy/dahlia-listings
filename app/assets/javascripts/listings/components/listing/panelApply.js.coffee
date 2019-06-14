@@ -7,7 +7,9 @@ angular.module('dahlia.components')
     'ListingDataService', 'AnalyticsService',
     (ListingDataService, AnalyticsService) ->
       ctrl = @
-      @listingPaperAppURLs = ListingDataService.listingPaperAppURLs
+
+      @$onInit = ->
+        ctrl.listingPaperAppURLs = ListingDataService.listingPaperAppURLs
 
       @toggleApplicationOptions = () ->
         ctrl.showApplicationOptions = !ctrl.showApplicationOptions
