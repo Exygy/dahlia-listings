@@ -9,10 +9,6 @@ accordion-heading
 
 .content.content-section.clearfix
   .content-panel.wide
-    .content-card.bg-dust ng-if="::$ctrl.parent.listing.unit_amenities"
-      h4.content-card_title.t-serif
-        | Unit Amenities
-      p ng-text-truncate="::$ctrl.parent.listing.unit_amenities | stripMostTags | nl2br" ng-tt-words-threshold="60"
     .content-card.bg-dust ng-if="::$ctrl.parent.listing.required_documents"
       h4.content-card_title.t-serif
         | {{'LISTINGS.REQUIRED_DOCUMENTS' | translate}}

@@ -679,7 +679,7 @@
         "AVAILABLE_AND_WAITLIST": "Available Units & Open Waitlist",
         "AVAILABLE_UNITS": "Available Units",
         "AVAILABLE_UNITS_AND_WAITLIST": "Available units and waitlist",
-        "AVAILABLE_UNITS_AND_WAITLIST_DESC": "Once lottery winners fill all available units, additional lottery winners will be placed on the waitlist for <span class='t-italic'>{{number}} units</span>",
+        "AVAILABLE_UNITS_AND_WAITLIST_DESC": "Once applicants fill all available units, additional applicants will be placed on the waitlist for <span class='t-italic'>{{number}} units</span>",
         "BATH": "bath",
         "CONFIRMED_PREFERENCE_LIST": "Confirmed {{preference}} List",
         "CURRENT_WAITLIST_SIZE": "Current Waitlist Size",
