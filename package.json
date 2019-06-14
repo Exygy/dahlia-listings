@@ -10,7 +10,6 @@
         "angular-cookie": "^4.1.0",
         "angular-filter": "^0.5.17",
         "angular-foundation": "github:Exygy/angular-foundation-bower#1f2df77d7c4336ec33b90e4c036962b28becd725",
-        "angular-http-etag": "^2.0.18",
         "angular-linkify": "^2.0.0",
         "angular-loading-overlay": "^1.1.1",
         "angular-messages": "^1.7.8",
@@ -82,10 +81,10 @@
         "angular",
         "rails"
     ],
-    "name": "sf-dahlia-web",
+    "name": "dahlia-listings",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Exygy/sf-dahlia-web"
+        "url": "https://github.com/Exygy/dahlia-listings"
     },
     "version": "1.0.0",
     "resolutions": {
@@ -126,6 +125,7 @@
         "indent-string": "3.2.0",
         "core-js": "2.5.7",
         "es6-promise": "4.2.5",
-        "tmp": "0.0.33"
+        "tmp": "0.0.33",
+        "eslint/**/is-my-json-valid": "2.20.0"
     }
 }
