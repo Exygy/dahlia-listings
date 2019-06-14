@@ -31,6 +31,10 @@ body[data-group=smc] {
 
 body[data-group=sj] {
   .splash-header.bg-image {
-    background-image: image-url('sj-banner.jpg');
+    background-image: image-url('sj-banner.png');
+  }
+
+  .welcome-secondary-banner {
+    display: none;
   }
 }

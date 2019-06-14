@@ -789,7 +789,7 @@
         "ACCOUNT_SETTINGS": "Account Settings",
         "BROWSE_PROPERTIES": "Browse Properties",
         "GET_ASSISTANCE": "Get Assistance",
-        "GET_FEEDBACK": "We'd love to get <a target='_blank' class='a-white lined' href='{{feedbackUrl}}'>your feedback.</a>",
+        "GET_FEEDBACK": "This site is in <b>ALPHA</b>. We're just getting started. We'd love to get <a target='_blank' class='a-white lined' href='{{feedbackUrl}}'>your feedback.</a>",
         "MY_ACCOUNT": "My Account",
         "MY_APPLICATIONS": "My Applications",
         "MY_DASHBOARD": "My Dashboard",
@@ -953,8 +953,6 @@
         "NEW_LISTING_EMAIL_ALERT": "Get emailed whenever a new listing is posted.",
         "SEE_RENTAL_LISTINGS": "Rental Listings",
         "SIGN_UP_TODAY": "Sign Up today",
-        "TITLE": "Apply for affordable housing",
-        "SHARED_HOUSING": "Looking for Shared Housing?",
-        "SHARED_HOUSING_BUTTON": "Learn More"
+        "TITLE": "Apply for affordable housing"
     }
 }
