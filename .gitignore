@@ -11,9 +11,6 @@
 node_modules/
 npm-debug.log
 
-# Ingore Bower components
-lib/assets/bower_components
-
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
