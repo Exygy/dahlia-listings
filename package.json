@@ -3,7 +3,41 @@
     "description": "DAHLIA is the affordable housing portal for the City and County of San Francisco.",
     "license": "GPL-3.0",
     "dependencies": {
-        "bower": "1.8.8",
+        "angular": "1.7.8",
+        "angular-aria": "^1.7.8",
+        "angular-carousel": "^1.1.0",
+        "angular-clipboard": "^1.7.0",
+        "angular-cookie": "^4.1.0",
+        "angular-filter": "^0.5.17",
+        "angular-foundation": "github:Exygy/angular-foundation-bower#1f2df77d7c4336ec33b90e4c036962b28becd725",
+        "angular-linkify": "^2.0.0",
+        "angular-loading-overlay": "^1.1.1",
+        "angular-messages": "^1.7.8",
+        "angular-mocks": "^1.7.8",
+        "angular-pageslide-directive": "^2.2.0",
+        "angular-sanitize": "1.7.8",
+        "angular-scroll": "^1.0.2",
+        "angular-touch": "^1.7.8",
+        "angular-translate": "2.18.1",
+        "angular-translate-loader-static-files": "^2.18.1",
+        "angular-ui-mask": "^1.8.7",
+        "angular-ui-router": "^0.4.3",
+        "angular-ui-router-title": "^0.1.1",
+        "angular-ui-validate": "^1.2.3",
+        "angular-uuid": "^0.0.4",
+        "hammerjs": "^2.0.8",
+        "js-yaml": "^3.13.1",
+        "lodash": "^4.17.11",
+        "moment": "^2.24.0",
+        "moment-timezone": "^0.5.25",
+        "ng-currency": "^1.2.8",
+        "ng-file-upload": "^12.2.13",
+        "ng-idle": "^1.3.2",
+        "ng-meta": "^1.0.3",
+        "ng-text-truncate": "https://github.com/Exygy/ng-text-truncate",
+        "ng-token-auth": "^0.0.30",
+        "ngstorage": "^0.3.11",
+        "raven-js": "3.26.4",
         "webdriver-manager": "^12.1.4"
     },
     "devDependencies": {
@@ -26,10 +60,10 @@
     },
     "engines": {
         "node": "12.1.0",
-        "npm": "6.9.0"
+        "npm": "6.9.0",
+        "yarn": "1.x.x"
     },
     "scripts": {
-        "postinstall": "bower install",
         "protractor": "./node_modules/protractor/bin/protractor spec/e2e/conf.js",
         "rails-create-db-files": "bundle exec rails g dahlia_data_models:install",
         "rails-delete-db-files": "rm ./db/migrate/* ./db/schema.rb ./db/seeds.rb; rm -rf ./db/seed_data",
@@ -41,17 +75,16 @@
         "webdriver-update": "./node_modules/protractor/bin/webdriver-manager update"
     },
     "cacheDirectories": [
-        "node_modules",
-        "lib/assets/bower_components"
+        "node_modules"
     ],
     "keywords": [
         "angular",
         "rails"
     ],
-    "name": "sf-dahlia-web",
+    "name": "dahlia-listings",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Exygy/sf-dahlia-web"
+        "url": "https://github.com/Exygy/dahlia-listings"
     },
     "version": "1.0.0",
     "resolutions": {
@@ -92,6 +125,7 @@
         "indent-string": "3.2.0",
         "core-js": "2.5.7",
         "es6-promise": "4.2.5",
-        "tmp": "0.0.33"
+        "tmp": "0.0.33",
+        "eslint/**/is-my-json-valid": "2.20.0"
     }
 }

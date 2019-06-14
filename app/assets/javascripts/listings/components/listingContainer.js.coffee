@@ -5,18 +5,19 @@ angular.module('dahlia.components')
   controller: ['$window', 'ListingDataService', 'ListingIdentityService', 'ListingUnitService', 'SharedService',
   ($window, ListingDataService, ListingIdentityService, ListingUnitService, SharedService) ->
     ctrl = @
-    # TODO: remove Shared Service once we create a Shared Container
-    @listingEmailAlertUrl = "http://eepurl.com/dkBd2n"
-    @assetPaths = SharedService.assetPaths
-    @listing = ListingDataService.listing
-    @listings = ListingDataService.listings
-    @loading  = ListingDataService.loading
-    @error = ListingDataService.error
-    @toggleStates = ListingDataService.toggleStates
-    @AMICharts = ListingDataService.AMICharts
 
-    @openListings = ListingDataService.openListings
-    @closedListings = ListingDataService.closedListings
+    @$onInit = ->
+      # TODO: remove Shared Service once we create a Shared Container
+      ctrl.listingEmailAlertUrl = "http://eepurl.com/dkBd2n"
+      ctrl.assetPaths = SharedService.assetPaths
+      ctrl.listing = ListingDataService.listing
+      ctrl.listings = ListingDataService.listings
+      ctrl.loading  = ListingDataService.loading
+      ctrl.error = ListingDataService.error
+      ctrl.toggleStates = ListingDataService.toggleStates
+      ctrl.AMICharts = ListingDataService.AMICharts
+      ctrl.openListings = ListingDataService.openListings
+      ctrl.closedListings = ListingDataService.closedListings
 
     @reservedLabel = (listing, type, modifier) ->
       ListingDataService.reservedLabel(listing, type, modifier)

@@ -53,7 +53,10 @@ do ->
       beforeEach ->
         ctrl = $componentController 'listingContainer', locals
 
-      describe 'initiates ctrl default values', ->
+      describe '$ctrl.$onInit', ->
+        beforeEach ->
+          ctrl.$onInit()
+
         it 'populates ctrl with array of listings', ->
           expect(ctrl.listings).toEqual fakeListings
 

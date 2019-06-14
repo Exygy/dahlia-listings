@@ -43,7 +43,8 @@ SharedService = ($http, $state, $window, $document) ->
     housingCounselorJsonPath = Service.assetPaths['housing_counselors.json']
     # if we've already loaded this asset, no need to reload
     return if Service.housingCounselors.loaded == housingCounselorJsonPath
-    $http.get(housingCounselorJsonPath).success((data, status, headers, config) ->
+    $http.get(housingCounselorJsonPath).then((response) ->
+      data = response.data
       Service.housingCounselors.all = data.locations
       Service.housingCounselors.loaded = housingCounselorJsonPath
     )

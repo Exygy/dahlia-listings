@@ -3,9 +3,3 @@ angular.module('dahlia.components')
   templateUrl: 'listings/components/browse-listings.html'
   require:
     parent: '^listingContainer'
-  controller: ['$state', 'ListingDataService',
-  ($state, ListingDataService) ->
-    ctrl = @
-
-    return ctrl
-  ]

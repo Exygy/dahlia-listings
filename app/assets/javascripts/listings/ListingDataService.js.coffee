@@ -32,15 +32,13 @@ ListingDataService = (
     Service.resetListingData()
 
     deferred = $q.defer()
-    httpConfig = { etagCache: true }
+    httpConfig = { }
     httpConfig.params = { force: true } if forceRecache
     $http.get("/api/v1/listings/#{_id}.json", httpConfig)
-    .success(
+    .then(
       Service.getListingResponse(deferred, retranslate)
-    ).cached(
-      Service.getListingResponse(deferred, retranslate)
-    ).error( (data, status, headers, config) ->
-      deferred.reject(data)
+    ).catch((response) ->
+      deferred.reject(response)
     )
     return deferred.promise
 
@@ -51,8 +49,9 @@ ListingDataService = (
     angular.copy([], Service.listingPaperAppURLs)
 
   Service.getListingResponse = (deferred, retranslate = false) ->
-    (data, status, headers, config, itemCache) ->
-      itemCache.set(data) unless status == 'cached'
+    (response) ->
+      data = response.data
+      status = response.status
       deferred.resolve()
       if !data || !data.listing
         return
@@ -67,20 +66,18 @@ ListingDataService = (
   Service.getListings = (opts = {}) ->
     deferred = $q.defer()
     $http.get("/api/v1/listings.json", {
-      etagCache: true,
       params: opts.params
-    }).success(
+    }).then(
       Service.getListingsResponse(deferred, opts.retranslate)
-    ).cached(
-      Service.getListingsResponse(deferred, opts.retranslate)
-    ).error((data, status, headers, config) ->
-      deferred.reject(data)
+    ).catch((response) ->
+      deferred.reject(response)
     )
     return deferred.promise
 
   Service.getListingsResponse = (deferred, retranslate = false) ->
-    (data, status, headers, config, itemCache) ->
-      itemCache.set(data) unless status == 'cached'
+    (response) ->
+      data = response.data
+      status = response.status
       listings = if data and data.listings then data.listings else []
       listings = Service.cleanListings(listings)
       Service.groupListings(listings)
@@ -111,10 +108,11 @@ ListingDataService = (
   Service.getListingsByIds = (ids) ->
     angular.copy([], Service.listings)
     params = {params: {ids: ids.join(',') }}
-    $http.get("/api/v1/listings.json", params).success((data, status, headers, config) ->
+    $http.get("/api/v1/listings.json", params).then((response) ->
+      data = response.data
       listings = if data and data.listings then data.listings else []
       angular.copy(listings, Service.listings)
-    ).error( (data, status, headers, config) ->
+    ).catch((response) ->
       return
     )
 
@@ -125,7 +123,7 @@ ListingDataService = (
 
   Service.getListingAndCheckIfOpen = (id) ->
     deferred = $q.defer()
-    Service.getListing(id).then( ->
+    Service.getListing(id).then(() ->
       deferred.resolve(Service.listing)
       if _.isEmpty(Service.listing)
         # kick them out unless there's a real listing
@@ -150,11 +148,12 @@ ListingDataService = (
       'chart_ids[]': _.map(sortedAmiChartSummaries, 'chart_id')
       'percents[]': _.map(sortedAmiChartSummaries, 'percent')
 
-    $http.get('/api/v1/listings/ami.json', { params: data }).success((data, status, headers, config) ->
+    $http.get('/api/v1/listings/ami.json', { params: data }).then((response) ->
+      data = response.data
       if data && data.ami
         angular.copy(Service._consolidatedAMICharts(data.ami), Service.AMICharts)
       Service.loading.ami = false
-    ).error( (data, status, headers, config) ->
+    ).catch((response) ->
       Service.loading.ami = false
       Service.error.ami = true
       return

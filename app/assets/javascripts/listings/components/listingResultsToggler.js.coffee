@@ -8,17 +8,17 @@ angular.module('dahlia.components')
   controller: ['$translate', ($translate) ->
     ctrl = @
 
-    @toggleStates = {}
-    @displayToggledSection = @toggleStates[@sectionName] ? false
-    @togglerId = "#{@sectionName}-toggler"
-    @text = {
-      title: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.TITLE')
-      showResults: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.SHOW')
-      hideResults: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.HIDE')
-      noResults: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.NO_RESULTS')
-    }
-
-    @hasListings = !!@listingResults.length
+    @$onInit = ->
+      ctrl.toggleStates = {}
+      ctrl.displayToggledSection = ctrl.toggleStates[ctrl.sectionName] ? false
+      ctrl.togglerId = "#{ctrl.sectionName}-toggler"
+      ctrl.text = {
+        title: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.TITLE')
+        showResults: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.SHOW')
+        hideResults: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.HIDE')
+        noResults: $translate.instant('LISTINGS.UPCOMING_LOTTERIES.NO_RESULTS')
+      }
+      ctrl.hasListings = !!ctrl.listingResults.length
 
     @toggleListings = (e) ->
       # When you use keyboard nav to click on the button inside the header

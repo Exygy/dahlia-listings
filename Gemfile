@@ -28,9 +28,6 @@ gem 'puma'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.8.0'
-# takes care of importing javascript dependencies
-# see /bower.json for more info
-gem 'bower-rails'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Adds HTML templates into Angular's $templateCache using asset pipeline.
@@ -91,7 +88,7 @@ gem 'sentry-raven', '~> 2.6.3'
 gem 'safe_yaml'
 
 # Added at 2019-04-26 10:55:00 -0700 by jwhite:
-gem "dahlia_data_models", git: 'https://github.com/Exygy/dahlia_data_models.git', ref: '1ca6be1a7be93fff2b04177a6b90249dd8de7847'
+gem "dahlia_data_models", git: 'https://github.com/Exygy/dahlia_data_models.git', ref: 'cb97aa76c2104931b2b9c3331a0af50705a694b1'
 
 group :test do
   gem 'codeclimate-test-reporter'

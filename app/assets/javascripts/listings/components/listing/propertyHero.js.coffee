@@ -8,6 +8,9 @@ angular.module('dahlia.components')
     (ListingDataService, ListingUnitService, $sce, $timeout, $window) ->
       ctrl = @
 
+      @$onInit = ->
+        ctrl.carouselHeight = 300
+
       @isLoadingUnits = () ->
         ListingUnitService.loading.units
 
@@ -18,8 +21,6 @@ angular.module('dahlia.components')
         $timeout ->
           ctrl.carouselHeight = elem[0].offsetHeight
         , 0, false
-
-      @carouselHeight = 300
 
       @reservedUnitIcons = [
         $sce.trustAsResourceUrl('#i-star')

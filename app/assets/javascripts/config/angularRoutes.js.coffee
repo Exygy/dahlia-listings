@@ -96,7 +96,7 @@
           ($stateParams, $state, $q, ListingDataService, ListingPreferenceService, ListingUnitService) ->
             deferred = $q.defer()
             forceRecache = $stateParams.preview
-            ListingDataService.getListing($stateParams.id, forceRecache, true).then( ->
+            ListingDataService.getListing($stateParams.id, forceRecache, true).then(() ->
               deferred.resolve(ListingDataService.listing)
               if _.isEmpty(ListingDataService.listing)
                 # kick them out unless there's a real listing

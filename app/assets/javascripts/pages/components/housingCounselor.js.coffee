@@ -3,7 +3,3 @@ angular.module('dahlia.components')
   bindings:
     counselor: '<'
   templateUrl: 'pages/components/housing-counselor.html'
-
-  controller: ->
-    ctrl = @
-    return ctrl

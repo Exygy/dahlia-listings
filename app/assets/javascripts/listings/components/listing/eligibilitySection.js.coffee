@@ -8,8 +8,9 @@ angular.module('dahlia.components')
     ($filter, $translate, ListingDataService, ListingEligibilityService, ListingPreferenceService, ListingUnitService) ->
       ctrl = @
 
-      @loading = ListingPreferenceService.loading
-      @error = ListingPreferenceService.error
+      @$onInit = ->
+        ctrl.loading = ListingPreferenceService.loading
+        ctrl.error = ListingPreferenceService.error
 
       @formatUnitSummaryOccupancy = (unitSummary) ->
         if unitSummary.occupancy_range.max == 1

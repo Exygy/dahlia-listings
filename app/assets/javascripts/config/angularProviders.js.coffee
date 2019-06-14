@@ -6,8 +6,8 @@
   $httpProvider.defaults.headers.get = {}
 
   $httpProvider.interceptors.push [
-    '$location', '$rootScope', '$injector', '$q',
-    ($location, $rootScope, $injector, $q) ->
+    '$rootScope', '$injector', '$q',
+    ($rootScope, $injector, $q) ->
 
       return {
         # This is set up to universally capture HTTP errors, particularly 503
@@ -75,9 +75,9 @@
 
     localePath = "locale-#{langKey}.json"
 
-    $http.get($window.STATIC_ASSET_PATHS[localePath]).success((data) ->
-      deferred.resolve(data)
-    ).error( ->
+    $http.get($window.STATIC_ASSET_PATHS[localePath]).then((response) ->
+      deferred.resolve(response.data)
+    ).catch(() ->
       deferred.reject({status: 503})
     )
     return deferred.promise
@@ -88,11 +88,6 @@
     defaultTitle = 'DAHLIA San Francisco Housing Portal'
     if $rootScope.$title then "#{$rootScope.$title}  |  #{defaultTitle}" else defaultTitle
   ]
-]
-
-@dahlia.config ['httpEtagProvider', (httpEtagProvider) ->
-  httpEtagProvider.defineCache 'persistentCache',
-    cacheService: 'localStorage'
 ]
 
 getAvailableStorageType = ->

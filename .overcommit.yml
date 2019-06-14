@@ -59,7 +59,6 @@ PreCommit:
       - 'spec/vcr/**/*.yml'
       - 'app/assets/**/*.svg'
       - 'public/images/**/*.svg'
-      - 'lib/assets/bower_components/**/*'
 
   CustomScript:
     enabled: true
