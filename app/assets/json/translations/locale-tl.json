@@ -24,7 +24,6 @@
         "P3": "Puwede rin ninyong simulan na ang aplikasyon ngayon, i-save ito, at mag-upload na lamang ng mga dokumento sa ibang panahon.",
         "P4": "Kailangang alam ninyo na puwede lamang makasali ang bawat miyembro ng inyong kabahayan sa  iisang aplikasyon para sa bawat nakalistang pabahay. Kung may mga miyembro ng inyong kabahayan na nasa inyong aplikasyon at naroon din sa iba pang aplikasyon para sa nakalistang pabahay, hindi na magiging kuwalipikado ang lahat sa kanila. ",
         "TITLE": "Heto ang maaasahan ninyo para sa aplikasyong ito.",
-        "VIEW_DOCUMENT_CHECKLIST": "Tingnan ang Checklist o Listahan ng mga Kinakailangang Dokumento",
         "WARNING": "Anumang hindi totoong pahayag ay hahantong sa pagkakatanggal sa inyong aplikasyon mula sa lottery."
     },
     "ACCOUNT_SETTINGS": {
@@ -186,21 +185,6 @@
         "P1": "Sumahin ang inyong kabuuang gross (bago mabawasan ng buwis) na kita ng kabahayan mula sa mga sahod, benepisyo at iba pang pinagkakakitaan ng lahat ng miyembro ng kabahayan.",
         "P2": "Kailangan lamang ninyong magbigay ng tinatayang kabuuang kita sa ngayon. Kakalkulahin ang aktuwal na kabuuan kapag napili kayo sa lottery.",
         "TITLE": "Pumunta naman tayo sa kita."
-    },
-    "DOCUMENT_CHECKLIST": {
-        "ASSISTED_HOUSING_DESC": "Kailangan ninyo ng Kopya ng Lease o Kasunduan sa Pag-upa na nagpapakita ng address kung saan kayo nakatira. ",
-        "ASSISTED_HOUSING_TITLE": "Preperensiya para sa May Tulong na Pabahay o Assisted Housing ",
-        "HEADER": "Ibinabalangkas ng checklist na ito ng mga dokumento kung ao ang mga kakailanganin ng inyong kabahayan kung gusto ninyong gumamit ng preperensiya sa lottery sa aplikasyon para sa pabahay. ",
-        "P1": "Opsiyonal ang paggamit ng preperensiya sa inyong aplikasyon para sa pabahay. Sa pamamagitan ng mga preperensiya, magiging kuwalipikado kayo para sa mas mataas na ranggo sa lottery. ",
-        "P2": "Kailangang maipakita ng lahat ng dokumento ang tamang pangalan at kasalukuyang address. Bukod sa lease o kasunduan sa pag-upa, kailangang nagpapakita ang lahat ng dokumento ng petsa na nasa loob ng 45 araw bago ang petsa ng inyong aplikasyon. ",
-        "RENT_BURDEN_DOC_1": "Kailangan ninyo ng Kopya ng Lease o Kasunduan sa Pag-upa na nagpapakita ng address kung saan kayo nakatira. ",
-        "RENT_BURDEN_DOC_2": "Kailangan ninyong ipakita ang bayad sa upa nitong nakaraang buwan na kaama ang 1 (isa) sa mga sumusunod: ",
-        "RENT_BURDEN_TITLE": "Preperensiya para sa Nabibigatan sa Halaga ng Upa ",
-        "RESIDENT_DESC": "Kailangan ninyo ng 1 (isa) sa mga sumusunod na dokumento na nagpapakita ng address kung saan kayo nakatira sa San Francisco: ",
-        "RESIDENT_TITLE": "Pagbibigay ng Preperensiya para sa Nakatira sa Komunidad at Nakatira sa San Francisco at Preperensiya sa Pabahay upang Labanan ang Pagkawala ng mga Tahanan (Anti-Displacement Housing) ",
-        "TITLE": "Checklist o Listahan ng mga Kinakailangang Dokumento ",
-        "WORK_SF_DESC": "Kakailanganin ninyo ang 1 (isa) sa mga sumusunod na dokumento na nagpapakita ng address kung saan kayo nagtatrabaho sa San Francisco: ",
-        "WORK_SF_TITLE": "Pagbibigay ng Preperensiya para sa Nagtatrabaho sa San Francisco "
     },
     "DOUBLE_SUBMITTED": {
         "P1": "Pakaisipin na kapag nasa dalawang aplikasyon ang indibidwal sa iisang nakalistang pabahay, hindi na magiging kuwalipikado ang mga aplikasyong iyon.",
@@ -777,7 +761,6 @@
         "ADDITIONAL_RESOURCES": "Iba pang mga Oportunidad para sa Pabahay",
         "CREATE_ACCOUNT": "Gumawa ng Account ",
         "DISCLAIMER": "Pagwawaksi ng Responsibilidad (Disclaimer)",
-        "DOCUMENT_CHECKLIST": "Checklist o Listahan ng mga Kinakailangang Dokumento",
         "ELIGIBILITY_ESTIMATOR": "Tingnan kung Kuwalipikado Kayo ",
         "FAVORITES": "Ang Aking mga Paborito",
         "GET_ASSISTANCE": "Kumuha ng Tulong ",
