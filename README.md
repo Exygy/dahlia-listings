@@ -9,7 +9,7 @@ Cross-browser testing done with <a href="https://www.browserstack.com/"><img src
 
 ## Purpose
 
-DAHLIA is the affordable housing portal for the City and County of San Francisco. It was created by the Mayor's Office of Housing and Community Development (MOHCD). This application streamlines the process of searching and applying for affordable housing, making it easier to rent and stay in our City.
+DAHLIA is the affordable housing portal for the Bay Area. This application streamlines the process of searching and applying for affordable housing, making it easier to rent and stay in our region.
 
 ## Technical Architecture
 
@@ -106,7 +106,7 @@ Any changes to Rubocop, JSCS, etc. affect the entire team, so it should be a gro
 ### Credits
 
 ### License
-Copyright (C) 2015 City and County of San Francisco
+Copyright (C) 2019 Exygy
 
 DAHLIA is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
