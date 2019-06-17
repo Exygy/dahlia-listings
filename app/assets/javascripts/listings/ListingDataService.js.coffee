@@ -217,17 +217,16 @@ ListingDataService = (
     else
       ''
 
-  Service.formattedAddress = (listing, type='Building', display='full') ->
+  Service.formattedAddress = (listing, type='building', display='full') ->
     if type == 'leasing_agent'
       streetFieldName = "#{type}_street"
-      cityFieldName = "#{type}_city"
-      stateFieldName = "#{type}_state"
       zipFieldName = "#{type}_zip"
-    else if type == 'Building'
-      streetFieldName = "#{type}_Street_Address"
-      cityFieldName = "#{type}_City"
-      stateFieldName = "#{type}_State"
-      zipFieldName = "#{type}_Zip_Code"
+    else if type == 'building'
+      streetFieldName = "#{type}_street_address"
+      zipFieldName = "#{type}_zip_code"
+
+    cityFieldName = "#{type}_city"
+    stateFieldName = "#{type}_state"
 
     # If Street address is undefined, then return false for display and google map lookup
     return if listing[streetFieldName] == undefined
