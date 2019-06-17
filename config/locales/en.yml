@@ -22,7 +22,6 @@
 en:
   hello: "Hello %{name}"
   thank_you: "Thank you"
-  email_signature: "The San Francisco Mayor's Office of Housing and Community Development"
 
   smc:
     test: "I am San Mateo County, %{yes}"

@@ -131,5 +131,5 @@ do ->
           expect(ctrl.agentInfoAvailable(fakeListing)).not.toBeDefined()
 
         it 'returns defined object if agents info is available', ->
-          fakeListing.leasing_agent_street = '1 South Van Ness Ave San Francisco CA 94131'
+          fakeListing.leasing_agent_street = '123 Main St'
           expect(ctrl.agentInfoAvailable(fakeListing)).toBeDefined()
