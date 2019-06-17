@@ -94,7 +94,6 @@ group :test do
   gem 'codeclimate-test-reporter'
   gem 'rails-controller-testing'
   gem 'webmock'
-  gem 'vcr'
 end
 
 group :development do

@@ -56,7 +56,6 @@ PreCommit:
     enabled: true
     description: 'Checking for trailing whitespace'
     exclude:
-      - 'spec/vcr/**/*.yml'
       - 'app/assets/**/*.svg'
       - 'public/images/**/*.svg'
 
