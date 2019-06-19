@@ -35,7 +35,7 @@ angular.module('dahlia.components')
       !ListingIdentityService.isOpen(listing)
 
     @formattedBuildingAddress = (listing, display) ->
-      ListingDataService.formattedAddress(listing, 'Building', display)
+      ListingDataService.formattedAddress(listing, 'building', display)
 
     @formattedLeasingAgentAddress = (listing) ->
       ListingDataService.formattedAddress(listing, 'leasing_agent')

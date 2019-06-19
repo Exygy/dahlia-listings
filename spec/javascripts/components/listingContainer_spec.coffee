@@ -108,7 +108,7 @@ do ->
         it 'expects ListingDataService.formattedAddress to be called', ->
           display = 'full'
           ctrl.formattedBuildingAddress(fakeListing, display)
-          expect(fakeListingDataService.formattedAddress).toHaveBeenCalledWith(fakeListing, 'Building', display)
+          expect(fakeListingDataService.formattedAddress).toHaveBeenCalledWith(fakeListing, 'building', display)
 
       describe '$ctrl.getListingUnits', ->
         it 'calls ListingUnitService.getListingUnits with the given listing', ->

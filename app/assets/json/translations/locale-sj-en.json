@@ -3,10 +3,12 @@
     "DOWNLOAD_URL": "https://sfmohcd.org/sites/default/files/Documents/MOH/BMR%20Rental%20Paper%20Applications/English%20BMR%20Rent%20Short%20Form%20Paper%20App.pdf"
   },
   "FOOTER": {
-    "COPYRIGHT": "San Jose",
+    "ADDITIONAL_OPPORTUNITIES": "",
+    "COPYRIGHT": "City of San José",
     "CONTACT_EMAIL": "customerservice@sanjoseca.gov",
-    "DAHLIA_DESCRIPTION": "<p class='c-iron'>DAHLIA: SJ Housing Portal is a project of the <br><a class='a-white' href='{{mohcdUrl}}' target='_blank'>Mayor's Office of Housing and Community Development</a></p><p class='t-small c-iron margin-top'>in partnership with<br><a class='a-white' href='{{sfDeptUrl}}' target='_blank'>San Francisco Department of Technology</a><br><a class='a-white' href='{{mayorUrl}}' target='_blank'>Mayor's Office of Civic Innovation</a></p>",
+    "DAHLIA_DESCRIPTION": "<p class='c-iron'>DAHLIA: San José Housing Portal is a project of the <br><a class='a-white' href='http://www.sanjoseca.gov/housing' target='_blank'>City of San José, Housing Department</a></p>",
     "DISCLAIMER_URL": "https://www.sanjoseca.gov/index.aspx?NID=2533",
+    "LISTING_QUESTIONS": "For general program inquiries, you may call the Housing Department at 408-535-3860.",
     "PRIVACY_POLICY_URL": "https://www.sanjoseca.gov/index.aspx?NID=5728"
   },
   "NAV": {
@@ -14,6 +16,9 @@
     "FEEDBACK_URL": "https://forms.gle/fBpnRoM6XZJRxmxR6"
   },
   "T": {
-    "DAHLIA_HOUSING_PORTAL": "DAHLIA<br/><span class=\"header-logo-group\">San Jose</span>"
+    "DAHLIA_HOUSING_PORTAL": "DAHLIA<br/><span class=\"header-logo-group\">San José Housing Portal</span>"
+  },
+  "WELCOME": {
+    "TITLE": "Apply for affordable housing in San José"
   }
 }
