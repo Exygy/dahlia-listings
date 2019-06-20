@@ -790,7 +790,7 @@
         "FAVORITES": "My Favorites",
         "GET_ASSISTANCE": "Get Assistance",
         "HOUSING_COUNSELORS": "Housing Counselors",
-        "RENTAL_LISTINGS": "Rental Listings",
+        "RENTAL_LISTINGS": "See Rentals",
         "RENT": "Rent affordable housing",
         "LISTING_APPLICATION": "{{listing}} Application",
         "MY_ACCOUNT": "My Account",
@@ -934,7 +934,7 @@
         "ALL_APPLICATION_CLOSED": "All applications are currently closed, but you can view closed listings.",
         "BROWSE_OTHER_RESOURCES_SPLASH_MESSAGE": "We encourage you to browse other resources, as there may be more rental and ownership opportunities.",
         "NEW_LISTING_EMAIL_ALERT": "Get emailed whenever a new listing is posted.",
-        "SEE_RENTAL_LISTINGS": "Rental Listings",
+        "SEE_RENTAL_LISTINGS": "See Rentals",
         "SIGN_UP_TODAY": "Sign Up today",
         "TITLE": "Apply for affordable housing"
     }

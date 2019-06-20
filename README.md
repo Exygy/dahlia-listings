@@ -4,7 +4,6 @@
 [![Test Coverage](https://codeclimate.com/github/Exygy/dahlia-listings/badges/coverage.svg)](https://codeclimate.com/github/Exygy/dahlia-listings/coverage)
 [![Build Status](https://semaphoreci.com/api/v1/exygy/dahlia-listings-full/branches/master/badge.svg)](https://semaphoreci.com/exygy/dahlia-listings)
 
-
 Cross-browser testing done with <a href="https://www.browserstack.com/"><img src="./Browserstack-logo@2x.png?raw=true" height="30" ></a>
 
 ## Purpose
@@ -23,7 +22,7 @@ Before you install DAHLIA, your system should have the following:
 - [Bundler](https://github.com/bundler/bundler) `gem install bundler`
 - [Homebrew](http://brew.sh)
 - [PostgreSQL](https://postgresapp.com/)
-- Use Node v12.1.x (npm v6.9.x) — If you need to manage multiple Node versions on your dev machine, [install NVM]((https://github.com/nvm-sh/nvm)) and run `nvm use`
+- Use Node v12.1.x (npm v6.9.x) — If you need to manage multiple Node versions on your dev machine, [install NVM](<(https://github.com/nvm-sh/nvm)>) and run `nvm use`
 
 ## Getting started
 
@@ -32,23 +31,27 @@ Before you install DAHLIA, your system should have the following:
 1. `git clone https://github.com/Exygy/dahlia-listings.git` to create the project directory
 1. `cd dahlia-listings` to open the directory
 1. `bundle install` to download all necessary gems
-    - see [here](https://stackoverflow.com/a/19850273/260495) if you have issues installing `pg` gem with Postgres.app, you may need to use: `gem install pg -v 1.1.4 -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
+   - see [here](https://stackoverflow.com/a/19850273/260495) if you have issues installing `pg` gem with Postgres.app, you may need to use: `gem install pg -v 1.1.4 -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
 1. `yarn install` to install Angular and other JS dependancies.
 1. `overcommit --install` to install git hooks into the repo
 1. `rails g dahlia_data_models:install` to generate migrations from the dahlia_data_models gem
 1. `rails db:create && rails db:migrate` to create the dev and test databases and run migrations
+1. `rails db:seed` to load the seed data into the new databases
 1. `rails s` to start the server, which will now be running at http://localhost:3000 by default
 
 ## Running Tests
 
 To run Ruby tests:
+
 - `rails spec`
 
 To run Javascript unit tests:
+
 - `rails jasmine:ci` to run in terminal
 - `rails jasmine` to then run tests interactively at http://localhost:8888/
 
 To run E2E tests:
+
 - Installation (needs to be run once): `./node_modules/protractor/bin/webdriver-manager update` to get the selenium webdriver installed
 - On one tab have your Rails test server running: `yarn rails-setup-test`
 - On another tab, run `yarn protractor` to run the selenium webdriver and protractor tests. A Chrome browser will pop up and you will see it step through each of the tests.
@@ -72,7 +75,6 @@ We use `grunt-clean` and `grunt-copy` to transfer the CSS, and `grunt-replace` t
 
 Temporary "acceptance" apps are created upon opening a pull request for a feature branch. After the pull request is closed, the acceptance app is automatically spun down. See [this Heroku article](https://devcenter.heroku.com/articles/github-integration-review-apps) for details.
 
-
 ### Code style and quality
 
 #### Javascript
@@ -80,11 +82,12 @@ Temporary "acceptance" apps are created upon opening a pull request for a featur
 Javascript code quality is ensured by two npm packages: JsHint and JSCS. They will run automatically as a pre-commit hooks. Follow the [Airbnb JavaScript Style guide](http://nerds.airbnb.com/our-javascript-style-guide/).
 
 #### Ruby
+
 [Rubocop](https://github.com/bbatsov/rubocop) is configured in `.rubocop.yml` to enforce code quality and style standards based on the [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide) and runs every time you commit using a pre-commit hook. Refer to the [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide) for all Ruby style questions.
 To identify and have Rubocop automatically correct violations when possible, run:
 
-* `rubocop -a [path_to_file]` for individual files
-* `rubocop -a` for all Ruby files
+- `rubocop -a [path_to_file]` for individual files
+- `rubocop -a` for all Ruby files
 
 ### Changing the Style Guide settings
 
