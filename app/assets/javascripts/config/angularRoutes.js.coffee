@@ -48,19 +48,6 @@
           ListingDataService.getListings()
         ]
     })
-    .state('dahlia.housing-counselors', {
-      url: '/housing-counselors'
-      views:
-        'container@':
-          templateUrl: 'pages/templates/housing-counselors.html',
-      resolve:
-        $title: ['$translate', ($translate) ->
-          $translate('PAGE_TITLE.HOUSING_COUNSELORS')
-        ]
-        counselors: ['SharedService', (SharedService) ->
-          SharedService.getHousingCounselors()
-        ]
-    })
     .state('dahlia.listings', {
       url: '/listings'
       views:
@@ -147,16 +134,6 @@
           $translate('PAGE_TITLE.PRIVACY')
         ]
     })
-    .state('dahlia.get-assistance',{
-      url: '/get-assistance'
-      views:
-        'container@':
-          templateUrl: 'pages/templates/get-assistance.html'
-      resolve:
-        $title: ['$translate', ($translate) ->
-          $translate('PAGE_TITLE.GET_ASSISTANCE')
-        ]
-    })
     .state('dahlia.additional-resources',{
       url: '/additional-resources'
       views:
@@ -165,18 +142,6 @@
       resolve:
         $title: ['$translate', ($translate) ->
           $translate('PAGE_TITLE.ADDITIONAL_RESOURCES')
-        ]
-    })
-    .state('dahlia.document-checklist',{
-      url: '/document-checklist'
-      params:
-        section: null
-      views:
-        'container@':
-          templateUrl: 'pages/templates/document-checklist.html'
-      resolve:
-        $title: ['$translate', ($translate) ->
-          $translate('PAGE_TITLE.DOCUMENT_CHECKLIST')
         ]
     })
 

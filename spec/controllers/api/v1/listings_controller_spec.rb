@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'support/vcr_setup'
 
 describe Api::V1::ListingsController do
   describe '#index' do

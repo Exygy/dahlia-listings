@@ -9,7 +9,7 @@ Cross-browser testing done with <a href="https://www.browserstack.com/"><img src
 
 ## Purpose
 
-Regional DAHLIA is an affordable housing portal for cities and counties. It is a fork of the DAHLIA project originally spearheaded by the City and County of San Francisco. This application streamlines the process of searching and applying for affordable housing, making it easier to rent and stay in financially-challenging areas.
+DAHLIA is the affordable housing portal for the Bay Area. This application streamlines the process of searching and applying for affordable housing, making it easier to rent and stay in our region.
 
 ## Technical Architecture
 
@@ -87,4 +87,13 @@ To identify and have Rubocop automatically correct violations when possible, run
 * `rubocop -a` for all Ruby files
 
 ### Changing the Style Guide settings
+
 Any changes to Rubocop, JSCS, etc. affect the entire team, so it should be a group decision before commiting any changes. Please don't commit changes without discussing with the team first.
+
+### License
+
+DAHLIA is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with DAHLIA. If not, see [http://choosealicense.com/licenses/gpl-3.0/](http://choosealicense.com/licenses/gpl-3.0/)

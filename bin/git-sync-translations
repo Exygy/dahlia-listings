@@ -40,7 +40,7 @@ git commit app/assets/json/translations/* -m '[translations] sorted translations
 git push origin translations
 
 # 5. Start the process of opening a PR from the translations branch to master on GitHub; view the diff.
-open https://github.com/Exygy/sf-dahlia-web/compare/master...translations?expand=1
+open https://github.com/Exygy/dahlia-listings/compare/master...translations?expand=1
 
 # 6. Once you have examined the PR diff, merge the PR to bring the translations updates from the
 # translations branch into master.
