@@ -73,6 +73,10 @@
     h4.content-card_title translate="LISTINGS.SINGLE_ROOM_OCCUPANCY"
     p.c-steel translate="LISTINGS.SINGLE_ROOM_OCCUPANCY_DESCRIPTION"
 
+  .content-card.margin-bottom--2x ng-if="::$ctrl.parent.listingSupportsDevelopmentalDisabilities($ctrl.parent.listing)"
+    h4.content-card_title translate="LISTINGS.DEVELOPMENTAL_DISABILITIES"
+    p.c-steel translate="LISTINGS.DEVELOPMENTAL_DISABILITIES_DESCRIPTION"
+
   / "How To Apply" on mobile browsers gets included here
   .property-hero_apply.hide-for-medium-up.hide-for-print
     div ng-if="!$ctrl.parent.listingApplicationClosed($ctrl.parent.listing)"

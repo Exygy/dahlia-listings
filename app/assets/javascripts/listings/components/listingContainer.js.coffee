@@ -46,6 +46,9 @@ angular.module('dahlia.components')
     @listingHasSROUnits = (listing) ->
       ListingUnitService.listingHasSROUnits(listing)
 
+    @listingSupportsDevelopmentalDisabilities = (listing) ->
+      ListingUnitService.listingSupportsDevelopmentalDisabilities(listing)
+
     @agentInfoAvailable = (listing) ->
       listing.leasing_agent_phone || listing.leasing_agent_email || listing.leasing_agent_street
 
