@@ -1,8 +1,7 @@
 section.splash-header.bg-image
   .row
     header.hero-header.text-center
-      h1.hero-title.c-white
-        | {{'WELCOME.TITLE' | translate}}
+      h1.hero-title.c-white translate="WELCOME.TITLE"
       .row
         .medium-9.medium-centered.columns
           p.delta.t-sans.t-shadow.c-white ng-if="$ctrl.parent.openListings.length == 0"

@@ -21,6 +21,7 @@
   "WELCOME": {
     "SHARED_HOUSING": "Looking for Shared Housing?",
     "SHARED_HOUSING_BUTTON": "Learn More",
-    "SHARED_HOUSING_LINK": "https://housing.smcgov.org/home-sharing-program"
+    "SHARED_HOUSING_LINK": "https://housing.smcgov.org/home-sharing-program",
+    "TITLE": "Apply for affordable housing in <span class=\"hero-title_highlight\">San Mateo County</span>"
   }
 }

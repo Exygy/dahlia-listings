@@ -19,6 +19,6 @@
     "DAHLIA_HOUSING_PORTAL": "DAHLIA<br/><span class=\"header-logo-group\">San Jose Housing Portal</span>"
   },
   "WELCOME": {
-    "TITLE": "Apply for affordable housing in San José"
+    "TITLE": "Apply for affordable housing in <span class=\"hero-title_highlight\">San José</span>"
   }
 }
