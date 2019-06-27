@@ -23,5 +23,46 @@
     "SHARED_HOUSING_BUTTON": "Learn More",
     "SHARED_HOUSING_LINK": "https://housing.smcgov.org/home-sharing-program",
     "TITLE": "Apply for affordable housing in <span class=\"hero-title_highlight\">San Mateo County</span>"
+  },
+  "RESOURCES": {
+    "SMC_HOUSING_SEARCH": "SMCHousingSearch",
+    "SMC_HOUSING_SEARCH_LINK": "http://www.socialserve.com/dbh/ViewUnit/663044?ch=SMC&hm=kt9oO6pN",
+    "SMC_HOUSING_TYPE": "Rental and Shared Housing Opportunities",
+    "SMC_HOUSING_AREA": "San Mateo County",
+    "HAVEN_CONNECT": "Haven Connect",
+    "HAVEN_CONNECT_LINK": "https://apply.havenconnect.com/",
+    "HAVEN_CONNECT_TYPE": "Affordable Housing",
+    "HAVEN_CONNECT_AREA": "San Mateo County, Bay Area, and Beyond",
+    "HIP_HOUSING": "HIP Housing",
+    "HIP_HOUSING_AREA": "San Mateo County",
+    "HIP_HOUSING_TYPE": "Shared Housing Opportunities",
+    "HIP_HOUSING_LINK": "https://hiphousing.org/programs/home-sharing-program/",
+    "SM_HOUSING_AUTHORITY": "Housing Authority of the County of San Mateo",
+    "SM_HOUSING_AUTHORITY_LINK": "https://www.smchousingwaitlist.org/landing",
+    "SM_HOUSING_AUTHORITY_TYPE": "Housing Choice Vouchers/ Section 8 program",
+    "SM_HOUSING_AUTHORITY_AREA": "San Mateo County",
+    "COMMUNITY_INFO_HANDBOOK": "Community Infomation Handbook",
+    "COMMUNITY_INFO_LINK": "https://hsa.smcgov.org/sites/hsa.smcgov.org/files/documents/files/CIH2019_English_020719.pdf",
+    "COMMUNITY_INFO_TYPE": "Community Services",
+    "COMMUNITY_INFO_AREA": "San Mateo County",
+    "UNITED_WAY": "211 United Way Bay Area",
+    "UNITED_WAY_LINK": "https://www.211bayarea.org/sanmateo/",
+    "UNITED_WAY_TYPE": "Health and Human Services Information, including crisis services",
+    "UNITED_WAY_AREA": "San Mateo County and Bay Area",
+    "PROJECT_SENTINEL": "Project Sentinel",
+    "PROJECT_SENTINEL_LINK": "https://www.housing.org/tenants",
+    "PROJECT_SENTINEL_TYPE": "Services for tenants experiencing housing discrimination",
+    "PROJECT_SENTINEL_AREA": "San Mateo County and Bay Area"
+  },
+  "RESOURCE_CONTACT": {
+    "SM_DEPT_HOUSING": "San Mateo County's Department of Housing",
+    "SM_DEPT_HOUSING_EMAIL": "housing@smchousing.org",
+    "SM_DEPT_HOUSING_MAILTO": "mailto:housing@smchousing.org",
+    "FOSTER_CITY": "Foster City Community Development",
+    "FOSTER_CITY_EMAIL": "planning@fostercity.org",
+    "FOSTER_CITY_MAILTO": "mailto:planning@fostercity.org",
+    "FOSTER_CITY_P1": "For general program inquiries in Foster City, you may call 650-286-3227",
+    "FOSTER_CITY_P2": "For listing and application questions, please contact the Property Agent displayed on the listing."
   }
+
 }
