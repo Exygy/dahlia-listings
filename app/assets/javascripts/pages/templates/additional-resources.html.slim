@@ -14,26 +14,33 @@ section.row.p-relative
       h3.h-caps-lined
         | Rentals
       p.t-base.t-serif
-        | Other rental housing funded by the City, as well as lists developed each month by community nonprofit agencies.
-    ul.content-grid.margin-bottom--2x
-      li.content-item
-        .content-card.bg-dust
-          h4.t-sans.t-base.t-bold.margin-bottom--half
-            a href="http://sfmohcd.org/sites/default/files/Documents/MOH/ECS%20Listings.pdf" target="_blank"
-              | Openhouse
-          p
-            | Individual and Family Housing
-            br
-            | San Francisco Bay Area
-      li.content-item
-        .content-card.bg-dust
-          h4.t-sans.t-base.t-bold.margin-bottom--half
-            a href="https://www.onehomebayarea.org/properties" target="_blank"
-              | One Home by One Degree & Compass Family Services
-          p
-            | Family Housing
-            br
-            | San Francisco Bay Area and Beyond
+        | Lists developed each month by community nonprofit agencies.
+    ul.content-grid
+      resources-card title="{{'RESOURCES.SMC_HOUSING_SEARCH' | translate}}" description="{{'RESOURCES.SMC_HOUSING_TYPE' | translate}}" region="{{'RESOURCES.SMC_HOUSING_AREA' | translate}}" link="{{'RESOURCES.SMC_HOUSING_SEARCH_LINK' | translate}}"
+      resources-card title="{{'RESOURCES.HAVEN_CONNECT' | translate}}" description="{{'RESOURCES.HAVEN_CONNECT_TYPE' | translate}}" region="{{'RESOURCES.HAVEN_CONNECT_AREA' | translate}}" link="{{'RESOURCES.HAVEN_CONNECT_LINK' | translate}}"
+
+  .medium-8.columns
+    header.content-stack_header.padding-top--2x.padding-bottom
+      h3.h-caps-lined
+        | Shared Housing
+      p.t-base.t-serif
+        | Home Sharing is a living arrangement among two or more unrelated people.
+    ul.content-grid
+      resources-card title="{{'RESOURCES.HIP_HOUSING' | translate}}" description="{{'RESOURCES.HIP_HOUSING_TYPE' | translate}}" region="{{'RESOURCES.HIP_HOUSING_AREA' | translate}}" link="{{'RESOURCES.HIP_HOUSING_LINK' | translate}}"
+
+  .medium-8.columns
+    header.content-stack_header.padding-top--2x.padding-bottom
+      h3.h-caps-lined
+        | Other Resources
+      p.t-base.t-serif
+        | Tenant Resources, Crisis and Health Services, and Legal Assistance
+      p.t-base.t-serif
+        | Support with rent payments.
+    ul.content-grid
+      resources-card title="{{'RESOURCES.SM_HOUSING_AUTHORITY' | translate}}" description="{{'RESOURCES.SM_HOUSING_AUTHORITY_TYPE' | translate}}" region="{{'RESOURCES.SM_HOUSING_AUTHORITY_AREA' | translate}}" link="{{'RESOURCES.SM_HOUSING_AUTHORITY_LINK' | translate}}"
+      resources-card title="{{'RESOURCES.COMMUNITY_INFO_HANDBOOK' | translate}}" description="{{'RESOURCES.COMMUNITY_INFO_TYPE' | translate}}" region="{{'RESOURCES.COMMUNITY_INFO_AREA' | translate}}" link="{{'RESOURCES.COMMUNITY_INFO_LINK' | translate}}"
+      resources-card title="{{'RESOURCES.UNITED_WAY' | translate}}" description="{{'RESOURCES.UNITED_WAY_TYPE' | translate}}" region="{{'RESOURCES.UNITED_WAY_AREA' | translate}}" link="{{'RESOURCES.UNITED_WAY_LINK' | translate}}"
+      resources-card title="{{'RESOURCES.PROJECT_SENTINEL' | translate}}" description="{{'RESOURCES.PROJECT_SENTINEL_TYPE' | translate}}" region="{{'RESOURCES.PROJECT_SENTINEL_AREA' | translate}}" link="{{'RESOURCES.PROJECT_SENTINEL_LINK' | translate}}"
 
   .medium-4.columns.padding-top.box-shadow.full-height.bg-white.small-no-padding
-    ng-include src="'pages/templates/_contact-mayors-office.html'"
+    ng-include src="'pages/templates/_resources-contact.html'"
