@@ -115,8 +115,7 @@ accordion-heading.lead
                 | Up to {{preference.unitsAvailable}} units available
               p.c-steel ng-if="!preference.unitsAvailable"
                 | All remaining units
-            p.c-steel
-              | {{preference.description}}
+            p.c-steel ng-text-truncate="::preference.description" ng-tt-words-threshold="999"
               br
               a.margin-right ng-href="{{preference.readMoreUrl}}" target="_blank" ng-if="preference.readMoreUrl"
                 | Read More
