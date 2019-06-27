@@ -1,16 +1,15 @@
 section.splash-header.bg-image
   .row
-    header.hero-header.text-center
-      h1.hero-title.c-white translate="WELCOME.TITLE"
+    header.hero-header.narrow.text-center
+      h1.hero-title.small.c-white translate="WELCOME.TITLE"
       .row
         .medium-9.medium-centered.columns
           p.delta.t-sans.t-shadow.c-white ng-if="$ctrl.parent.openListings.length == 0"
             | {{'WELCOME.ALL_APPLICATION_CLOSED' | translate}}
       .row
-        .medium-6.medium-centered.columns
-          .small-centered.medium-6.columns
-            a.button.secondary.expand ui-sref="dahlia.listings"
-              | {{'WELCOME.SEE_RENTAL_LISTINGS' | translate}}
+        .small-centered.medium-6.columns
+          a.button.secondary.expand ui-sref="dahlia.listings"
+            | {{'WELCOME.SEE_RENTAL_LISTINGS' | translate}}
 
 .row.welcome-secondary-banner
   .columns
