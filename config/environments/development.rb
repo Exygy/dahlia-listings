@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Raise an error on page load if there are pending migrations.
   # config.active_record.migration_error = :page_load
-  config.active_record.migration_error = false
+  config.active_record.migration_error = :page_load
 
   # Suppress output of asset requests
   config.assets.quiet = true
