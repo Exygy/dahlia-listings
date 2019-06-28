@@ -21,7 +21,9 @@ class Api::V1::ListingsController < ApiController
       json_listings << json_listing
     end
 
-    render json: { listings: json_listings }
+    # TODO: BEFORE MERGE Revert back to return json_listings
+    # render json: { listings: json_listings }
+    render json: { listings: [] }
   end
 
   def show
