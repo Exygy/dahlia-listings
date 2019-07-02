@@ -105,7 +105,7 @@ accordion-heading.lead
         div ng-show="!$ctrl.loading.preferences && !$ctrl.error.preferences"
           .content-card ng-repeat="preference in $ctrl.parent.listing.preferences"
             header.content-card_ordered
-              span.content-card_number
+              span.content-card_number ng-show="$ctrl.parent.listing.preferences.length > 1"
                 ' {{preference.order}}
                 sup
                   | {{preference.order | ordinalSuffix}}
