@@ -59,8 +59,7 @@
         "protractor-cucumber-framework": "^6.1.1"
     },
     "engines": {
-        "node": "12.1.0",
-        "npm": "6.9.0",
+        "node": "12",
         "yarn": "1.x.x"
     },
     "scripts": {
