@@ -15,6 +15,9 @@ npm-debug.log
 /log/*.log
 /tmp
 
+# bower components downloaded as part of the build process
+lib/assets/bower_components/
+
 # Ignore .ruby-version file that is used by rbenv
 .ruby-version
 

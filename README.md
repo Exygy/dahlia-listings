@@ -20,9 +20,8 @@ Before you install DAHLIA, your system should have the following:
 
 - [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 2.5.3 (Use [RVM](https://rvm.io/rvm/install) or [rbenv](https://github.com/rbenv/rbenv))
 - [Bundler](https://github.com/bundler/bundler) `gem install bundler`
-- [Homebrew](http://brew.sh)
 - [PostgreSQL](https://postgresapp.com/)
-- Use Node v12.1.x (npm v6.9.x) — If you need to manage multiple Node versions on your dev machine, [install NVM](<(https://github.com/nvm-sh/nvm)>) and run `nvm use`
+- Use Node v12.x (npm v6.9.x) — If you need to manage multiple Node versions on your dev machine, [install NVM](<(https://github.com/nvm-sh/nvm)>) and run `nvm use`
 
 ## Getting started
 
@@ -34,10 +33,13 @@ Before you install DAHLIA, your system should have the following:
    - see [here](https://stackoverflow.com/a/19850273/260495) if you have issues installing `pg` gem with Postgres.app, you may need to use: `gem install pg -v 1.1.4 -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
 1. `yarn install` to install Angular and other JS dependancies.
 1. `overcommit --install` to install git hooks into the repo
+1. `rails s` to start the server, which will now be running at http://localhost:3000 by default
+
+#### For a fresh installation only (no existing DB)
+
 1. `rails g dahlia_data_models:install` to generate migrations from the dahlia_data_models gem
 1. `rails db:create && rails db:migrate` to create the dev and test databases and run migrations
 1. `rails db:seed` to load the seed data into the new databases
-1. `rails s` to start the server, which will now be running at http://localhost:3000 by default
 
 ## Running Tests
 
@@ -55,6 +57,7 @@ To run E2E tests:
 - Installation (needs to be run once): `./node_modules/protractor/bin/webdriver-manager update` to get the selenium webdriver installed
 - On one tab have your Rails test server running: `yarn rails-setup-test`
 - On another tab, run `yarn protractor` to run the selenium webdriver and protractor tests. A Chrome browser will pop up and you will see it step through each of the tests.
+- After you are done with your testing, run the teardown command to stop the test server and remove test DB files: `yarn rails-teardown-test`
 
 Note: These tests will run on Semaphore (our CI) as well for every review app and QA deploy.
 
