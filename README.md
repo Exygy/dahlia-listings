@@ -37,7 +37,6 @@ Before you install DAHLIA, your system should have the following:
 
 #### For a fresh installation only (no existing DB)
 
-1. `rails g dahlia_data_models:install` to generate migrations from the dahlia_data_models gem
 1. `rails db:create && rails db:migrate` to create the dev and test databases and run migrations
 1. `rails db:seed` to load the seed data into the new databases
 
