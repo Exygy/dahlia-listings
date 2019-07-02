@@ -7,9 +7,14 @@ header.directory-header#listings_header
 / Notification: No listings with Open Applications
 section.results-section#listing-results ng-if="!$ctrl.parent.openListings.length"
   .row
-    .large-12.columns
+    .large-12.columns.margin-bottom--2x
       .block--short.bg-dust
         h2.t-delta.t-serif.c-oil.no-margin translate="LISTINGS.NO_OPEN_LISTINGS"
+    .large-12.columns.margin-bottom--2x
+      .block--short.bg-dust
+        h2.t-delta.t-serif.c-oil translate="LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_HEADER"
+        a.button.radius.margin-bottom-none ui-sref="dahlia.additional-resources"
+          | {{'LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_BUTTON' | translate}}
 
 / Listings: Open
 .results-section#listing-results ng-if="$ctrl.parent.openListings.length"
