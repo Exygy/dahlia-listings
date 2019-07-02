@@ -775,7 +775,7 @@
         "ACCOUNT_SETTINGS": "Account Settings",
         "BROWSE_PROPERTIES": "Browse Properties",
         "GET_ASSISTANCE": "Get Assistance",
-        "GET_FEEDBACK": "This site is in <b>ALPHA</b>. We're just getting started. We'd love to get <a target='_blank' class='a-white lined' href='{{feedbackUrl}}'>your feedback.</a>",
+        "GET_FEEDBACK": "This is a preview of our new website. We're just getting started. We'd love to get <a target='_blank' class='a-white lined' href='{{feedbackUrl}}'>your feedback.</a>",
         "MY_ACCOUNT": "My Account",
         "MY_APPLICATIONS": "My Applications",
         "MY_DASHBOARD": "My Dashboard",
