@@ -14,7 +14,12 @@ section.splash-header.bg-image
 
 .row.welcome-secondary-banner
   .columns
-    .welcome-block.text-center
+    .welcome-block.text-center ng-if="$ctrl.parent.openListings.length == 0"
+      h2.delta.t-alt-sans.c-oil
+        | {{'LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_HEADER' | translate}}
+      a.button.radius.margin-bottom-none ui-sref="dahlia.additional-resources"
+        | {{'LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_BUTTON' | translate}}
+    .welcome-block.text-center ng-if="$ctrl.parent.openListings.length > 0"
       h2.delta.t-alt-sans.c-oil
         | {{'WELCOME.SHARED_HOUSING' | translate}}
       a.button.radius.margin-bottom-none href="{{'WELCOME.SHARED_HOUSING_LINK' | translate}}"
