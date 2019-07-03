@@ -802,9 +802,10 @@
         "PRIVACY": "Privacy Policy",
         "SHARE_LISTING": "Share {{listing}}",
         "SIGN_IN": "Sign In",
-        "WELCOME_CHINESE": "中文",
-        "WELCOME_FILIPINO": "Filipino",
-        "WELCOME_SPANISH": "Español"
+        "WELCOME_ENGLISH": "Welcome",
+        "WELCOME_SPANISH": "Bienvenido",
+        "WELCOME_VIETNAMESE": "Tiếng Việt",
+        "WELCOME_CHINESE": "欢迎"
     },
     "PREFERENCES": {
         "ALICE_GRIFFITH": {

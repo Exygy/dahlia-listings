@@ -17,6 +17,8 @@
         lang: { squash: true, value: 'en' }
         skipConfirm: { squash: true, value: false }
       views:
+        'language-bar@':
+          templateUrl: 'shared/templates/language-bar.html'
         'version@':
           templateUrl: 'shared/templates/version.html'
         'navigation@':
@@ -113,6 +115,36 @@
       # https://github.com/vinaygopinath/ngMeta#using-custom-data-resolved-by-ui-router
       meta:
         disableUpdate: true
+    })
+    .state('dahlia.additional-welcome-english', {
+      url: '/welcome-en'
+      views:
+        'container@':
+          templateUrl: 'pages/templates/welcome-english.html'
+      resolve:
+        $title: ['$translate', ($translate) ->
+          $translate('PAGE_TITLE.WELCOME_ENGLISH')
+        ]
+    })
+    .state('dahlia.additional-welcome-spanish', {
+      url: '/welcome-es'
+      views:
+        'container@':
+          templateUrl: 'pages/templates/welcome-spanish.html'
+      resolve:
+        $title: ['$translate', ($translate) ->
+          $translate('PAGE_TITLE.WELCOME_SPANISH')
+        ]
+    })
+    .state('dahlia.additional-welcome-vietnamese', {
+      url: '/welcome-vi'
+      views:
+        'container@':
+          templateUrl: 'pages/templates/welcome-vietnamese.html'
+      resolve:
+        $title: ['$translate', ($translate) ->
+          $translate('PAGE_TITLE.WELCOME_VIETNAMESE')
+        ]
     })
     .state('dahlia.disclaimer', {
       url: '/disclaimer'
