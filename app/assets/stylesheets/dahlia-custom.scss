@@ -1,7 +1,8 @@
 .name-logo.is-tall a {
-  background: url(asset-path('logo_glyph.svg')) no-repeat;
+  background: url(asset-path("logo_glyph.svg")) no-repeat;
   text-indent: unset;
   text-transform: uppercase;
+  font-weight: bold;
   color: #333;
   background-position: center 18px;
   background-size: 38px;
@@ -18,20 +19,25 @@
     font-size: 0.9rem;
   }
 }
+
+.main-content {
+  padding-bottom: 0.25rem;
+}
+
 .top-bar .name-logo a span {
   font-size: inherit;
   line-height: inherit;
 }
 
-body[data-group=smc] {
+body[data-group="smc"] {
   .splash-header.bg-image {
-    background-image: image-url('smc-banner.jpg');
+    background-image: image-url("smc-banner.jpg");
   }
 }
 
-body[data-group=sj] {
+body[data-group="sj"] {
   .splash-header.bg-image {
-    background-image: image-url('sj-banner.png');
+    background-image: image-url("sj-banner.png");
   }
 
   .welcome-secondary-banner {
