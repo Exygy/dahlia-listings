@@ -24,10 +24,10 @@ footer.bg-tuatara.padding-top--3x
             a.a-aluminum href="mailto:{{ 'FOOTER.CONTACT_EMAIL' | translate }}"
               | {{ "FOOTER.CONTACT" | translate }}
           li
-            a.a-aluminum href="{{ 'FOOTER.DISCLAIMER_URL' | translate }}" target="_blank"
+            a.a-aluminum ui-sref="dahlia.disclaimer"
               | {{ "FOOTER.DISCLAIMER" | translate }}
           li
-            a.a-aluminum href="{{ 'FOOTER.PRIVACY_POLICY_URL' | translate }}" target="_blank"
+            a.a-aluminum ui-sref="dahlia.privacy"
               | {{ "FOOTER.PRIVACY_POLICY" | translate }}
   section.footer-sole
     span
