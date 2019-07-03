@@ -105,7 +105,7 @@ accordion-heading.lead
         div ng-show="!$ctrl.loading.preferences && !$ctrl.error.preferences"
           .content-card ng-repeat="preference in $ctrl.parent.listing.preferences"
             header.content-card_ordered
-              span.content-card_number
+              span.content-card_number ng-show="$ctrl.parent.listing.preferences.length > 1"
                 ' {{preference.order}}
                 sup
                   | {{preference.order | ordinalSuffix}}
@@ -162,7 +162,7 @@ accordion-heading.lead
           h4.custom-counter_title
             | Rental Assistance
           p.custom-counter_text
-            | Section 8 housing vouchers and other valid rental assistance programs can be used for this property.
+            | Section 8 housing vouchers and other valid rental assistance programs will be considered for this property.
           p.custom-counter_text In the case of a valid rental subsidy, the required minimum income will be based on the portion of the rent that the tenant pays after use of the subsidy.
 
     li.custom-counter_item ng-if="::$ctrl.parent.listing.credit_history || $ctrl.parent.listing.rental_history || $ctrl.parent.listing.criminal_background"
