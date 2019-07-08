@@ -116,9 +116,8 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     _.some(combined, { unit_type: 'SRO' })
 
   Service.listingSupportsDevelopmentalDisabilities = (listing) ->
-    # TODO: this should NOT go to production as-is…
-    # just a temporary testing mechanism
-    return listing.group_id == 1
+    # NOTE: this is not shown ever at present…subject to future revision
+    return false
 
   Service.listingHasOnlySROUnits = (listing) ->
     combined = Service.combineUnitSummaries(listing)
