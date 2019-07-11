@@ -670,7 +670,7 @@
         "DEVELOPMENTAL_DISABILITIES": "Persons with developmental disabilities",
         "DEVELOPMENTAL_DISABILITIES_DESCRIPTION": "A portion number of units in this building are set aside for persons with developmental disabilities. Please visit <a href='http://www.housingchoices.org/' target='_blank'>housingchoices.org</a> for information on eligibility, requirements, how to get an application and for answers to any other questions you may have about the process.",
         "DOWNLOAD_LOTTERY_RESULTS": "Download Lottery Results",
-        "ENTER_LOTTERY_FOR_WAITLIST": "Enter the lottery for an open slot on the waitlist for <span class='t-italic'>{{number}} units</span>.",
+        "ENTER_LOTTERY_FOR_WAITLIST": "Submit an application for an open slot on the waitlist for <span class='t-italic'>{{number}} units</span>.",
         "FINAL_WAITLIST_SIZE": "Final Waitlist Size",
         "FOR_INCOME_CALCULATIONS": "For income calculations, household size includes everyone (all ages) living in the unit.",
         "HOUSEHOLD_MAXIMUM_INCOME": "Household Maximum Income",
