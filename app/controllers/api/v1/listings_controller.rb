@@ -17,6 +17,7 @@ class Api::V1::ListingsController < ApiController
       unit_summaries = ListingService.create_unit_summaries(listing)
       json_listing = listing.as_json
       json_listing[:unit_summaries] = unit_summaries
+      json_listing[:total_units] = listing.units.count
       json_listing[:units_available] = listing.units.available.count
       json_listings << json_listing
     end
