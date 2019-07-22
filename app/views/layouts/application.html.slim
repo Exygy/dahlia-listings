@@ -50,7 +50,7 @@ html lang="en" ng-app="dahlia" ng-strict-di="" ng-controller="SharedController"
         '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','#{@group.gtm_key}');
 
-  body id="ng-app" ng-class="hasCenterBody()" keep-scroll-position="" data-group="#{@group.slug}"
+  body id="ng-app" ng-class="hasCenterBody()" keep-scroll-position="" data-group="#{@group.slug}" data-group-full-name="#{@group.name}"
     - if @group.gtm_key
       noscript
         iframe height="0" src="//www.googletagmanager.com/ns.html?id=#{@group.gtm_key}" style="display:none;visibility:hidden" width="0"
