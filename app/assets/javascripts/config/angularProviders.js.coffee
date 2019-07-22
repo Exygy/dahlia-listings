@@ -85,7 +85,7 @@
 
 @dahlia.config ['$titleProvider', ($titleProvider) ->
   $titleProvider.documentTitle ['$rootScope', ($rootScope) ->
-    defaultTitle = 'DAHLIA Housing Portal'
+    defaultTitle = "DAHLIA #{getCurrentGroupFullName() + ' '}Housing Portal"
     if $rootScope.$title then "#{$rootScope.$title}  |  #{defaultTitle}" else defaultTitle
   ]
 ]
@@ -105,3 +105,6 @@ getAvailableStorageType = ->
 
 getCurrentGroup = ->
   return document.body.dataset.group
+
+getCurrentGroupFullName = ->
+  return document.body.dataset.groupFullName
