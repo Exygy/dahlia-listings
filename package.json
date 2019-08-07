@@ -1,6 +1,6 @@
 {
     "author": "Exygy",
-    "description": "DAHLIA is the affordable housing portal for the Bay Area.",
+    "description": "Affordable housing portal for the Bay Area.",
     "license": "GPL-3.0",
     "dependencies": {
         "angular": "1.7.8",

@@ -7,6 +7,6 @@
       "FEEDBACK_URL": "http://www.testgroup.org/feedback"
     },
     "T": {
-      "DAHLIA_HOUSING_PORTAL": "<strong>DAHLIA</strong><br/><span class=\"header-logo-group\">Test Group</span>"
+      "DAHLIA_HOUSING_PORTAL": "<span class=\"header-logo-group\">Test Group</span>"
     }
 }
