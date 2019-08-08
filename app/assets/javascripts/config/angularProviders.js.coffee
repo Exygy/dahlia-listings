@@ -85,7 +85,9 @@
 
 @dahlia.config ['$titleProvider', ($titleProvider) ->
   $titleProvider.documentTitle ['$rootScope', ($rootScope) ->
-    defaultTitle = "DAHLIA #{getCurrentGroupFullName() + ' '}Housing Portal"
+    defaultTitle = "Housing Portal"
+    name = getCurrentGroupFullName()
+    if name then defaultTitle = "#{name} " + defaultTitle
     if $rootScope.$title then "#{$rootScope.$title}  |  #{defaultTitle}" else defaultTitle
   ]
 ]

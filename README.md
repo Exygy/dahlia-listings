@@ -1,22 +1,20 @@
-# Dahlia
+# Housing Portal
 
 [![Code Climate](https://codeclimate.com/github/Exygy/dahlia-listings/badges/gpa.svg)](https://codeclimate.com/github/Exygy/dahlia-listings)
-[![Test Coverage](https://codeclimate.com/github/Exygy/dahlia-listings/badges/coverage.svg)](https://codeclimate.com/github/Exygy/dahlia-listings/coverage)
-[![Build Status](https://semaphoreci.com/api/v1/exygy/dahlia-listings-full/branches/master/badge.svg)](https://semaphoreci.com/exygy/dahlia-listings)
 
 Cross-browser testing done with <a href="https://www.browserstack.com/"><img src="./Browserstack-logo@2x.png?raw=true" height="30" ></a>
 
 ## Purpose
 
-DAHLIA is the affordable housing portal for the Bay Area. This application streamlines the process of searching and applying for affordable housing, making it easier to rent and stay in our region.
+Affordable housing portal for the Bay Area. This application streamlines the process of searching and applying for affordable housing, making it easier to rent and stay in our region.
 
 ## Technical Architecture
 
-This repository contains the source code for sites such as [smc.housingbayarea.org](https://smc.housingbayarea.org), which is the user-facing web application of the DAHLIA platform. It is a [Ruby on Rails](http://rubyonrails.org/) application that serves up a single page [AngularJS](https://angularjs.org/) app. The web application connects to a PostgreSQL backend controlled by the DAHLIA Partners admin app [(see repo here)](https://github.com/Exygy/dahlia-admin), which is where the listings are created and administered. Both apps use a common set of data models via a Ruby gem [(see repo here)](https://github.com/Exygy/dahlia_data_models).
+This repository contains the source code for sites such as [smc.housingbayarea.org](https://smc.housingbayarea.org), which is the user-facing web application of the platform. It is a [Ruby on Rails](http://rubyonrails.org/) application that serves up a single page [AngularJS](https://angularjs.org/) app. The web application connects to a PostgreSQL backend controlled by the admin app [(see repo here)](https://github.com/Exygy/dahlia-admin), which is where the listings are created and administered. Both apps use a common set of data models via a Ruby gem [(see repo here)](https://github.com/Exygy/dahlia_data_models).
 
 ## Dependencies
 
-Before you install DAHLIA, your system should have the following:
+Before you install, your system should have the following:
 
 - [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 2.5.3 (Use [RVM](https://rvm.io/rvm/install) or [rbenv](https://github.com/rbenv/rbenv))
 - [Bundler](https://github.com/bundler/bundler) `gem install bundler`
@@ -97,8 +95,8 @@ Any changes to Rubocop, JSCS, etc. affect the entire team, so it should be a gro
 
 ### License
 
-DAHLIA is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+This housing portal is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with DAHLIA. If not, see [http://choosealicense.com/licenses/gpl-3.0/](http://choosealicense.com/licenses/gpl-3.0/)
+You should have received a copy of the GNU General Public License along with this housing portal. If not, see [http://choosealicense.com/licenses/gpl-3.0/](http://choosealicense.com/licenses/gpl-3.0/)
