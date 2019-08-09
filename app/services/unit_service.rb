@@ -11,7 +11,7 @@ class UnitService
           units,
           :monthly_rent_as_percent_of_income,
         ),
-        rent_range: min_max_range(units, :monthly_rent),
+        rent_range: monthly_rent_range(units),
         unit_type: I18n.t("unit_types.#{unit_type}"),
       }
     end
@@ -32,6 +32,13 @@ class UnitService
       min_occupancy = units.map(&:min_occupancy).min
       max_occupancy = units.map(&:max_occupancy).max
       { min: min_occupancy, max: max_occupancy }
+    end
+
+    def monthly_rent_range(units)
+      range = min_max_range(units, :monthly_rent)
+      range[:min] = range[:min]&.to_i
+      range[:max] = range[:max]&.to_i
+      range
     end
   end
 end
