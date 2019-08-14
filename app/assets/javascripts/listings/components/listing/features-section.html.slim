@@ -44,6 +44,8 @@ accordion-heading
             | ,  {{::unitGroup.unitAreaRange}}
             span
               |  square feet
+          span ng-if="::unitGroup.unitFloorRange"
+            | ,  {{::unitGroup.unitFloorRange}}
           span.ui-control.ui-icon.ui-small
             svg
               use xlink:href="#i-arrow-down"

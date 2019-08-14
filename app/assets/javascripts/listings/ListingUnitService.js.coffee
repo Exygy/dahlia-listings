@@ -29,6 +29,36 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
     else
       min
 
+  ordinalize = (num) ->
+    standardSuffix = 'th'
+    oneToThreeSuffixes = ['st', 'nd', 'rd']
+
+    numStr = num.toString()
+    lastTwoDigits = +(numStr.slice(-2))
+    lastDigit = +(numStr.slice(-1))
+
+    suffix = if ((1 <= lastDigit <= 3) && !(11 <= lastTwoDigits <= 13))
+      oneToThreeSuffixes[lastDigit - 1]
+    else
+      standardSuffix
+
+    return "#{num}#{suffix}"
+
+  Service.unitFloorRange = (units) ->
+    floorNums = _.filter(_.map(units, 'floor'), (f) ->
+      /^[1-9]+$/.test(f)
+    )
+    uniqSortedFloorNums = _.sortBy(_.uniq(floorNums))
+
+    return '' if _.isEmpty(uniqSortedFloorNums)
+
+    if uniqSortedFloorNums.length == 1
+      "#{ordinalize(uniqSortedFloorNums[0]) } floor"
+    else
+      lowestFloor = ordinalize(uniqSortedFloorNums[0])
+      highestFloor = ordinalize(_.last(uniqSortedFloorNums))
+      "#{lowestFloor} - #{highestFloor} floors"
+
   Service.combineUnitSummaries = (listing) ->
     # combined unit_summaries is useful e.g. for overall occupancy levels across the whole listing
     listing.unit_summaries ?= {}
@@ -67,6 +97,7 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
       group.unitTypeLabel = groupedUnits[0].unit_type_label
       group.units = groupedUnits
       group.unitAreaRange = Service.unitAreaRange(groupedUnits)
+      group.unitFloorRange = Service.unitFloorRange(groupedUnits)
       unitTypes.push(group)
     unitTypes
 
