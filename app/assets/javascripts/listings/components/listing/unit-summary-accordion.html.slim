@@ -1,0 +1,40 @@
+.stats-toggle.margin-bottom ng-repeat="unitGroup in $ctrl.unitGroups" ng-click="$ctrl.expandable && $ctrl.toggleTable(unitGroup.unitType)" data-event="gtm-unit-features"
+  .toggle-box.has-toggle ng-class="{toggler: $ctrl.expandable}"
+    .toggle-box_label
+      strong
+        | {{::unitGroup.unitTypeLabel}}:
+      span
+        |  {{::unitGroup.units.length}}
+        span
+          ng-pluralize count="::unitGroup.units.length" when="{'0': ' units', '1': ' unit', 'other': ' units'}"
+      span
+        | ,  {{::unitGroup.unitAreaRange}}
+        span
+          |  square feet
+      span ng-if="::unitGroup.unitFloorRange"
+        | ,  {{::unitGroup.unitFloorRange}}
+      span.ui-control.ui-icon.ui-small ng-if="::$ctrl.expandable"
+        svg
+          use xlink:href="#i-arrow-down"
+
+  .stats.scrollable-table-container ng-if="::$ctrl.expandable" ng-show="$ctrl.toggleStates[unitGroup.unitType]"
+    table role="grid"
+      thead
+        tr
+          th scope="col" Unit
+          th scope="col" Area
+          th scope="col" Baths
+          th scope="col" Floor
+          th scope="col" Accessibility
+      tbody
+        tr ng-repeat="unit in unitGroup.units"
+          td scope="row"
+            | {{::unit.number}}
+          td
+            | {{::unit.sq_ft}} <small>sqft</small>
+          td
+            | {{::$ctrl.formatBaths(unit.num_bathrooms)}}
+          td
+            | {{::unit.floor}}
+          td
+            | {{::unit.priority_type}}

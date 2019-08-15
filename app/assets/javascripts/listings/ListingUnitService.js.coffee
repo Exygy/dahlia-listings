@@ -87,10 +87,10 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
       flattened[percent] = Service._sortGroupedUnits(flattened[percent])
     return flattened
 
-  Service.groupUnitTypes = (units) ->
+  Service.groupUnitsByType = (units) ->
     # get a grouping of unit types across both "general" and "reserved"
     grouped = _.groupBy units, 'unit_type'
-    unitTypes = []
+    unitGroups = []
     _.forEach grouped, (groupedUnits, type) ->
       group = {}
       group.unitType = type
@@ -98,8 +98,8 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
       group.units = groupedUnits
       group.unitAreaRange = Service.unitAreaRange(groupedUnits)
       group.unitFloorRange = Service.unitFloorRange(groupedUnits)
-      unitTypes.push(group)
-    unitTypes
+      unitGroups.push(group)
+    unitGroups
 
   Service.groupSpecialUnits = (units, type) ->
     grouped = _.groupBy units, type
@@ -121,7 +121,7 @@ ListingUnitService = ($http, ListingConstantsService, ListingIdentityService) ->
         units = data.units
         listing.Units = units
         listing.groupedUnits = Service.groupUnitDetails(units)
-        listing.unitTypes = Service.groupUnitTypes(units)
+        listing.unitGroups = Service.groupUnitsByType(units)
         listing.priorityUnits = Service.groupSpecialUnits(listing.Units, 'priority_type')
         listing.reservedUnits = Service.groupSpecialUnits(listing.Units, 'reserved_type')
     ).catch((response) ->

@@ -19,7 +19,7 @@ class UnitService
     private
 
     def min_max_range(units, field_name)
-      field_values = units.map { |u| u.send(field_name) }
+      field_values = units.map { |u| u.send(field_name) }.compact
 
       begin
         { min: field_values.min, max: field_values.max }
@@ -29,8 +29,8 @@ class UnitService
     end
 
     def occupancy_range(units)
-      min_occupancy = units.map(&:min_occupancy).min
-      max_occupancy = units.map(&:max_occupancy).max
+      min_occupancy = units.map(&:min_occupancy).compact.min
+      max_occupancy = units.map(&:max_occupancy).compact.max
       { min: min_occupancy, max: max_occupancy }
     end
 

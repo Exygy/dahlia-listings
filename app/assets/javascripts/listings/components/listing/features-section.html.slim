@@ -31,46 +31,7 @@ accordion-heading
         button.button-link ng-click="$ctrl.parent.getListingUnits($ctrl.parent.listing)"
           | {{'LISTINGS.SEE_UNIT_INFORMATION' | translate}}
 
-    .stats-toggle.margin-bottom ng-repeat="unitGroup in $ctrl.parent.listing.unitTypes" data-event="gtm-unit-features" ng-click="$ctrl.toggleTable(unitGroup.unitType)"
-      .toggle-box.toggler.has-toggle
-        .toggle-box_label
-          strong
-            | {{::unitGroup.unitTypeLabel}}:
-          span
-            |  {{::unitGroup.units.length}}
-            span
-              ng-pluralize count="unitGroup.units.length" when="{'0': ' units', '1': ' unit', 'other': ' units'}"
-          span
-            | ,  {{::unitGroup.unitAreaRange}}
-            span
-              |  square feet
-          span ng-if="::unitGroup.unitFloorRange"
-            | ,  {{::unitGroup.unitFloorRange}}
-          span.ui-control.ui-icon.ui-small
-            svg
-              use xlink:href="#i-arrow-down"
-
-      .stats.scrollable-table-container ng-show="$ctrl.parent.toggleStates[$ctrl.parent.listing.id][unitGroup.unitType]"
-        table role="grid"
-          thead
-            tr
-              th scope="col" Unit
-              th scope="col" Area
-              th scope="col" Baths
-              th scope="col" Floor
-              th scope="col" Accessibility
-          tbody
-            tr ng-repeat="unit in unitGroup.units"
-              td scope="row"
-                | {{::unit.number}}
-              td
-                | {{::unit.sq_ft}} <small>sqft</small>
-              td
-                | {{ $ctrl.formatBaths(unit.num_bathrooms) }}
-              td
-                | {{::unit.floor}}
-              td
-                | {{::unit.priority_type}}
+    unit-summary-accordion unit-groups="::$ctrl.parent.listing.unitGroups" toggle-table="::$ctrl.toggleTable" toggle-states="$ctrl.parent.toggleStates[$ctrl.parent.listing.id]" expandable="::$ctrl.parent.listing.units_available != 0"
 
   .content-tile.feature-tile
     .content-card.bg-dust
