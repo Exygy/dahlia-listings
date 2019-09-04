@@ -37,7 +37,6 @@
 //= require angular-scroll
 //= require ng-idle/angular-idle
 //= require angular-cookie
-//= require ng-token-auth/dist/ng-token-auth
 //= require angular-ui-validate
 //= require angular-uuid/angular-uuid
 //= require angular-linkify
