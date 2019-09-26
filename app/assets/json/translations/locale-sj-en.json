@@ -34,6 +34,7 @@
     "DAHLIA_HOUSING_PORTAL": "<span class=\"header-logo-group\">San Jose Housing Portal</span>"
   },
   "WELCOME": {
+    "ADDITIONAL_RESOURCES_URL": "http://www.sanjoseca.gov/index.aspx?nid=1352",
     "TITLE": "Apply for affordable housing in <span class=\"hero-title_highlight\">San José</span>"
   }
 }

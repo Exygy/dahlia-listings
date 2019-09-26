@@ -16,5 +16,7 @@ section.splash-header.bg-image
     .welcome-block.text-center
       h2.delta.t-alt-sans.c-oil
         | {{'LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_HEADER' | translate}}
-      a.button.radius.margin-bottom-none ui-sref="dahlia.additional-resources"
+      a.button.radius.margin-bottom-none ng-if="$ctrl.parent.currentGroup == 'sj'" ng-href="{{$ctrl.parent.additionalResourcesUrl}}"
+        | {{'LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_BUTTON' | translate}}
+      a.button.radius.margin-bottom-none ng-if="$ctrl.parent.currentGroup != 'sj'" ui-sref="dahlia.additional-resources"
         | {{'LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_BUTTON' | translate}}

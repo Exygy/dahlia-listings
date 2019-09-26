@@ -2,13 +2,15 @@ angular.module('dahlia.components')
 .component 'listingContainer',
   transclude: true
   templateUrl: 'listings/components/listing-container.html'
-  controller: ['$window', 'ListingDataService', 'ListingIdentityService', 'ListingUnitService', 'SharedService',
-  ($window, ListingDataService, ListingIdentityService, ListingUnitService, SharedService) ->
+  controller: ['$window', '$translate', 'ListingDataService', 'ListingIdentityService', 'ListingUnitService', 'SharedService',
+  ($window, $translate, ListingDataService, ListingIdentityService, ListingUnitService, SharedService) ->
     ctrl = @
 
     @$onInit = ->
       # TODO: remove Shared Service once we create a Shared Container
+      ctrl.currentGroup = SharedService.currentGroup
       ctrl.listingEmailAlertUrl = "http://eepurl.com/dkBd2n"
+      ctrl.additionalResourcesUrl = $translate.instant('WELCOME.ADDITIONAL_RESOURCES_URL')
       ctrl.assetPaths = SharedService.assetPaths
       ctrl.listing = ListingDataService.listing
       ctrl.listings = ListingDataService.listings

@@ -13,7 +13,9 @@ section.results-section#listing-results ng-if="!$ctrl.parent.openListings.length
     .large-12.columns.margin-bottom--2x
       .block--short.bg-dust
         h2.t-delta.t-serif.c-oil translate="LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_HEADER"
-        a.button.radius.margin-bottom-none ui-sref="dahlia.additional-resources"
+        a.button.radius.margin-bottom-none ng-if="$ctrl.parent.currentGroup == 'sj'" ng-href="{{$ctrl.parent.additionalResourcesUrl}}"
+          | {{'LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_BUTTON' | translate}}
+        a.button.radius.margin-bottom-none ng-if="$ctrl.parent.currentGroup != 'sj'" ui-sref="dahlia.additional-resources"
           | {{'LISTINGS.VIEW_ADDITIONAL_HOUSING_OPPORTUNITIES_BUTTON' | translate}}
 
 / Listings: Open
