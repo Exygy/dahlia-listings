@@ -642,7 +642,6 @@
         "ALL_UNITS_RESERVED_FOR": "All units reserved for {{type}}",
         "APPLICATIONS_CLOSED": "Applications Closed {{date}}",
         "APPLY": {
-            "APPLICATIONS_MUST_BE_RECEIVED_BY_DEADLINE": "Applications must be received by the deadline and postmarks will not be considered.",
             "DO_NOT_APPLY_ONLINE_AND_PAPER": "Do not apply online and also send in a paper application.",
             "DO_NOT_DO_MULTIPLE_APPLICATIONS": "All applications containing any person who appears on more than one application will be removed from the lottery.",
             "DROP_OFF_APPLICATION": "Drop Off Application",
