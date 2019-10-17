@@ -26,11 +26,6 @@
     "DAHLIA_DESCRIPTION": "<p class='c-iron'>San José Housing Portal is a project of the <br><a class='a-white' href='http://www.sanjoseca.gov/housing' target='_blank'>City of San José, Housing Department</a></p>",
     "LISTING_QUESTIONS": "For general program inquiries, you may call the Housing Department at 408-535-3860."
   },
-  "LISTINGS": {
-    "APPLY": {
-      "APPLICATIONS_MUST_BE_RECEIVED_BY_DEADLINE": "Applications must be received by the deadline. If sending by U.S. Mail, the application must be postmarked by November 1, 2019 and received by mail no later than November 5, 2019. Applications received after November 5, 2019 via mail will not be accepted even if they are postmarked by November 1, 2019. Charities Housing is not responsible for lost or delayed mail."
-    }
-  },
   "NAV": {
     "ASSISTANCE_URL": "http://www.sanjoseca.gov/index.aspx?nid=1352",
     "FEEDBACK_URL": "https://docs.google.com/forms/d/e/1FAIpQLScFVVvd7FDa7puUN4iH2SBl_KAWBu8dRTXNuLIt8Ff9iYF3uA/viewform?usp=sf_link"
