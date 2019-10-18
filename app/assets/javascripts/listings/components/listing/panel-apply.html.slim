@@ -50,5 +50,7 @@
     h3.content-group_title ng-if="::!$ctrl.parent.listing.accepting_applications_by_po_box"
       | {{'LISTINGS.APPLY.DROP_OFF_APPLICATION_OR_MAIL' | translate}}
     ng-include src="'listings/templates/listing/_panel-apply-leasing-agent.html'"
-    p.c-charcoal.t-small ng-if="::!$ctrl.parent.listing.accepting_applications_by_po_box"
-      | {{'LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_DEADLINE' | translate}}
+    .dropoff-accepts ng-if="::!$ctrl.parent.listing.accepting_applications_by_po_box"
+      p.c-charcoal.t-small ng-if="::!$ctrl.parent.listing.accepts_postmark"
+        | {{'LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_DEADLINE' | translate}}
+      p.c-charcoal.t-small ng-if="::$ctrl.parent.listing.accepts_postmark" translate="LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_POSTMARK_DUE_DATE" translate-value-application-due-date="{{::$ctrl.parent.listing.application_due_date | date : "MMM d, yyyy 'at' h:mm a"}}" translate-value-postmark-due-date="{{::$ctrl.parent.listing.postmark_due_date | date : "MMM d, yyyy"}}" translate-value-developer="{{::$ctrl.parent.listing.developer}}"
