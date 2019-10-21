@@ -37,7 +37,7 @@
       | {{ ::$ctrl.parent.listing.application_city }} {{ ::$ctrl.parent.listing.application_state }} {{ ::$ctrl.parent.listing.application_postal_code }}
     p.c-charcoal.t-small ng-if="::!$ctrl.parent.listing.accepts_postmark"
       | {{'LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_DEADLINE' | translate}}
-    p.c-charcoal.t-small ng-if="::$ctrl.parent.listing.accepts_postmark" translate="LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_POSTMARK_DUE_DATE" translate-value-application-due-date="{{::$ctrl.parent.listing.application_due_date | date : "MMM d, yyyy 'at' h:mm a"}}" translate-value-postmark-due-date="{{::$ctrl.parent.listing.postmark_due_date | date : "MMM d, yyyy"}}" translate-value-developer="{{::$ctrl.parent.listing.developer}}"
+    p.c-charcoal.t-small ng-if="::$ctrl.parent.listing.accepts_postmark" translate="LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_POSTMARK_DUE_DATE" translate-value-application-due-date="{{::$ctrl.parent.listing.application_due_date | date : "MMM d, yyyy"}}" translate-value-postmark-due-date="{{::$ctrl.parent.listing.postmark_due_date | date : "MMM d, yyyy"}}" translate-value-developer="{{::$ctrl.parent.listing.developer}}"
 
     .option-divider ng-if="::$ctrl.parent.listing.accepting_applications_at_leasing_agent"
       span.or.bg-snow
@@ -53,4 +53,4 @@
     .dropoff-accepts ng-if="::!$ctrl.parent.listing.accepting_applications_by_po_box"
       p.c-charcoal.t-small ng-if="::!$ctrl.parent.listing.accepts_postmark"
         | {{'LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_DEADLINE' | translate}}
-      p.c-charcoal.t-small ng-if="::$ctrl.parent.listing.accepts_postmark" translate="LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_POSTMARK_DUE_DATE" translate-value-application-due-date="{{::$ctrl.parent.listing.application_due_date | date : "MMM d, yyyy 'at' h:mm a"}}" translate-value-postmark-due-date="{{::$ctrl.parent.listing.postmark_due_date | date : "MMM d, yyyy"}}" translate-value-developer="{{::$ctrl.parent.listing.developer}}"
+      p.c-charcoal.t-small ng-if="::$ctrl.parent.listing.accepts_postmark" translate="LISTINGS.APPLY.APPLICATIONS_MUST_BE_RECEIVED_BY_POSTMARK_DUE_DATE" translate-value-application-due-date="{{::$ctrl.parent.listing.application_due_date | date : "MMM d, yyyy"}}" translate-value-postmark-due-date="{{::$ctrl.parent.listing.postmark_due_date | date : "MMM d, yyyy"}}" translate-value-developer="{{::$ctrl.parent.listing.developer}}"
