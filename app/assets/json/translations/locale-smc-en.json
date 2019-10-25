@@ -26,6 +26,9 @@
     "DAHLIA_DESCRIPTION": "<p class='c-iron'>San Mateo County Housing Portal is a project of the <br><a href='https://housing.smcgov.org/' target='_blank' class='a-white'>San Mateo County's Department of Housing</a></p><p class='t-small c-iron margin-top'>in partnership with<br><a href='https://isd.smcgov.org/' target='_blank' class='a-white'>San Mateo County's Information Services Department</a><br><a href='http://www.ssf.net/' target='_blank' class='a-white'>City of South San Francisco</a></p>",
     "LISTING_QUESTIONS": "For general program inquiries, you may call DOH at 650-802-5050."
   },
+  "LISTINGS": {
+    "OCCUPANCY_DESCRIPTION_NO_SRO": "Occupancy limits for this building differ from household size, and do not include children under 6."
+  },
   "NAV": {
     "ASSISTANCE_URL": "https://housing.smcgov.org/find-rental-assistance",
     "FEEDBACK_URL": "https://www.surveymonkey.com/r/2QLBYML"
