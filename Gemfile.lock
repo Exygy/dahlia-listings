@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/Exygy/dahlia_data_models.git
-  revision: cb97aa76c2104931b2b9c3331a0af50705a694b1
-  ref: cb97aa76c2104931b2b9c3331a0af50705a694b1
+  revision: 9a381f3c182a68ede86014e51086e78cbb717968
+  ref: 9a381f3c182a68ede86014e51086e78cbb717968
   specs:
     dahlia_data_models (0.1.0)
       awesome_nested_set (~> 3.1)
@@ -84,8 +84,8 @@ GEM
       tilt
     arel (9.0.0)
     ast (2.4.0)
-    awesome_nested_set (3.1.4)
-      activerecord (>= 4.0.0, < 5.3)
+    awesome_nested_set (3.2.0)
+      activerecord (>= 4.0.0, < 7.0)
     awesome_print (1.8.0)
     better_errors (2.5.1)
       coderay (>= 1.0.0)
