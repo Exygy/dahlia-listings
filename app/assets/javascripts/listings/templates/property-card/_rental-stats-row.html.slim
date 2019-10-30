@@ -1,4 +1,4 @@
-tr ng-repeat-start="summary in ::unitSummaries" ng-if="::summary.min_income_range.min"
+tr ng-repeat-start="summary in ::unitSummaries" ng-if="::summary.min_income_range.min && summary.rent_range.min"
   / Dollar based rent
   td scope="row"
     | {{::summary.unit_type}}
