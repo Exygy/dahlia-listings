@@ -16,7 +16,7 @@ ListingDataService = (
   Service.loading = {}
   Service.error = {}
   Service.toggleStates = {}
-  Service.listingPaperAppURLs = []
+  Service.listingAppURLs = []
 
   Service.sortByDate = (sessions) ->
     # used for sorting Open_Houses and Information_Sessions
@@ -46,7 +46,7 @@ ListingDataService = (
   Service.resetListingData = () ->
     angular.copy({}, Service.listing)
     angular.copy([], Service.AMICharts)
-    angular.copy([], Service.listingPaperAppURLs)
+    angular.copy([], Service.listingAppURLs)
 
   Service.getListingResponse = (deferred, retranslate = false) ->
     (response) ->
@@ -56,6 +56,7 @@ ListingDataService = (
       if !data || !data.listing
         return
       angular.copy(data.listing, Service.listing)
+      angular.copy(data.listing.application_download_urls, Service.listingAppURLs)
       # fallback for fixing the layout when a listing is missing an image
       Service.listing.image_url ?= 'https://unsplash.it/g/780/438'
       # create a combined unit_summaries
@@ -248,21 +249,6 @@ ListingDataService = (
       return "#{city} #{state}, #{zip}"
     else
       "#{street}#{city} #{state}, #{zip}"
-
-  Service.getListingPaperAppURLs = (listing) ->
-    urls = angular.copy(ListingConstantsService.rentalPaperAppURLs)
-
-    english = _.find(urls, { language: 'English' })
-    chinese = _.find(urls, { language: 'Traditional Chinese' })
-    spanish = _.find(urls, { language: 'Spanish' })
-    tagalog = _.find(urls, { language: 'Tagalog' })
-
-    # replace download URLs if they are customized on the listing
-    english.url = listing.Download_URL if listing.Download_URL
-    chinese.url = listing.Download_URL_Cantonese if listing.Download_URL_Cantonese
-    spanish.url = listing.Download_URL_Spanish if listing.Download_URL_Spanish
-    tagalog.url = listing.Download_URL_Tagalog if listing.Download_URL_Tagalog
-    angular.copy(urls, Service.listingPaperAppURLs)
 
   return Service
 

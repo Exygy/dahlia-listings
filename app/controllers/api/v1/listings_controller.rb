@@ -30,6 +30,7 @@ class Api::V1::ListingsController < ApiController
     response = { listing: listing.as_json }
     ami_chart_summaries = ListingService.create_ami_chart_summaries(listing)
     unit_summaries = ListingService.create_unit_summaries(listing)
+    response[:listing][:application_download_urls] = listing.application_download_urls
     response[:listing][:amiChartSummaries] = ami_chart_summaries
     response[:listing][:unit_summaries] = unit_summaries
     response[:listing][:total_units] = listing.units.count
