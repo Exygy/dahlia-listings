@@ -1,16 +1,16 @@
 AllCops:
   Include:
-    - '**/Rakefile'
-    - '**/config.ru'
-    - 'lib/tasks/**/*'
+    - "**/Rakefile"
+    - "**/config.ru"
+    - "lib/tasks/**/*"
   Exclude:
     - Gemfile*
-    - 'db/migrate/*'
-    - 'db/schema.rb'
-    - 'bin/**/*'
-    - 'vendor/bundle/**/*'
-    - 'node_modules/**/*'
-    - 'config/environments/production.rb'
+    - "db/migrate/*"
+    - "db/schema.rb"
+    - "bin/**/*"
+    - "vendor/bundle/**/*"
+    - "node_modules/**/*"
+    - "config/environments/production.rb"
 
 # We don't care about method length, since we check method cyclomatic
 # complexity.
@@ -27,7 +27,7 @@ Metrics/AbcSize:
 # to have been changed, as it would if it lacked a comma and had one added.
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 
 # Cop supports --auto-correct.
@@ -36,8 +36,8 @@ Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     # Using `[]` for string arrays instead of `()`, since normal arrays are
     # indicated with `[]` not `()`.
-    '%w': '[]'
-    '%W': '[]'
+    "%w": "[]"
+    "%W": "[]"
 
 Style/AndOr:
   # Whether `and` and `or` are banned only in conditionals (conditionals)
@@ -47,30 +47,29 @@ Style/AndOr:
 
 Style/ClassAndModuleChildren:
   Exclude:
-    - 'app/controllers/**/*'
+    - "app/controllers/**/*"
 
 Style/ConditionalAssignment:
   Enabled: false
 
 Style/FormatStringToken:
   Enabled: false
-  Enabled: false
 
 Metrics/LineLength:
   Max: 90
   Exclude:
-    - 'config/routes.rb'
-    - 'config/application.rb'
-    - 'app/models/user.rb'
+    - "config/routes.rb"
+    - "config/application.rb"
+    - "app/models/user.rb"
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*.rb'
-    - 'config/routes.rb'
+    - "spec/**/*.rb"
+    - "config/routes.rb"
 
 Style/RescueStandardError:
   Exclude:
-    - 'app/services/cache_service.rb'
+    - "app/services/cache_service.rb"
 
 Style/FrozenStringLiteralComment:
   Enabled: false
