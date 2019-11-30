@@ -1,7 +1,7 @@
 doctype html
 html lang="en" ng-app="dahlia" ng-strict-di="" ng-controller="SharedController"
   head
-    title Housing Portal
+    title #{@meta.title}
 
     / load critical CSS in head
     css:
@@ -26,12 +26,10 @@ html lang="en" ng-app="dahlia" ng-strict-di="" ng-controller="SharedController"
     = render partial: '/layouts/favicons'
     = csrf_meta_tags
 
-    / prerender.io + metatags
-    meta name="fragment" content="!"
-    meta property="og:title" content="{{$title || 'Housing Portal'}}"
-    meta property="og:image" content="{{ngMeta['og:image']}}"
-    meta property="og:description" content="{{ngMeta.description}}"
-    meta name="description" content="{{ngMeta.description}}"
+    meta property="og:title" content="#{@meta.title}"
+    meta property="og:image" content="#{@meta.image}"
+    meta property="og:description" content="#{@meta.description}"
+    meta name="description" content="#{@meta.description}"
     meta property="og:type" content="website"
 
     javascript:

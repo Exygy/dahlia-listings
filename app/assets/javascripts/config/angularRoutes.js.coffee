@@ -26,17 +26,10 @@
           controller: 'NavController'
         'footer@':
           templateUrl: 'shared/templates/footer.html'
-      data:
-        meta:
-          'description': 'Search and apply for affordable housing on the DAHLIA Housing Portal.'
       resolve:
         translations: ['$stateParams', '$translate', ($stateParams, $translate) ->
           # this should happen after preferredLanguage is initially set
           $translate.use($stateParams.lang)
-        ]
-        data: ['ngMeta', 'SharedService', (ngMeta, SharedService) ->
-          img = SharedService.assetPaths['dahlia_social-media-preview.jpg']
-          ngMeta.setTag('og:image', img)
         ]
     })
     # Home page
@@ -107,14 +100,6 @@
         $title: ['$title', 'listing', ($title, listing) ->
           listing.Name
         ]
-        data: ['ngMeta', 'listing', (ngMeta, listing) ->
-          desc = "Apply for affordable housing at #{listing.name} on the DAHLIA Housing Portal."
-          ngMeta.setTag('description', desc)
-          ngMeta.setTag('og:image', listing.image_url)
-        ]
-      # https://github.com/vinaygopinath/ngMeta#using-custom-data-resolved-by-ui-router
-      meta:
-        disableUpdate: true
     })
     .state('dahlia.additional-welcome-english', {
       url: '/welcome-en'

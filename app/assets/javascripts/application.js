@@ -42,7 +42,6 @@
 //= require angular-linkify
 //= require angular-messages
 //= require angular-loading-overlay
-//= require ng-meta/dist/ngMeta
 //= require raven-js/dist/raven
 //= require raven-js/dist/plugins/angular
 //= require config/angularModules.js
