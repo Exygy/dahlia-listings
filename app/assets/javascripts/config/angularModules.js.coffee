@@ -38,7 +38,6 @@ moment.tz.add(pacificTimezone)
   'ngAria',
   'ngIdle',
   'ngMessages',
-  'ngMeta',
   'ngRaven',
   'pascalprecht.translate',
   'templates',

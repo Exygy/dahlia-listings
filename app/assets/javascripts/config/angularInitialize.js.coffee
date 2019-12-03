@@ -1,12 +1,10 @@
 @dahlia.run [
   '$rootScope', '$state', '$window', '$document', '$timeout',
-  'Idle', 'bsLoadingOverlayService', 'ngMeta',
+  'Idle', 'bsLoadingOverlayService',
   'AnalyticsService', 'SharedService',
-  ($rootScope, $state, $window, $document, $timeout,Idle, bsLoadingOverlayService, ngMeta,
+  ($rootScope, $state, $window, $document, $timeout,Idle, bsLoadingOverlayService,
   AnalyticsService, SharedService) ->
     timeoutRetries = 2
-
-    ngMeta.init()
 
     bsLoadingOverlayService.setGlobalConfig({
       delay: 0
