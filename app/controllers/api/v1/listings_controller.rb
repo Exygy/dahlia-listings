@@ -20,7 +20,7 @@ class Api::V1::ListingsController < ApiController
       json_listing[:total_units] = listing.units.count
       json_listing[:units_available] = listing.units.available.count
       if json_listing['reserved_descriptor'].present?
-        json_listing['reserved_descriptor'] = [json_listing['reserved_descriptor']]
+        json_listing['reserved_descriptor'] = [{name: json_listing['reserved_descriptor']}]
       end
       json_listings << json_listing
     end
@@ -39,7 +39,7 @@ class Api::V1::ListingsController < ApiController
     response[:listing][:total_units] = listing.units.count
     response[:listing][:units_available] = listing.units.available.count
     if response[:listing]['reserved_descriptor'].present?
-      response[:listing]['reserved_descriptor'] = [response[:listing]['reserved_descriptor']]
+      response[:listing]['reserved_descriptor'] = [{name: response[:listing]['reserved_descriptor']}]
     end
     render json: response
   end
