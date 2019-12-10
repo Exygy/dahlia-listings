@@ -10,8 +10,8 @@ table.td-small.th-small.td-nowrap.th-nowrap.td-light role="grid" ng-class="{'tab
   / Reserved
 table.td-small.th-small.td-nowrap.th-nowrap.td-light.no-thead.margin-top.table-reserved ng-if="::$ctrl.listing.unit_summaries.reserved"
   caption ng-if="::$ctrl.listingContainer.listingIsReservedCommunity($ctrl.listing)"
-    span translate="LISTINGS.RESERVED_UNITS_FOR_WHO_ARE" translate-value-community-type="{{::$ctrl.listingContainer.reservedLabel($ctrl.listing, $ctrl.listing.Reserved_community_type, 'reservedFor')}}" translate-value-reserved-type="{{::$ctrl.reservedForLabels($ctrl.listing)}}"
+    span translate="LISTINGS.RESERVED_UNITS_FOR_WHO_ARE" translate-value-community-type="{{::$ctrl.listingContainer.reservedLabel($ctrl.listing, $ctrl.listing.Reserved_community_type, 'reservedFor')}}" translate-value-reserved-type="{{::$ctrl.listingContainer.reservedForLabels($ctrl.listing)}}"
   caption ng-if="::!$ctrl.listingContainer.listingIsReservedCommunity($ctrl.listing)"
-    span translate="LISTINGS.RESERVED_FOR" translate-value-type="{{::$ctrl.reservedForLabels($ctrl.listing)}}"
+    span translate="LISTINGS.RESERVED_FOR" translate-value-type="{{::$ctrl.listingContainer.reservedForLabels($ctrl.listing)}}"
 
   tbody ng-include="'listings/templates/property-card/_rental-stats-row.html'" ng-init="unitSummaries = $ctrl.listing.unit_summaries.reserved"
