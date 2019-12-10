@@ -30,7 +30,7 @@ angular.module('dahlia.components')
           if descriptor.name
             type = descriptor.name
             types.push(ListingDataService.reservedLabel(listing, type, 'reservedForWhoAre'))
-        if types.length then types.join(' or ') else ''
+        if types.length then types.join(' or ') else ' . '
 
       return ctrl
   ]
