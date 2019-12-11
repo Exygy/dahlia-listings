@@ -4,4 +4,4 @@ angular.module('dahlia.components')
   bindings:
     listing: '<'
   require:
-    listingContainer: '^propertyCard'
+    listingContainer: '^listingContainer'
