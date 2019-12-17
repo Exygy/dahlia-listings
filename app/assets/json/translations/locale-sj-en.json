@@ -37,7 +37,7 @@
     "DAHLIA_HOUSING_PORTAL": "<span class=\"header-logo-group\">San Jose Housing Portal</span>"
   },
   "WELCOME": {
-    "ADDITIONAL_RESOURCES_URL": "https://www.sanjoseca.gov/your-government/departments/housing/renters-apartment-owners/find-an-affordable-apartment",
+    "ADDITIONAL_RESOURCES_URL": "https://csj.maps.arcgis.com/apps/webappviewer/index.html?id=ed8cfcd6781c4bddbf97c01cf170dd2a",
     "TITLE": "Apply for affordable housing in <span class=\"hero-title_highlight\">San José</span>"
   }
 }
