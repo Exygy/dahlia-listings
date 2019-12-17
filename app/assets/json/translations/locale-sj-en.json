@@ -30,14 +30,14 @@
     "OCCUPANCY_DESCRIPTION_NO_SRO": "Occupancy limits for this building differ from household size."
   },
   "NAV": {
-    "ASSISTANCE_URL": "http://www.sanjoseca.gov/index.aspx?nid=1352",
+    "ASSISTANCE_URL": "https://www.sanjoseca.gov/your-government/departments/housing/renters-apartment-owners",
     "FEEDBACK_URL": "https://docs.google.com/forms/d/e/1FAIpQLScFVVvd7FDa7puUN4iH2SBl_KAWBu8dRTXNuLIt8Ff9iYF3uA/viewform?usp=sf_link"
   },
   "T": {
     "DAHLIA_HOUSING_PORTAL": "<span class=\"header-logo-group\">San Jose Housing Portal</span>"
   },
   "WELCOME": {
-    "ADDITIONAL_RESOURCES_URL": "http://www.sanjoseca.gov/index.aspx?nid=1352",
+    "ADDITIONAL_RESOURCES_URL": "https://www.sanjoseca.gov/your-government/departments/housing/renters-apartment-owners/find-an-affordable-apartment",
     "TITLE": "Apply for affordable housing in <span class=\"hero-title_highlight\">San José</span>"
   }
 }
