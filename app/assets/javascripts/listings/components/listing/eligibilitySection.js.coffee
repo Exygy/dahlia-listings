@@ -46,6 +46,10 @@ angular.module('dahlia.components')
       @listingHasPriorityUnits = ->
         ListingUnitService.listingHasPriorityUnits(this.parent.listing)
 
+      # NOTE: this hardcoded value is, um, not ideal :)
+      @listingShowRentalAssistance = ->
+        this.parent.listing.id != 8
+
       @priorityLabel = (priority, modifier) ->
         ListingDataService.priorityLabel(priority, modifier)
 
