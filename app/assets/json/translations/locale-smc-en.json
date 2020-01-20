@@ -27,7 +27,8 @@
     "LISTING_QUESTIONS": "For general program inquiries, you may call DOH at 650-802-5050."
   },
   "LISTINGS": {
-    "OCCUPANCY_DESCRIPTION_NO_SRO": "Occupancy limits for this building differ from household size, and do not include children under 6."
+    "OCCUPANCY_DESCRIPTION_NO_SRO": "Occupancy limits for this building differ from household size, and do not include children under 6.",
+    "SINGLE_ROOM_OCCUPANCY_DESCRIPTION": "This property offers single rooms for one person only. Tenants may share bathrooms, and sometimes kitchen facilities."
   },
   "NAV": {
     "ASSISTANCE_URL": "https://housing.smcgov.org/find-rental-assistance",
