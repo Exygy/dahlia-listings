@@ -58,7 +58,7 @@ angular.module('dahlia.components')
 
     @listingIsSimplifiedSROWithNoDeadline = (listing) ->
       # NOTE: this is not an ideal approach…
-      listing.id == 9 || listing.id == 2
+      listing.id == 9
 
     @listingSupportsDevelopmentalDisabilities = (listing) ->
       ListingUnitService.listingSupportsDevelopmentalDisabilities(listing)
