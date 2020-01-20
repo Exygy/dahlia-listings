@@ -674,6 +674,7 @@
         "ENTER_LOTTERY_FOR_WAITLIST": "Submit an application for an open slot on the waitlist for <span class='t-italic'>{{number}} units</span>.",
         "FINAL_WAITLIST_SIZE": "Final Waitlist Size",
         "FOR_INCOME_CALCULATIONS": "For income calculations, household size includes everyone (all ages) living in the unit.",
+        "FOR_INCOME_CALCULATIONS_SRO": "For income calculations, household size is limited to one person.",
         "HOUSEHOLD_MAXIMUM_INCOME": "Household Maximum Income",
         "IMPORTANT_PROGRAM_RULES": "Important Program Rules",
         "INCLUDES_PRIORITY_UNITS": "Includes Priority Units for {{priorities}}",
