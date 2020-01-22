@@ -41,7 +41,7 @@ accordion-heading
           span.t-small Application Fee
           p.t-delta.no-margin.t-bold
             | {{::$ctrl.parent.listing.application_fee | currency:"$":2}}
-          span.content-label.t-small
+          span.content-label.t-small ng-if="!$ctrl.parent.listingIsSimplifiedSROWithNoDeadline($ctrl.parent.listing)"
             | per applicant age 18 and over
           span.t-tiny.d-block
             | Due at interview
@@ -51,7 +51,7 @@ accordion-heading
             | {{::$ctrl.parent.listing.deposit_min | currency:"$":0}}
             span ng-if="$ctrl.parent.listing.deposit_max && $ctrl.parent.listing.deposit_max != $ctrl.parent.listing.deposit_min"
               | &ndash;{{ $ctrl.parent.listing.deposit_max | currency:"$":0 }}
-          span.content-label.t-small
+          span.content-label.t-small ng-if="!$ctrl.parent.listingIsSimplifiedSROWithNoDeadline($ctrl.parent.listing)"
             | or one month's rent
           span.t-tiny.d-block ng-if="$ctrl.listingIsBMR()"
             | May be higher for lower credit scores

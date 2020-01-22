@@ -27,7 +27,8 @@
     "LISTING_QUESTIONS": "For general program inquiries, you may call the Housing Department at 408-535-3860."
   },
   "LISTINGS": {
-    "OCCUPANCY_DESCRIPTION_NO_SRO": "Occupancy limits for this building differ from household size."
+    "OCCUPANCY_DESCRIPTION_NO_SRO": "Occupancy limits for this building differ from household size.",
+    "SINGLE_ROOM_OCCUPANCY_DESCRIPTION": "This property offers single rooms for one person only. Tenants may share the community room kitchen."
   },
   "NAV": {
     "ASSISTANCE_URL": "https://www.sanjoseca.gov/your-government/departments/housing/renters-apartment-owners",

@@ -27,8 +27,10 @@ accordion-heading.lead
           h4.custom-counter_title
             | {{'LISTINGS.HOUSEHOLD_MAXIMUM_INCOME' | translate}}
           /! Each unit type available has its own requirements based on household size.
-          p.custom-counter_text
+          p.custom-counter_text ng-if="::!$ctrl.listingHasOnlySROUnits()"
             | {{'LISTINGS.FOR_INCOME_CALCULATIONS' | translate}}
+          p.custom-counter_text ng-if="::$ctrl.listingHasOnlySROUnits()"
+            | {{'LISTINGS.FOR_INCOME_CALCULATIONS_SRO' | translate}}
 
 
         .content-card.padding--2x ng-show="$ctrl.parent.loading.ami"

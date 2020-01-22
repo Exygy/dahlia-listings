@@ -56,6 +56,10 @@ angular.module('dahlia.components')
     @listingHasSROUnits = (listing) ->
       ListingUnitService.listingHasSROUnits(listing)
 
+    @listingIsSimplifiedSROWithNoDeadline = (listing) ->
+      # NOTE: this is not an ideal approach…
+      listing.id == 9
+
     @listingSupportsDevelopmentalDisabilities = (listing) ->
       ListingUnitService.listingSupportsDevelopmentalDisabilities(listing)
 
